@@ -1,0 +1,752 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+  
+    <title>The Decision Diagram Merging Plugin</title>
+    <link rel="stylesheet" type="text/css" media="all" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" media="all" href="css/text.css">
+    <link rel="stylesheet" type="text/css" media="all" href="css/960.css">
+    <link rel="stylesheet" type="text/css" media="all" href="css/style.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  </head><body>
+
+    <div class="container_12">
+
+      <h1>dlvhex</h1>
+        
+      <div id="menu">
+	<a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/">About</a>
+	&nbsp;|&nbsp;
+	<a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/people.html">People</a>
+	&nbsp;|&nbsp;
+	<a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/download.html">Download</a>
+	&nbsp;|&nbsp;
+	<a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/support.html">Support</a>
+	&nbsp;|&nbsp;
+	<a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/documentation.html">Documentation</a>
+	&nbsp;|&nbsp;
+	<a href="http://asptut.gibbi.com/">Demo &amp; ASP Tutorial</a>
+	&nbsp;|&nbsp;
+	<a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/related.html">Related
+ Work</a>
+	&nbsp;|&nbsp;
+	<a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/literature.html">Literature</a>
+      </div>
+
+    </div>
+
+
+    <div class="container_12">
+    
+      <div class="grid_9">
+
+	<h2>The Decision Diagram Merging System</h2>
+
+		<p>
+			The DDM System (decisiondiagramsplugin) adds support for working with decision diagrams to dlvhex. In consists of two major components:
+			<ul>
+				<li>A <a href="#converter">tool for conversion</a> between different file formats</li>
+				<li><a href="#operators">Operators</a> for decision diagram modification and merging.
+			</ul>
+			The <a href="#controlscript">constrol script</a> may simplify merging considerably.
+		</p>
+		<p>
+			For a quick introduction, take a look at our <a href="#examples">examples</a>.
+		</p>
+
+	  <hr>
+	
+		<h3 id="converter">File Format Conversions</h3>
+		
+		<p>
+			Decision diagrams can be stored in different file formats. While some of
+			them are human-readable, others are better for automatic processing.
+		</p>
+		<p>
+			Our system is implemented on top of the logic programming system <a href="./../dlvhex">dlvhex</a>.
+			In order to process diagrams it is necessary to encode them as set of facts.
+			But this is inconvenient for humans. Hence, the usual workflow is to store
+			diagrams as DOT graphs and convert them to sets of facts only before merging.
+			The output is then a diagram again encoded as a set of facts, which is back-converted
+			into a DOT graph as a postprocessing step.
+		</p>
+
+		<p>
+			The supported file formats of our converter are described in the following subsections.
+			To see how the converter is called from command line, read the section on <a href="#conversion">Conversion</a>.
+		</p>
+
+		<h4>DOT</h4>
+	
+			<p>
+				The <a href="http://www.graphviz.org">DOT file format</a> is intuitively readable and thus fit for being used as
+				human readable format for representing decision diagrams. Additionally it
+				is well suited for being visualized using the dot tools.
+			</p>
+
+			<p>
+				Consider the following decision diagram.
+				<img src="ddexample.png"/>
+			</p>
+	
+			<p>
+				Then the following snippet shows a its implementation as DOT file.<br/>
+				  <code>
+					digraph G {<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;root -> case1 ["A<10"];<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;root -> case2 ["A>20"];<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;root -> elsecase["else"];<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;root -> case3["else"];<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;case1 -> case1a["B<10"];<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;case1 -> case1b["else"];<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;case2 -> case2a["B<16"];<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;case2 -> case2b["else"];<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;case1a["Clas sA"];<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;case1b["ClassB"];<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;case2a["ClassA"];<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;case2b["ClassB"];<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;case3["ClassC"];<br/>
+					}
+				  </code>
+			</p>
+
+			<p>
+				Valid decision diagrams must
+				<ul>
+					<li>have exactly one root node (which does not need to be explicitly mentioned, but which is implicitly identified by the fact that it has no
+						ingoing edges)</li>
+					<li>use only directed edges</li>
+					<li>use only edges that are labeled either with <code>else</code> or with conditions of form <code>X &#35; Y</code> where X and Y can be arbitrary strings and
+						&#35; is an operator from {<, <=, =, >, >=}</li>
+					<li>have leaf nodes that are labeled with arbitrary strings that encode the
+						classification in this node</li>
+				</ul>
+			</p>
+	
+	<h4>Sets of Facts</h4>
+
+		<p>
+			dlvhex cannot directly load this format because its input must be
+			a logic program. Thus a diagram must be represented using atom formulas.
+			We define the following predicates:
+
+			<ul>
+				<li><code>root(X)</code><br/>
+					To define that some constant X is defined as the root node</li>
+				<li><code>innernode(X)</code><br/>
+					To define some constant X to be an inner node</li>
+				<li><code>leafnode(X,Y)</code><br/>
+					To define that some constant X is a leaf node with label Y</li>
+				<li><code>conditionaledge(X,Y,A,C,B)</code><br/>
+					To define that a conditional edge with condition A &#35; B (where the
+					operation &#35; is given by C) leads from node X to Y</li>
+				<li><code>root(X)</code><br/>
+					To define that an unconditional edge goes from X to Y</li>
+			</ul>
+		</p>
+
+		<p>
+			The above diagram can therefore be implemented as follows.<br/>
+
+			<code>
+			&nbsp;&nbsp;&nbsp;&nbsp;root(root).<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;innernode(case1).<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;innernode(case2).<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;leafnode(case3,"ClassC").<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;leafnode(case1a,"ClassA").<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;leafnode(case1b,"ClassB").<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;leafnode(case2a,"ClassA").<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;leafnode(case2b,"ClassB").<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(root,case1,"A","<","10").<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(root,case2,"A",">","20").<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;elseedge(root,case3).<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(case1,case1a,"B","<","10").<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;elseedge(case1,case1b).<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(case2,case2a,"B","<","16").<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;elseedge(case2,case2b).
+			</code>
+		</p>
+		
+	<h4>Answer-Sets</h4>
+	
+		<p>
+			A very simple and obvious translation from HEX programs into answer-sets
+			is to to put all the facts simply as atoms in an answer-set. The above
+			diagram can therefore also be implemented as:<br/>
+
+		  <code>
+			&nbsp;&nbsp;&nbsp;&nbsp;{root(root),<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;innernode(case1),<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;innernode(case2),<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;leafnode(case3,"ClassC"),<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;leafnode(case1a,"ClassA"),<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;leafnode(case1b,"ClassB"),<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;leafnode(case2a,"ClassA"),<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;leafnode(case2b,"ClassB"),<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(root,case1,"A","<","10"),<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(root,case2,"A",">","20"),<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;elseedge(root,case3),<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(case1,case1a,"B","<","10"),<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;elseedge(case1,case1b),<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(case2,case2a,"B","<","16"),<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;elseedge(case2,case2b)}
+		  </code>
+		</p>
+	
+	<h4>RapidMiner XML Format</h4>
+		
+		<p>
+			<a href="http://www.rapidminer.com">RapidMiner</a> is an open-source data mining tool. It uses a priprietary XML
+			file format to store decision trees. This format is also supported by our converter.
+			The details are not relevant for practical work and
+			are skipped therefore. It is only important to know that the import and
+			export functionality for this file format is necessary to process RapidMiner
+			classifiers by the decisiondiagramplugin.
+		</p>
+		
+	<h3 id="conversion">Conversion</h3>
+	
+	<p>
+		For the conversion between the introduced file formats, the plugin installs
+		a tool called <code>graphconverter</code>. It can be used to translate diagrams in any of
+		the supported file formats into semantically equivalent versions in another
+		format. Assume that the diagram is stored in file <code>"mydiagram.dot"</code>. Then
+		the conversion into the according HEX program is done by entering:
+	</p>
+	
+	<p align="center">
+		<code>graphconverter dot hex &lt; mydiagram.dot &gt; mydiagram.hex</code>
+	</p>
+	
+	<p>
+		The result is a set of facts that can be loaded by dlvhex. After dlvhex has
+		done its job, the output will be an answer-set, which is ill-suited for begin
+		read by humans. Thus the plugin also supports conversions in the other
+		direction. Assume that dlvhex' output is stored in file <code>"answerset.as"</code> (using
+		the silent mode such that the output contains the pure answer-set without
+		any additional information about dlvhex). Then the conversion is done by:
+	</p>
+	
+	<p align="center">
+		<code>graphconverter as dot &lt; mydiagram.as &gt; mydiagram.hex</code>
+	</p>
+	
+	<p>
+		Between the two converter calls, the diagram is given as HEX program
+		<code>"mydiagram.hex"</code> that can be processed by dlvhex. Even though in principle
+		one can do arbitrary computations upon this representation, it is
+		intended to be used as part of the input for a merging task.
+	</p>
+	
+	<p>
+		Note that graphconverter reads from standard input and writes to standard output.
+		It expects either one or two parameters. If one parameter is
+		passed, it can be anything of:
+	</p>
+	
+	<ul>
+		<li><code>--toas</code><br/>
+			Converts a DOT file into an answer-set</li>
+		<li><code>--todot</code><br/>
+			Converts an answer-set into a DOT file</li>
+		<li><code>--help</code><br/>
+			Displays an online help message</li>
+	</ul>
+	
+	<p>
+		Note that <code>--toas</code> and <code>--todot</code> are only abbreviations for
+		frequent conversions. The more general program call (as used above) passes two parameters,
+		where the first one states the source format and the second one the desired
+		destination format. Both parameters can be anything from the following list.
+	</p>
+	
+	<table>
+		<tr>
+			<td><b>Format</b></td> <td><b>Parameter name</b></td>
+		</tr>
+		<tr>
+			<td>DOT graph</td> <td><code>dot</code></td>
+		</tr>
+		<tr>
+			<td>HEX program</td> <td><code>hexprogram</code> or <code>hex</code></td>
+		</tr>
+		<tr>
+			<td>answer-set</td> <td><code>answerset</code> or <code>as</code></td>
+		</tr>
+		<tr>
+			<td>RapidMiner XML</td> <td><code>rmxml</code> or <code>xml</code></td>
+		</tr>
+	</table>
+  <hr>
+
+	<h2 id="operators">Applying Operators</h2>
+	
+		<p>
+			This section presupposes familarity with the mergingplugin <a href="meld.html"><code>MELD</code></a>, especially the
+			usage of merging plans and operators. For a detailled description see the
+			according documentation.
+		</p>
+				
+		<p>
+			The DDM System ships with several special merging and modification operators
+			for decision diagrams. They expect the belief bases to be
+			sets of facts which were generated out of decision diagrams using the <a href="#converter"><code>graphconverter</code></a>.
+			The output will again be a set of facts that encodes a
+			diagram, which can be back-converted into a DOT file. Intermediate results
+			are sets of answer-sets.
+		</p>
+
+		<p>
+			The following snippet shows a typical merging task definition that uses the operators
+			unfold and tobinarydecisiontree. Note that the decision diagram encoded
+			as logic program was directly pasted into the mapping rules. This was
+			only done in order to give the program as one self-contained example. In
+			practice, the mapping rules would rather access an external source by the
+			use of external atoms.<br/><br/>
+			
+			<code>
+[commonsignature]<br/>
+predicate:root/1;<br/>
+predicate:innernode/1;<br/>
+predicate:leafnode/2;<br/>
+predicate:conditionaledge/5;<br/>
+predicate:elseedge/2;<br/>
+
+[beliefbase]<br/>
+name:kb1;<br/>
+mapping:"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;root(root).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;innernode(root).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;innernode(v1).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;innernode(v2).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;innernode(v3).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;leafnode(leaf1,class1).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;leafnode(leaf2,class2).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;leafnode(leaf3,class3).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(root,v1,x,\'<\',y).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(root,v2,z,\'<\',y).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;elseedge(root,v3).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(v1,leaf1,a,\'<\',y).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(v1,leaf2,b,\'<\',y).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;elseedge(v1,leaf3).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(v2,leaf1,aa,\'<\',y).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(v2,leaf2,bb,\'<\',y).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;elseedge(v2,leaf3).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(v3,leaf1,aaa,\'<\',y).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(v3,leaf2,bbb,\'<\',y).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;elseedge(v3,leaf3).<br/>
+";<br/>
+<br/>
+[mergingplan]<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;operator:tobinarydecisiontree;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator:unfold;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{kb1}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+}
+			</code>
+		</p>
+	
+		<p>
+			The following subsections describe the operators that are included in
+			the plugin. Note that this is just a very quick and informal description
+			that should enable the user to explore the capabilities or adapt operators
+			according to individual needs. For a more detailled and formal description
+			we refer to the <a href="#conclusion">references</a>.
+		</p>
+	
+		<h3>Modification Operators</h3>
+
+			Operators with arity 1 are called <em>modification operators</em>. They
+			do not integrate multiple diagrams but manipulate a single one. This
+			is often useful to simplify the structure of the diagram before it is
+			actually merged with others.
+
+			<h4>unfold</h4>
+			
+			<p>
+				The input is a collection of belief sets, where each of them
+				encodes general decision diagrams. The output will
+				contain the same number of diagrams, where each of them has (independently)
+				been converted into a tree. This is done by duplication of shared subtrees.
+			</p>
+			
+			<h4>tobinarydecisiondiagram</h4>
+			
+			<p>
+				The operator expects
+				the input to encode a diagram that is a tree, i.e. it contains no sharing of
+				subnodes.
+				Then the output is again a tree where each node has at most two
+				successors (binary tree). This is done by introduction of intermediate nodes.
+			</p>
+			
+			<h4>orderbinarydecisiontree</h4>
+			
+			<p>
+				The operator is again unary. It expects its input to be a binary decision
+				tree. Its output will a semantically equivalent binary decision tree, where
+				on each path from the root to a leaf node, the variables are only queried in
+				lexical ordering.
+			</p>
+			
+			<h4>simplify</h4>
+			
+			<p>
+				The input is a collection of belief sets containing an arbitrary number
+				of decision diagrams. Each of them is then (independently)
+				simplified by some algorithms that will leave the semantics of
+				the diagram unchanged. That is, only the structure of the diagram will be
+				modified, which makes them more readable.
+			</p>
+			<p>
+				The simplification algorithm will reuse common subtrees (an can thus be seen as
+				the converse of unfolding) and eliminate redundant case distinctions.
+			</p>
+			
+		<h3>Merging Operators</h3>
+
+			Now we describe the actual merging operators with an arity n > 1.
+
+			<h4>userpreferences</h4>
+			
+			<p>
+				This operator is n-ary, i.e. arbitrary many diagrams can be passed. Additionally
+				it expects arbitrary many key-value pairs as parameters, where the
+				keys are ignored and the values are of form:
+			</p>
+			
+			<p align="center">
+				X >>Y or X >n>Y
+			</p>
+			
+			<p>
+				where X and Y are the names of class labels (as used in leaf nodes) and n
+				is a positive integer. A rule of form X >> Y expresses that "in doubt, X is
+				preferred to Y", whereas X >n> Y states "X is preferred to Y if there are
+				at least n more input diagrams that vote for X than for Y".
+			</p>
+			
+			<p>
+				The output is a diagram where each domain element is classified according
+				to this rules. Note that the rules are evaluated in top-down manner.
+				That is, the result of of a prior rule can be overwritten by a later (applicable!) rule.
+			</p>
+			
+			<h4>majorityvoting</h4>
+			
+			<p>
+				The input can be any number of (general) decision diagrams. The output
+				is a diagram where each domain element is automatically classified by each
+				of the inputs. Then the final class label is determined by majority decision.
+				In case that this does not lead to a unique result, the input diagram with
+				the least index forces its decision.
+			</p>
+
+			<h4>avg</h4>
+		
+			<p>
+				The operator expects exactly two ordered binary trees as input parameter.
+				The result will again be an ordered binary tree of the following form.
+			</p>
+			
+			<p>
+				For each node from the root to the leafs, if one of the input trees contains
+				condition X &#35; c1 and the other one X &#35; c2, the resulting tree will contain
+				X &#35; ((c1 + c2) / 2), i.e. the mean of the comparison value is computed. In case that
+				one of the inputs contains X &#35; c1 and the other one Y &#35; c2, the result will
+				contain X &#35; c1 at this position (since X is lexically smaller than Y), and the
+				second diagram is incorporated recursivly in both subtrees.
+			</p>
+			
+			<p>
+				In case of contradicting leaf nodes or incompatible comparison operators
+				(e.g. X < c1 and X > c2), the result is "unknown".
+			</p>
+
+		<hr/>
+
+		<h2 id="controlscript">Control Script</h2>
+		<p>
+			The merging process may be considerably simplified by the use of our control script.
+			It will automatically call <code>graphconverter</code> and MELD in the right order.
+		</p>
+		<p>
+			This allows you to specify arbitrary input formats (DOT, HEX, Answer Set, RapidMiner XML)
+			in your merging tasks, using the <code>source</code>-Attribute of belief bases.
+		</p>
+		<p>
+			A call of
+			<p align="center">
+				<code>./merge.sh mergingplan.mp</code>
+			</p>
+			will automatically do the conversion of the input and output diagrams, as well
+			as the call of MELD. The script will print the name of the file with the final result.
+		</p>
+		<p>
+			Download of the Control Script: <a href="./decisiondiagramsplugin/ddmcontrolscript.zip">ddmcontrolscript.zip</a> or
+			<a href="./decisiondiagramsplugin/ddmcontrolscript.tar.gz">ddmcontrolscript.tar.gz</a>
+		</p>
+		<p>
+			For an example, see <a href="#example3">Example 3</a>
+		</p>
+
+		<hr/>
+
+		<h2 id="examples">Examples</h2>
+
+		<p>
+			The following examples may be copied into a textfile <code>diag.mp</code> and executed by the <a href="meld.html"><code>MELD</code> System</a> by entring.
+		</p>
+		<p align="center">
+			<code>dlvhex --merging --filter=root,innernode,leafnode,elseedge,conditionaledge diag.mp</code>
+		</p>
+
+		<h4 id="example1">Example 1</h4>
+		<p>
+			This merging plan translates an arbitrary decision diagram into an ordered binary tree.<br/><br/>
+
+			<code>
+[common signature]<br/>
+predicate: root/1;<br/>
+predicate: innernode/1;<br/>
+predicate: leafnode/2;<br/>
+predicate: conditionaledge/5;<br/>
+predicate: elseedge/2;<br/>
+<br/>
+[belief base]<br/>
+name: kb1;<br/>
+mapping: "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;root(c).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;innernode(c).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;innernode(b).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;innernode(a).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;leafnode(leaf1, class1).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;leafnode(leaf2, class2).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(c, a, c, \'<\', x).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;elseedge(c, b).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(b, leaf2, b, \'<\', x).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;elseedge(b, leaf1).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(a, leaf1, a, \'<\', x).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;elseedge(a, leaf2).<br/>
+";<br/>
+<br/>
+[merging plan]<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;operator: orderbinarydecisiontree;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator: tobinarydecisiontree;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator: unfold;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kb1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+}
+			</code>
+		</p>
+
+		<h4 id="example2">Example 2</h4>
+		<p>
+			Here we see a merging plan for integrating two decision diagrams using userpreference operation.<br/><br/>
+
+			<code>
+[common signature]<br/>
+predicate: root/1;<br/>
+predicate: innernode/1;<br/>
+predicate: leafnode/2;<br/>
+predicate: conditionaledge/5;<br/>
+predicate: elseedge/2;<br/>
+<br/>
+[belief base]<br/>
+name: kb1;<br/>
+mapping: "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;root(rootA).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;innernode(rootA).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;leafnode(leaf1A, class1).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;leafnode(leaf2A, class2).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(rootA, leaf1A, a, \'<\', x).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;elseedge(rootA, leaf2A).<br/>
+";<br/>
+<br/>
+[belief base]<br/>
+name: kb2;<br/>
+mapping: "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;root(rootB).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;innernode(rootB).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;leafnode(leaf1B, class1).
+&nbsp;&nbsp;&nbsp;&nbsp;leafnode(leaf2B, class2).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;conditionaledge(rootB, leaf1B, b, \'<\', x).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;elseedge(rootB, leaf2B).<br/>
+";<br/>
+<br/>
+[merging plan]<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;operator: userpreferences;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;preferencerule: "class1 >> class2";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kb1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kb2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+}
+			</code>
+		</p>
+
+		<h4 id="example3">Example 3</h4>
+		<p>
+			The following merging plan is a generalization of <a href="#example1">Example 1</a>.
+			Instead of hard-coding the diagrams in the merging plan, it accesses the file <code>diagram.dot</code> (which can be an arbitrary diagram in DOT format). Call this merging plan with our <a href="#controlscript">Control Script</a> to perform all required conversions automatically.<br/><br/>
+
+			<code>
+[common signature]<br/>
+predicate: root/1;<br/>
+predicate: innernode/1;<br/>
+predicate: leafnode/2;<br/>
+predicate: conditionaledge/5;<br/>
+predicate: elseedge/2;<br/>
+<br/>
+[belief base]<br/>
+name: kb1;<br/>
+source: "diagram.dot";<br/>
+<br/>
+[merging plan]<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;operator: orderbinarydecisiontree;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator: tobinarydecisiontree;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator: unfold;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kb1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+}
+			</code>
+		</p>
+
+		<h4 id="exampledna">Example: DNA Classification</h4>
+		<p>
+			DNA is the carrier of genetic information in all known living beings.
+			Protein databases, such as <a href="http://expasy.org/sprot">SWISSPROT</a>,
+			store known DNA sequences and the proteins encoded by them.
+			Nowadays, DNA strings are mostly created by automatic sequencing procedures.
+		</p>
+		<p>
+			However, since only a minor part of the overall DNA of an organism is actually coding proteins,
+			it becomes necessary to filter the result of a sequencing procedure.
+			Each sequence needs to be classified as <em>coding</em> or <em>noncoding</em>.
+			This can be done by the use of statistical features, i.e., numeric values computed over
+			sequences, which are known to vary significantly between the two classes.
+			Such features can then be used to train decision diagrams using machine-learning tools
+		</p>
+		<p>
+			An advanced method is to train <em>multiple</em> decision diagrams and merge them subsequently
+			into a single one. Some people (e.g., Steven Salzberg) have observed, that this
+			has advantages compared to training of monolithic classifiers, such as increased accuracy,
+			parallel computing, decrease of the size of the necessary training set.
+		</p>
+		<p>
+			We have repeated this experiment to show the capabilities of our system.
+			For this purpose, we have implemented Steven Salzberg's merging procedure
+			as merging operator for DDM.
+			This archive linked below contains all the files needed for the DNA classification example.
+		</p>
+		<p>
+			To run the experiment, perform the following steps:
+			<ol>
+
+			<li>The three input models (model1.xml, model2.xml, model3.xml) are given in
+				RapidMiner's file format. They were trained over a set of sequences
+				drawn randomly from file "dna_trainingdata.xls" resp. "dna_trainingdata.ods".
+				For each of the input trees, we have drawn 10 sequences.<br/><br/></li>
+
+			<li>Using graphconverter, we have converted each of the input trees in RapidMiner's
+				format into sets of facts:<br/>
+					<code>graphconverter rmxml hex < model1.xml > model1.hex</code><br/>
+					<code>graphconverter rmxml hex < model2.xml > model2.hex</code><br/>
+					<code>graphconverter rmxml hex < model3.xml > model3.hex</code><br/>
+				<br/>
+				Note:	The files modeli.png show renderings of the trees. This is only for
+						convenience of the reader and not required to create the merged tree.
+				<br/><br/></li>
+
+			<li>The trees are then merged into model_merged.as by executing the merging plan
+				salzbergoperator.mp, which will apply the merging algorithm developed by
+				Steven Salzbarg.<br/>
+				<br/>
+				This produces a merged classifier, encoded as belief set, which is stored in file
+				model_merged.as.<br/><br/></li>
+
+			<li>The output tree model_merged.as is then converted into RapidMiner's format by
+				executing:<br/>
+				<br/>
+					<code>graphconverter as rmxml < model_merged.as > model_merged.xml</code>
+				<br/><br/></li>
+
+			<li>Finally, this model can be loaded into RapidMiner and used for classification.<br/>
+				<br/>
+				We have used a set consisting of 2000 sequences (1000 coding, 100 noncoding),
+				which is shown in file "<code>dna_testdata.xls</code>" resp. "<code>dna_testdata.ods</code>".
+				<br/>
+		The DNA datasets stem from <a href="http://www.fruitfly.org/sequence/human-datasets.html">http://www.fruitfly.org/sequence/human-datasets.html</a>.
+		They were extracted by Fickett and Tung from the Human Genome Project in 1992.<br/></li>
+			</ol>
+			Alternatively, you may execute <code>run.sh</code>, which will automatically
+			merge all input decision diagrams named <code>modelXYZ.xml</code> in the current directory
+			(where <code>XYZ</code>
+			are arbitrary strings)
+			into output decision diagram named <code>merged_model.xml</code>.
+		</p>
+
+		<p>
+			Required files: <a href="./decisiondiagramsplugin/dnaclassification.zip">dnaclassification.zip</a> or
+			<a href="./decisiondiagramsplugin/dnaclassification.tar.gz">dnaclassification.tar.gz</a>
+		</p>
+		<p>
+			Note: The file contains input decision diagrams <code>model1.xml</code>,
+			<code>model2.xml</code>, <code>model3.xml</code>.
+			You may replace them by your own diagrams, e.g., trained by RapidMiner,
+			and experiment with the resulting diagram <code>merged_model.xml</code>.
+		</p>
+
+		<hr/>
+		<h2 id="conclusion">Conclusion</h2>
+			
+			For a more detailed and formal description of the operators, see <a href="http://www.ub.tuwien.ac.at/dipl/2010/AC07808795.pdf">Merging of Biomedical Decision Diagrams</a>. For an
+			introduction to the belief merging framework see <a href="http://www.ub.tuwien.ac.at/dipl/2010/AC07808210.pdf">Development of a Belief Merging Framework for dlvhex</a>.
+	</div>
+      
+      <div class="grid_3">
+
+	<div style="font-size: 14pt;"><label for="q">Search this website</label></div>
+	<form action="http://www.google.com/cse" id="cse-search-box">
+	  <div>
+	    <input name="cx" id="cx" value="010363983165505105153:4bhl-l5ixd4" alt="Search this website" type="hidden">
+	    <input name="ie" id="ie" value="UTF-8" alt="Search this website" type="hidden">
+	    <input style="background-color: rgb(255, 255, 255); background-image: none; background-repeat: repeat; background-attachment: scroll; background-position: 0% 0%; -moz-background-size: auto auto; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" name="q" id="q" size="20" type="text">
+	    <input name="sa" id="sa" value="Search" type="submit">
+	  </div>
+	</form>
+
+	<p>&nbsp;</p>
+		    
+	<p>
+	  <a href="https://sourceforge.net/projects/dlvhex/">dlvhex: Sourceforge project</a><br/>
+	  <a href="http://www.polleres.net/dlvhex-sparql">dlvhex SPARQL plugin</a><br/>
+	  <a href="actionplugin.html">dlvhex Action plugin</a><br/>
+	  <a href="mergingplugin.html">MELD: dlvhex Belief Merging plugin</a><br/>
+          <a href="ddm.html">DDM: Decision Diagrams Plugin</a><br/>
+	  <a href="https://sourceforge.net/projects/dlvhex-semweb/">dlvhex-semweb: Sourceforge project</a><br/>
+	  <a href="doap.rdf">Description-Of-A-Project</a>	  
+	</p>
+		    
+      </div>
+
+  </body></html>
