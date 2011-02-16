@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-9">
+
+
+    <title>The KBMod Action Addon</title>
+    <link rel="stylesheet" type="text/css" media="all"
+href="kbmodaddon_files/reset.css">
+    <link rel="stylesheet" type="text/css" media="all"
+href="kbmodaddon_files/text.css">
+    <link rel="stylesheet" type="text/css" media="all"
+href="kbmodaddon_files/960.css">
+    <link rel="stylesheet" type="text/css" media="all"
+href="kbmodaddon_files/style.css">
+  </head><body>
+   <div class="container_12">
+      <h1>dlvhex</h1>
+
+       <div id="menu">
+	<a href="/research/systems/dlvhex/">About</a>
+	&nbsp;|&nbsp;
+	<a href="../people.html">People</a>
+	&nbsp;|&nbsp;
+	<a href="../download.html">Download</a>
+	&nbsp;|&nbsp;
+	<a href="../support.html">Support</a>
+	&nbsp;|&nbsp;
+	<a href="../documentation.html">Documentation</a>
+	&nbsp;|&nbsp;
+	<a href="http://asptut.gibbi.com/">Demo &amp; ASP Tutorial</a>
+	&nbsp;|&nbsp;
+	<a href="../related.html">Related Work</a>
+	&nbsp;|&nbsp;
+	<a href="../literature.html">Literature</a>
+      </div>
+    </div>
+    <div class="container_12">
+
+      <div class="grid_9">
+
+	<h2>The Knowledge Base Modification (KBMod) Action Addon </h2>
+	<p>
+	 The Knowledge Base Modification Action Addon (in short KBMod) is an addon which
+provides essential action facilities enabling users to alter knowledge bases by
+asserting and rectracting knowledge. Moreover, KBMod provides ability to
+ execute commands in the shell. These functionalities are provided by
+three different action atoms: <a
+href="#retract">#retract</a>,
+ <a
+href="#assert">#assert</a>,<a
+
+href="#execute">#execute</a>.
+ <!--Hence, a straightforward application of KBMod addon would be to modify an {\sc ActHex} program within itself and reexecute it.
+	
+	  The RDF Plugin provides a single atom. It takes a single constant as input, which denotes the
+	  RDF-source, and returns rdf-triples:-->
+	The latest source file for the Addon can be accessed via	a SVN checkout <a href="https://dlvhex.svn.sourceforge.net/svnroot/dlvhex/dlvhex-actionplugin-addons/KBModActionAddon/">here</a> or as GNU tarball <a href="http://dlvhex.svn.sourceforge.net/viewvc/dlvhex/dlvhex-actionplugin-addons/KBModActionAddon/">here</a> .</p>
+	<p>&nbsp;</p>
+	<p>Quick reference for action atoms of the addon follow.</p>
+	<h4><a class="anchor" name="retract">
+#retract Atom</a></h4>
+	<div class="synopsis">
+	  <div class="atomusage"><em>#retract[F,RO,S<sup>+</sup>]{O,P}</em></div>
+	  <div>Input:</div>
+	  <div class="param">F </div>
+	  <div class="paramtext">file path of the knowledge base</div>
+	  <div class="param">RO</div>
+	  <div class="paramtext">retract option, either <em>exact</em> or <em>predicate</em></div>
+	  <div class="param">S<sup>+</sup></div>
+	  <div class="paramtext"> one or more instances of <em>S</em> whose
+concatenation will be used when executing retraction. <em>S</em>+ is a comma separated list of one or more
+strings or integers </div>
+	  <div style="clear: both;"></div>
+	</div>
+	<p>&nbsp;
+	  </p>
+	<p>#retract action atom will allow user to retract knowledge from knowledge base whose path is <em>F</em>. In the case that the retract option is set to <em>exact</em>, the lines that exactly match the string <em>S<sup>+</sup></em> concatenated with "." will be retracted from the knowledge base. On the other hand, when the retract option is set to <em>predicate</em> the lines that contains an atom whose predicate is exactly <em>S<sup>+</sup></em> will be removed from the knowledge base. Note that there is an implicit assumption that each line contains only one fact or one rule.</p>
+	<p>Example: </p>
+	<pre>#retract["kb.lp", predicate, "size"]{b, 1}.<br/></pre>
+	<p>This fact will remove any line that contains an atom with predicate "<em>size</em>" from the knowledge base available at <em>kb.lp</em>.</p>
+	<pre>#retract["kb.lp", exact, "vertex(", N, ")"]{c, 4} :- unreachable(N).<br /></pre>
+	<p>This rule will remove any line that exactly matches "<em>vertex(N).</em>" from the knowledge based available at <em>kb.lp</em> where <em>N</em> will be instantiated according to the rule body. Note that we will retract every "<em>vertex(i)</em >." for every "<em>unreachable(i)".</em></p>
+	<h4><a class="anchor" name="assert">
+#assert Atom</a></h4>
+	<div class="synopsis">
+	  <div class="atomusage"><em>#assert[F,S<sup>+</sup>]{O,P}</em></div>
+	  <div>Input:</div>
+	  <div class="param">F </div>
+	  <div class="paramtext">file path of the knowledge base</div>
+	  <div class="param">S<sup>+</sup></div>
+	  <div class="paramtext"> one or more instances of <em>S</em> whose
+concatenation will be used in the assert action. <em>S</em>+ is a comma separated list of one or more strings
+ or integers  </div>
+	  <div style="clear: both;"></div>
+	</div>
+	<p>&nbsp;
+	  </p>
+	<p>#assert action atom will allow users to add knowledge to the knowledge base whose path is <em>F</em>. The string <em>S<sup>+</sup></em> will be added to the knowledge base. Note that no syntactic check is applied to the asserted knowledge. Hence, users are expected to respect the syntactic rules of the knowledge base. </p>
+	<p>Example: </p>
+	<pre>#assert["kb.lp", "size(5)"]{b, 1}.</pre>
+<p>The fact will add "<em>size(5).</em>" to the knowledge base whose path is <em>F</em>.</p>
+<h4><a class="anchor" name="execute">
+  #execute Atom</a></h4>
+	<div class="synopsis">
+	  <div class="atomusage"><em>#execute[S<sup>+</sup>]{O,P}</em></div>
+	  <div>Input:</div>
+	  <div class="param">S<sup>+</sup></div>
+	  <div class="paramtext"> one or more instances of <em>S</em> whose
+concatenation will be used in execute action as the command where <em>S</em>
+ is a string or integer </div>
+	  <div style="clear: both;"></div>
+	</div>
+	<p>#execute action atom will allow users to execute the string <em>S<sup>+</sup></em> in the shell while the dlvhex program is still running.</p>
+	<p>
+	  Example:
+	</p>
+		<pre>#execute["dlvhex --firstorder kb.lp"]{c,3}.</pre>
+		<p>The fact will execute "<em>dlvhex</em>" with "<em>firstorder</em>" option on the knowledge base whose path is "<em>kb.lp</em>".  </p>
+		<pre>#execute["dlv --firstorder" -n=",X," kb.lp"]{b,2}:- size(X).</pre>
+		<p>The rule will execute "<em>dlv</em>" with "<em>firstorder</em>" option and "<em> -n</em>" option set equal to <em>X</em> on the knowledge base whose path is "<em>kb.lp</em>". Notice that <em>X</em> is not a string thus it will be instantiated depending on the <em>size</em> atoms that are in the interpretation. </p>
+ <p> <br/> <br/>
+	 In all of the examples,  <em>O</em> (resp. <em>P</em>) are option (resp. precedence) that appears in action atoms. Additionally, mentioned action atoms can be combined with weight and level. </p>
+
+
+	 <!--<p>Hence, a straightforward application of KBMod addon would be to modify an {\sc ActHex} program within itself and reexecute it.
+	
+	  The RDF Plugin provides a single atom. It takes a single constant as input, which denotes the
+	  RDF-source, and returns rdf-triples:</p>-->
+			
+<!--      <div class="grid_3">
+	<div style="font-size: 14pt"><label for="q">Search this website</label></div>
+	<form action="http://www.google.com/cse" id="cse-search-box">
+	  <div>
+	    <input name="cx" id="cx" value="010363983165505105153:4bhl-l5ixd4" type="hidden" alt="Search this website"/>
+	    <input name="ie" id="ie" value="UTF-8" type="hidden" alt="Search this website"/>
+	    <input style="background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" name="q" id="q" size="31" type="text"/>
+	    <input name="sa" id="sa" value="Search" type="submit"/>
+	
+	</form>
+ </div>-->
+	<p>&nbsp;</p>
+	<p>Other action addons: <a
+href="robotaddon.html">Robot
+ Action Addon</a>,<a
+href="gcaladdon.html">GCal
+ Action Addon</a><br>Return to <a
+href="../actionplugin.html">The
+ Action Plugin and Action Addon Framework</a></p>
+<!--		
+	<p>
+	  <a href="gettingstarted.html">Getting Started</a><br/>
+	  <a href="hexlanguage.html">HEX-Programs</a>
+	</p>
+	<p>
+	  <a href="dlplugin.html">Description Logic Plugin</a><br/>
+	  <a href="rdfplugin.html">RDF Plugin</a><br/>
+	  <a href="stringplugin.html">String Plugin</a>
+	</p>
+	<p>
+	  <a href="doc">dlvhex Source Documentation</a><br/>
+	  <a href="doc/group__pluginframework.html">Writing Plugins</a>
+	</p>
+	-->
+ 	
+      </div>
+    </div>
+  </body></html> 

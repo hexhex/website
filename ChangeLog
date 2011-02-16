@@ -1,0 +1,245 @@
+2009-04-08  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* literature.html: Added IJCAI 2009, ICLP 2009, REWERSE.
+
+2009-03-25  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* people.html: Remove Minh from the contributors.
+	Add GiaBATA system to Alessandra.
+
+2009-03-23  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* people.html: Added Minh to the core team.
+
+	* literature.html: Added ECSQARU 2009 paper.
+	Added ESWC 2009 paper.
+
+2008-10-05  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* style.css: Remove.
+
+	* dlplugin.html: Use 960 grid.
+	* documentation.html: Likewise.
+	* download.html: Likewise.
+	* gettingstarted.html: Likewise.
+	* hexlanguage.html: Likewise.
+	* index.html: Likewise.
+	* literature.html: Likewise.
+	* people.html: Likewise.
+	* rdfplugin.html: Likewise.
+	* related.html: Likewise.
+	* stringplugin.html: Likewise.
+	* support.html: Likewise.
+	* css/960.css: Likewise.
+	* css/reset.css: Likewise.
+	* css/style.css: Likewise.
+	* css/text.css: Likewise.
+
+2008-10-04  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* download.html: Use sf.net instead of sourceforge.net.
+
+2008-09-25  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* sitemap.txt: Add google sitemap.
+
+	* google8ca56bc26ab8a79d.html: Add google verification page.
+
+2008-09-23  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* dlplugin.html: Add google search.
+	* documentation.html: Likewise.
+	* download.html: Likewise.
+	* gettingstarted.html: Likewise.
+	* hexlanguage.html: Likewise.
+	* index.html: Likewise.
+	* literature.html: Likewise.
+	* people.html: Likewise.
+	* rdfplugin.html: Likewise.
+	* related.html: Likewise.
+	* stringplugin.html: Likewise.
+	* support.html: Likewise.
+
+	* style.css: No border around left main body.
+
+2008-09-16  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* documentation.html: Use <h1> for dlvhex title.
+	Describe hex language.
+
+	* literature.html: Use <h1> for dlvhex title.
+	Add IMAI and TR for the cq paper.
+
+	* download.html: Add table header.
+	Use <h1> for dlvhex title.
+	Describe svn checkout.
+
+	* support.html: Add table header.
+	Use <h1> for dlvhex title.
+	
+	* style.css: Use <h1> for dlvhex title.
+	* stringplugin.html: Likewise.
+	* related.html: Likewise.
+	* rdfplugin.html: Likewise.
+	* people.html: Likewise.
+	* index.html: Likewise.
+	* hexlanguage.html: Likewise.
+	* gettingstarted.html: Likewise.
+	* dlplugin.html: Likewise.
+
+2008-09-09  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* literature.html: Add "Exploiting Conjunctive Queries in
+	Description Logic Programs".
+
+2008-09-01  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* literature.html: Use <strong> to highlight the pub-names.
+
+2008-08-19  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* people.html: Add Javier Sierra.
+	Add more information to Minh's and Gennaro's contributions.
+
+2008-08-17  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* index.html: Remove dlvhex logo picture.
+	Add links to SPARQL-plugin.
+
+	* people.html: Remove dlvhex logo picture.
+	Add Nuno Lopes to the list of contributors.
+
+	* dlplugin.html: Remove dlvhex logo picture.
+	* documentation.html: Likewise.
+	* download.html: Likewise.
+	* gettingstarted.html: Likewise.
+	* hexlanguage.html: Likewise.
+	* literature.html: Likewise.
+	* rdfplugin.html: Likewise.
+	* related.html: Likewise.
+	* stringplugin.html: Likewise.
+	* support.html: Likewise.
+
+	* style.css: Use a helvetica-based black-white style.
+
+2008-08-04  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* style.css: Set white background.
+
+	* literature.html: Add LPAR04 paper.
+
+2008-08-01  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* index.html: Remove reference to DOAP project.
+	Small cleanups.
+
+	* gettingstarted.html: Use div.code instead of <pre> for code
+	elements.
+
+	* download.html: Add a note that dlvhex only works on UNIX-based
+	systems.
+
+2008-07-30  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* literature.html: Add the missing references.
+
+2008-07-04  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* download.html: Add links to dlvhex-semweb project.
+	* index.html: Likewise.
+
+2008-06-25  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* documentation.html: Update sourceforge information.
+	Slight redesign.
+	Add DOAP information.
+	* download.html: Likewise.
+	* index.html: Likewise.
+	* people.html: Likewise.
+	* related.html: Likewise.
+
+	* dlplugin.html: New file.
+	* doap.rdf: Likewise.
+	* gettingstarted.html: Likewise.
+	* hexlanguage.html: Likewise.
+	* literature.html: Likewise.
+	* rdfplugin.html: Likewise.
+	* stringplugin.html: Likewise.
+	* support.html: Likewise.
+
+	* docs/stringplugin.inc.php: Remove.
+	* docs/rdfplugin.inc.php: Likewise.
+	* docs/hexlanguage.inc.php: Likewise.
+	* docs/getting_started.inc.php: Likewise.
+	* docs/dlplugin.inc.php: Likewise.
+	* stats.php: Likewise.
+	* menu.php: Likewise.
+	* literature.php: Likewise.
+	* evaluation.php: Likewise.
+	* emails.php: Likewise.
+	* bibtex.inc.php: Likewise.
+
+2008-06-20  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* download.html: New file.
+	* documentation.html: Likewise.
+	* people.html: Likewise.
+	* related.html: Likewise.
+
+	* index.html: Renamed index.php to index.html and removed PHP
+	stuff.
+	Use /research/systems/dlvhex/ instead of about.html.
+
+	* index.php: Removed.
+	* about.php: Likewise.
+	* sparql-query-evaluation.php: Likewise.
+	* savemail.php: Likewise.
+	* related.php: Likewise.
+	* people.php: Likewise.
+	* eval.pl: Likewise.
+	* eval.php: Likewise.
+	* download.php: Likewise.
+	* documentation.php: Likewise.
+
+2006-10-01  Roman Schindlauer  <roman@kr.tuwien.ac.at>
+
+	* about.php: Include Google Analytics.
+	* documentation.php: Likewise.
+	* index.php: Likewise.
+	* literature.php: Likewise.
+	* people.php: Likewise.
+	* related.php: Likewise.
+
+	* code/common.js: More flexible evaluation button.
+	* download.php: Likewise. Updated downloads. Added READMEs. Added
+	WordNet-plugin.
+	* eval.pl: Added optional switches for dlvhex. Optional output of
+	rewritten program.
+	* evaluation.php: Added parameter for dlvhex-switches.
+
+	* examples/spec5.3.sparql: New file.
+	* examples/spec5.3.ttl: New file.
+	* examples/spec5.5.sparql: New file.
+	* examples/spec5.5.ttl: New file.
+	* sparql-query-evaluation.php: New file.
+
+2006-09-15  Roman Schindlauer  <roman@kr.tuwien.ac.at>
+
+	* code/common.js: Autoscrolling to eval-result when the result
+	returns.
+	
+	* download.php: Restructured download page.
+
+	* evaluation.php: Modified delicious example. Added
+	submit-scroll-anchor.
+
+	* people.php: Changed heading style.
+	* style.css: Likewise.
+
+2006-05-13  Roman Schindlauer  <roman@kr.tuwien.ac.at>
+
+	* eval.php: Changed paths and envvars to fit a moe general
+	installation.
+
+	* evaluation.php: Layout fix.
+

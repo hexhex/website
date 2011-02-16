@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Project rdf:about="#Project"
+         xmlns="http://usefulinc.com/ns/doap#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+  <name>dlvhex</name>
+
+  <created>2005-07-28</created>
+
+  <shortdesc xml:lang="en">HEX-program solver</shortdesc>
+
+  <description xml:lang="en">
+    dlvhex is the name of a prototype application for computing the
+    models of so-called HEX-programs, which are an extension of
+    Answer-Set Programs towards integration of external computation
+    sources.
+  </description>
+
+  <programming-language>C++</programming-language>
+
+  <bug-database rdf:resource="https://sourceforge.net/apps/trac/dlvhex/" />
+
+  <download-page rdf:resource="http://www.kr.tuwien.ac.at/research/systems/dlvhex/download.html" />
+
+  <homepage rdf:resource="http://www.kr.tuwien.ac.at/research/systems/dlvhex/" />
+
+  <license rdf:resource="http://usefulinc.com/doap/licenses/lgpl" />
+
+
+  <!-- Freshmeat category: Scientific/Engineering :: Artificial Intelligence -->
+  <category rdf:resource="http://freshmeat.net/browse/133/" />
+
+  <!-- Freshmeat category: Database Engines/Servers -->
+  <category rdf:resource="http://freshmeat.net/browse/67/" />
+
+  <!-- Freshmeat category: Software Development :: Interpreters -->
+  <category rdf:resource="http://freshmeat.net/browse/49/" />
+
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Thomas Krennwallner</foaf:name>
+      <foaf:homepage rdf:resource="http://www.kr.tuwien.ac.at/staff/tkren/" />
+      <foaf:mbox_sha1sum>4fbf23f97eb1c36561a72379cea71095200fbd60</foaf:mbox_sha1sum>
+    </foaf:Person>
+    <foaf:Person>
+      <foaf:name>Peter Schüller</foaf:name>
+      <foaf:homepage rdf:resource="http://www.kr.tuwien.ac.at/staff/ps/" />
+    </foaf:Person>
+  </maintainer>
+
+  <repository>
+    <SVNRepository>
+      <location rdf:resource="https://dlvhex.svn.sourceforge.net/svnroot/dlvhex" />
+      <browse rdf:resource="http://dlvhex.svn.sourceforge.net/viewvc/dlvhex/" />
+    </SVNRepository>
+  </repository>
+
+</Project>

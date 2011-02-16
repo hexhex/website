@@ -1,0 +1,15 @@
+http://www.kr.tuwien.ac.at/research/systems/dlvhex/
+http://www.kr.tuwien.ac.at/research/systems/dlvhex/dlplugin.html
+http://www.kr.tuwien.ac.at/research/systems/dlvhex/doap.rdf
+http://www.kr.tuwien.ac.at/research/systems/dlvhex/doc
+http://www.kr.tuwien.ac.at/research/systems/dlvhex/documentation.html
+http://www.kr.tuwien.ac.at/research/systems/dlvhex/download.html
+http://www.kr.tuwien.ac.at/research/systems/dlvhex/gettingstarted.html
+http://www.kr.tuwien.ac.at/research/systems/dlvhex/hexlanguage.html
+http://www.kr.tuwien.ac.at/research/systems/dlvhex/index.html
+http://www.kr.tuwien.ac.at/research/systems/dlvhex/literature.html
+http://www.kr.tuwien.ac.at/research/systems/dlvhex/people.html
+http://www.kr.tuwien.ac.at/research/systems/dlvhex/rdfplugin.html
+http://www.kr.tuwien.ac.at/research/systems/dlvhex/related.html
+http://www.kr.tuwien.ac.at/research/systems/dlvhex/stringplugin.html
+http://www.kr.tuwien.ac.at/research/systems/dlvhex/support.html
