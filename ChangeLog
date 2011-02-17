@@ -1,3 +1,11 @@
+2011-02-17  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
+
+	* applications.html: New file.
+
+	* download.html: Fix dlvhex version.
+
+	* people.html: Add Annemarie and Patrik to the list of contributors.
+
 2009-04-08  Thomas Krennwallner  <tkren@kr.tuwien.ac.at>
 
 	* literature.html: Added IJCAI 2009, ICLP 2009, REWERSE.
