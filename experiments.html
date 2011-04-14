@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
   <head>
-    <title>dlvhex</title>
+    <title>dlvhex 2.x Experiments</title>
     <link rel="stylesheet" type="text/css" media="all" href="css/reset.css" />
     <link rel="stylesheet" type="text/css" media="all" href="css/text.css" />
     <link rel="stylesheet" type="text/css" media="all" href="css/960.css" />
@@ -43,10 +43,134 @@
 
       <div class="grid_9">
       
-	<h2>Experiments</h2>
-	<p>
-	Under construction.
-	</p>
+<h2>Experiments</h2>
+
+<p>
+  This page describes experiments conducted mainly with dlvhex version 2.x.
+  It contains information how to obtain and build dlvhex 2.x,
+  as well as measurements for
+  <ul>
+  <li>comparing dlvhex 2.x with the previous version dlvhex 1.7.3,
+  <li>comparing different parameter settings of dlvhex 2.x, and
+  <li>comparing dlv and clingo backends of dlvhex 2.x.
+  </ul>
+</p>
+
+<h3>dlvhex 2.x</h3>
+<p>
+  dlvhex 2.x is not yet released, but you can get it from sourceforge using subversion:
+  <ul>
+  <li>you find the branch online here:
+    <a href="http://sourceforge.net/apps/trac/dlvhex/browser/dlvhex/branches/dlvhex-refactoring/">
+      dlvhex/branches/dlvhex-refactoring</a>,</li>
+  <li>checking out and building the sources works as follows:</br></br>
+    <pre>
+$ svn co https://dlvhex.svn.sf.net/svnroot/dlvhex/dlvhex/branches/dlvhex-refactoring
+$ cd dlvhex-refactoring
+$ ./bootstrap.sh
+&lt;ignore all warnings&gt;
+$ ./configure &lt;insert your parameters here&gt;
+$ make
+$ make check
+&lt;optional&gt;
+$ make install
+&lt;optional&gt;
+$ sudo ldconfig
+&lt;required on some machines&gt;
+    </pre>
+  </li>
+  </ul>
+</p>
+
+<h3>Test Instances and Detailed Benchmark Results:</h3>
+<p>
+  <ul>
+    <li><a href="#dmcs">DMCS (Distributed multi-context systems)</a></li>
+    <li><a href="#revsel1">Reviewer Selection 1</a></li>
+    <li><a href="#revsel2">Reviewer Selection 2</a></li>
+  </ul>
+</p>
+
+<h3><a id="dmcs"/>DMCS Instances</h3>
+<p>
+  These test instances were created using the 
+  <a href="http://www.kr.tuwien.ac.at/research/systems/dmcs/experiments.html">
+    DMCS benchmark instance generator</a>
+  and converted to the input format of
+  <a href="http://www.kr.tuwien.ac.at/research/systems/mcsie/">MCS-IE</a>
+  using
+  <a href="testcases/generate_master_file.py">generate_master_file.py</a>.
+
+  Please refer to the original
+  <a href="http://www.kr.tuwien.ac.at/research/systems/dmcs/experiments.html">
+    DMCS benchmark instance generator</a>
+  page for details of topologies and instance parameters.
+</p>
+
+<h3>Download</h3>
+<p>
+  All DMCS instances are contained in the following archive:
+  <a href="testcases/dmcs_instances.tar.bz2">dmcs_instances.tar.bz2</a>.
+</p>
+
+<h3>Complete and Detailed Results</h3><br/>
+<p style="text-align:center;margin:0;padding:0;">
+  <!--#include virtual="testcases/dmcs_instances_table.html" -->
+</p>
+
+<br/><h2><a id="revsel1"/>Reviewer Selection 1 - Instances</h2><br/>
+<!-- these are the "revsel2" instances in our internal SVN! -->
+
+<p>
+  These test instances were created using 
+  <a href="http://sourceforge.net/apps/trac/dlvhex/browser/dlvhex/branches/dlvhex-refactoring/testsuite/benchgen/revsel2.cpp">revsel2.cpp</a>
+  with varied parameter <code>-t</code> (the number of conference track per instance).
+  <!--
+  Parameters for generation are 
+  <code>-t &lt;T&gt; -p 20</code>
+  where <code>&lt;T&gt;</code> is variable between individual instances.
+  For description of the parameters please refer to the sourcecode.
+  -->
+</p>
+
+<h3>Download</h3>
+<p>
+  All instances are contained in the following archive:
+  <a href="testcases/revsel1_instances.tar.bz2">revsel1_instances.tar.bz2</a>.
+</p>
+
+<h3>Complete and Detailed Results</h3><br/>
+<p style="text-align:center;margin:0;padding:0;">
+  <!--#include virtual="revsel1_instances_table.html" -->
+</p>
+
+<br/><h2><a id="revsel2"/>Reviewer Selection 2 - Instances</h2><br/>
+<!-- these are the "revsel_1_8" instances in our internal SVN! -->
+
+<p>
+  These test instances were created using 
+  <a href="http://sourceforge.net/apps/trac/dlvhex/browser/dlvhex/branches/dlvhex-refactoring/testsuite/benchgen/revsel1.cpp">revsel1.cpp</a>
+  with varied parameter <code>-p</code> (the number of papers per conference track).
+  <!--
+  Parameters for generation are 
+  <code>-t 5 -p &lt;P&gt; -u &lt;P&gt; -s 1 -a 0 -b 1 -n 3 -g 2</code>
+  where <code>&lt;P&gt;</code> is variable between individual instances.
+  For description of the parameters please refer to the sourcecode.
+  -->
+</p>
+
+<h3>Download</h3>
+<p>
+  All instances are contained in the following archive:
+  <a href="testcases/revsel2_instances.tar.bz2">revsel2_instances.tar.bz2</a>.
+</p>
+
+<h3>Complete and Detailed Results</h3><br/>
+<p style="text-align:center;margin:0;padding:0;">
+  <!--#include virtual="revsel2_instances_table.html" -->
+</p>
+
+
 
 	<div style="border-top: 1px solid #999; background-color: inherit; color: #999; font-size: 8.5pt;">
 	  <p>$Id$</p>
