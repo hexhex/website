@@ -81,8 +81,8 @@
 	  <div>Input:</div>
 	  <div class="param">Prog</div>
 	  <div class="paramtext">A string literal containing a valid HEX program to be executed<br/>(Quoting: character " must be encoded as \' and character \ as \\)</div>
-	  <div class="param">Args</div>
-	  <div class="paramtext">The command-line options for dlvhex when <code>Prog</code> is evaluated</div>
+	  <div class="param">[Args]</div>
+	  <div class="paramtext">[optional] The command-line options for dlvhex when <code>Prog</code> is evaluated</div>
 	  <div style="clear: both;"></div>
 	  <div>Output:</div>
 	  <div class="param">A</div>
@@ -108,8 +108,8 @@
 	  <div>Input:</div>
 	  <div class="param">Prog</div>
 	  <div class="paramtext">A string literal containing the path and name of a valid HEX program to be executed</div>
-	  <div class="param">Args</div>
-	  <div class="paramtext">The command-line options for dlvhex when <code>File</code> is evaluated</div>
+	  <div class="param">[Args]</div>
+	  <div class="paramtext">[optional] The command-line options for dlvhex when <code>File</code> is evaluated</div>
 	  <div style="clear: both;"></div>
 	  <div>Output:</div>
 	  <div class="param">A</div>
@@ -124,6 +124,63 @@
 	<pre>handle(A) :- &amp;hexfile["./programs/myprog.hex", ""](A).</pre>
 
 	This will deliver <code>handle(0)</code>, where <code>0</code> is a handle to the answer of the nested HEX program. To look into this answer, see below.<br/><br/>
+
+
+
+	<div class="synopsis">
+	  <div class="atomusage">&amp;callhex[Prog,Facts,Args](A)</div>
+	  <div>Input:</div>
+	  <div class="param">Prog</div>
+	  <div class="paramtext">A string literal containing a valid HEX program to be executed<br/>(Quoting: character " must be encoded as \' and character \ as \\)</div>
+	  <div class="param">Facts</div>
+	  <div class="paramtext">Name of a predicate which specifies the input facts to Prog in higher-order notation</div>
+	  <div class="param">[Args]</div>
+	  <div class="paramtext">[optional] The command-line options for dlvhex when <code>Prog</code> is evaluated</div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param">A</div>
+	  <div class="paramtext">A symbolic integer which refers to the result of the nested HEX program</div>
+	  <div style="clear: both;"></div>
+	</div>
+
+	<p>
+	  Example:
+	</p>
+
+	<pre>myfacts(isA, sue, cat). myfacts(isA, bob, dog).
+handle(A) :- &amp;callhex["a. b.", myfacts, ""](A).</pre>
+
+	This will deliver <code>handle(0)</code>, where <code>0</code> is a handle to the answer of the nested HEX programrun on the facts specified by <code>myfacts</code>. To look into this answer, see below.<br/><br/>
+
+	
+	<p>
+	  <code>&amp;callhexfile</code> takes two strings and a predicate that describe a nested HEX program as input and returns a symbolic handle to the program result.
+	</p>
+
+	<div class="synopsis">
+	  <div class="atomusage">&amp;callhexfile[File,Facts,Args](A)</div>
+	  <div>Input:</div>
+	  <div class="param">Prog</div>
+	  <div class="paramtext">A string literal containing the path and name of a valid HEX program to be executed</div>
+	  <div class="param">Facts</div>
+	  <div class="paramtext">Name of a predicate which specifies the input facts to Prog in higher-order notation</div>
+	  <div class="param">[Args]</div>
+	  <div class="paramtext">[optional] The command-line options for dlvhex when <code>File</code> is evaluated</div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param">A</div>
+	  <div class="paramtext">A symbolic integer which refers to the result of the nested HEX program</div>
+	  <div style="clear: both;"></div>
+	</div>
+
+	<p>
+	  Example:
+	</p>
+
+	<pre>myfacts(isA, sue, cat). myfacts(isA, bob, dog).
+handle(A) :- &amp;callhexfile["./programs/myprog.hex", myfacts, ""](A).</pre>
+
+	This will deliver <code>handle(0)</code>, where <code>0</code> is a handle to the answer of the nested HEX program run on the facts specified by <code>myfacts</code>. To look into this answer, see below.<br/><br/>
 
 	
 	<p>
