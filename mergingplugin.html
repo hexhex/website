@@ -133,7 +133,8 @@
 	  <div class="param">Prog</div>
 	  <div class="paramtext">A string literal containing a valid HEX program to be executed<br/>(Quoting: character " must be encoded as \' and character \ as \\)</div>
 	  <div class="param">Facts</div>
-	  <div class="paramtext">Name of a predicate which specifies the input facts to Prog in higher-order notation</div>
+	  <div class="paramtext">Name of a predicate, say <code>f</code>, which specifies the input facts to Prog in the following higher-order notation: <code>f(arity=N,pred,arg[1],...,arg[M])</code> to encode atom <code>pred(arg[1],...,arg[N])</code>, where the number of arguments <code>M</code> is equal or greater than the arity <code>N</code>. This allows for encoding of input facts of arbitrarily mixed arities over a single predicate <code>f</code>, since
+for facts with <code>N &lt; M</code> arguments one can insert dummy values for all <code>arg[i]</code> with <code>i &gt; N</code>.</div>
 	  <div class="param">[Args]</div>
 	  <div class="paramtext">[optional] The command-line options for dlvhex when <code>Prog</code> is evaluated</div>
 	  <div style="clear: both;"></div>
@@ -147,10 +148,13 @@
 	  Example:
 	</p>
 
-	<pre>myfacts(isA, sue, cat). myfacts(isA, bob, dog).
+	<pre>myfacts(2, isA, sue, cat).
+myfacts(2, isA, bob, dog).
+myfacts(1, isFemale, sue, d).
+myfacts(1, isMale, bob, d).
 handle(A) :- &amp;callhex["a. b.", myfacts, ""](A).</pre>
 
-	This will deliver <code>handle(0)</code>, where <code>0</code> is a handle to the answer of the nested HEX programrun on the facts specified by <code>myfacts</code>. To look into this answer, see below.<br/><br/>
+	This will deliver <code>handle(0)</code>, where <code>0</code> is a handle to the answer of the nested HEX programrun on the facts specified by <code>myfacts</code>. Note that the program passes the facts <code>isA(sue,cat), isA(bob,dog), isFemale(sue), isMale(bob)</code>, which are of two different arities but can be specified over a single predicate <code>myfacts</code> (<code>d</code> is used as a <u>d</u>ummy value). To look into this answer, see below.<br/><br/>
 
 	
 	<p>
@@ -163,7 +167,8 @@ handle(A) :- &amp;callhex["a. b.", myfacts, ""](A).</pre>
 	  <div class="param">Prog</div>
 	  <div class="paramtext">A string literal containing the path and name of a valid HEX program to be executed</div>
 	  <div class="param">Facts</div>
-	  <div class="paramtext">Name of a predicate which specifies the input facts to Prog in higher-order notation</div>
+	  <div class="paramtext">Name of a predicate, say <code>f</code>, which specifies the input facts to Prog in the following higher-order notation: <code>f(arity=N,pred,arg[1],...,arg[M])</code> to encode atom <code>pred(arg[1],...,arg[N])</code>, where the number of arguments <code>M</code> is equal or greater than the arity <code>N</code>. This allows for encoding of input facts of arbitrarily mixed arities over a single predicate <code>f</code>, since
+for facts with <code>N &lt; M</code> arguments one can insert dummy values for all <code>arg[i]</code> with <code>i &gt; N</code>.</div>
 	  <div class="param">[Args]</div>
 	  <div class="paramtext">[optional] The command-line options for dlvhex when <code>File</code> is evaluated</div>
 	  <div style="clear: both;"></div>
@@ -177,7 +182,10 @@ handle(A) :- &amp;callhex["a. b.", myfacts, ""](A).</pre>
 	  Example:
 	</p>
 
-	<pre>myfacts(isA, sue, cat). myfacts(isA, bob, dog).
+	<pre>myfacts(2, isA, sue, cat).
+myfacts(2, isA, bob, dog).
+myfacts(1, isFemale, sue, d).
+myfacts(1, isMale, bob, d).
 handle(A) :- &amp;callhexfile["./programs/myprog.hex", myfacts, ""](A).</pre>
 
 	This will deliver <code>handle(0)</code>, where <code>0</code> is a handle to the answer of the nested HEX program run on the facts specified by <code>myfacts</code>. To look into this answer, see below.<br/><br/>
