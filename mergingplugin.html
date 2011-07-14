@@ -126,15 +126,17 @@
 	This will deliver <code>handle(0)</code>, where <code>0</code> is a handle to the answer of the nested HEX program. To look into this answer, see below.<br/><br/>
 
 
+	<p>
+	  <code>&amp;callhex{n}</code> takes the nested HEX program as string constant, <code>n</code> predicate names over which the input facts to the subprogram are specified (<code>1 &le; n &le; 32</code>), and an optional string constant containing the command line arguments to the reasoner. It returns a symbolic handle to the program result.
+	</p>
 
 	<div class="synopsis">
-	  <div class="atomusage">&amp;callhex[Prog,Facts,Args](A)</div>
+	  <div class="atomusage">&amp;callhex{n}[Prog,P[1],...,P[n],Args](A)</div>
 	  <div>Input:</div>
 	  <div class="param">Prog</div>
 	  <div class="paramtext">A string literal containing a valid HEX program to be executed<br/>(Quoting: character " must be encoded as \' and character \ as \\)</div>
-	  <div class="param">Facts</div>
-	  <div class="paramtext">Name of a predicate, say <code>f</code>, which specifies the input facts to Prog in the following higher-order notation: <code>f(arity=N,pred,arg[1],...,arg[M])</code> to encode atom <code>pred(arg[1],...,arg[N])</code>, where the number of arguments <code>M</code> is equal or greater than the arity <code>N</code>. This allows for encoding of input facts of arbitrarily mixed arities over a single predicate <code>f</code>, since
-for facts with <code>N &lt; M</code> arguments one can insert dummy values for all <code>arg[i]</code> with <code>i &gt; N</code>.</div>
+	  <div class="param">P[1], ..., P[n]</div>
+	  <div class="paramtext">Sequence of a <code>n</code> predicate names which specify the input facts to the subprogram. The number must match the <code>{n}</code>, where <code>1 &le; n &le; 32</code></div>
 	  <div class="param">[Args]</div>
 	  <div class="paramtext">[optional] The command-line options for dlvhex when <code>Prog</code> is evaluated</div>
 	  <div style="clear: both;"></div>
@@ -148,27 +150,26 @@ for facts with <code>N &lt; M</code> arguments one can insert dummy values for a
 	  Example:
 	</p>
 
-	<pre>myfacts(2, isA, sue, cat).
-myfacts(2, isA, bob, dog).
-myfacts(1, isFemale, sue, d).
-myfacts(1, isMale, bob, d).
-handle(A) :- &amp;callhex["a. b.", myfacts, ""](A).</pre>
+	<pre>isA(sue, cat).
+isA(bob, dog).
+isFemale(sue).
+isMale(bob).
+handle(A) :- &amp;callhex3["a. b.", isA, isFemale, isMale, ""](A).</pre>
 
-	This will deliver <code>handle(0)</code>, where <code>0</code> is a handle to the answer of the nested HEX programrun on the facts specified by <code>myfacts</code>. Note that the program passes the facts <code>isA(sue,cat), isA(bob,dog), isFemale(sue), isMale(bob)</code>, which are of two different arities but can be specified over a single predicate <code>myfacts</code> (<code>d</code> is used as a <u>d</u>ummy value). To look into this answer, see below.<br/><br/>
+	This will deliver <code>handle(0)</code>, where <code>0</code> is a handle to the answer of the nested HEX programrun on the facts specified over <code>isA</code>, <code>isFemale</code> and <code>isMale</code><br/><br/>
 
-	
+
 	<p>
-	  <code>&amp;callhexfile</code> takes two strings and a predicate that describe a nested HEX program as input and returns a symbolic handle to the program result.
+	  <code>&amp;callhexfile{n}</code> takes the filename of the nested HEX program as string constant, <code>n</code> predicate names over which the input facts to the subprogram are specified (<code>1 &le; n &le; 32</code>), and an optional string constant containing the command line arguments to the reasoner. It returns a symbolic handle to the program result.
 	</p>
 
 	<div class="synopsis">
-	  <div class="atomusage">&amp;callhexfile[File,Facts,Args](A)</div>
+	  <div class="atomusage">&amp;callhexfile{n}[File,P[1],...,P[n],Args](A)</div>
 	  <div>Input:</div>
-	  <div class="param">Prog</div>
+	  <div class="param">File</div>
 	  <div class="paramtext">A string literal containing the path and name of a valid HEX program to be executed</div>
-	  <div class="param">Facts</div>
-	  <div class="paramtext">Name of a predicate, say <code>f</code>, which specifies the input facts to Prog in the following higher-order notation: <code>f(arity=N,pred,arg[1],...,arg[M])</code> to encode atom <code>pred(arg[1],...,arg[N])</code>, where the number of arguments <code>M</code> is equal or greater than the arity <code>N</code>. This allows for encoding of input facts of arbitrarily mixed arities over a single predicate <code>f</code>, since
-for facts with <code>N &lt; M</code> arguments one can insert dummy values for all <code>arg[i]</code> with <code>i &gt; N</code>.</div>
+	  <div class="param">P[1], ..., P[n]</div>
+	  <div class="paramtext">Sequence of a <code>n</code> predicate names which specify the input facts to the subprogram. The number must match the <code>{n}</code>, where <code>1 &le; n &le; 32</code></div>
 	  <div class="param">[Args]</div>
 	  <div class="paramtext">[optional] The command-line options for dlvhex when <code>File</code> is evaluated</div>
 	  <div style="clear: both;"></div>
@@ -182,13 +183,13 @@ for facts with <code>N &lt; M</code> arguments one can insert dummy values for a
 	  Example:
 	</p>
 
-	<pre>myfacts(2, isA, sue, cat).
-myfacts(2, isA, bob, dog).
-myfacts(1, isFemale, sue, d).
-myfacts(1, isMale, bob, d).
-handle(A) :- &amp;callhexfile["./programs/myprog.hex", myfacts, ""](A).</pre>
+	<pre>isA(sue, cat).
+isA(bob, dog).
+isFemale(sue).
+isMale(bob).
+handle(A) :- &amp;callhexfile3["./programs/myprog.hex", isA, isFemale, isMale, ""](A).</pre>
 
-	This will deliver <code>handle(0)</code>, where <code>0</code> is a handle to the answer of the nested HEX program run on the facts specified by <code>myfacts</code>. To look into this answer, see below.<br/><br/>
+	This will deliver <code>handle(0)</code>, where <code>0</code> is a handle to the answer of the nested HEX program run on the facts specified over <code>isA</code>, <code>isFemale</code> and <code>isMale</code>. To look into this answer, see below.<br/><br/>
 
 	
 	<p>
