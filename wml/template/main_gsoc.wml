@@ -1,4 +1,4 @@
-<h2>Google Summer of Code</h2>
+<h2 class="eyecandy">Google Summer of Code</h2>
 
 <p>
   <a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/">dlvhex</a>
@@ -35,6 +35,101 @@
   for semantic web reasoning,
   and others.
 </p>
+
+<h2 class="eyecandy">Project Ideas</h2>
+
+<div class="container_9 clearfix">
+  <div class="grid_6 alpha">
+    <h4>dlvhex Interactive Shell</h4>
+    <div class="prefix_1">
+       <p>
+	 <span class="bold">Description:</span>
+         foo bar baz
+       </p>
+       <p>
+	 <span class="bold">Description:</span>
+         foo bar baz
+       </p>
+       <p>
+	 <span class="bold">Description:</span>
+         foo bar baz
+       </p>
+    </div>
+  </div>
+  <div class="grid_3 omega" style="text-align:right;">
+    <img src="images/shelllogo_whitebg.png" alt="logo"/>
+  </div>
+</div>
+
+<h2 class="eyecandy">Mentors</h2>
+
+<div class="container_9 clearfix eyecandy">
+  <div class="grid_7 alpha">
+     <h4>Thomas Krennwallner</h4>
+     <p>
+       <span class="bold">Affiliation:</span><br/>
+       &nbsp;&nbsp;
+       <a href="http://www.tuwien.ac.at/">TU Wien</a> &raquo;
+       <a href="http://www.infosys.tuwien.ac.at/184/">Institute for Information Systems</a> &raquo;
+       <a href="http://www.kr.tuwien.ac.at/">KBS Group</a>
+     </p>
+     <p>
+       <span class="bold">Interests:</span><br/>
+       &nbsp;&nbsp;
+	TODO
+     </p>
+     <p><a href="http://www.kr.tuwien.ac.at/staff/tkren/">Homepage</a></p>
+  </div>
+  <div class="grid_2 omega">
+    <img src="images/tkren.png" alt="face"/>
+  </div>
+</div>
+
+<div class="container_9 clearfix eyecandy">
+  <div class="grid_7 alpha">
+     <h4>Christoph Redl</h4>
+     <p>
+       <span class="bold">Affiliation:</span><br/>
+       &nbsp;&nbsp;
+       <a href="http://www.tuwien.ac.at/">TU Wien</a> &raquo;
+       <a href="http://www.infosys.tuwien.ac.at/184/">Institute for Information Systems</a> &raquo;
+       <a href="http://www.kr.tuwien.ac.at/">KBS Group</a>
+     </p>
+     <p>
+       <span class="bold">Interests:</span><br/>
+       &nbsp;&nbsp;
+	TODO
+     </p>
+     <p><a href="http://www.kr.tuwien.ac.at/staff/redl/">Homepage</a></p>
+  </div>
+  <div class="grid_2 omega">
+    <img src="images/redl.png" alt="face"/>
+  </div>
+</div>
+
+<div class="container_9 clearfix">
+  <div class="grid_7 alpha">
+     <h4>Peter Sch&uuml;ller</h4>
+     <p>
+       <span class="bold">Affiliation:</span><br/>
+       &nbsp;&nbsp;
+       <a href="http://www.tuwien.ac.at/">TU Wien</a> &raquo;
+       <a href="http://www.infosys.tuwien.ac.at/184/">Institute for Information Systems</a> &raquo;
+       <a href="http://www.kr.tuwien.ac.at/">KBS Group</a>
+     </p>
+     <p>
+       <span class="bold">Interests:</span><br/>
+       &nbsp;&nbsp;
+       Knowledge Representation and Reasoning,
+       Multi-Context Systems,
+       Linguistics
+     </p>
+     <p><a href="http://www.kr.tuwien.ac.at/staff/ps/">Homepage</a></p>
+  </div>
+  <div class="grid_2 omega">
+    <img src="images/ps.png" alt="face"/>
+  </div>
+</div>
 
 <div style="border-top: 1px solid #999; background-color: inherit; color: #999; font-size: 8.5pt;">
   <p>$Id$</p>
