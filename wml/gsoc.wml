@@ -1,0 +1,15 @@
+#include 'template/header.wml'
+#include 'template/title.wml'
+#include 'template/menu.wml'
+
+    <!-- Information -->
+    <div class="container_12">
+      <div class="grid_9">
+#include 'template/main_gsoc.wml'
+      </div> <!-- grid_9 -->
+
+      <div class="grid_3">
+#include 'template/sidebar_gsoc.wml'
+      </div> <!-- grid_3 -->
+    </div> <!-- container_12 -->
+#include 'template/footer.wml'

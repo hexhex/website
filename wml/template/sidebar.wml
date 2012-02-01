@@ -9,15 +9,15 @@
 	  </div>
 	</form>
 
-	<p>&nbsp;</p>
-
 	<p>
 	  <a href="https://sourceforge.net/projects/dlvhex/">dlvhex: Sourceforge project</a><br/>
 	  <a href="http://www.polleres.net/dlvhex-sparql">dlvhex SPARQL plugin</a><br/>
 	  <a href="actionplugin.html">dlvhex Action plugin</a><br/>
 	  <a href="mergingplugin.html">MELD: dlvhex Belief Merging plugin</a><br/>
+          <a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/stringplugin.html">dlvhex string plugin</a><br/>
 	  <a href="https://sourceforge.net/projects/dlvhex-semweb/">dlvhex-semweb: Sourceforge project</a><br/>
 	  <a href="doap.rdf">Description-Of-A-Project</a>	  
 	</p>
 
+	<img src="images/hexlogo_whitebg.png" alt="logo" id="logo"/>
       </div>

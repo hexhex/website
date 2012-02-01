@@ -1,0 +1,41 @@
+<h2>Google Summer of Code</h2>
+
+<p>
+  <a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/">dlvhex</a>
+  is an Open Source scientific prototype application
+  for computing the models of so-called HEX-programs.
+  HEX-programs are a declarative logic programming formalism
+  with a syntax similar to Prolog programs.
+</p>
+
+<p>
+  In HEX, declarative reasoning can use external computation sources,
+  which is useful for example to integrate knowledge in Semantic Web reasoning.
+  For example, a logic programming rule
+</p>
+<pre>reached(X) :- &amp;reach[edge,a](X)</pre>
+<p>
+  computes the predicate <tt>reached</tt>
+  taking values from the external computation which computes via <tt>reach[edge,a]</tt>
+  all the reachable nodes in the graph defined by predicate <tt>edge</tt> from node <tt>a</tt>,
+  delegating this task to an external computation source,
+  e.g., a description logic reasoner, a C++ function, or a shell script.
+  This way we can take advantage of efficient purpose-built solutions to computational problems
+  within a declarative reasoning paradigm.
+</p>
+
+<p>
+  Several research groups have created plugins to provide external computation facilities,
+  e.g., the
+  <a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/stringplugin.html">string plugin</a>
+  for basic string manipulation, the
+  <a href="http://www.kr.tuwien.ac.at/research/systems/semweblp/">description logic plugin</a>
+  for reasoning with ontologies, the
+  <a href="http://dlvhex-semweb.svn.sourceforge.net/viewvc/dlvhex-semweb">SPARQL-plugin</a>
+  for semantic web reasoning,
+  and others.
+</p>
+
+<div style="border-top: 1px solid #999; background-color: inherit; color: #999; font-size: 8.5pt;">
+  <p>$Id$</p>
+</div>
