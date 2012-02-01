@@ -1,0 +1,23 @@
+
+	<div style="font-size: 14pt"><label for="q">Search this website</label></div>
+	<form action="http://www.google.com/cse" id="cse-search-box">
+	  <div>
+	    <input name="cx" id="cx" value="010363983165505105153:4bhl-l5ixd4" type="hidden" alt="Search this website"/>
+	    <input name="ie" id="ie" value="UTF-8" type="hidden" alt="Search this website"/>
+	    <input style="background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" name="q" id="q" size="19" type="text"/>
+	    <input name="sa" id="sa" value="Search" type="submit"/>
+	  </div>
+	</form>
+
+	<p>&nbsp;</p>
+
+	<p>
+	  <a href="https://sourceforge.net/projects/dlvhex/">dlvhex: Sourceforge project</a><br/>
+	  <a href="http://www.polleres.net/dlvhex-sparql">dlvhex SPARQL plugin</a><br/>
+	  <a href="actionplugin.html">dlvhex Action plugin</a><br/>
+	  <a href="mergingplugin.html">MELD: dlvhex Belief Merging plugin</a><br/>
+	  <a href="https://sourceforge.net/projects/dlvhex-semweb/">dlvhex-semweb: Sourceforge project</a><br/>
+	  <a href="doap.rdf">Description-Of-A-Project</a>	  
+	</p>
+
+      </div>

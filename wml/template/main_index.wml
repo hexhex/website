@@ -1,0 +1,82 @@
+<h2>The dlvhex Solver</h2>
+<p>
+  dlvhex is the name of a prototype application for
+  computing the models of so-called HEX-programs, which
+  are an extension of Answer-Set Programs towards
+  integration of external computation sources.
+</p>
+
+<p>
+  The source code of dlvhex is hosted at
+  <a href="https://sourceforge.net/projects/dlvhex/">SourceForge</a>.
+  If you are looking for the RDF- or
+  <a href="http://www.polleres.net/dlvhex-sparql">SPARQL-plugin</a>, please have a look at the
+  <a href="https://sourceforge.net/projects/dlvhex-semweb/">dlvhex-semweb project page</a>.
+  dlvhex can be obtained from the <a href="download.html">Download</a> section.
+</p>
+
+<h3>A Brief History</h3>
+<p>
+  At the beginning of this project, we were pondering
+  about how to contribute to the current efforts of
+  shaping the Semantic Web.  People seem to have agreed on
+  the Ontology Layer with OWL as its prominent
+  specification language. The next step is to add rules in
+  order to have powerful and sophisticated inference
+  mechanisms on top of ontologies. This is were we saw the
+  opportunity of introducing Answer Set Programming (ASP)
+  to the Semantic Web development&mdash;believing in the
+  benefits of a fully declarative and nonmonotonic logic
+  programming semantics.
+</p>
+<p>
+  Our first goal was to extend ASP towards an interface to
+  Description Logics, which are the theoretical foundation
+  of ontology languages like OWL. We developed so
+  called <a href="http://www.kr.tuwien.ac.at/research/systems/semweblp/">dl-programs</a>,
+  which allow for a bidirectional flow of information
+  between an answer-set program and a DL knowledge base by
+  a novel type of atoms.
+</p>
+
+<h3>HEX-Programs</h3>
+<p>
+  Motivated by the need to interoperate with a broader set
+  of external computation sources and the observation,
+  that for meta-reasoning in the context of the Semantic
+  Web, no adequate support is available in ASP to date, we
+  extended the dl-program approach to HEX-programs, that
+  is, higher-order logic programs (which accommodate
+  meta-reasoning through higher-order atoms) with external
+  atoms for software interoperability.  Intuitively, a
+  higher-order atom allows to quantify values over
+  predicate names, and to freely exchange predicate
+  symbols with constant symbols, like in the rule
+</p>
+
+
+<pre>
+C(X) :- subClassOf(D,C), D(X).</pre>
+
+<p>
+  An external atom facilitates to determine the truth
+  value of an atom through an external source of
+  computation. For instance, the rule
+</p>
+
+
+<pre>
+reached(X) :- &amp;reach[edge,a](X)</pre>
+
+<p>
+  computes the predicate reached taking values from the
+  predicate &amp;reach, which computes via
+  &amp;reach[edge, a] all the reachable nodes in the graph
+  edge from node a, delegating this task to an external
+  computation source (e.g., an external deduction system,
+  an execution library, etc.).
+</p>
+
+<div style="border-top: 1px solid #999; background-color: inherit; color: #999; font-size: 8.5pt;">
+  <p>$Id$</p>
+</div>
