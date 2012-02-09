@@ -146,18 +146,20 @@
      <h4>Thomas Krennwallner</h4>
      <p>
        <span class="bold">Affiliation:</span><br/>
-       &nbsp;&nbsp;
+       <div class="minipush">
        <a href="http://www.tuwien.ac.at/">TU Wien</a> &raquo;
        <a href="http://www.infosys.tuwien.ac.at/184/">Institute for Information Systems</a> &raquo;
        <a href="http://www.kr.tuwien.ac.at/">KBS Group</a>
+       </div>
      </p>
      <p>
        <span class="bold">Interests:</span><br/>
-       &nbsp;&nbsp;
+       <div class="minipush">
        Knowledge Representation,
        Answer Set Programming,
        Logic Programming,
        Nonmonotonic Reasoning
+       </div>
      </p>
      <p><a href="http://www.kr.tuwien.ac.at/staff/tkren/">Homepage</a> (more details, contact information)</p>
   </div>
@@ -171,15 +173,17 @@
      <h4>Christoph Redl</h4>
      <p>
        <span class="bold">Affiliation:</span><br/>
-       &nbsp;&nbsp;
+       <div class="minipush">
        <a href="http://www.tuwien.ac.at/">TU Wien</a> &raquo;
        <a href="http://www.infosys.tuwien.ac.at/184/">Institute for Information Systems</a> &raquo;
        <a href="http://www.kr.tuwien.ac.at/">KBS Group</a>
+       </div>
      </p>
      <p>
        <span class="bold">Interests:</span><br/>
-       &nbsp;&nbsp;
+       <div class="minipush">
 	Knowledge Representation and Reasoning, Answer-Set Programming, (Conflict-)Clause Learning
+       </div>
      </p>
      <p><a href="http://www.kr.tuwien.ac.at/staff/redl/">Homepage</a> (more details, contact information)</p>
   </div>
@@ -193,17 +197,19 @@
      <h4>Peter Sch&uuml;ller</h4>
      <p>
        <span class="bold">Affiliation:</span><br/>
-       &nbsp;&nbsp;
+       <div class="minipush">
        <a href="http://www.tuwien.ac.at/">TU Wien</a> &raquo;
        <a href="http://www.infosys.tuwien.ac.at/184/">Institute for Information Systems</a> &raquo;
        <a href="http://www.kr.tuwien.ac.at/">KBS Group</a>
+       </div>
      </p>
      <p>
-       <span class="bold">Interests:</span><br/>
-       &nbsp;&nbsp;
+       <span class="bold">Interests:</span>
+       <div class="minipush">
        Knowledge Representation and Reasoning,
        Multi-Context Systems,
        Linguistics
+       </div>
      </p>
      <p><a href="http://www.kr.tuwien.ac.at/staff/ps/">Homepage</a> (more details, contact information)</p>
   </div>
