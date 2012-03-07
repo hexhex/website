@@ -1,0 +1,35 @@
+	<h2>Documentation</h2>
+
+	<h3>For the User</h3>
+
+	<p>
+	  The <a href="gettingstarted.html">getting started</a> section
+	  provides a quick intro to the usage of dlvhex.
+	</p>
+	<p>
+	  For a guide through the language of disjunctive datalog, we
+	  list the subset of DLV syntax that is understood by dlvhex 
+	  in a 
+	  <a href="hexlanguage.html">small outline of the HEX language</a>.
+	  For detailed information please consult the <a href="literature.html">literature</a>.
+	</p>
+
+	<p>
+	  We also guide you through the usage of some currently available plugins:
+	</p>
+	<ul>
+	  <li><a href="dlplugin.html">The Description Logic Plugin</a></li>
+	  <li><a href="rdfplugin.html">The RDF Plugin</a></li>
+	  <li><a href="stringplugin.html">The String Plugin</a></li>
+	  <li><a href="mergingplugin.html">The Merging Plugin</a></li>
+	  <li><a href="http://www.kr.tuwien.ac.at/research/systems/mcsie/">The MCS-IE System</a></li>
+	</ul>
+	
+	<h3>For the Developer</h3>
+	<p>
+	  We provide the documentation of the
+    <a href="doc2x">dlvhex doxygen source documentation</a>,
+	  which include a short manual for developing a plugin. Read it carefully,
+	  especially the section about "Building the Plugin," and don't forget to
+	  install the tools mentioned there.
+	</p>

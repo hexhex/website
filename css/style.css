@@ -144,7 +144,7 @@ td.right-align {
 DOCUMENTATION
 -------------------------------------------------*/
 
-div.caution {
+div.caution, p.caution {
     /* background-color:#ffe0e0; */
     background-color:#00ffff;
     padding: 6px;

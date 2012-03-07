@@ -1,0 +1,225 @@
+	<h2>Download</h2>
+
+	<h3>Latest release version</h3>
+
+	<p> You can download stable release versions of dlvhex and its
+	  plugins at the <a
+	   href="http://sourceforge.net/projects/dlvhex/files/">dlvhex
+	  SourceForge File Releases</a>. Installation instructions are
+	  given in the <tt>INSTALL</tt> and <tt>README</tt> files of
+	  the dlvhex and plugin source directories.</p>
+
+	<p class="caution">
+	  The current release dlvhex 2.X (2012-03-TODO) is 2.0.0:
+	  <a href="http://sourceforge.net/projects/dlvhex/files/dlvhex/2.0.0/dlvhex-2.0.0.tar.gz/download">source tarball</a>
+   (binary of this release is called <code>dlvhex2</code>).
+	<p>
+	  The deprecated release of dlvhex 1.X (2012-03-TODO) is 1.7.3:
+	  <a href="http://sourceforge.net/projects/dlvhex/files/dlvhex/1.7.3/dlvhex-1.7.3.tar.gz/download">source tarball</a>
+   (binary of this release is called <code>dlvhex</code>).
+	</p>
+
+	<p>
+	  The release versions of some core plugins are listed below.
+	</p>
+
+	<table>
+	  <thead>
+	    <tr>
+	      <th>Plugin</th>
+	      <th>dlvhex 1.X</th>
+	      <th>dlvhex 2.X</th>
+	      <th>Description</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr class="odd">
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-aggregateplugin/">Aggregate Plugin</a></td>
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-aggregateplugin/1.7.1/dlvhex-aggregateplugin-1.7.1.tar.gz/download">1.7.1</a></td>
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-aggregateplugin/2.0.0/dlvhex-aggregateplugin-2.0.0.tar.gz/download">2.0.0</a></td>
+	      <td>Simple plugin with aggregate functions.</td>
+	    </tr>
+	    <tr>
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-dlplugin/">DL-Plugin</a></td>
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-dlplugin/1.7.1/dlvhex-dlplugin-1.7.1.tar.gz/download">1.7.1</a></td>
+	      <td>-</td>
+	      <td>Description Logic Plugin, see the <a href="dlplugin.html">DL-Plugin documentation</a>.</td>
+	    </tr>
+	    <tr class="odd">
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-mcsieplugin/">MCSIE-Plugin</a></td>
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-mcsieplugin/1.7.1/dlvhex-mcsieplugin-1.7.1.tar.gz/download">1.7.1</a></td>
+	      <td>-</td>
+	      <td>MCS-IE Plugin, see the <a href="/research/systems/mcsie/">MCS-IE homepage</a>.</td>
+	    </tr>
+	    <tr>
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/">Script Plugin</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/1.7.1/dlvhex-scriptplugin-1.7.1.tar.gz/download">1.7.1</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/2.0.0/dlvhex-scriptplugin-2.0.0.tar.gz/download">2.0.0</a></td> 	
+	      <td>Simple plugin that can execute scripts and does some I/O.</td>
+	    </tr>
+	    <tr class="odd">
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-stringplugin/">String Plugin</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-stringplugin/1.7.0/dlvhex-stringplugin-1.7.0.tar.gz/download">1.7.0</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-stringplugin/2.0.0/dlvhex-stringplugin-2.0.0.tar.gz/download">2.0.0</a></td> 	
+	      <td>Operates on strings, see the <a
+	  href="stringplugin.html">string-plugin documentation</a></td>
+	    </tr>	
+	    <tr>
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-wordnetplugin/">Wordnet Plugin</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-wordnetplugin/1.7.0/dlvhex-wordnetplugin-1.7.0.tar.gz/download">1.7.0</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-wordnetplugin/2.0.0/dlvhex-wordnetplugin-2.0.0.tar.gz/download">2.0.0</a></td> 	
+	      <td>Interface to the <a href="http://wordnet.princeton.edu/">Wordnet library</a>.</td>
+	    </tr>
+	  </tbody>
+	</table>
+
+	<p>
+	  The release versions of the semweb plugins can be found below.
+	</p>
+
+	<table>
+	  <thead>
+	    <tr>
+	      <th>Plugin</th>
+	      <th>dlvhex 1.X</th>
+	      <th>dlvhex 2.X</th>
+	      <th>Description</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr class="odd">
+	      <td><a href="http://sourceforge.net/projects/dlvhex-semweb/files/dlvhex-rdfplugin/">RDF Plugin</a></td>
+	      <td><a href="http://sourceforge.net/projects/dlvhex-semweb/files/dlvhex-rdfplugin/1.7.0/dlvhex-rdfplugin-1.7.0.tar.gz/download">1.7.0</a></td>
+	      <td>-</td>
+	      <td>Interface to the <a href="http://librdf.org/raptor/">Raptor library</a>.</td>
+	    </tr>
+	    <tr>
+	      <td><a href="http://sourceforge.net/projects/dlvhex-semweb/files/dlvhex-sparqlplugin/">SPARQL Plugin</a></td>
+	      <td><a href="http://sourceforge.net/projects/dlvhex-semweb/files/dlvhex-sparqlplugin/1.7.0/dlvhex-sparqlplugin-1.7.0.tar.gz/download">1.7.0</a></td>
+	      <td>-</td>
+	      <td>A SPARQL processor, see the <a href="">dlvhex-SPARQL homepage</a>.</td>
+	    </tr>
+	  </tbody>
+	</table>
+
+	<p>
+	  Other plugins are currently under development and will be
+	  released ASAP.
+	</p>
+	
+	<p>
+	  Please note that dlvhex is currently only working for
+	  UNIX-based operating systems like Linux and Mac OS X.
+	</p>
+
+
+	<h3>dlvhex for Debian/Ubuntu</h3>
+	     
+	<p> We provide pre-compiled packages of dlvhex at <a
+	  href="http://www.kr.tuwien.ac.at/staff/tkren/deb.html">Debian/Ubuntu
+	 packages for ASP systems</a>. </p>
+
+
+	
+	<h3>Development Version</h3><a name="devel"></a>
+
+	<p> The current development version of dlvhex plus
+	plugin-suite is hosted at Sourceforge (you can browse the <a
+	 href="http://dlvhex.svn.sourceforge.net/viewvc/dlvhex/">source
+	code</a>).  Please confer the <a
+	 href="http://sourceforge.net/projects/dlvhex/develop">instructions</a>
+	on how to checkout the current trunk.  </p>
+	
+	
+	<p> The dlvhex development code can be retrieved by executing </p>
+
+	<pre>
+svn co https://dlvhex.svn.sf.net/svnroot/dlvhex/dlvhex/trunk dlvhex</pre>
+
+	<p>
+	  Confer <a href="http://dlvhex.svn.sourceforge.net/viewvc/dlvhex/dlvhex/trunk/MAINTAINER-README?view=markup">MAINTAINER-README</a>
+	  and <a href="http://dlvhex.svn.sourceforge.net/viewvc/dlvhex/dlvhex/trunk/README?view=markup">README</a>
+	  for the list of packages you need to compile the development
+	  version of dlvhex.
+	</p>
+
+	<p>
+	  You can checkout the plugins using the next command (replace
+	  <tt>DLVHEX-PLUGIN</tt> by the plugin name, browse
+	  the <a href="http://dlvhex.svn.sourceforge.net/viewvc/dlvhex/">repository</a>
+	  for a list of available plugins):
+	</p>
+
+	<pre>
+svn co https://dlvhex.svn.sf.net/svnroot/dlvhex/DLVHEX-PLUGIN/trunk DLVHEX-PLUGIN</pre>
+	
+	
+	<p>
+	  dlvhex needs to be able to find <a href="http://www.dbai.tuwien.ac.at/proj/dlv/">dlv</a> in your path.
+	</p>
+	
+	<p>
+	  To work with the DL-plugin, you will also need the DL-reasoner <a href="http://www.racer-systems.com/">RacerPro</a>.
+	</p>
+	
+	<p>
+	  To work with the WordNet-plugin, you will also need <a href="http://wordnet.princeton.edu/">Wordnet</a> installed.
+	</p>
+	
+	<h3>Compiling Source Packages Primer</h3>
+	
+	<p>
+	  <b>Requirements for compiling dlvhex:</b>
+	  the inevitable <a href="http://www.boost.org/">Boost C++ libraries</a>
+	  (available as packages for all major distributions).
+	</p>
+	
+	<p>
+	  dlvhex is installed with the usual sequence:
+	</p>
+
+	<pre>
+./configure
+make
+make install</pre>
+	
+	<p>
+	  If you don't want a system-wide installation or don't have root-permissions, use
+	</p>
+
+	<pre>
+./configure --prefix=/path/to/dir</pre>
+	
+	<p> where <tt>/path/to/dir</tt> is the desired target
+	  prefix. There, the usual <tt>bin/</tt> and <tt>lib/</tt>
+	  will be created, if necessary.  </p>
+	
+	<p>
+	  For installing a plugin, again do:
+	</p>
+
+	<pre>
+./configure
+make
+make install</pre>
+	
+	<p>
+	  The plugin library will be installed in <tt>${prefix}/lib/dlvhex/plugins</tt>, where <tt>${prefix}</tt> was determined by the dlvhex installation. If you use
+	</p>
+
+	<pre>
+./configure --enable-userinstall</pre>
+	
+	<p>
+	  instead, the plugin will be put in <tt>~/.dlvhex/plugins/</tt>.
+	</p>
+	
+
+  <h6>Useful Links</h6>
+	<p>
+	  <a href="https://sourceforge.net/projects/dlvhex/files/">Download dlvhex releases</a><br/>
+	  <a href="https://sourceforge.net/projects/dlvhex-semweb/files/">Download dlvhex-semweb releases</a><br/>
+	  <a href="https://dlvhex.svn.sourceforge.net/viewvc/dlvhex/">Browse Subversion</a><br/>
+	  <a href="https://sourceforge.net/projects/dlvhex/develop">Subversion instructions</a>
+	</p>
+	
