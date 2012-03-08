@@ -10,17 +10,24 @@
 	  the dlvhex and plugin source directories.</p>
 
 	<p class="caution">
-	  The current release dlvhex 2.X (2012-03-TODO) is 2.0.0:
+	  The current release dlvhex 2.X (2012-03-11) is 2.0.0:
 	  <a href="http://sourceforge.net/projects/dlvhex/files/dlvhex/2.0.0/dlvhex-2.0.0.tar.gz/download">source tarball</a>
    (binary of this release is called <code>dlvhex2</code>).
+  </p>
 	<p>
-	  The deprecated release of dlvhex 1.X (2012-03-TODO) is 1.7.3:
+	  The deprecated release of dlvhex 1.X (2012-03-11) is 1.7.3:
 	  <a href="http://sourceforge.net/projects/dlvhex/files/dlvhex/1.7.3/dlvhex-1.7.3.tar.gz/download">source tarball</a>
    (binary of this release is called <code>dlvhex</code>).
 	</p>
 
 	<p>
 	  The release versions of some core plugins are listed below.
+	</p>
+
+	<p>
+	  Regarding versions note that dlvhex 2.X uses contains a new ABI versioning framework
+    to improve plugin compatibility handling.
+    For details see <a href="http://sourceforge.net/apps/trac/dlvhex/wiki/LibraryVersions">dlvhex Trac: LibraryVersions</a>.
 	</p>
 
 	<table>
@@ -53,7 +60,7 @@
 	    </tr>
 	    <tr>
 	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/">Script Plugin</a></td> 	
-	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/1.7.1/dlvhex-scriptplugin-1.7.1.tar.gz/download">1.7.1</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/1.7.2/dlvhex-scriptplugin-1.7.1.tar.gz/download">1.7.1</a></td> 	
 	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/2.0.0/dlvhex-scriptplugin-2.0.0.tar.gz/download">2.0.0</a></td> 	
 	      <td>Simple plugin that can execute scripts and does some I/O.</td>
 	    </tr>
