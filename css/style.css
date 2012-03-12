@@ -26,14 +26,14 @@ h1 {
     font-weight: bold;
     font-family: Helvetica, sans-serif;
     font-size: 36pt;
-    padding: 4px 0px 0px 4px;
+    margin: 5px 15px 5px 5px;
     background-color: #ffffff;
     color: #000000;
     line-height: 30pt;
 }
 
 #menu {
-    padding: 8px 20px 4px 8px;
+    padding: 8px 10px 6px 10px;
     margin: 0px 0px 0px 0px;
     /*background-color: #003366;*/
     background-color: #000000;
@@ -47,6 +47,7 @@ h1 {
     color: #ffffff;
     /*font-size: 10pt;*/
     /*font-weight: bold;*/
+    margin-right: 5px;
 }
 
 #menu a:link {
@@ -76,6 +77,12 @@ h1 {
     /*border-bottom: 1px solid #b0b1b2;*/
     border-bottom: 1px solid #ffffff;
     background-color: #000000;
+}
+
+#logo {
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 200px;
 }
 
 /*---------------------------------------------
@@ -137,7 +144,7 @@ td.right-align {
 DOCUMENTATION
 -------------------------------------------------*/
 
-div.caution {
+div.caution, p.caution {
     /* background-color:#ffe0e0; */
     background-color:#00ffff;
     padding: 6px;
@@ -184,3 +191,20 @@ div.bibentry {
     padding: 0px 0px 0px 0px;
 }
 
+.bold {
+	font-weight: bold;
+}
+
+h2.eyecandy {
+	border-bottom: 1px solid;
+}
+
+div.eyecandy {
+	border-bottom: 1px dotted;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+
+div.minipush {
+	padding-left:15px;
+}

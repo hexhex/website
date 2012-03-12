@@ -1,40 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <title>dlvhex</title>
-    <link rel="stylesheet" type="text/css" media="all" href="css/reset.css"></link>
-    <link rel="stylesheet" type="text/css" media="all" href="css/text.css"></link>
-    <link rel="stylesheet" type="text/css" media="all" href="css/960.css"></link>
-    <link rel="stylesheet" type="text/css" media="all" href="css/style.css"></link>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-  </head>
-  <body>
-    <!-- Title -->
-    <div class="container_12">
-	<div class="grid_12" id="title">
-	      <h1>dlvhex <span style="color:red; font-size:large;">Version 2.0.0 is out!</span></h1>
-	</div>
-    </div>
-    <!-- Menu -->
-    <div class="container_12">
-      <div class="grid_12" id="menu">
-	<a href="index.html">About</a>
-	<a href="people.html">People</a>
-	<a href="download.html">Download</a>
-	<a href="support.html">Support</a>
-	<a href="documentation.html">Documentation</a>
-	<a href="http://asptut.gibbi.com/">Demo &amp; ASP Tutorial</a>
-	<a href="related.html">Related Work</a>
-	<a href="applications.html">Applications</a>
-	<a href="literature.html">Literature</a>
-      </div>
-    </div>
-    <!-- Information -->
-    <div class="container_12">
-      <div class="grid_9">
 	<h2>Download</h2>
+
 	<h3>Latest release version</h3>
+
 	<p>
     You can download stable release versions of dlvhex and its
 	  plugins at the <a
@@ -45,6 +12,7 @@
     Changes between versions can be found in the <tt>NEWS</tt> files
     and in detail in the <tt>ChangeLog</tt> files.
   </p>
+
 	<p class="caution">
 	  The current release dlvhex 2.X (2012-03-11) is 2.0.0:
 	  <a href="http://sourceforge.net/projects/dlvhex/files/dlvhex/2.0.0/dlvhex-2.0.0.tar.gz/download">source tarball</a>
@@ -55,15 +23,18 @@
 	  <a href="http://sourceforge.net/projects/dlvhex/files/dlvhex/1.7.3/dlvhex-1.7.3.tar.gz/download">source tarball</a>
    (binary of this release is called <code>dlvhex</code>).
 	</p>
+
 	<p>
 	  The release versions of some core plugins are listed below.
 	</p>
+
 	<p>
 	  Regarding versions note that dlvhex 2.X uses contains a new ABI versioning framework
     to improve plugin compatibility handling.
     For details see <a href="http://sourceforge.net/apps/trac/dlvhex/wiki/LibraryVersions">dlvhex Trac: LibraryVersions</a>.
 	</p>
-	<table summary="">
+
+	<table>
 	  <thead>
 	    <tr>
 	      <th>Plugin</th>
@@ -92,30 +63,32 @@
 	      <td>MCS-IE Plugin, see the <a href="/research/systems/mcsie/">MCS-IE homepage</a>.</td>
 	    </tr>
 	    <tr>
-	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/">Script Plugin</a></td>
-	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/1.7.1/dlvhex-scriptplugin-1.7.1.tar.gz/download">1.7.1</a></td>
-	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/2.0.0/dlvhex-scriptplugin-2.0.0.tar.gz/download">2.0.0</a></td>
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/">Script Plugin</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/1.7.1/dlvhex-scriptplugin-1.7.1.tar.gz/download">1.7.1</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/2.0.0/dlvhex-scriptplugin-2.0.0.tar.gz/download">2.0.0</a></td> 	
 	      <td>Simple plugin that can execute scripts and does some I/O.</td>
 	    </tr>
 	    <tr class="odd">
-	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-stringplugin/">String Plugin</a></td>
-	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-stringplugin/1.7.0/dlvhex-stringplugin-1.7.0.tar.gz/download">1.7.0</a></td>
-	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-stringplugin/2.0.0/dlvhex-stringplugin-2.0.0.tar.gz/download">2.0.0</a></td>
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-stringplugin/">String Plugin</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-stringplugin/1.7.0/dlvhex-stringplugin-1.7.0.tar.gz/download">1.7.0</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-stringplugin/2.0.0/dlvhex-stringplugin-2.0.0.tar.gz/download">2.0.0</a></td> 	
 	      <td>Operates on strings, see the <a
 	  href="stringplugin.html">string-plugin documentation</a></td>
-	    </tr>
+	    </tr>	
 	    <tr>
-	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-wordnetplugin/">Wordnet Plugin</a></td>
-	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-wordnetplugin/1.7.0/dlvhex-wordnetplugin-1.7.0.tar.gz/download">1.7.0</a></td>
-	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-wordnetplugin/2.0.0/dlvhex-wordnetplugin-2.0.0.tar.gz/download">2.0.0</a></td>
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-wordnetplugin/">Wordnet Plugin</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-wordnetplugin/1.7.0/dlvhex-wordnetplugin-1.7.0.tar.gz/download">1.7.0</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-wordnetplugin/2.0.0/dlvhex-wordnetplugin-2.0.0.tar.gz/download">2.0.0</a></td> 	
 	      <td>Interface to the <a href="http://wordnet.princeton.edu/">Wordnet library</a>.</td>
 	    </tr>
 	  </tbody>
 	</table>
+
 	<p>
 	  The release versions of the semweb plugins can be found below.
 	</p>
-	<table summary="">
+
+	<table>
 	  <thead>
 	    <tr>
 	      <th>Plugin</th>
@@ -139,137 +112,125 @@
 	    </tr>
 	  </tbody>
 	</table>
+
 	<p>
 	  Other plugins are currently under development and will be
 	  released ASAP.
 	</p>
+	
 	<p>
 	  Please note that dlvhex is currently only working for
 	  UNIX-based operating systems like Linux and Mac OS X.
 	</p>
+
+
 	<h3>dlvhex for Debian/Ubuntu</h3>
+	     
 	<p> We provide pre-compiled packages of dlvhex at <a
 	  href="http://www.kr.tuwien.ac.at/staff/tkren/deb.html">Debian/Ubuntu
 	 packages for ASP systems</a>. </p>
+
+
+	
 	<h3>Development Version</h3><a name="devel"></a>
+
 	<p> The current development version of dlvhex plus
 	plugin-suite is hosted at Sourceforge (you can browse the <a
 	 href="http://dlvhex.svn.sourceforge.net/viewvc/dlvhex/">source
-	code</a>). Please confer the <a
+	code</a>).  Please confer the <a
 	 href="http://sourceforge.net/projects/dlvhex/develop">instructions</a>
-	on how to checkout the current trunk. </p>
+	on how to checkout the current trunk.  </p>
+	
+	
 	<p> The dlvhex development code can be retrieved by executing </p>
+
 	<pre>
 svn co https://dlvhex.svn.sf.net/svnroot/dlvhex/dlvhex/trunk dlvhex</pre>
+
 	<p>
 	  Confer <a href="http://dlvhex.svn.sourceforge.net/viewvc/dlvhex/dlvhex/trunk/MAINTAINER-README?view=markup">MAINTAINER-README</a>
 	  and <a href="http://dlvhex.svn.sourceforge.net/viewvc/dlvhex/dlvhex/trunk/README?view=markup">README</a>
 	  for the list of packages you need to compile the development
 	  version of dlvhex.
 	</p>
+
 	<p>
 	  You can checkout the plugins using the next command (replace
 	  <tt>DLVHEX-PLUGIN</tt> by the plugin name, browse
 	  the <a href="http://dlvhex.svn.sourceforge.net/viewvc/dlvhex/">repository</a>
 	  for a list of available plugins):
 	</p>
+
 	<pre>
 svn co https://dlvhex.svn.sf.net/svnroot/dlvhex/DLVHEX-PLUGIN/trunk DLVHEX-PLUGIN</pre>
+	
+	
 	<p>
 	  dlvhex needs to be able to find <a href="http://www.dbai.tuwien.ac.at/proj/dlv/">dlv</a> in your path.
 	</p>
+	
 	<p>
 	  To work with the DL-plugin, you will also need the DL-reasoner <a href="http://www.racer-systems.com/">RacerPro</a>.
 	</p>
+	
 	<p>
 	  To work with the WordNet-plugin, you will also need <a href="http://wordnet.princeton.edu/">Wordnet</a> installed.
 	</p>
+	
 	<h3>Compiling Source Packages Primer</h3>
+	
 	<p>
 	  <b>Requirements for compiling dlvhex:</b>
 	  the inevitable <a href="http://www.boost.org/">Boost C++ libraries</a>
 	  (available as packages for all major distributions).
 	</p>
+	
 	<p>
 	  dlvhex is installed with the usual sequence:
 	</p>
+
 	<pre>
 ./configure
 make
 make install</pre>
+	
 	<p>
 	  If you don't want a system-wide installation or don't have root-permissions, use
 	</p>
+
 	<pre>
 ./configure --prefix=/path/to/dir</pre>
+	
 	<p> where <tt>/path/to/dir</tt> is the desired target
 	  prefix. There, the usual <tt>bin/</tt> and <tt>lib/</tt>
-	  will be created, if necessary. </p>
+	  will be created, if necessary.  </p>
+	
 	<p>
 	  For installing a plugin, again do:
 	</p>
+
 	<pre>
 ./configure
 make
 make install</pre>
+	
 	<p>
 	  The plugin library will be installed in <tt>${prefix}/lib/dlvhex/plugins</tt>, where <tt>${prefix}</tt> was determined by the dlvhex installation. If you use
 	</p>
+
 	<pre>
 ./configure --enable-userinstall</pre>
+	
 	<p>
 	  instead, the plugin will be put in <tt>~/.dlvhex/plugins/</tt>.
 	</p>
+	
+
   <h6>Useful Links</h6>
 	<p>
-	  <a href="https://sourceforge.net/projects/dlvhex/files/">Download dlvhex releases</a><br>
-	  <a href="https://sourceforge.net/projects/dlvhex-semweb/files/">Download dlvhex-semweb releases</a><br>
-	  <a href="https://dlvhex.svn.sourceforge.net/viewvc/dlvhex/">Browse Subversion</a><br>
+	  <a href="https://sourceforge.net/projects/dlvhex/files/">Download dlvhex releases</a><br/>
+	  <a href="https://sourceforge.net/projects/dlvhex-semweb/files/">Download dlvhex-semweb releases</a><br/>
+	  <a href="https://dlvhex.svn.sourceforge.net/viewvc/dlvhex/">Browse Subversion</a><br/>
 	  <a href="https://sourceforge.net/projects/dlvhex/develop">Subversion instructions</a>
 	</p>
-      </div>
-      <div class="grid_3">
-  <p>&nbsp;</p>
-  <p>
-    <img src="images/hexlogo_whitebg.png" alt="logo" id="logo" width="200" height="124">
-  </p>
-  <p>
-	<div style="font-size: 14pt"><label for="q">Search this website</label></div>
-	<form action="http://www.google.com/cse" id="cse-search-box">
-	  <div>
-	    <input name="cx" id="cx" value="010363983165505105153:4bhl-l5ixd4" type="hidden" alt="Search this website">
-	    <input name="ie" id="ie" value="UTF-8" type="hidden" alt="Search this website">
-	    <input style="background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" name="q" id="q" size="19" type="text">
-	    <input name="sa" id="sa" value="Search" type="submit">
-	  </div>
-	</form>
-  </p>
-	<p>
-	  <a href="https://sourceforge.net/projects/dlvhex/">dlvhex: Sourceforge project</a><br>
-	  <a href="http://www.polleres.net/dlvhex-sparql">dlvhex SPARQL plugin</a><br>
-	  <a href="actionplugin.html">dlvhex Action plugin</a><br>
-	  <a href="mergingplugin.html">MELD: dlvhex Belief Merging plugin</a><br>
-    <a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/stringplugin.html">dlvhex string plugin</a><br>
-	  <a href="https://sourceforge.net/projects/dlvhex-semweb/">dlvhex-semweb: Sourceforge project</a><br>
-	  <a href="doap.rdf">Description-Of-A-Project</a>
-	</p>
-  <p>
-    <span style="font-size: 14pt">Documentation:</span><br>
-    <a href="http://dlvhex.svn.sourceforge.net/svnroot/dlvhex/dlvhex/branches/release2x/README">
-      README</a><br>
-    <a href="doc2x">doxygen</a><br>
-    <a href="doc2x/group__pluginframework.html">Writing Plugins</a>
-    <!--
-    <a href="doc1x">doxygen version 1.X</a><br>
-    <a href="doc1x/group__pluginframework.html">Writing Plugins 1.X</a><br>
-    -->
-  </p>
-      </div> <!-- grid_3 -->
-    </div> <!-- container_12 -->
-  </body>
-</html>
-<!--
-        Local Variables:
-        mode: xml
-        End:
--->
+	

@@ -1,0 +1,182 @@
+<h2>Literature</h2>
+
+<p class="bib"><a name="efiks2011-lpnmr"></a>
+Thomas Eiter, Michael Fink, Giovambattista Ianni, Thomas Krennwallner, and Peter Schüller.<br/>
+<strong>Pushing Efficient Evaluation of HEX Programs by Modular Decomposition</strong>.<br/>
+In James Delgrande and Wolfgang Faber, editors, <em>11th International Conference on Logic Programming and Nonmonotonic Reasoning (LPNMR 2011), Vancouver, BC, Canada, May 16-19, 2011</em>, volume 6645 of LNAI, pages 93-106. Springer, May 2011.
+[&nbsp;<a href="">DOI</a>&nbsp;]
+[&nbsp;<a href="experiments.html">Experimental Data</a>&nbsp;]
+</p>
+
+
+<p class="bib"><a name="ekr2011-padl"></a>
+Christoph Redl, Thomas Eiter, and Thomas Krennwallner.<br/>
+<strong>Declarative Belief Set Merging using Merging Plans</strong>.<br/>
+In <em>13th International Symposium on Practical Aspects of Declarative Languages (PADL'11)</em>. Volume 6539 of LNCS, pages 99-114. Springer, 2011.<br/>
+[&nbsp;<a href="http://dx.doi.org/10.1007/978-3-642-18378-2_10">DOI</a>&nbsp;]
+</p>
+
+<p class="bib"><a name="befi2010-iclp"></a>
+  Selen Basol, Ozan Erdem, Michael Fink, and Giovambattista Ianni.<br/>
+  <strong>HEX Programs with Action Atoms</strong>.<br/>
+  In Manuel Hermenegildo, Ilkka Niemela, and Torsten Schaub, editors, <em>26th International Conference on Logic Programming (ICLP 2010), Edinburgh, UK, 16-19 July, 2010</em>, pages 24-33.<br/>
+  [&nbsp;<a href="http://dx.doi.org/10.4230/LIPIcs.ICLP.2010.24">DOI</a>&nbsp;]
+</p>
+
+<p class="bib"><a name="ikmp2009-iswc"></a>
+  Giovambattista Ianni, Thomas Krennwallner, Alessandra Martello, and Axel Polleres.<br/>
+  <strong>Dynamic Querying of Mass-Storage RDF Data with Rule-Based Entailment Regime</strong>.<br/>
+  In Abraham Bernstein, David R. Karger, Tom Heath, Lee Feigenbaum, Diana Maynard, Enrico Motta, and Krishnaprasad Thirunarayan, editors, <em>8th International Semantic Web Conference (ISWC 2009), Washington D.C., USA, 25-29 October, 2009</em>, volume 5823 of <em>LNCS</em>, pages 310-327. Springer, October 2009.<br/>
+  [&nbsp;<a href="http://dx.doi.org/10.1007/978-3-642-04930-9_20">DOI</a>&nbsp;|&nbsp;<a href="http://www.kr.tuwien.ac.at/staff/tkren/pub/2009/iswc2009-dynsparql.pdf">paper</a>&nbsp;]
+</p>
+
+<p class="bib"><a name="deiklm2009-rewerse"></a>
+  Wlodzimierz Drabent, Thomas Eiter, Giovambattista Ianni, Thomas Krennwallner, Thomas Lukasiewicz, and Jan Maluszynski.<br/>
+  <strong>Hybrid Reasoning with Rules and Ontologies</strong>.<br/>
+  In Francois Bry and Jan Maluszynski, editors, <em>Semantic Techniques for the Web: The REWERSE Perspective</em>, volume 5500 of <em>LNCS</em>, pages 1-49. Springer, September 2009.<br/>
+  [&nbsp;<a href="http://dx.doi.org/10.1007/978-3-642-04581-3_1">DOI</a>&nbsp;]
+</p>
+
+<p class="bib"><a name="defk2009-lpnmr"></a>
+  Minh Dao-Tran, Thomas Eiter, Michael Fink, and Thomas Krennwallner.<br/>
+  <strong>Relevance-driven Evaluation of Modular Nonmonotonic Logic Programs</strong>.<br/>
+  In Esra Erdem, Fangzhen Lin, and Torsten Schaub, editors, <em>10th International Conference on Logic Programming and Nonmonotonic Reasoning (LPNMR 2009), Potsdam, Germany, 14-18 September, 2009</em>, volume 5753 of <em>LNCS</em>, pages 87-100. Springer, September 2009.<br/>
+  [&nbsp;<a href="http://dx.doi.org/10.1007/978-3-642-04238-6_10">DOI</a>&nbsp;|&nbsp;<a href="http://www.kr.tuwien.ac.at/staff/tkren/pub/2009/lpnmr2009-splitting.pdf">paper</a>&nbsp;]
+</p>
+
+<p class="bib"><a name="ebdfik2009-frocos"></a>
+        Thomas Eiter, Gerhard Brewka, Minh Dao-Tran, Michael Fink, Giovambattista Ianni, and Thomas Krennwallner.<br/>
+  <strong>Combining Nonmonotonic Knowledge Bases with External Sources</strong>.<br/>
+  In Silvio Ghilardi and Roberto Sebastiani, editors, <em>7th International Symposium on Frontiers of Combining Systems (FroCos 2009), Trento, Italy, September 16-18, 2009</em>, volume 5749 of <em>LNAI</em>, pages 18-42. Springer, September 2009.<br/>
+  [&nbsp;<a href="http://dx.doi.org/10.1007/978-3-642-04222-5_2">DOI</a>&nbsp;]
+</p>
+
+<p class="bib"><a name="eik2009-rw"></a>
+        Thomas Eiter, Giovambattista Ianni, and Thomas Krennwallner. <br/>
+        <strong>Answer Set Programming: A Primer</strong>. <br/>
+        In Sergio Tessaris and Enrico Franconi and Thomas Eiter and Claudio Gutierrez and Siegfried Handschuh and Marie-Christine Rousset and Renate A. Schmidt, editors, <em>5th International Reasoning Web Summer School (RW 2009), Brixen/Bressanone, Italy, August 30-September 4, 2009</em>, volume 5689 of <em>LNCS</em>, pages 40-110. Springer, September 2009.<br/>
+  [&nbsp;<a href="http://dx.doi.org/10.1007/978-3-642-03754-2_2">DOI</a>&nbsp;|&nbsp;<a href="http://www.kr.tuwien.ac.at/staff/tkren/pub/2009/rw2009-asp.pdf">paper</a>&nbsp;|<a href="http://www.kr.tuwien.ac.at/staff/tkren/pub/2009/rw2009-lecture.zip">slides</a>&nbsp;]
+     </p>
+
+<p class="bib"><a name="defk2009-iclp"></a>
+  Minh Dao-Tran, Thomas Eiter, Michael Fink, and Thomas Krennwallner.<br/>
+  <strong>Modular Nonmonotonic Logic Programming Revisited</strong>.<br/>
+  In Patricia&nbsp;M. Hill and David&nbsp;S. Warren, editors, <em>Proceedings of the 25th International Conference on Logic Programming (ICLP 2009), Pasadena, California, USA, July 14-17, 2009</em>, pages 145-159. Springer, July 2009.<br/>
+  [&nbsp;<a href="http://dx.doi.org/10.1007/978-3-642-02846-5_16">DOI</a>&nbsp;]
+</p>
+
+<p class="bib"><a name="efk2009-ijcai"></a>
+        Thomas Eiter, Michael Fink, and Thomas Krennwallner.<br/>
+        <strong>Decomposition of Declarative Knowledge Bases with External Functions</strong>.<br/>
+        In Craig Boutilier, editor, <em>Proceedings of the Twenty-First International Joint Conference on Artificial Intelligence (IJCAI 2009), Pasadena, California, USA, July 11-17, 2009</em>, pages 752-758. AAAI Press, July 2009.<br/>
+  [&nbsp;<a href="http://www.ijcai.org/papers09/Papers/IJCAI09-130.pdf">paper</a>&nbsp;]
+</p>
+
+<p class="bib"><a name="dek2009-ecsqaru"></a>
+  Minh Dao-Tran, Thomas Eiter, and Thomas Krennwallner.<br/>
+  <strong>Realizing Default Logic over Description Logic Knowledge Bases</strong>.<br/>
+  In Claudio Sossai and Gaetano Chemello, editors, <em>Proceedings of the 10th European Conference on Symbolic and Quantitative	Approaches to Reasoning with Uncertainty (ECSQARU 2009), Verona, Italy, July 1-3, 2009</em> , volume 5590 of LNAI, pages 602-613. Springer, July 2009.<br/>
+  [&nbsp;<a href="http://dx.doi.org/10.1007/978-3-642-02906-6_52">DOI</a>&nbsp;]
+</p>
+
+<p class="bib"><a name="ikmp2009-eswc"></a>
+  Giovambattista Ianni, Thomas Krennwallner, Alessandra Martello, and Axel Polleres.<br/>
+  <strong>A Rule System for Querying Persistent RDFS Data</strong>.<br/>
+  In Lora Arroyo, Paolo Traverso, Fabio Ciravegna, Philipp Cimiano, Tom Heath, Eero Hyv&ouml;nen, Riichiro Mizoguchi, Eyal Oren, Marta Sabou, and Elena Simperl, editors, <em>Proceedings of the 6th Annual European Semantic Web Conference (ESWC2009), Heraklion, Greece, May 31-June 4, 2009</em>, volume 5554 of LNCS, pages 857-862. Springer, June 2009.<br/>
+  [&nbsp;<a href="http://dx.doi.org/10.1007/s10472-009-9111-3">DOI</a>&nbsp;]
+</p>
+
+<p class="bib"><a name="eiks2009-amai"></a>
+  Thomas Eiter, Giovambattista Ianni, Thomas Krennwallner, and Roman Schindlauer.<br/>
+  <strong>Exploiting conjunctive queries in description logic programs</strong>.<br/>
+  <em>Annals of Mathematics and Artificial Intelligence. Logic in AI: A Special Issue Dedicated to Victor W. Marek on the Occasion of His 65th birthday</em>, 53(1-4):115-152, August 2008. Published online: 27 January 2009.<br/>
+  [&nbsp;<a href="http://dx.doi.org/10.1007/s10472-009-9111-3">DOI</a>&nbsp;]
+</p>
+
+<p class="bib"><a name="eikp2008a"></a>
+Thomas Eiter, Giovambattista Ianni, Thomas Krennwallner, and Axel Polleres.<br/>
+<strong>Rules and Ontologies for the Semantic Web</strong>.<br/>
+In Cristina Baroglio, Piero A. Bonatti, Jan Maluszynski, Massimo Marchiori, Axel Polleres, and Sebastian Schaffert, editors, <em>Reasoning Web: 4th International Summer School 2008, Venice Italy, September 7-11, 2008, Tutorial Lectures</em>, volume 5224 of LNCS, pages 1-53. Springer, September 2008.<br/>
+[&nbsp;<a href="http://dx.doi.org/10.1007/978-3-540-85658-0_1">DOI</a>&nbsp;] 
+</p>
+      
+<p class="bib"><a name="eite-etal-08ai"></a>
+Thomas Eiter, Giovambattista Ianni, Thomas Lukasiewicz, Roman Schindlauer, and Hans Tompits.<br/>
+<strong>Combining answer set programming with description logics for the Semantic Web</strong>.<br/>
+<em>Artificial Intelligence</em>, 172 (12-13), pages 1495-1539, Elsevier, August 2008.<br/>
+[&nbsp;<a href="http://dx.doi.org/10.1016/j.artint.2008.04.002">DOI</a>&nbsp;]<br/>
+Also available as Technical Report INFSYS RR-1843-07-04, Institut f&uuml;r Informationssysteme, TU Wien, March 2007.<br/>
+[&nbsp;<a href="http://www.kr.tuwien.ac.at/research/reports/rr0704.pdf">paper</a>&nbsp;]
+</p>
+
+
+<p class="bib"><a name="eite-etal-dl07"></a>
+Thomas Eiter, Giovambattista Ianni, Thomas Krennwallner, and Roman Schindlauer.<br/>
+<strong>Exploiting Conjunctive Queries in Description Logic Programs</strong>.<br/>
+In <em>Proceedings of the 20th International Workshop on Description Logics (DL 2007), Brixen-Bressanone, Italy</em>, June 2007.<br/>
+[&nbsp;<a href="http://sunsite.informatik.rwth-aachen.de/Publications/CEUR-WS/Vol-250/paper_64.pdf">paper</a>&nbsp;]<br/>
+Extended version appeared in <em>Proceedings of the 10th International Symposium on Artificial Intelligence and Mathematics (ISAIM2008): Logic in Artificial Intelligence: Special Session in Honor of the 65th Birthday of Victor W. Marek</em>, January 2008.<br/>
+[&nbsp;<a href="http://isaim2008.unl.edu/PAPERS/SS1-AI+Logic/TEiter-ss1.pdf">paper</a>&nbsp;]<br/>
+Also available as Technical Report INFSYS RR-1843-08-02, Institut f&uuml;r Informationssysteme, TU Wien, March 2008.<br/>
+[&nbsp;<a href="http://www.kr.tuwien.ac.at/research/reports/rr0802.pdf">paper</a>&nbsp;]
+</p>
+
+
+<p class="bib"><a name="schindlauer-thesis-06"></a>
+Roman Schindlauer.<br/>
+<strong>Answer-Set Programming for the Semantic Web</strong>.<br/>
+PhD thesis, Vienna University of Technology, Austria, December 2006.<br/>
+[&nbsp;<a href="http://www.kr.tuwien.ac.at/staff/former_staff/roman/papers/thesis.pdf">.pdf</a>&nbsp;]
+</p>
+
+
+<p class="bib"><a name="eite-etal-06i"></a>
+Thomas Eiter, Giovambattista Ianni, Axel Polleres, Roman Schindlauer, and Hans Tompits.<br/>
+<strong>Reasoning with Rules and Ontologies</strong>.<br/>
+In Pedro Barahona, Fran&ccedil;ois Bry, Enrico Franconi, Ulrike Sattler, and Nicola Henze, editors, <em>Reasoning Web, Second International Summer School, Lissabon, Portugal, Tutorial Lectures</em>, number 4126 in Lecture Notes in Computer Science (LNCS), pages 93-127. Springer, September 2006.<br/>
+[&nbsp;<a href="http://rewerse.net/publications/download/REWERSE-RP-2006-070.pdf">paper</a>&nbsp;]
+</p>
+
+
+<p class="bib"><a name="eiter-etal-05o"></a>
+Thomas Eiter, Giovambattista Ianni, Roman Schindlauer, and Hans Tompits.<br/>
+<strong>Effective Integration of Declarative Rules with External Evaluations for Semantic Web Reasoning</strong>.<br/>
+In York Sure and John Domingue, editors, <em>Proceedings of the 3rd European Conference on Semantic Web (ESWC 2006), Budva, Montenegro</em>, number 4011 in Lecture Notes in Computer Science (LNCS), pages 273-287. Springer, June 2006.<br/>
+[&nbsp;<a href="http://dx.doi.org/10.1007/11762256_22">DOI</a>&nbsp;]
+</p>
+
+
+<p class="bib"><a name="eite-etal-06d"></a>
+Thomas Eiter, Giovambattista Ianni, Roman Schindlauer, and Hans Tompits.<br/>
+<strong>Towards Efficient Evaluation of HEX Programs</strong>.<br/>
+In J&uuml;rgen Dix and Anthony Hunter, editors, <em>Proceedings of the 11th International Workshop on Nonmonotonic Reasoning (NMR-2006), Answer Set Programming Track, Lakeside, UK</em>, pages 40-46, May 2006. Available as TR IfI-06-04, Institut f&uuml;r Informatik, TU Clausthal, Germany.<br/>
+[&nbsp;<a href="http://www.in.tu-clausthal.de/fileadmin/homes/techreports/ifi0604nmr.pdf">paper</a>&nbsp;]
+</p>
+
+
+<p class="bib"><a name="eite-etal-2005-ijcai"></a>
+Thomas Eiter, Giovambattista Ianni, Roman Schindlauer, and Hans Tompits.<br/>
+<strong>A Uniform Integration of Higher-Order Reasoning and External Evaluations in Answer Set Programming</strong>.<br/>
+In Leslie&nbsp;Pack Kaelbling and Alessandro Saffiotti, editors, <em>Proceedings of the 19th International Joint Conference on Artificial Intelligence (IJCAI 2005), Edinburgh, Scotland, UK</em>, pages 90-96. Professional Book Center, July 2005.<br/>
+[&nbsp;<a href="http://www.ijcai.org/papers/1353.pdf">paper</a>&nbsp;]
+</p>
+
+<p class="bib"><a name="eite-etal-05"></a>
+Thomas Eiter, Giovambattista Ianni, Roman Schindlauer, and Hans Tompits.<br/>
+<strong>Nonmonotonic Description Logic Programs: Implementation and Experiments</strong>.<br/>
+In F. Baader and A. Voronkov, editors, <em>Proceedings 12th International Conference on Logic for Programming Artificial Intelligence and Reasoning (LPAR 2004), Montevideo, Uruguay</em>, number 3452 in LNCS, pages 511-517. Springer, 2005.<br/>
+</p>
+
+<p class="bib"><a name="eite-etal-04f"></a>
+Thomas Eiter, Thomas Lukasiewicz, Roman Schindlauer, and Hans Tompits.<br/>
+<strong>Well-founded Semantics for Description Logic Programs in the Semantic Web</strong>.<br/>
+In Grigoris Antoniou and Harold Boley, editors, <em>Proceedings of the 3rd International Workshop on Rules and Rule Markup Languages for the Semantic Web (RuleML 2004), Hiroshima, Japan</em>, number 3323 in Lecture Notes in Computer Science (LNCS), pages 81-97. Springer, November 2004.<br/>
+[&nbsp;<a href="http://springerlink.metapress.com/content/5xj152lwtgw58chx">DOI</a>&nbsp;]
+</p>
+
+<p class="bib"><a name="ELST2004"></a>
+Thomas Eiter, Thomas Lukasiewicz, Roman Schindlauer, and Hans Tompits.<br/>
+<strong>Combining Answer Set Programming with Description Logics for the Semantic Web</strong>.<br/>
+In Didier Dubois, Christopher Welty, and Mary-Anne Williams, editors, <em>Proceedings of the 9th International Conference on Principles of Knowledge Representation and Reasoning (KR 2004), Whistler, British Columbia, Canada</em>, pages 141-151. AAAI Press, June 2004.<br/>
+[&nbsp;<a href="http://www.aaai.org/Papers/KR/2004/KR04-017.pdf">paper</a>&nbsp;]
+</p>

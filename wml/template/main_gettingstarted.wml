@@ -1,0 +1,57 @@
+	<h2>Getting started with dlvhex</h2>
+                        
+	<p>
+	  You can invoke dlvhex directly on the command-line.
+    Depending on the version you are using, executing <code>dlvhex</code>
+    (or <code>dlvhex2</code>) on the commandline
+    looks similar to the following.
+  </p>
+
+  <pre>
+DLVHEX  2.0.0 [build Mar  6 2012   gcc 4.2.1 Compatible Clang 3.0 (144389)]
+
+Usage: ./dlvhex2 [OPTION] FILENAME [FILENAME ...]
+
+   or: ./dlvhex2 [OPTION] --
+
+Specify -h or --help for more detailed usage information.</pre>
+
+	<p>
+	  The first line will most probably look different with your
+	  installation. It first tells you which program this is, then it gives
+	  information about the version. This consists of the
+	  date when the binary was built and the identifier of the
+	  compiler. Usually, you will not have to bother with these
+	  details, but please include this information when you are reporting a
+	  bug or asking for support.
+	</p>
+
+	<p>
+	  If you do not want to see this status line, use the
+	  <code>--silent</code> option, which suppresses various
+	  informational output and blank lines.
+	</p>
+
+	<p>
+	  Since we did not specify any input file, dlvhex just prints a brief
+	  usage message. Let's try with an empty file:
+	</p>
+
+	<pre>
+$ dlvhex --silent empty
+{}</pre>
+  
+	<p>
+	  The "<code>{}</code>" tells you that the input
+	  (no program) admits the model in which nothing is true
+	  (and as a matter of fact, in which nothing is false either in this
+	  case).
+	</p>
+
+	<p class="caution">
+	  <b>Caution</b>:
+	  It is very important to note the difference between an empty model
+	  (as above) and no model: If a program has no model, it is
+	  contradictory or inconsistent in some sense, while this is not the
+	  case with an empty model.
+	</p>
