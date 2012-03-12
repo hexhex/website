@@ -2,12 +2,16 @@
 
 	<h3>Latest release version</h3>
 
-	<p> You can download stable release versions of dlvhex and its
+	<p>
+    You can download stable release versions of dlvhex and its
 	  plugins at the <a
 	   href="http://sourceforge.net/projects/dlvhex/files/">dlvhex
 	  SourceForge File Releases</a>. Installation instructions are
 	  given in the <tt>INSTALL</tt> and <tt>README</tt> files of
-	  the dlvhex and plugin source directories.</p>
+	  the dlvhex and plugin source directories.
+    Changes between versions can be found in the <tt>NEWS</tt> files
+    and in detail in the <tt>ChangeLog</tt> files.
+  </p>
 
 	<p class="caution">
 	  The current release dlvhex 2.X (2012-03-11) is 2.0.0:
@@ -60,7 +64,7 @@
 	    </tr>
 	    <tr>
 	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/">Script Plugin</a></td> 	
-	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/1.7.2/dlvhex-scriptplugin-1.7.1.tar.gz/download">1.7.1</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/1.7.1/dlvhex-scriptplugin-1.7.1.tar.gz/download">1.7.1</a></td> 	
 	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/2.0.0/dlvhex-scriptplugin-2.0.0.tar.gz/download">2.0.0</a></td> 	
 	      <td>Simple plugin that can execute scripts and does some I/O.</td>
 	    </tr>
