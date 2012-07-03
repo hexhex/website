@@ -1,0 +1,3 @@
+sel(X) :- domain(X), &testSetMinus[domain, nsel](X)<monotonic domain>.
+nsel(X) :- domain(X), &testSetMinus[domain, sel](X)<monotonic domain>.
+:- sel(X), sel(Y), sel(Z), X != Y, X != Z, Y != Z.
