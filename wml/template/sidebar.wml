@@ -18,19 +18,19 @@
   </p>
 
 	<p>
-	  <a href="https://sourceforge.net/projects/dlvhex/">dlvhex: Sourceforge project</a><br/>
-	  <a href="http://www.polleres.net/dlvhex-sparql">dlvhex SPARQL plugin</a><br/>
-	  <a href="actionplugin.html">dlvhex Action plugin</a><br/>
-	  <a href="mergingplugin.html">MELD: dlvhex Belief Merging plugin</a><br/>
-    <a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/stringplugin.html">dlvhex string plugin</a><br/>
-	  <a href="https://sourceforge.net/projects/dlvhex-semweb/">dlvhex-semweb: Sourceforge project</a><br/>
+	  <a href="https://github.com/hexhex/">dlvhex source code @ github.com</a><br/>
+	  <!-- a href="https://sourceforge.net/projects/dlvhex/">dlvhex: Sourceforge project</a><br/ -->
+	  <a href="http://www.polleres.net/dlvhex-sparql">SPARQL plugin</a><br/>
+	  <a href="actionplugin.html">Action plugin</a><br/>
+	  <a href="mergingplugin.html">MELD: Belief Merging plugin</a><br/>
+    <a href="stringplugin.html">string plugin</a><br/>
+	  <a href="https://sourceforge.net/projects/dlvhex-semweb/">dlvhex-semweb project</a><br/>
 	  <a href="doap.rdf">Description-Of-A-Project</a>	  
 	</p>
 
   <p>
     <span style="font-size: 14pt">Documentation:</span><br/>
-    <a href="http://dlvhex.svn.sourceforge.net/svnroot/dlvhex/dlvhex/branches/release2x/README">
-      README</a><br/>
+    <a href="https://github.com/hexhex/core/blob/master/README">README</a><br/>
     <a href="doc2x">doxygen</a><br/>
     <a href="doc2x/group__pluginframework.html">Writing Plugins</a>
     <!--
