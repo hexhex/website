@@ -14,13 +14,13 @@
   </p>
 
 	<p class="caution">
-	  The current release dlvhex 2.X (2012-03-11) is 2.0.0:
-	  <a href="http://sourceforge.net/projects/dlvhex/files/dlvhex/2.0.0/dlvhex-2.0.0.tar.gz/download">source tarball</a>
+	  The current release dlvhex 2.X (2012-10-19) is 2.1.0:
+	  <a href="http://sourceforge.net/projects/dlvhex/files/dlvhex/2.1.0/dlvhex-2.1.0.tar.gz/download">source tarball</a>
    (binary of this release is called <code>dlvhex2</code>).
   </p>
 	<p>
-	  The deprecated release of dlvhex 1.X (2012-03-11) is 1.7.3:
-	  <a href="http://sourceforge.net/projects/dlvhex/files/dlvhex/1.7.3/dlvhex-1.7.3.tar.gz/download">source tarball</a>
+	  The deprecated release of dlvhex 1.X (2012-10-19) is 1.7.4:
+	  <a href="http://sourceforge.net/projects/dlvhex/files/dlvhex/1.7.4/dlvhex-1.7.4.tar.gz/download">source tarball</a>
    (binary of this release is called <code>dlvhex</code>).
 	</p>
 
@@ -31,7 +31,7 @@
 	<p>
 	  Regarding versions note that dlvhex 2.X uses contains a new ABI versioning framework
     to improve plugin compatibility handling.
-    For details see <a href="http://sourceforge.net/apps/trac/dlvhex/wiki/LibraryVersions">dlvhex Trac: LibraryVersions</a>.
+    For details see <a href="http://github.com/hexhex/wiki/LibraryVersions">LibraryVersions</a>.
 	</p>
 
 	<table>
@@ -135,38 +135,54 @@
 	<h3>Development Version</h3><a name="devel"></a>
 
 	<p> The current development version of dlvhex plus
-	plugin-suite is hosted at Sourceforge (you can browse the <a
-	 href="http://dlvhex.svn.sourceforge.net/viewvc/dlvhex/">source
-	code</a>).  Please confer the <a
-	 href="http://sourceforge.net/projects/dlvhex/develop">instructions</a>
-	on how to checkout the current trunk.  </p>
+	plugin-suite is hosted at github
+  in the <a href="https://github.com/hexhex/">hexhex</a> Collection.
+  </p>
 	
-	
-	<p> The dlvhex development code can be retrieved by executing </p>
+	<p> The dlvhex core code can be retrieved by executing </p>
 
 	<pre>
-svn co https://dlvhex.svn.sf.net/svnroot/dlvhex/dlvhex/trunk dlvhex</pre>
+git clone --recursive git://github.com/hexhex/core.git</pre>
+
+  (readonly) or for read-write access (if you are allowed to commit) with
+
+	<pre>
+git clone --recursive git@github.com:hexhex/core.git</pre>
 
 	<p>
-	  Confer <a href="http://dlvhex.svn.sourceforge.net/viewvc/dlvhex/dlvhex/trunk/MAINTAINER-README?view=markup">MAINTAINER-README</a>
-	  and <a href="http://dlvhex.svn.sourceforge.net/viewvc/dlvhex/dlvhex/trunk/README?view=markup">README</a>
+	  Confer <a href="https://github.com/hexhex/core/blob/master/MAINTAINER-README">MAINTAINER-README</a>
+	  and <a href="https://github.com/hexhex/core/blob/master/README">README</a>
 	  for the list of packages you need to compile the development
 	  version of dlvhex.
 	</p>
 
 	<p>
-	  You can checkout the plugins using the next command (replace
-	  <tt>DLVHEX-PLUGIN</tt> by the plugin name, browse
-	  the <a href="http://dlvhex.svn.sourceforge.net/viewvc/dlvhex/">repository</a>
-	  for a list of available plugins):
+	  You can checkout the plugins using the same command (do not forget --recursive)
+    on the other repositories which are parte of the
+	   <a href="https://github.com/hexhex/">hexhex</a> organization.
 	</p>
 
-	<pre>
-svn co https://dlvhex.svn.sf.net/svnroot/dlvhex/DLVHEX-PLUGIN/trunk DLVHEX-PLUGIN</pre>
-	
-	
+  <h4>IMPORTANT!</h4>
+
+  <p>
+    Whenever you use a git version of dlvhex,
+    <b>do not forget</b> to clone with
+    <pre>git clone --recursive</pre>
+    and <b>do not forget</b> to run 
+    <pre>./bootstrap.sh</pre>
+    after cloning.
+    (After <tt>./bootstrap.sh</tt> you can continue with <tt>./configure</tt> as shown below.)
+  </p>
+
 	<p>
-	  dlvhex needs to be able to find <a href="http://www.dbai.tuwien.ac.at/proj/dlv/">dlv</a> in your path.
+    Per default, dlvhex will build with 
+    <a href="http://potassco.sourceforge.net/">gringo</a> and
+    <a href="http://potassco.sourceforge.net/">clasp</a>
+    which is contained in the dlvhex tarball.
+  </p>
+  <p>
+    If <a href="http://www.dbai.tuwien.ac.at/proj/dlv/">dlv</a> is found in the path,
+    then dlv can be used as backend.
 	</p>
 	
 	<p>
@@ -230,7 +246,6 @@ make install</pre>
 	<p>
 	  <a href="https://sourceforge.net/projects/dlvhex/files/">Download dlvhex releases</a><br/>
 	  <a href="https://sourceforge.net/projects/dlvhex-semweb/files/">Download dlvhex-semweb releases</a><br/>
-	  <a href="https://dlvhex.svn.sourceforge.net/viewvc/dlvhex/">Browse Subversion</a><br/>
-	  <a href="https://sourceforge.net/projects/dlvhex/develop">Subversion instructions</a>
+	  <a href="https://github.com/hexhex/">Browse source code on github.com</a><br/>
 	</p>
 	
