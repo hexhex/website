@@ -1,130 +1,128 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta http-equiv="content-type" content="text/html; charset=ISO-8859-9">
-
-
-
-    <title>The Robot Action Addon</title>
-    <link rel="stylesheet" type="text/css" media="all" href="robotaddon_files/reset.css">
-    <link rel="stylesheet" type="text/css" media="all" href="robotaddon_files/text.css">
-    <link rel="stylesheet" type="text/css" media="all" href="robotaddon_files/960.css">
-    <link rel="stylesheet" type="text/css" media="all" href="robotaddon_files/style.css">
-  <script charset="utf-8" id="injection_graph_func" src="robotaddon_files/injection_graph_func.js"></script><script id="_nameHighlight_injection"></script><link class="skype_name_highlight_style" href="robotaddon_files/injection_nh_graph.css" type="text/css" rel="stylesheet" charset="utf-8" id="_injection_graph_nh_css"><link href="robotaddon_files/skypeplugin_dropdownmenu.css" type="text/css" rel="stylesheet" charset="utf-8" id="_skypeplugin_dropdownmenu_css"></head><body>
-
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>How the ActionPlugin Computes Preferences Between Actions</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../css/reset.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../css/text.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../css/960.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../css/style.css" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/addon.css" />
+</head>
+<body>
+    <!-- Title -->
     <div class="container_12">
-
-      <h1>dlvhex</h1>
-
-       <div id="menu">
-	<a href="/research/systems/dlvhex/">About</a>
-	&nbsp;|&nbsp;
-	<a href="../people.html">People</a>
-	&nbsp;|&nbsp;
-	<a href="../download.html">Download</a>
-	&nbsp;|&nbsp;
-	<a href="../support.html">Support</a>
-	&nbsp;|&nbsp;
-
-	<a href="../documentation.html">Documentation</a>
-	&nbsp;|&nbsp;
-	<a href="http://asptut.gibbi.com/">Demo &amp; ASP Tutorial</a>
-	&nbsp;|&nbsp;
-	<a href="../related.html">Related Work</a>
-
-	&nbsp;|&nbsp;
-	<a href="../literature.html">Literature</a>
-      </div>
-
+        <div class="grid_12" id="title">
+            <h1>
+                dlvhex</h1>
+        </div>
     </div>
-	
-
-
+    <!-- Menu -->
     <div class="container_12">
-
-      <div class="grid_9">
-
-
-	<h2>The Robot Action Addon </h2>
-	<p>
-The Robot Action Addon is a toy example which demostrates movements of a robot
-under the following scenario: a robot stands at the center of a U
-shaped corridor. in the evenings, depending on the amount of fuel it
-has, it will either patrol both legs of the corridor or just one leg of
-it (left or right) and after that it will turn the alarm on. In the
-mornings, it will turn the alarm off. The robot action addon provides a
-single atom <em>#robot</em>. It takes two inputs where former is the action name and the latter is the option related to action:
-	
-	</p>
-
-
-	<div class="synopsis">
-	  <div class="atomusage"><em>#robot[A, AO]{O,P}</em></div>
-	  <div>Input:</div>
-
-	  <div class="param">A </div>
-	  <div class="paramtext">action type, either <em>move</em> or <em>turnAlarm</em> </div>
-	  <div class="param">AO </div>
-	  <div class="paramtext">option related to given action by <em>AN</em> </div>
-	  <div style="clear: both;"></div>
-	</div>
-	<p>#robot action atom will allow user to control a toy robot simulation on the shell. Action <em>move</em> can be used with one of the three options: <em>left</em>, <em>right</em> and <em>all</em> where as action <em>turnAlarm</em> can be used one of the two options: <em>on</em> and <em>off</em>. By specifying the action type to move, robot will be able to move in an "U" shaped corridor. In the case the action option is <em>left</em> (resp. <em>right</em> robot will patrol the left (resp. right) leg of the corridor and in the case action option is given as <em>all</em>, the robot will patrol both legs of the corridor. On the other hand if the action type is specified to <em>turnAlarm</em>, depending on the action option (either <em>on </em> or <em>off</em>, the alarm will be turned on or off. </p>
-	<p>
-	  Example:
-	</p>
-
-	<pre>#robot[move, all]{c, 1} :- fuel(full).</pre>
-	<pre>#robot[move, right]{c, 1} v  #robot[move, left] {b, 1} :- not fuel(full).</pre>
-	<pre>#robot[turnAlarm, on]{b, 2} :- night.</pre>
-
-		
-	<p>
-	 Note that <em>O</em> (resp. <em>P</em>) are option (resp. precedence) that appears in action atoms. Additionally, mentioned action atoms can be combined with weight and and level. </p>
-		
-
-
-
-	 <!--<p>Hence, a straightforward application of KBMod addon would be to modify an {\sc ActHex} program within itself and reexecute it.
-	
-	  The RDF Plugin provides a single atom. It takes a single constant as input, which denotes the
-	  RDF-source, and returns rdf-triples:</p>-->
-			
-<!--      <div class="grid_3">
-
-	<div style="font-size: 14pt"><label for="q">Search this website</label></div>
-	<form action="http://www.google.com/cse" id="cse-search-box">
-	  <div>
-	    <input name="cx" id="cx" value="010363983165505105153:4bhl-l5ixd4" type="hidden" alt="Search this website"/>
-	    <input name="ie" id="ie" value="UTF-8" type="hidden" alt="Search this website"/>
-	    <input style="background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" name="q" id="q" size="31" type="text"/>
-	    <input name="sa" id="sa" value="Search" type="submit"/>
-
-	
-	</form>
- </div>-->
-	<p>You can check it out its source via SVN <a href="https://dlvhex.svn.sourceforge.net/svnroot/dlvhex/dlvhex-actionplugin-addons/RobotActionAddon/trunk/">here</a> or as GNU tarball <a href="http://dlvhex.svn.sourceforge.net/viewvc/dlvhex/dlvhex-actionplugin-addons/RobotActionAddon/">here</a>.</p>
-	<p>Other action addons: <a href="kbmodaddon.html">KBMod Action Addon</a>, <a href="gcaladdon.html">GCal Action Addon</a><br>Return to <a href="../actionplugin.html">The Action Plugin and Action Addon Framework</a></p>
-<!--		
-	<p>
-	  <a href="gettingstarted.html">Getting Started</a><br/>
-	  <a href="hexlanguage.html">HEX-Programs</a>
-	</p>
-
-	<p>
-	  <a href="dlplugin.html">Description Logic Plugin</a><br/>
-	  <a href="rdfplugin.html">RDF Plugin</a><br/>
-	  <a href="stringplugin.html">String Plugin</a>
-	</p>
-
-	<p>
-
-	  <a href="doc">dlvhex Source Documentation</a><br/>
-	  <a href="doc/group__pluginframework.html">Writing Plugins</a>
-	</p>
-	-->
-
- 	
-      </div>
-
+        <div class="grid_12" id="menu">
+            <a href="index.html">About</a> <a href="people.html">People</a> <a href="download.html">
+                Download</a> <a href="support.html">Support</a> <a href="documentation.html">Documentation</a>
+            <a href="http://asptut.gibbi.com/">Demo &amp; ASP Tutorial</a> <a href="related.html">
+                Related Work</a> <a href="applications.html">Applications</a> <a href="literature.html">
+                    Literature</a>
+        </div>
     </div>
-
-  </body></html>
+    <div class="container_12">
+        <div class="grid_9">
+            <h2>
+                <a class="a_title" href="../actionplugin.html">The Action Plugin and Action Addon Framework</a></h2>
+            <br />
+            <h3>
+                The Robot Action Addon
+            </h3>
+            <p>
+                The Robot Action Addon is a toy example which demostrates movements of a robot under
+                the following scenario: a robot stands at the center of a U shaped corridor. in
+                the evenings, depending on the amount of fuel it has, it will either patrol both
+                legs of the corridor or just one leg of it (left or right) and after that it will
+                turn the alarm on. In the mornings, it will turn the alarm off. The robot action
+                addon provides a single atom <em>#robot</em>. It takes two inputs where former is
+                the action name and the latter is the option related to action:
+            </p>
+            <div class="synopsis">
+                <div class="atomusage">
+                    <em>#robot[A, AO]{O,P}</em></div>
+                <div>
+                    Input:</div>
+                <div class="param">
+                    A
+                </div>
+                <div class="paramtext">
+                    action type, either <em>move</em> or <em>turnAlarm</em></div>
+                <div class="param">
+                    AO
+                </div>
+                <div class="paramtext">
+                    option related to given action by <em>AN</em></div>
+                <br style="clear: both;" />
+            </div>
+            <p>
+                <b><i>#robot</i></b> action atom will allow user to control a toy robot simulation
+                on the shell. Action <em>move</em> can be used with one of the three options: <em>left</em>,
+                <em>right</em> and <em>all</em> where as action <em>turnAlarm</em> can be used one
+                of the two options: <em>on</em> and <em>off</em>. By specifying the action type
+                to move, robot will be able to move in an "U" shaped corridor. In the case the action
+                option is <em>left</em> (resp. <em>right</em> robot will patrol the left (resp.
+                right) leg of the corridor and in the case action option is given as <em>all</em>,
+                the robot will patrol both legs of the corridor. On the other hand if the action
+                type is specified to <em>turnAlarm</em>, depending on the action option (either
+                <em>on </em>or <em>off</em>, the alarm will be turned on or off.
+            </p>
+            <p>
+                Example:</p>
+            <div class="fragment">
+                <pre class="fragment">
+ #robot[move, all]{c, 1} :- fuel(full).
+ #robot[move, right]{c, 1} v #robot[move, left] {b, 1} :- not fuel(full).
+ #robot[turnAlarm, on]{b, 2} :- night.</pre>
+            </div>
+            <br />
+            <p>
+                Note that <em>O</em> (resp. <em>P</em>) are option (resp. precedence) that appears
+                in action atoms. Additionally, mentioned action atoms can be combined with weight
+                and and level.
+            </p>
+            <br />
+            In the latest version we added an External Atom:
+            <div class="synopsis">
+                <div class="atomusage">
+                    <em>&amp;sense[fuel](X)</em></div>
+                <div>
+                    Input:</div>
+                <div class="param">
+                    fuel
+                </div>
+                <div class="paramtext">
+                    can assume only this value</div>
+                <br style="clear: both;" />
+                <div>
+                    Output:</div>
+                <div class="param">
+                    X
+                </div>
+                <div class="paramtext">
+                    the level of fuel, may assume either the value low or the value high.</div>
+                <br style="clear: both;" />
+            </div>
+            <br />
+            <p>
+                You can check it out its source <a href="https://github.com/hexhex/actionplugin-addons/tree/master/robot">
+                    here</a>.</p>
+            <p>
+                For other action addons return to the section <a href="../actionplugin.html#ActionAddons">
+                    Action Addons</a> of The Action Plugin and Action Addon Framework.
+            </p>
+            <br />
+            <br />
+            <p id="pageinfo" lang="en" dir="ltr" style="color: gray">
+                Last edited 2013-02-01</p>
+        </div>
+    </div>
+</body>
+</html>

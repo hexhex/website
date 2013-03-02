@@ -1,0 +1,27 @@
+
+.fragment {
+    font-family: monospace, fixed;
+    font-size: 95%;
+}
+
+PRE.fragment {
+    border: 1px solid #CCCCCC;
+    background-color: #f5f5f5;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    margin-left: 2px;
+    margin-right: 8px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.a_title {
+    text-decoration: none;
+    color: #000;
+}
+
+.a_title:hover {
+    text-decoration: underline;
+}

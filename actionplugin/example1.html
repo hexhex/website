@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>An Example of Observe-Think-Act Cycle with ActHex Programs</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../css/reset.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../css/text.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../css/960.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../css/style.css" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/example.css" />
+</head>
+<body>
+    <!-- Title -->
+    <div class="container_12">
+        <div class="grid_12" id="title">
+            <h1>
+                dlvhex</h1>
+        </div>
+    </div>
+    <!-- Menu -->
+    <div class="container_12">
+        <div class="grid_12" id="menu">
+            <a href="index.html">About</a> <a href="people.html">People</a> <a href="download.html">
+                Download</a> <a href="support.html">Support</a> <a href="documentation.html">Documentation</a>
+            <a href="http://asptut.gibbi.com/">Demo &amp; ASP Tutorial</a> <a href="related.html">
+                Related Work</a> <a href="applications.html">Applications</a> <a href="literature.html">
+                    Literature</a>
+        </div>
+    </div>
+    <div class="container_12">
+        <div class="grid_9">
+            <h2>
+                <a class="a_title" href="../actionplugin.html">The Action Plugin and Action Addon Framework</a></h2>
+            <br />
+            <h3>
+                An Example of Observe-Think-Act Cycle with ActHex Programs</h3>
+            <p>
+                Using knowledge base update actions, acthex programs provide a convenient medium
+                for modelling iteration and optimization tasks<sup>1</sup>. We can model optimization
+                problems as a series of decision problems where each decision problem corresponds
+                to an ActHex program. The action atoms can coordinate these series of decision problems
+                to find the optimal solution. An example can be the <em>maximal clique problem</em>.
+            </p>
+            <div>
+                <p>
+                    Let <em>G</em> be a graph encoded by means of <em>vertex</em> and <em>edge</em>
+                    predicates. A fact <em>size(n)</em> (initially <em>n = 1</em>) is put within a knowledge
+                    base called <em>clique</em>, together with the following program:
+                </p>
+                <div class="fragment">
+                    <pre class="fragment">
+ in(X) v in(X) &larr; vertex(X).
+ &larr; in(X), in(Y ), not edge(X, Y ),X != Y.
+ &larr; &amp;count[in](X),X &lt; N, size(N).
+ #retract[clique, "size(",N, ")."]{b, 1} &larr; size(N).
+ #assert[clique, "size(",M, ")."]{b, 2} &larr; size(N),M = N + 1.
+ #execute[clique]{b, 3}.</pre>
+                </div>
+            </div>
+            <p>
+                At each call to this program, we find whether there exist a clique of size <em>N</em><sup>2</sup>.
+                If a clique of such a size exists, the selected execution plan removes former assertions
+                for the <em>size</em> predicate and then the assertion <em>size(N +1)</em> is pushed
+                to <em>clique</em> by means of an appropriate <em>#assert</em> action: <em>clique</em>
+                is then executed again. The precedence value of the <em>#execute</em> action atom
+                is the largest among the other action atoms which ensures that reexecution of the
+                program is issued after all the changes to the program are done. Notice that execution
+                terminates for some size <em>N'</em> (which is the optimal clique size augmented
+                by <em>1</em>) for which <em>clique</em> turns in an inconsistent program (having
+                thus no execution schedules).
+            </p>
+            <h3>
+                References</h3>
+            <p>
+                Leone, N., Pfeifer, G., Faber, W., Eiter, T., Gottlob, G., Perri, S., and Scarcello,
+                F. 2006. The DLV system for knowledge representation and reasoning. ACM Trans. Comput.
+                Log. 7, 3, 499-562.
+            </p>
+            <ol>
+                <li>The example is illustrative of knowledge update action constructs only and is not
+                    to be considered as an alternative proposal for choices and other optimization construct
+                    known in ASP.</li>
+                <li>The external atom <em>&count[in](X)<em> can be seen as as equivalent to the DLV
+                    (Leone et al. 2006) aggregate construct <em>#count{Y : in(Y)} = X</em>. </li>
+            </ol>
+            <br />
+            <br />
+            <p id="pageinfo" lang="en" dir="ltr" style="color: gray">
+                Last edited 2013-02-01</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,427 +1,512 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
-<html><head>
-
-
-
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-9">
-
-<title>dlvhex: The Action Addon Framework</title>
-
-<link href="actionplugin/doxygen.css" rel="stylesheet"
-
-type="text/css">
-
-<link href="actionplugin/tabs.css" rel="stylesheet"
-
-type="text/css">
-
-    <link rel="stylesheet" type="text/css" media="all"
-href="actionplugin/reset.css">
-    <link rel="stylesheet" type="text/css" media="all"
-href="actionplugin/text.css">
-    <link rel="stylesheet" type="text/css" media="all"
-href="actionplugin/960.css">
-    <link rel="stylesheet" type="text/css" media="all"
-href="actionplugin/style.css">
-
-<style type="text/css">
-<!--
-.cour {
-	font-family: Courier New, Courier, monospace;
-}
--->
-</style>
-
-</head><body>
-
-
-
-
-
-
-
-<div class="contents">
-
-  <div class="container_12">
-    <h1>dlvhex</h1>
-    <div id="menu"> <a href="/research/systems/dlvhex/">About</a> &nbsp;|&nbsp; <a href="people.html">People</a> &nbsp;|&nbsp; <a href="download.html">Download</a> &nbsp;|&nbsp; <a href="support.html">Support</a> &nbsp;|&nbsp; <a href="documentation.html">Documentation</a> &nbsp;|&nbsp; <a href="http://asptut.gibbi.com/">Demo &amp; ASP Tutorial</a> &nbsp;|&nbsp; <a href="related.html">Related Work</a> &nbsp;|&nbsp; <a href="literature.html">Literature</a> </div>
-  </div>
-  <br/><br/>
-<p> <a id="project"></a>
- </p>
-  <div class="container_12">
-<div class="grid_9">
-  <h2></h2>
-  <h3>The Action Plugin and Action Addon Framework
-  </h3>
-  <hr>
-  <hr>
-  <p>
-<li>
-<a href="#TheProject">DLVHEX with Action Atoms: The Project</a>
-</li>
-<ol>
-
-<li>
-<a href="#Introduction">Introduction</a>
-</li>
-
-<li>
-<a href="#Installation">Installation</a>
-</li>
-
-<li>
-<a href="#ActionAtomFunction">Action Atom Function</a>
-</li>
-<li>
-<a href="#Howtowriteyourownactionaddon">How to write your own action addon</a>
-</li>
-<li>
-<a href="#BuildingtheActionAddons">Building the Action Addons
-</a>
-<li>
-<a href="#Examples">Examples</a>
-</li>
-</ol>
-
-<li>
-
-<a href="#head-95283733776354041086aa8d6f80fb6cb71163f0">The Team</a></li>
-
-<!--
-<ol>
-<li>
-<a href="#head-0c577c74ce18218fb61b41ab5b9e76e5a1a9759f">Core</a>
-</li>
-
-<li>
-<a href="#head-449e54f631ae08c49b551aa551a4df7e845c5157">Former team members</a>
-</li>
-
-<li>
-<a href="#head-14400698b0eeed43ffd6445958378bb00f2d07bb">Prompters and helpers</a>
-
-</li>
-</ol>
--->
-
-
-<li>
-<a href="#Download">Download</a>
-<ol>
-
-<li>
-<a href="#Download">Action Plugin</a>
-</li>
-
-<li>
-<a href="#Download">Action Addons</a>
-</li>
-<li>
-<a href="#Download">Action Addon Template</a>
-</li>
-
-
-</ol>
-<!--
-<li>
-<a href="#head-7cdcc9dbe5a88fe2a95ca458cc5cc37457b053bb">Documentation &amp; Examples</a>
-
-</li>
-
-<li>
-<a href="#head-c53b82fe66130a283d8ff9b010991b0016d3c296">Related Works</a>
-</li>
-
-<li>
-<a href="#head-b547997de17c3b581e4f12e068cf796077e745fd">History</a>
-</li>
--->
-<li>
-<a href="#Publications">Publications</a>
-</li>
-
-</ol>
-<br/>
-<hr>
- </p>
-<a name="_details"></a><h2 id="TheProject">DLV-HEX with Action Atoms: The Project</h2>
-<hr>
-<h2 id="Introduction"><a class="anchor" name="#Introduction" >
-  Introduction</a></h2>
-<p>This DLVHEX plugin provides an implementation of the ActHEX language. </p>
-<p>The plugin allows  external action  execution, via the introduction of <em>action atom</em>s, that can appear in rules' head.
-  Intuitively, acthex programs extend hex programs allowing rules like:
-
-  <div class="fragment"><pre class="fragment"> #robot[move,D]{b, T}[2 : 1] :- direction(D), time(T).</pre></div>
-<br/>
-  the above can be seen as a rule for scheduling a movement of a given robot indirection D with execution order T. Action atoms are executed according to <em>execution schedule</em>s. The latter in turn depend on answer sets, which in their generalized form, can contain action atoms. The order of execution within a schedule can be specified using a precedence attribute (which in the above rule is set by the variable
-T); also actions can be associated with weights and priority levels (the values 2 and 1 above).  Weights and levels are used for computing a cost function which helps in selecting preferred actions, as defined <a href="actionplugin/preferences.html">here</a>. Action atoms allow to specify whether they have to be eAction atoms allow to specify whether they have to be executed bravely (the b switch above), cautiously or preferred cautiously, respectively meaning that an action atom a can get executed if it appears in at least one, all, or all best cost answer sets. <br/><br/>
-
-Specific action can be programmed the <em>action addon</em> framework. An <em>action addon</em> is a shared library that provides all the facilities for realising custom action executions. <br/><br/>
-
- If you designed a nice action addon, tell <a href="mailto:acthex_AT_mat.unical.it">us</a>. </p>
-<h2 id="Installation"><a class="anchor" name="actatom"> Installation</a></h2>
-<p>You can access via SVN the current source of the ActionPlugin <a href="https://dlvhex.svn.sourceforge.net/svnroot/dlvhex/dlvhex-actionplugin/trunk/">here</a>. For putting ActHEX programs at work, you will need DLVHEX installed in your system (you can <span class="cour">svn co</span> a fresh copy of the sources from <a href="https://dlvhex.svn.sourceforge.net/svnroot/dlvhex/dlvhex/trunk/">here</a>. In turn, DLVHEX will need a series of packages (usually available in most Linux distributions), and a binary of the <a href="http://www.dlvsystem.com">DLV</a> system. Once the ActionPlugin and DLVHEX are compiled and installed, you will be able to execute your ActHEX programs simply typing <span class="cour">dlvhex myprogram</span> from command line. ActionAddons libraries already developed can be found in the Download section</p>
-<p>For any issue, you might want to contact our research group at <a href="mailto:acthex_AT_mat.unical.it">here</a>.</p>
-<p>In the next section we introduce the principle of action addons and action atoms and
-
-  gives a short hands-on example. </p>
-<h2 id="ActionAtomFunction"><a class="anchor" name="actatom">
-
-  The Action Atom Function</a></h2>
-
-Formally, an action atom is executed depending on the following
-
-parameters:<ul>
-
-<li>Input list</li><li>Action option</li><li>Action precedence</li><li>Action
-
- weight</li> <li>Action level</li></ul>
-
-For instance, the action atom to control a toy robot has this form:
-<p>
-</p><div class="fragment"><pre class="fragment"> #robot[move,left]{b,2}[3:1]
-</pre></div>
-<p>
-
-where <code>move</code> stands for a parameter string denoting the type of action, <code>
-
-left</code> stands for a string denoting the direction of the action, <code>b</code>
-
- represents that brave reasoning will be used to determine whether the
-
-action will be executed or not, <code>2</code> denotes the action
-
-precedence, <code>3</code> and <code>1</code> are the action weight and
-
-level. </p>
-<h3><a class="anchor" name="inputtypes">
-
-Types of Input Parameters</a></h3>
-
-<p>Input parameters can freely represent constants and predicate names: action functions have full access to the answer set that triggered execution, thus enabling access to relational inferred knowledge.</p>
-<h2 id="Howtowriteyourownactionaddon"><a class="anchor" name="inputtypes"> How to write your own action addon</a></h2>
-<p><a
-
- class="anchor" name="writingaddon">
-
-  </a>We wanted to keep the interface between dlvhex, plugin and action addon as lean
-
-  as possible. The only necessary interaction is registering the action addon and its atoms to the action plugin.</p>
-
-To this end, we provide a base class which the addon author has to
-
-subclass. As a running example, we will use the aforementioned
-
-Robot-atom. To begin with, the following header file from dlvhex needs
-
-to be included:
-<p>
-</p><div class="fragment"><pre class="fragment"><span class="preprocessor">#include "<a class="code" href="https://dlvhex.svn.sourceforge.net/svnroot/dlvhex/dlvhex-actionplugin/trunk/include/ActionAddonAtom.h" title="Declaration of the Classes ActionAddonAtom.">dlvhex/ActionAddonAtom.h</a>
-#include "<a class="code" href="https://dlvhex.svn.sourceforge.net/svnroot/dlvhex/dlvhex/trunk/include/dlvhex/Error.h" title="Declaration of the Class Error.">dlvhex/Error.h</a>"</span></pre></div><p>
-
-If action atom was installed correctly, this header should be available.</p><h3><a
-
- class="anchor" name="actatom">
-
-The Action Atom Function</a></h3>
-
-We have to subclass <a class="el"
-
-href="https://dlvhex.svn.sourceforge.net/svnroot/dlvhex/dlvhex-actionplugin/trunk/include/ActionAddonAtom.h"
-
- title="Interface class for Action Atoms.">ActionAddonAtom</a> to create our
-
-own <b>ROBOTatom</b> class:<p>
-</p><div class="fragment"><pre class="fragment">     <span class="keyword">class </span>ROBOTatom : <span class="keyword">public</span> <a class="code" href="https://dlvhex.svn.sourceforge.net/svnroot/dlvhex/dlvhex-actionplugin/trunk/include/ActionAddonAtom.h" title="Interface class for Action Atoms.">ActionAddonAtom</a>
-     {
-</pre></div>
-
-<h3><a class="anchor" name="registeratoms">
-
-Registering the Atoms</a></h3>
-
-So far, we described the implementation of a specific action atom. In
-
-order to integrate one or more atoms in the interface framework, the
-
-addon author needs to subclass <a class="el"
-href="https://dlvhex.svn.sourceforge.net/svnroot/dlvhex/dlvhex-actionplugin/trunk/include/ActionAddonAtom.h"
- title="Factory base class for representing plugins and creatingnecessary objects.">ActionAddonInterface</a>:<p>
-</p><div class="fragment"><pre class="fragment">     <span class="keyword">class </span>RobotAddon : <span class="keyword">public</span> <a class="code" href="https://dlvhex.svn.sourceforge.net/svnroot/dlvhex/dlvhex-actionplugin/trunk/include/ActionAddonAtom.h" title="Factory base class for representing plugins and creating necessary objects.">ActionAddonInterface</a>
-     {
-     <span class="keyword">public</span>:
-</pre></div><p>
-
-At the current stage of dlvhex, only the function <a class="el"
-href="https://dlvhex.svn.sourceforge.net/svnroot/dlvhex/dlvhex-actionplugin/trunk/include/ActionAddonAtom.h"
- title="Fills a mapping from atom names to the plugin's atom objects.">ActionAddonInterface::getAtoms()</a>
- needs to be defined inside this class:</p><p>
-</p><div class="fragment"><pre class="fragment">         <span class="keyword">virtual</span> <span class="keywordtype">void</span>
-         getAtoms(AtomFunctionMap&amp; a)
-         {
-             boost::shared_ptr&lt;ActionAddonAtom&gt; rdf(<span class="keyword">new</span> ROBOTatom);
-             a[<span class="stringliteral">"robot"</span>] = robot;
-         }
-</pre></div>
-<p>
-
-Here, a ActionAddon-Atom object is related to a string in a map - as soon as
-
-dlvhex encounters an action atom (in this case: <code>#robot</code>)
-
-during the evaluation of answer sets of the program, it finds the corresponding atom
-
-object (and hence its <a class="el"
-
-href="https://dlvhex.svn.sourceforge.net/svnroot/dlvhex/dlvhex-actionplugin/trunk/include/ActionAddonAtom.h"
-
- title="Retrieve answer object according to a query.">ActionAddonAtom::execute()</a>
-
- function) in this map. Of course, a addon can comprise several
-
-different ActionAddon-Atoms, which are all registered here:</p>
-<p>
-</p><div class="fragment"><pre class="fragment">             boost::shared_ptr&lt;ActionAddonAtom&gt; assert(<span class="keyword">new</span> assert_atom);
-             boost::shared_ptr&lt;ActionAddonAtom&gt; retract(<span class="keyword">new</span> retract_atom);
-             a[<span class="stringliteral">"assert"</span>] = assert;
-             a[<span class="stringliteral">"retract"</span>] = retract;
-</pre></div>
-<p>The above registers the two action atoms #assert and #retract:</p>
-<h3><a class="anchor" name="importing">
-  Importing the Action Addon</a></h3>
-
-To make the action addon available, we need to instantiate it. The simplest way
-
- to do this is to define a global variable:<p>
-
-</p><div class="fragment"><pre class="fragment">     ROBOTActionAddon theROBOTactionaddon;
-</pre></div><p>
-
-Eventually, we need to import the action addon to action plugin. This is
-
-achieved by the dynamic linking mechanism of shared libraries. The
-
-author needs to define this function,</p><p>
-
-</p><div class="fragment"><pre class="fragment">     <span class="keyword">extern</span> <span class="stringliteral">"C"</span> ROBOTactionaddon*
-     <a class="code" href="https://dlvhex.svn.sourceforge.net/svnroot/dlvhex/dlvhex-actionplugin/trunk/include/ActionAddonAtom.h">PLUGINIMPORTFUNCTION</a>()
-     {
-         theROBOTactionaddon.setActionAddonName(PACKAGE_TARNAME);
-         theROBOTactionaddon.setVersion(ROBOTACTIONADDON_MAJOR,
-                                 ROBOTACTIONADDON_MINOR,
-                                 ROBOTACTIONADDON_MICRO);
-         <span class="keywordflow">return</span> <span class="keyword">new</span> ROBOTactionaddon();
-     }
-</pre></div><p>
-
-replacing the type ROBOTActionAddon by her own action addon class. For each found
-
-library, action plugin will call this function and receive a pointer to
-
-the action addon object, thus being able to call its <a class="el"
-
-href="https://dlvhex.svn.sourceforge.net/svnroot/dlvhex/dlvhex-actionplugin/trunk/include/ActionAddonAtom.h"
-
- title="Fills a mapping from atom names to the plugin's atom objects.">ActionAddonInterface::getAtoms()</a>
-
- function.</p><p>
-
-The macros used here for setting the version number have their origin in
-
- <code>configure.ac</code>, which is needed to produce the
-
-configure-script <!--(see Section <a class="el" href="group__pluginframework.html#compiling">Building the Addon</a>)-->.
-
- Of course they can also be hardcoded here, but the method with the
-
-macros from configure.ac is certainly more practical! </p>
-<h2 id="BuildingtheActionAddons"><a class="anchor" name="compiling">
-
-Building the Action Addons</a></h2>
-
-We provide a template<a href="actionplugin/AddonTemplate.tar.gz"> toolkit</a> for building action addons based on the GNU Autotools (<a href="http://sourceware.org/autobook/">http://sourceware.org/autobook/</a>) environment. This means that you will need the respective tools installed on your system - which is usually no problem, since they are provided as packages by all major linux distributions. For instance in Debian, you need the packages libtool, automake1.9, and autoconf.
-<p>
-
-After downloading and extracting the toolkit skeleton, the user can customize the top-level <code>configure.ac</code> to her own needs regarding dependencies on other packages. This file contains invocations of the Autoconf macros that test the system features your package needs or can use. There are two source-directory in this template. One is <code>src</code> and other is <code>include</code>, where <code>Makefile.am</code> sets the name of the library and its sourcefiles. The user has to take care of referencing them in the top-level <code>Makefile.am</code>. Calling <code></code>./bootstrap in the top-level directory creates the configure file. Subsequently calling <code></code>./configure and <code>make</code> install installs the shared library. If no further arguments are given to <code>configure</code>, the addon will be installed into the system-wide plugin-directory (specified by the package configuration file <code>lib/pkgconfig/dlvhex.pc</code> of the devel-package). To install the addon into <code>~/</code>.dlvhex/plugins, run <code>./configure --enable-userinstall</code>.
-<p>
-<!--
-
-<table border="0" cellpadding="0" cellspacing="0">
-
-<tr><td></td></tr>
-
-<tr><td colspan="2"><br><h2>Data Structures</h2></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plugin_atom.html">PluginAtom</a></td></tr>
-
-
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Interface class for external Atoms.  <a href="class_plugin_atom.html#_details">More...</a><br></td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plugin_interface.html">PluginInterface</a></td></tr>
-
-
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Factory base class for representing plugins and creating necessary objects.  <a href="class_plugin_interface.html#_details">More...</a><br></td></tr>
-
-</table>
-
-
-
-<hr size="1"><address style="text-align: right;"><small>Generated on Sun Jun 22 09:16:45 2008 for dlvhex by&nbsp;
-
-<a href="http://www.doxygen.org/index.html">
-
-<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>-->
-
-Some sample action addons can be found in <a href="#Download">Download</a> Section.
-
-<h2 id="Examples"><a class="anchor" name="compiling">
-
-Examples</a></h2>
-<li> <a href="actionplugin/actionplugin_example1.html">An Example of Observe-Think-Act Cycle with ActHex Programs</a>
-</li>
-<li> <a href="actionplugin/actionplugin_example2.html">An Example of Update to a Web Source After Reasoning Under ASP Semantics</a></li>
-
-<br/><br/>
-
-
-<hr>
-<a name="_team"></a><h2 id="Team">Team</h2>
-<hr>
-<p>
-<li>Selen Basol</li>
-<li>Ozan Erdem</li>
-<li>Michael Fink</li>
-<li>Giovambattista Ianni</li><br/>
-</p>
-<br/>
-<hr>
-<a name="_download" id="_download"></a><h2 id="Download">Download</h2>
-<hr>
-<p>
-<li>Action Plugin <a class="code" href="http://dlvhex.svn.sourceforge.net/viewvc/dlvhex/dlvhex-actionplugin/trunk/"> <font size="1">	 download </font> </a></li><br/>
-<li>Action Addons
-	<ol>
-	<li>Robot Action Addon:   <a href="actionplugin/robotaddon.html"><font size="1">info</font></a>		<a class="code" href="http://dlvhex.svn.sourceforge.net/viewvc/dlvhex/dlvhex-actionplugin-addons/RobotActionAddon/"> <font size="1">	download </font> </a></li>
-	<li>KBMod Action Addon:  <a href="actionplugin/kbmodaddon.html"><font size="1">info</font></a>		<a class="code" href="http://dlvhex.svn.sourceforge.net/viewvc/dlvhex/dlvhex-actionplugin-addons/KBModActionAddon/"> <font size="1">	download </font> </a> </li>
-	<li>GCal Action Addon:  <a href="actionplugin/gcaladdon.html"><font size="1">info</font></a>		<a class="code" href="http://dlvhex.svn.sourceforge.net/viewvc/dlvhex/dlvhex-actionplugin-addons/gcalActionAddon/"> <font size="1">	download </font>  </a></li>
-	</ol>
-</li><br/>
-<li>A template for building your Action Addons   <a class="code" href="actionplugin/AddonTemplate.tar.gz"> <font size="1">	download </font>  </a></li><br/>
-<br/>
-<hr>
-<a name="_team"></a><h2 id="Publications">Publications</h2>
-<hr>
-<br/>
-[1] S. Basol, O. Erdem, M. Fink, G. Ianni, "Hex Programs with Action Atoms", Twenty-sixth International Conference on Logic Programming (ICLP 2010), submitted. <a href="actionplugin/acthex.pdf">[PDF]</a>
-
-</p>
-<br/><br/>
-<p id="pageinfo" class="info" lang="en" dir="ltr"><font size="1" color="grey">last edited 2010-02-10</font>  </p>
-
-
-  </div></body></html>
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>dlvhex: The Action Addon Framework</title>
+    <link rel="stylesheet" type="text/css" media="all" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/text.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/960.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/style.css" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" media="all" href="actionplugin/css/actionplugin.css" />
+</head>
+<body>
+    <!-- Title -->
+    <div class="container_12">
+        <div class="grid_12" id="title">
+            <h1>
+                dlvhex</h1>
+        </div>
+    </div>
+    <!-- Menu -->
+    <div class="container_12">
+        <div class="grid_12" id="menu">
+            <a href="index.html">About</a> <a href="people.html">People</a> <a href="download.html">
+                Download</a> <a href="support.html">Support</a> <a href="documentation.html">Documentation</a>
+            <a href="http://asptut.gibbi.com/">Demo &amp; ASP Tutorial</a> <a href="related.html">
+                Related Work</a> <a href="applications.html">Applications</a> <a href="literature.html">
+                    Literature</a>
+        </div>
+    </div>
+    <div class="container_12">
+        <div class="grid_9">
+            <h2>
+                The Action Plugin and Action Addon Framework</h2>
+            <hr />
+            <div style="margin-left: 50px;">
+                <a href="#TheProject">HEX-programs with Action Atoms: The Project</a><br />
+                <ul>
+                    <li><a href="#Introduction">Introduction</a></li>
+                    <li><a href="#Installation">Installation</a></li>
+                    <li><a href="#TheActionAtomFunction">The Action Atom Function</a></li>
+                    <li><a href="#HowtowriteyourownActionAddon">How to write your own Action Addon</a></li>
+                    <li><a href="#Examples">Examples</a></li>
+                    <li><a href="#Newfeaturesofversion2_0">New features of version 2.0</a></li>
+                </ul>
+                <a href="#TheTeam">The Team</a><br />
+                <ul>
+                </ul>
+                <a href="#Download">Download</a><br />
+                <ul>
+                    <li><a href="#ActionPlugin">Action Plugin</a></li>
+                    <li><a href="#ActionAddons">Action Addons</a></li>
+                </ul>
+                <a href="#Publications">Publications</a><br />
+            </div>
+            <hr />
+            <br />
+            <br />
+            <h2 id="TheProject">
+                HEX-programs with Action Atoms: The Project</h2>
+            <hr />
+            <div>
+                <br />
+                <h3 id="Introduction">
+                    Introduction</h3>
+                <div>
+                    <p>
+                        This dlvhex Plugin provides an implementation of the ActHEX language [<a href="#Publications">1</a>].</p>
+                    <p>
+                        The plugin allows the execution of external actions, via the introduction of <em>Action
+                            Atom</em>s, that can appear in rules' head.</p>
+                    <p>
+                        Actions can execute any arbitrary code, access to web sites, execute scripts in
+                        any language, update databases etc.</p>
+                    <p>
+                        Intuitively, ActHEX programs extend HEX programs allowing rules like:
+                    </p>
+                    <pre class="fragment"> #robot[move,D]{b, T}[2 : 1] :- direction(D), time(T).</pre>
+                    <p>
+                        the above can be seen as a rule for scheduling a movement of a given robot indirection
+                        D with execution order T. <em>Action Atom</em>s are executed according to <em>Execution
+                            Schedule</em>s. The latter in turn depend on answer sets, which in their generalized
+                        form, can contain <em>Action Atom</em>s. The order of execution within a schedule
+                        can be specified using a Precedence attribute (which in the above rule is set by
+                        the variable T); also actions can be associated with Weights and Levels (the values
+                        2 and 1 above). Weights and Levels are used for computing a cost function which
+                        helps in selecting preferred actions, as defined <a href="actionplugin/preferences.html">
+                            here</a>. <em>Action Atom</em>s allow to specify whether they have to be executed
+                        <i>bravely</i> (the <code>b</code> switch above), <i>cautiously</i> or <i>preferred
+                            cautiously</i>, respectively meaning that an action atom a can get executed
+                        if it appears in at least one, all, or all best cost Answer Sets.
+                    </p>
+                    <p>
+                        Specific action can be programmed the <b>ActionAddon</b> framework. An <b>ActionAddon</b>
+                        is a shared library that provides all the facilities for realising custom action
+                        executions.
+                    </p>
+                    <p>
+                        If you designed a nice <b>ActionAddon</b>, tell <a href="mailto:acthex_AT_mat.unical.it">
+                            us</a>.</p>
+                </div>
+                <br />
+                <h3 id="Installation">
+                    Installation</h3>
+                <div>
+                    <p>
+                        You can access the current source of the <b>ActionPlugin</b> <a href="https://github.com/hexhex/actionplugin">
+                            here</a>. For putting ActHEX programs at work, you will need dlvhex installed
+                        in your system (you can download it from <a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/download.html">
+                            here</a>. Once the <b>ActionPlugin</b> and dlvhex are compiled and installed,
+                        you will be able to execute your ActHEX programs simply typing <code>dlvhex --action-enable
+                            myprogram</code> from command line. <b>ActionAddon</b>s libraries already developed
+                        can be found in the <a href="#Download">Download</a> section.
+                    </p>
+                    <p>
+                        For any issue, you might want to contact <a href="mailto:acthex_AT_mat.unical.it">our
+                            research group</a>.</p>
+                    <p>
+                        In the next section we introduce the principle of <b>ActionAddon</b>s and <em>Action
+                            Atom</em>s and we give a short hands-on example.</p>
+                </div>
+                <br />
+                <h3 id="TheActionAtomFunction">
+                    The Action Atom Function</h3>
+                <div>
+                    Formally, an <em>Action Atom</em> is executed depending on the following parameters:
+                    <ul>
+                        <li>Input list</li>
+                        <li>Action option</li>
+                        <li>Action precedence</li>
+                        <li>Action weight</li>
+                        <li>Action level</li>
+                    </ul>
+                    <p>
+                        For instance, the action atom to control a toy robot can have this form:</p>
+                    <pre class="fragment"> #robot[move,left]{b,2}[3:1]</pre>
+                    <p>
+                        where <code>move</code> stands for a parameter string denoting the type of action,
+                        <code>left</code> stands for a string denoting the direction of the action, <code>b</code>
+                        represents that brave reasoning will be used to determine whether the action will
+                        be executed or not, <code>2</code> denotes the action precedence, <code>3</code>
+                        and <code>1</code> are the action weight and level.
+                    </p>
+                    <h5>
+                        Types of Input Parameters</h5>
+                    <p>
+                        Input parameters can freely represent constants and predicate names: action functions
+                        have full access to the answer set that triggered execution, thus enabling access
+                        to relational inferred knowledge.
+                    </p>
+                </div>
+                <br />
+                <h3 id="Howtowriteyourownactionaddon">
+                    How to write your own Action Addon</h3>
+                <div>
+                    <p>
+                        An interface (<code>ActionPluginInterface</code>) make possible the creation of
+                        Addons for <b>ActionPlugin</b>.
+                    </p>
+                    <p>
+                        The creation of Addons is extremely simple and fast.
+                    </p>
+                    <p>
+                        Each Addon has (and can customize in a very simple way) an <i>Environment</i>, it
+                        is shared between the Action Atoms and the External Atoms of the same Addon, it
+                        also retains its state during various iterations.
+                    </p>
+                    <p>
+                        In addition, each Addon can include an arbitrary number of <i>Action Atoms</i>,
+                        <i>External Atoms</i>, <i>BestModel Selectors</i>, <i>Execution Schedule Builders</i>
+                        and through some functions the creator of the Addon can specify which of these use.
+                    </p>
+                    <p>
+                        To begin with, the following header file from dlvhex needs to be included:
+                    </p>
+                    <pre class="fragment">
+    <span class="preprocessor">#include "<a class="code" href="https://github.com/hexhex/actionplugin/blob/master/include/acthex/ActionPluginInterface.h"
+        title="ActionPluginInterface">acthex/ActionPluginInterface.h</a>"</span></pre>
+                    <p>
+                        If the <b>ActionPlugin</b> was installed correctly, this header should be available.</p>
+                    <p>
+                        We have to extend the class <a class="el" href="https://github.com/hexhex/actionplugin/blob/master/include/acthex/ActionPluginInterface.h"
+                            title="ActionPluginInterface">ActionPluginInterface</a>:
+                    </p>
+                    <pre class="fragment">
+    <span class="keyword">class</span> SmartRobotActionPlugin : <span class="keyword">public</span> <a
+        class="code" href="https://github.com/hexhex/actionplugin/blob/master/include/acthex/ActionPluginInterface.h"
+        title="ActionPluginInterface">ActionPluginInterface</a></pre>
+                    <p>
+                        And we have to override the protected virtual function <code>create</code>:</p>
+                    <pre class="fragment">
+    <span class="keyword">virtual</span> <span class="keywordtype">ActionPluginInterfacePtr</span> create(ProgramCtx&amp; ctx)</pre>
+                    <p>
+                        With something like:</p>
+                    <pre class="fragment">
+    ctx.getPluginEnvironment&lt;SmartRobotActionPlugin&gt;();
+    <span class="keywordflow">return</span> boost::shared_ptr &lt;SmartRobotActionPlugin&gt; (<span
+        class="keyword">new</span> SmartRobotActionPlugin());</pre>
+                    <br />
+                    <h5>
+                        Define an External Atom</h5>
+                    <p>
+                        To specify an External Atom we have to extend the class <code>PluginActionAtom</code>
+                        and we have to use as template our class that extends the ActionPluginInterface:
+                    </p>
+                    <pre class="fragment">
+    <span class="keyword">class</span> SmartRobotActionAtomGetPosition :
+            <span class="keyword">public</span> PluginActionAtom &lt;SmartRobotActionPlugin&gt; {
+    <span class="keyword">public</span>:</pre>
+                    <p>
+                        And we have to override the protected virtual function <code>retrieve</code>:</p>
+                    <pre class="fragment">
+    <span class="keyword">virtual</span> <span class="keywordtype">void</span> retrieve(<span
+        class="keywordtype">const</span> Environment&amp; e, <span class="keywordtype">const</span> Query&amp; q, Answer&amp; a)</pre>
+                    <br />
+                    <h5>
+                        Registering the External Atoms</h5>
+                    <p>
+                        So far, we described the implementation of a specific External Atom. In order to
+                        integrate one or more External Atom in the interface framework, the Addon author
+                        needs to override the method <code>createAtoms</code>:
+                    </p>
+                    <pre class="fragment">
+    <span class="keyword">virtual</span> <span class="keywordtype">std::vector&lt;PluginAtomPtr&gt;</span> createAtoms(ProgramCtx&amp; ctx) <span
+        class="keywordtype">const</span></pre>
+                    <p>
+                        With something like:</p>
+                    <pre class="fragment">
+    std::vector &lt;PluginAtomPtr&gt; ret;
+    ret.push_back(PluginAtomPtr(<span class="keyword">new</span> SmartRobotActionAtomGetPosition,
+                                 PluginPtrDeleter&lt;PluginAtom&gt;()));
+    <span class="keywordflow">return</span> ret;</pre>
+                    <br />
+                    <h5>
+                        Define an Action Atom</h5>
+                    <p>
+                        To specify an Action Atom we have to extend the class <code>PluginAction</code>
+                        and we have to use as template our class that extends the ActionPluginInterface:
+                    </p>
+                    <pre class="fragment">
+    <span class="keyword">class</span> SmartRobotAction :
+            <span class="keyword">public</span> PluginActionAtom &lt;SmartRobotActionPlugin&gt; {
+    <span class="keyword">public</span>:</pre>
+                    <p>
+                        And we have to override the protected virtual function <code>execute</code>:</p>
+                    <pre class="fragment">
+    <span class="keyword">virtual</span> <span class="keywordtype">void</span> execute(Environment&amp; e, RegistryPtr r, <span
+        class="keywordtype">const</span> Tuple&amp; t,
+                          <span class="keywordtype">const</span> InterpretationConstPtr i)</pre>
+                    <br />
+                    <h5>
+                        Registering the Action Atoms</h5>
+                    <p>
+                        So far, we described the implementation of a specific Action Atom. In order to integrate
+                        one or more Action Atom in the interface framework, the Addon author needs to override
+                        the method <code>createActions</code>:
+                    </p>
+                    <pre class="fragment">
+    <span class="keyword">virtual</span> <span class="keywordtype">std::vector&lt;PluginActionBasePtr&gt;</span> createActions(ProgramCtx&amp; ctx) <span
+        class="keywordtype">const</span></pre>
+                    <p>
+                        With something like:</p>
+                    <pre class="fragment">
+    std::vector &lt;PluginActionBasePtr&gt; ret;
+    ret.push_back(PluginActionBasePtr(<span class="keyword">new</span> SmartRobotAction,
+                                       PluginPtrDeleter&lt;PluginActionBase&gt;()));
+    <span class="keywordflow">return</span> ret;</pre>
+                    <br />
+                    <h5>
+                        Define the Environment</h5>
+                    <p>
+                        To specify the Environment we have to extend the class <code>PluginEnvironment</code>:</p>
+                    <pre class="fragment">
+    <span class="keyword">class</span> Environment : <span class="keyword">public</span> PluginEnvironment {
+    <span class="keyword">public</span>:</pre>
+                    <br />
+                    <h5>
+                        Importing the Action Addon</h5>
+                    <p>
+                        To make the <b>ActionAddon</b> available, we need to instantiate it. The simplest
+                        way to do this is to define a global variable:</p>
+                    <pre class="fragment">
+    SmartRobotActionPlugin theSmartRobotActionPlugin;</pre>
+                    <p>
+                        Eventually, we need to import the <b>ActionAddon</b> to action plugin. This is achieved
+                        by the dynamic linking mechanism of shared libraries. The author needs to define
+                        this function:
+                    </p>
+                    <pre class="fragment">
+    <span class="keyword">extern</span> <span class="stringliteral">"C"</span> void * PLUGINIMPORTFUNCTION() {
+        <span class="keywordflow">return</span> reinterpret_cast&lt;void*&gt;(&amp; DLVHEX_NAMESPACE theSmartRobotActionPlugin);
+    }</pre>
+                </div>
+                <!--
+
+            <h2 id="BuildingtheActionAddons"><a class="anchor" name="compiling">Building the Action
+                Addons</a></h2>
+
+            We provide a template<a href="actionplugin/AddonTemplate.tar.gz"> toolkit</a> for
+            building action addons based on the GNU Autotools (<a href="http://sourceware.org/autobook/">http://sourceware.org/autobook/</a>)
+            environment. This means that you will need the respective tools installed on your
+            system - which is usually no problem, since they are provided as packages by all
+            major linux distributions. For instance in Debian, you need the packages libtool,
+            automake1.9, and autoconf.
+                <p>
+                    After downloading and extracting the toolkit skeleton, the user can customize the
+                    top-level <code>configure.ac</code> to her own needs regarding dependencies on other
+                    packages. This file contains invocations of the Autoconf macros that test the system
+                    features your package needs or can use. There are two source-directory in this template.
+                    One is <code>src</code> and other is <code>include</code>, where <code>Makefile.am</code>
+                    sets the name of the library and its sourcefiles. The user has to take care of referencing
+                    them in the top-level <code>Makefile.am</code>. Calling <code></code>./bootstrap
+                    in the top-level directory creates the configure file. Subsequently calling <code></code>./configure
+                    and <code>make</code> install installs the shared library. If
+                    no further arguments are given to <code>configure</code>, the addon will be installed
+                    into the system-wide plugin-directory (specified by the package configuration file
+                    <code>lib/pkgconfig/dlvhex.pc</code> of the devel-package). To install the addon
+                    into <code>~/</code>.dlvhex/plugins, run <code>./configure --enable-userinstall</code>
+                    .
+                <p>
+                    Some sample action addons can be found in <a href="#Download">Download</a> Section.
+
+
+                -->
+                <br />
+                <h3 id="Examples">
+                    Examples</h3>
+                <div>
+                    <a href="actionplugin/example1.html">An Example of Observe-Think-Act Cycle with ActHex
+                        Programs</a><br />
+                    <!--<a href="actionplugin/example2.html">An Example of Update to a Web Source After Reasoning
+                        Under ASP Semantics</a>-->
+                </div>
+                <br />
+                <h3 id="Newfeaturesofversion2_0">
+                    New features of version 2.0</h3>
+                <div>
+                    <h5>
+                        Iterator</h5>
+                    <p>
+                        Iterators allow to repeat at will the execution of an ActHEX specification.<br />
+                        We calll an <i>Iteration</i> the evaluation of a given ActHEX program and the execution
+                        of the corresponding action schedule.<br />
+                        The Environment construct (<a href="#Environment">see below</a>) allows to easily
+                        carry information from an iteration to another.
+                    </p>
+                    <p>
+                        The behavior of the iteration process is controlled by means of a Iteration variable.<br />
+                        The default value of Iteration is "NO ITERATION" meaning that we won't do any iteration
+                        namely the evaluation/execution of Action Atoms will be performed only one time.<br />
+                        The user can modify this default behavior in 3 different ways:
+                    </p>
+                    <ul>
+                        <li>from a command line option</li>
+                        <li>by changing some built-in constant values (that override the behavior specified
+                            from command line)</li>
+                        <li>by entailing the truth of specific built-in action predicates (#acthexContinue,
+                            #acthexStop).</li>
+                    </ul>
+                    <p>
+                        For more informations see <a href="https://github.com/hexhex/actionplugin/blob/master/docs/Iteration.pdf">
+                            here</a>.</p>
+                    <h5 id="Environment">
+                        Environment</h5>
+                    <p>
+                        The <i>Environment</i> is a class that every <i>Addon</i> can use (each has its
+                        own Environment) as a knowledge base. The Environment can be read by External Atoms,
+                        and its state can be changed by means of Action atoms. Environments contents are
+                        preserved from one iteration to another, when a sequence of calls to an ActHEX specification
+                        is programmed by means of Iterators.<br />
+                        Having this space, jointly with the possibilities offered by Iterators is very important
+                        for an Addon because it allows to store information, process this information and
+                        then change its behavior in subsequent iterations.
+                    </p>
+                    <h5>
+                        BestModel Selector</h5>
+                    <p>
+                        When an action schedule has to be built, the user can select which Answer Set to
+                        use among those that are Best Models by specifying a <i>BestModel Selector</i>.
+                    </p>
+                    <p>
+                        To specify a <i>BestModel Selector</i> we have to extend the class <code>BestModelSelector</code>:
+                    </p>
+                    <pre class="fragment">
+    <span class="keyword">class</span> BestModelSelector {
+    <span class="keyword">public</span>:
+        BestModelSelector(<span class="keywordtype">std::string</span> name) : name(name) { }</pre>
+                    <p>
+                        And we have to override the public virtual function <code>getBestModel</code>:</p>
+                    <pre class="fragment">
+    <span class="keyword">virtual</span> <span class="keywordtype">void</span> getBestModel(ActionPluginCtxData::BestModelsContainer::const_iterator&amp;,
+                              <span class="keywordtype">const</span> ActionPluginCtxData::BestModelsContainer&amp;)</pre>
+                    <p>
+                        In order to integrate one or more <i>BestModel Selector</i> in the interface framework,
+                        the Addon author needs to override the method <code>getAllBestModelSelectors</code>:
+                    </p>
+                    <pre class="fragment">
+    <span class="keyword">virtual</span> <span class="keywordtype">std::vector&lt;BestModelSelectorPtr&gt;</span> getAllBestModelSelectors() <span
+        class="keywordtype">const</span></pre>
+                    <p>
+                        With something like:</p>
+                    <pre class="fragment">
+    std::vector&lt;BestModelSelectorPtr&gt; allBestModelSelectors;
+    <span class="keywordflow">return</span> allBestModelSelectors;</pre>
+                    <br />
+                    <p>
+                        The user can select which <i>BestModel Selector</i> to adopt by changing the value
+                        of the Built-in Variable <code>#acthexBestModelSelector</code>, and must be set
+                        to the name of the <i>BestModel Selector</i> of choice.<br />
+                        For example: <code>#acthexBestModelSelector = bestModelSelector1.</code>
+                    </p>
+                    <h5>
+                        Execution Schedule Builder</h5>
+                    <p>
+                        The user can select the order of execution of Actions with the same Priority by
+                        specifying a <i>Execution Schedule Builder</i>.
+                    </p>
+                    <p>
+                        To specify a <i>Execution Schedule Builder</i> we have to extend the class <code>ExecutionScheduleBuilder</code>:
+                    </p>
+                    <pre class="fragment">
+    <span class="keyword">class</span> ExecutionScheduleBuilder {
+    <span class="keyword">public</span>:
+        ExecutionScheduleBuilder(<span class="keywordtype">std::string</span> name) : name(name) { }</pre>
+                    <p>
+                        And we have to override the public virtual function <code>rewrite</code>:</p>
+                    <pre class="fragment">
+    <span class="keyword">virtual</span> <span class="keywordtype">void</span> rewrite(<span
+        class="keywordtype">const</span> std::multimap&lt;int, Tuple&gt; &amp;,
+                               std::list&lt; std::set&lt;Tuple&gt; &gt; &amp;, <span class="keywordtype">const</span> InterpretationConstPtr)</pre>
+                    <p>
+                        In order to integrate one or more <i>Execution Schedule Builder</i> in the interface
+                        framework, the Addon author needs to override the method <code>getAllExecutionScheduleBuilders</code>:
+                    </p>
+                    <pre class="fragment">
+    <span class="keyword">virtual</span> <span class="keywordtype">std::vector&lt;ExecutionScheduleBuilderPtr&gt;</span> getAllExecutionScheduleBuilders() <span
+        class="keywordtype">const</span></pre>
+                    <p>
+                        With something like:</p>
+                    <pre class="fragment">
+    std::vector&lt;ExecutionScheduleBuilderPtr&gt; allExecutionScheduleBuilders;
+    <span class="keywordflow">return</span> allExecutionScheduleBuilders;</pre>
+                    <br />
+                    <p>
+                        The user can select which <i>Execution Schedule Builder</i> use by changing the
+                        value of the Built-in Variable <code>#acthexExecutionScheduleBuilder</code>, and
+                        must be set to the name of the <i>Execution Schedule Builder</i> of choice. For
+                        example: <code>#acthexExecutionScheduleBuilder = executionScheduleBuilder1.</code>
+                    </p>
+                </div>
+            </div>
+            <br />
+            <br />
+            <h2 id="TheTeam">
+                Team</h2>
+            <hr />
+            <div>
+                <ul>
+                    <li>Selen Basol</li>
+                    <li>Ozan Erdem</li>
+                    <li>Michael Fink</li>
+                    <li>Giovambattista Ianni</li>
+                    <li>Stefano Germano</li>
+                    <li>Thomas Krennwallner</li>
+                    <li>Christoph Redl</li>
+                    <li>Peter Sch&uuml;ller</li>
+                </ul>
+            </div>
+            <br />
+            <br />
+            <h2 id="Download">
+                Download</h2>
+            <hr />
+            <div>
+                <h5 id="ActionPlugin">
+                    Action Plugin</h5>
+                <ul style="list-style: none">
+                    <li><a class="code" href="https://github.com/hexhex/actionplugin">download</a></li>
+                </ul>
+                <br />
+                <h5 id="ActionAddons">
+                    Action Addons</h5>
+                <ul style="list-style: none">
+                    <li>Robot Action Addon: <a href="actionplugin/robotaddon.html">info</a> <a class="code"
+                        href="https://github.com/hexhex/actionplugin-addons/tree/master/robot">download</a></li>
+                    <li>KBMod Action Addon: <a href="actionplugin/kbmodaddon.html">info</a> <a class="code"
+                        href="https://github.com/hexhex/actionplugin-addons/tree/master/kbmod">download</a></li>
+                    <!--<li>GCal Action Addon:  <a href="actionplugin/gcaladdon.html"><font size="1">info</font></a><a class="code" href="http://dlvhex.svn.sourceforge.net/viewvc/dlvhex/dlvhex-actionplugin-addons/gcalActionAddon/"><font size="1">download </font></a></li>-->
+                    <li>SmartRobot Addon: <a href="#">info</a> <a class="code" href="https://github.com/hexhex/actionplugin-addons/tree/master/SmartRobot_2x">
+                        download</a> </li>
+                    <li>Sudoku Addon: <a href="#">info</a> <a class="code" href="https://github.com/hexhex/actionplugin-addons/tree/master/Sudoku_2x">
+                        download</a></li>
+                </ul>
+                <!-- <li>A template for building your Action Addons   <a class="code" href="actionplugin/AddonTemplate.tar.gz"><font size="1">download </font></a></li>-->
+            </div>
+            <br />
+            <br />
+            <h2 id="Publications">
+                Publications</h2>
+            <hr />
+            <div>
+                [1] S. Basol, O. Erdem, M. Fink, G. Ianni, "Hex Programs with Action Atoms", Twenty-sixth
+                International Conference on Logic Programming (ICLP 2010), submitted. <a href="actionplugin/files/acthex.pdf">[PDF]</a>
+            </div>
+            <br />
+            <br />
+            <p id="pageinfo" lang="en" dir="ltr" style="color: gray">
+                Last edited 2013-02-01</p>
+        </div>
+    </div>
+</body>
+</html>

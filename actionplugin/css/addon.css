@@ -1,0 +1,56 @@
+
+.fragment {
+    font-family: monospace, fixed;
+    font-size: 95%;
+}
+
+PRE.fragment {
+    border: 1px solid #CCCCCC;
+    background-color: #f5f5f5;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    margin-left: 2px;
+    margin-right: 8px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+div.synopsis {
+    background-color: #ffe0e0;
+    padding: 6px 20px;
+    margin-bottom: 12px;
+}
+
+div.atomusage {
+    font-family: "courier new", fixed, mono;
+    font-size: 121%;
+    margin: 8px 0px 16px 0px;
+    font-weight: bold;
+}
+
+div.param {
+    font-family: courier, fixed, monospace;
+    /*    font-size: 121%; */
+    float: left;
+    width: 60px;
+    text-align: right;
+    margin-right: 10px;
+    clear: left;
+}
+
+div.paramtext {
+    float: left;
+    width: 82%;
+    margin-bottom: 4px;
+}
+
+.a_title {
+    text-decoration: none;
+    color: #000;
+}
+
+.a_title:hover {
+    text-decoration: underline;
+}
