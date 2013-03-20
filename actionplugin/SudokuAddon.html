@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="generator" content=
+    "HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
+    <title>The Sudoku Action Addon</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../css/reset.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../css/text.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../css/960.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../css/style.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/addon.css" />
+</head>
+<body>
+    <!-- Title -->
+    <div class="container_12">
+        <div class="grid_12" id="title">
+            <h1>dlvhex</h1>
+        </div>
+    </div><!-- Menu -->
+    <div class="container_12">
+        <div class="grid_12" id="menu">
+            <a href="index.html">About</a> <a href="people.html">People</a> <a href="download.html">Download</a> <a href=
+            "support.html">Support</a> <a href="documentation.html">Documentation</a> <a href="http://asptut.gibbi.com/">Demo &amp;
+            ASP Tutorial</a> <a href="related.html">Related Work</a> <a href="applications.html">Applications</a> <a href=
+            "literature.html">Literature</a>
+        </div>
+    </div>
+    <div class="container_12">
+        <div class="grid_9">
+            <h2><a class="a_title" href="../actionplugin.html">The Action Plugin and Action Addon Framework</a></h2><br />
+            <h3>The Sudoku Action Addon</h3>
+            <p>The Plugin Sudoku allows to store, in an advanced way, a sudoku and to perform operations on it. Allows to enter in
+            each cell the &quot;correct&quot; value and also values ​​&quot;not candidate&quot; (ie, the values ​​that the cell can
+            not take). The Sudoku Action Addon provides a single atom <em>#sudoku</em>. It takes four inputs where former is the
+            action name and the others are the options related to action:</p>
+            <div class="synopsis">
+                <div class="atomusage">
+                    <em>#robot[A, AO1, AO2, AO3]{O,P}[W:L]</em>
+                </div>
+                <div>
+                    Input:
+                </div>
+                <div class="param">
+                    A
+                </div>
+                <div class="paramtext">
+                    action type, can be <em>insertNumber, <em>print</em>, <em>writeToFile</em>, <em>finishedFirstExecution</em>,
+                    <em>insertNumberNotCandidate</em>, <em>printWithThePossibilities</em>, <em>resetChanged</em></em>
+                </div>
+                <div class="param">
+                    AO1
+                </div>
+                <div class="paramtext">
+                    option related to the type of action <em>A</em>
+                </div><br style="clear: both;" />
+                <div class="param">
+                    AO2
+                </div>
+                <div class="paramtext">
+                    option related to the type of action <em>A</em>
+                </div><br style="clear: both;" />
+                <div class="param">
+                    AO3
+                </div>
+                <div class="paramtext">
+                    option related to the type of action <em>A</em>
+                </div><br style="clear: both;" />
+            </div>
+            <p>The Atom Action <b><i>#sudoku</i></b> allows to enter numbers in the sudoku, to print it on standard output or on a
+            text file, to enter values ​​for &quot;not candidate&quot; and to print it on standard output with all the values
+            ​​that each cell can take.<br />
+            <br />
+            The Action <em>insertNumber</em> allows to enter a value in a certain position of the grid; the AO1 parameter indicates
+            the row in which to insert the number, the parameter AO2 indicates the column in which to insert the number, AO3
+            parameter indicates the number to be inserted.<br />
+            The Action <em>print</em> allows to print to standard output the sudoku; the parameters are not used.<br />
+            The Action <em>writeToFile</em> allows to print the sudoku file, the file is written in &quot;append&quot; mode in
+            order to analyze what were the steps that led to the solution; AO1 parameter is used to specify the name of the file to
+            write to, the parameters AO2 and AO3 are not used.<br />
+            The Action <em>insertNumberNotCandidate</em> allows to enter a value &quot;not candidate&quot; in a certain position of
+            the grid; the AO1 parameter indicates the row in which to insert the number, the parameter AO2 indicates the column in
+            which to insert the number, AO3 parameter indicates the number to be inserted.<br />
+            The Action <em>printWithThePossibilities</em> allows to print to standard output the sudoku with all the values ​​that
+            each cell can take; the parameters are not used.</p><br />
+            The Sudoku Action Addon provides some External Atoms:
+            <div class="synopsis">
+                <div class="atomusage">
+                    <em>&amp;getNumber[R, C](N)</em>
+                </div>
+                <div>
+                    Input:
+                </div>
+                <div class="param">
+                    R
+                </div>
+                <div class="paramtext">
+                    row
+                </div><br style="clear: both;" />
+                <div class="param">
+                    C
+                </div>
+                <div class="paramtext">
+                    column
+                </div><br style="clear: both;" />
+                <div>
+                    Output:
+                </div>
+                <div class="param">
+                    N
+                </div>
+                <div class="paramtext">
+                    the number that is in the cell (R,C).
+                </div><br style="clear: both;" />
+            </div>
+            <div class="synopsis">
+                <div class="atomusage">
+                    <em>&amp;sudokuIsCompleted[]()</em>
+                </div>
+                <div>
+                    is true if the Sudoku is complete or if the last iteration was not added any value
+                </div>
+            </div>
+            <div class="synopsis">
+                <div class="atomusage">
+                    <em>&amp;getNumbersNotCandidates[R, C](N)</em>
+                </div>
+                <div>
+                    Input:
+                </div>
+                <div class="param">
+                    R
+                </div>
+                <div class="paramtext">
+                    row
+                </div><br style="clear: both;" />
+                <div class="param">
+                    C
+                </div>
+                <div class="paramtext">
+                    column
+                </div><br style="clear: both;" />
+                <div>
+                    Output:
+                </div>
+                <div class="param">
+                    N
+                </div>
+                <div class="paramtext">
+                    the numbers &quot;not candidate&quot; in the cell (R,C).
+                </div><br style="clear: both;" />
+            </div><br />
+            <p>You can check it out its source <a href=
+            "https://github.com/hexhex/actionplugin-addons/tree/master/SmartRobot_2x">here</a>.</p>
+            <p>For other action addons return to the section <a href="../actionplugin.html#ActionAddons">Action Addons</a> of The
+            Action Plugin and Action Addon Framework.</p><br />
+            <br />
+            <p id="pageinfo" lang="en" dir="ltr" style="color: gray" xml:lang="en">Last edited 2013-03-15</p>
+        </div>
+    </div>
+</body>
+</html>
