@@ -1,10 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta name="generator" content=
-    "HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
     <title>The Knowledge Base Modification (KBMod) Action Addon</title>
     <link rel="stylesheet" type="text/css" media="all" href="../css/reset.css" />
     <link rel="stylesheet" type="text/css" media="all" href="../css/text.css" />
@@ -17,31 +15,45 @@
     <!-- Title -->
     <div class="container_12">
         <div class="grid_12" id="title">
-            <h1>dlvhex</h1>
+            <h1>
+                dlvhex</h1>
         </div>
-    </div><!-- Menu -->
+    </div>
+    <!-- Menu -->
     <div class="container_12">
         <div class="grid_12" id="menu">
-            <a href="index.html">About</a> <a href="people.html">People</a> <a href="download.html">Download</a> <a href=
-            "support.html">Support</a> <a href="documentation.html">Documentation</a> <a href="http://asptut.gibbi.com/">Demo &amp;
-            ASP Tutorial</a> <a href="related.html">Related Work</a> <a href="applications.html">Applications</a> <a href=
-            "literature.html">Literature</a>
+            <a href="../index.html">About</a> <a href="../people.html">People</a> <a href="../download.html">
+                Download</a> <a href="../support.html">Support</a> <a href="../documentation.html">Documentation</a>
+            <a href="http://asptut.gibbi.com/">Demo &amp; ASP Tutorial</a> <a href="../related.html">
+                Related Work</a> <a href="../applications.html">Applications</a> <a href="../literature.html">
+                    Literature</a>
         </div>
     </div>
     <div class="container_12">
         <div class="grid_9">
-            <h2><a class="a_title" href="../actionplugin.html">The Action Plugin and Action Addon Framework</a></h2><br />
-            <h3>The Knowledge Base Modification (KBMod) Action Addon</h3>
-            <p>The Knowledge Base Modification Action Addon (in short KBMod) is an addon which provides essential action facilities
-            enabling users to alter external knowledge bases by asserting and rectracting knowledge.</p>
-            <p>Note that, as of ActHEX 2.0, one can consider, instead of opting for the KBMod features, using an internal source of
-            knowledge (an Environment (metti anchor)) for storing information. Note that Environments are performance-wise a better
-            option, although they require some (little) programming burden.</p>
-            <p>Moreover, KBMod provides the ability to execute arbitrary commands in the shell. The KBMod functionalities are
-            provided by three different action atoms: <a href="#retract">#retract</a>, <a href="#assert">#assert</a>,<a href=
-            "#execute">#execute</a>.</p><br />
-            <p>Quick reference for action atoms of the addon follow.</p>
-            <h4><a class="anchor" name="retract" id="retract">#retract Atom</a></h4>
+            <h2>
+                <a class="a_title" href="../actionplugin.html">The Action Plugin and Action Addon Framework</a></h2>
+            <br />
+            <h3>
+                The Knowledge Base Modification (KBMod) Action Addon</h3>
+            <p>
+                The Knowledge Base Modification Action Addon (in short KBMod) is an addon which
+                provides essential action facilities enabling users to alter external knowledge
+                bases by asserting and rectracting knowledge.</p>
+            <p>
+                Note that, as of ActHEX 2.0, one can consider, instead of opting for the KBMod features,
+                using an internal source of knowledge (an Environment (metti anchor)) for storing
+                information. Note that Environments are performance-wise a better option, although
+                they require some (little) programming burden.</p>
+            <p>
+                Moreover, KBMod provides the ability to execute arbitrary commands in the shell.
+                The KBMod functionalities are provided by three different action atoms: <a href="#retract">
+                    #retract</a>, <a href="#assert">#assert</a>,<a href="#execute">#execute</a>.</p>
+            <br />
+            <p>
+                Quick reference for action atoms of the addon follow.</p>
+            <h4>
+                <a class="anchor" name="retract" id="retract">#retract Atom</a></h4>
             <div class="synopsis">
                 <div class="atomusage">
                     <em>#retract[F, RO, S<sup>+</sup>]{O,P}</em>
@@ -65,33 +77,42 @@
                     S<sup>+</sup>
                 </div>
                 <div class="paramtext">
-                    one or more instances of <em>S</em> whose concatenation will be used when executing retraction. <em>S</em>+ is
-                    a comma separated list of one or more strings or integers
-                </div><br style="clear: both;" />
+                    one or more instances of <em>S</em> whose concatenation will be used when executing
+                    retraction. <em>S</em>+ is a comma separated list of one or more strings or integers
+                </div>
+                <br style="clear: both;" />
             </div>
-            <p><b><i>#retract</i></b> action atom will allow user to retract knowledge from knowledge base whose path is
-            <em>F</em>. In the case that the retract option is set to <em>exact</em>, the lines that exactly match the string
-            <em>S<sup>+</sup></em> concatenated with &quot;.&quot; will be retracted from the knowledge base. On the other hand,
-            when the retract option is set to <em>predicate</em> the lines that contains an atom whose predicate is exactly
-            <em>S<sup>+</sup></em> will be removed from the knowledge base. Note that there is an implicit assumption that each
-            line contains only one fact or one rule.</p>
-            <p>Example:</p>
+            <p>
+                <b><i>#retract</i></b> action atom will allow user to retract knowledge from knowledge
+                base whose path is <em>F</em>. In the case that the retract option is set to <em>exact</em>,
+                the lines that exactly match the string <em>S<sup>+</sup></em> concatenated with
+                &quot;.&quot; will be retracted from the knowledge base. On the other hand, when
+                the retract option is set to <em>predicate</em> the lines that contains an atom
+                whose predicate is exactly <em>S<sup>+</sup></em> will be removed from the knowledge
+                base. Note that there is an implicit assumption that each line contains only one
+                fact or one rule.</p>
+            <p>
+                Example:</p>
             <div class="fragment">
                 <pre class="fragment">
  #retract[&quot;kb.lp&quot;, predicate, &quot;size&quot;]{b, 1}.
 </pre>
             </div>
-            <p>This fact will remove any line that contains an atom with predicate &quot;<em>size</em>&quot; from the knowledge
-            base available at <em>kb.lp</em>.</p>
+            <p>
+                This fact will remove any line that contains an atom with predicate &quot;<em>size</em>&quot;
+                from the knowledge base available at <em>kb.lp</em>.</p>
             <div class="fragment">
                 <pre class="fragment">
  #retract[&quot;kb.lp&quot;, exact, &quot;vertex(&quot;, N, &quot;)&quot;]{c, 4} :- unreachable(N).
 </pre>
             </div>
-            <p>This rule will remove any line that exactly matches &quot;<em>vertex(N).</em>&quot; from the knowledge based
-            available at <em>kb.lp</em> where <em>N</em> will be instantiated according to the rule body. Note that we will retract
-            every &quot;<em>vertex(i)</em>.&quot; for every &quot;<em>unreachable(i)&quot;.</em></p>
-            <h4><a class="anchor" name="assert" id="assert">#assert Atom</a></h4>
+            <p>
+                This rule will remove any line that exactly matches &quot;<em>vertex(N).</em>&quot;
+                from the knowledge based available at <em>kb.lp</em> where <em>N</em> will be instantiated
+                according to the rule body. Note that we will retract every &quot;<em>vertex(i)</em>.&quot;
+                for every &quot;<em>unreachable(i)&quot;.</em></p>
+            <h4>
+                <a class="anchor" name="assert" id="assert">#assert Atom</a></h4>
             <div class="synopsis">
                 <div class="atomusage">
                     <em>#assert[F, S<sup>+</sup>]{O,P}</em>
@@ -109,21 +130,28 @@
                     S<sup>+</sup>
                 </div>
                 <div class="paramtext">
-                    one or more instances of <em>S</em> whose concatenation will be used in the assert action. <em>S</em>+ is a
-                    comma separated list of one or more strings or integers
-                </div><br style="clear: both;" />
+                    one or more instances of <em>S</em> whose concatenation will be used in the assert
+                    action. <em>S</em>+ is a comma separated list of one or more strings or integers
+                </div>
+                <br style="clear: both;" />
             </div>
-            <p><b><i>#assert</i></b> action atom will allow users to add knowledge to the knowledge base whose path is <em>F</em>.
-            The string <em>S<sup>+</sup></em> will be added to the knowledge base. Note that no syntactic check is applied to the
-            asserted knowledge. Hence, users are expected to respect the syntactic rules of the knowledge base.</p>
-            <p>Example:</p>
+            <p>
+                <b><i>#assert</i></b> action atom will allow users to add knowledge to the knowledge
+                base whose path is <em>F</em>. The string <em>S<sup>+</sup></em> will be added to
+                the knowledge base. Note that no syntactic check is applied to the asserted knowledge.
+                Hence, users are expected to respect the syntactic rules of the knowledge base.</p>
+            <p>
+                Example:</p>
             <div class="fragment">
                 <pre class="fragment">
  #assert[&quot;kb.lp&quot;, &quot;size(5)&quot;]{b, 1}.
 </pre>
             </div>
-            <p>The fact will add &quot;<em>size(5).</em>&quot; to the knowledge base whose path is <em>F</em>.</p>
-            <h4><a class="anchor" name="execute" id="execute">#execute Atom</a></h4>
+            <p>
+                The fact will add &quot;<em>size(5).</em>&quot; to the knowledge base whose path
+                is <em>F</em>.</p>
+            <h4>
+                <a class="anchor" name="execute" id="execute">#execute Atom</a></h4>
             <div class="synopsis">
                 <div class="atomusage">
                     <em>#execute[S<sup>+</sup>]{O,P}</em>
@@ -135,37 +163,51 @@
                     S<sup>+</sup>
                 </div>
                 <div class="paramtext">
-                    one or more instances of <em>S</em> whose concatenation will be used in execute action as the command where
-                    <em>S</em> is a string or integer
-                </div><br style="clear: both;" />
+                    one or more instances of <em>S</em> whose concatenation will be used in execute
+                    action as the command where <em>S</em> is a string or integer
+                </div>
+                <br style="clear: both;" />
             </div>
-            <p><b><i>#execute action</i></b> atom will allow users to execute the string <em>S<sup>+</sup></em> in the shell while
-            the dlvhex program is still running.</p>
-            <p>Example:</p>
+            <p>
+                <b><i>#execute action</i></b> atom will allow users to execute the string <em>S<sup>+</sup></em>
+                in the shell while the dlvhex program is still running.</p>
+            <p>
+                Example:</p>
             <div class="fragment">
                 <pre class="fragment">
  #execute[&quot;dlvhex --firstorder kb.lp&quot;]{c,3}.
 </pre>
             </div>
-            <p>The fact will execute &quot;<em>dlvhex</em>&quot; with &quot;<em>firstorder</em>&quot; option on the knowledge base
-            whose path is &quot;<em>kb.lp</em>&quot;.</p>
+            <p>
+                The fact will execute &quot;<em>dlvhex</em>&quot; with &quot;<em>firstorder</em>&quot;
+                option on the knowledge base whose path is &quot;<em>kb.lp</em>&quot;.</p>
             <div class="fragment">
                 <pre class="fragment">
  #execute[&quot;dlv --firstorder&quot; -n=&quot;,X,&quot; kb.lp&quot;]{b,2}:- size(X).
 </pre>
             </div>
-            <p>The rule will execute &quot;<em>dlv</em>&quot; with &quot;<em>firstorder</em>&quot; option and &quot;
-            <em>-n</em>&quot; option set equal to <em>X</em> on the knowledge base whose path is &quot;<em>kb.lp</em>&quot;. Notice
-            that <em>X</em> is not a string thus it will be instantiated depending on the <em>size</em> atoms that are in the
-            interpretation.</p><br />
-            <p>In all of the examples, <em>O</em> (resp. <em>P</em>) are option (resp. precedence) that appears in action atoms.
-            Additionally, mentioned action atoms can be combined with weight and level.</p><br />
-            <p>You can check it out its source <a href=
-            "https://github.com/hexhex/actionplugin-addons/tree/master/kbmod">here</a>.</p>
-            <p>For other action addons return to the section <a href="../actionplugin.html#ActionAddons">Action Addons</a> of The
-            Action Plugin and Action Addon Framework.</p><br />
+            <p>
+                The rule will execute &quot;<em>dlv</em>&quot; with &quot;<em>firstorder</em>&quot;
+                option and &quot; <em>-n</em>&quot; option set equal to <em>X</em> on the knowledge
+                base whose path is &quot;<em>kb.lp</em>&quot;. Notice that <em>X</em> is not a string
+                thus it will be instantiated depending on the <em>size</em> atoms that are in the
+                interpretation.</p>
             <br />
-            <p id="pageinfo" lang="en" dir="ltr" style="color: gray" xml:lang="en">Last edited 2013-03-15</p>
+            <p>
+                In all of the examples, <em>O</em> (resp. <em>P</em>) are option (resp. precedence)
+                that appears in action atoms. Additionally, mentioned action atoms can be combined
+                with weight and level.</p>
+            <br />
+            <p>
+                You can check it out its source <a href="https://github.com/hexhex/actionplugin-addons/tree/master/kbmod">
+                    here</a>.</p>
+            <p>
+                For other action addons return to the section <a href="../actionplugin.html#ActionAddons">
+                    Action Addons</a> of The Action Plugin and Action Addon Framework.</p>
+            <br />
+            <br />
+            <p id="pageinfo" lang="en" dir="ltr" style="color: gray" xml:lang="en">
+                Last edited 2013-04-23</p>
         </div>
     </div>
 </body>
