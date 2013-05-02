@@ -191,12 +191,12 @@
             <p>
                 This addon allowed us to experiment with the incremental application of Sudoku inference
                 rules as described in [<a href="#paper1">1</a>]. Large Sudoku tables cannot be solved
-                by pure guess &amp; check strategies: on the other hand, ActHEX allows to iterate
-                over partially complete tables, and to repeatedly apply a number of deterministic
-                inference strategies depending on the current resolution progress. Our ActHEX-based
-                iterative player allows to solve Sudoku tables as large as 81 X 81, which are far
-                out of the performance reach of an ASP-based system using a pure guess &amp; check
-                strategy.</p>
+                by pure guess &amp; check strategies, due to the huge underlying search space: on
+                the other hand, ActHEX allows to iterate over partially complete tables, and to
+                repeatedly apply a number of deterministic inference strategies depending on the
+                current resolution progress. Our ActHEX-based iterative player allows to solve Sudoku
+                tables as large as 81 X 81, which are far out of the performance reach of an ASP-based
+                system using a pure guess &amp; check strategy.</p>
             <br />
             <table style="border: 2px solid black;">
                 <tr>
@@ -276,7 +276,7 @@
                         124.33
                     </td>
                     <td>
-                        3070,68 (2/3)
+                        3070.48 (2/3)
                     </td>
                     <td>
                         10.19
@@ -321,7 +321,7 @@
                         TO
                     </td>
                     <td>
-                        159.49 (2/3)
+                        824.14
                     </td>
                 </tr>
                 <tr>
@@ -335,7 +335,7 @@
                         TO
                     </td>
                     <td>
-                        433.94 (2/3)
+                        9342.62
                     </td>
                 </tr>
                 <tr>
@@ -411,14 +411,18 @@
             </table>
             <p>
                 Legend: OOM = Out Of Memory, TO = Timed Out. All times are given in seconds. The
-                timeout is 32000 seconds.
+                timeout is 32000 seconds. Each line corresponds to an instance family of 3 instances
+                (unless differently speficied). Times are the average over the instance family;
+                whenever present, data in parentheses account for finished instances out of the
+                total available in a given category.
             </p>
             <br />
             <p>
                 The above table shows our experiments on a selected number of Sudoku Tables (<a href='http://www.menneske.no/sudoku/eng/'>Source</a>),
                 of increasing size, ranging from 16 X 16 (sub-blocks of size 4) to 81 X 81 (sub-blocks
                 of size 9). The SuperEasy and the VeryEasy instances are executed with the deterministic
-                strategy Det[0], the Easy instances with the deterministic strategy Det[1].</p>
+                strategy Det[0], the Easy instances with the deterministic strategy Det[1].
+            </p>
             <p>
                 Det[0] implements the so called <em>hidden and naked single rules [<a href="#sudokubook">2</a>]</em>,
                 known in the Sudoku literature as basic deterministic inference rules useful for
@@ -432,17 +436,17 @@
                     encoding</a>).</p>
             <p>
                 The columns NonDet<span style="vertical-align: sub">dlv</span> and NonDet<span style="vertical-align: sub">(g+c)</span>
-                show instead the performance of a single nondeterministic ASP encoding run respectively
+                show the performance of a single nondeterministic ASP encoding run respectively
                 with DLV release 2012-12-17 and Gringo 3.0.5 coupled with Clasp 2.1.1 (64bit version
                 for both systems). (DLV <a href="https://raw.github.com/hexhex/actionplugin-addons/master/Sudoku_2x/examples/NonDeterministicStrategies/SudokuGuessDLV.dlv">
                     encoding</a>, Gringo <a href="https://raw.github.com/hexhex/actionplugin-addons/master/Sudoku_2x/examples/NonDeterministicStrategies/SudokuGuessClasp">
                         encoding</a>).</p>
             <p>
-                Both Det[0]<span style="vertical-align: sub">ActHEX</span> and Det[1]<span style="vertical-align: sub">ActHEX</span>
-                work on a iterative basis by maintaining a partially completed Sudoku table. At
-                each iteration, candidate values can be excluded from the current table, depending
-                on whether some deterministic inference rule triggers or not. The iterative process
-                terminates when the Sudoku table is complete, or no further inference can be performed.</p>
+                Both Det[0] and Det[1] work on a iterative basis by maintaining a partially completed
+                Sudoku table. At each iteration, candidate values can be excluded from the current
+                table, depending on whether some deterministic inference rule triggers or not. The
+                iterative process terminates when the Sudoku table is complete, or no further inference
+                can be performed.</p>
             <p>
                 The purpose of the experiment was to assess whether and to what extent applying
                 known deterministic inferences could help in reducing an expectedly large search
@@ -453,7 +457,9 @@
             <p>
                 <a name="paper1" id="paper1"></a>[1] Calimeri, F., Ianni, G., Perri, S., Zangari,
                 J.: The eternal battle between determinism and nondeterminism: preliminary studies
-                in the sudoku domain. In: RCRA (2013), submitted.</p>
+                in the sudoku domain. Accepted for publication at the 20th RCRA International Workshop
+                on "Experimental Evaluation of Algorithms for solving problems with combinatorial
+                explosion".</p>
             <p>
                 <a name="sudokubook" id="sudokubook"></a>[2] D. Berthier. The Hidden Logic of Sudoku
                 (Second Edition). December 2007. ISBN 9781847534729</p>
