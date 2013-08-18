@@ -1,96 +1,81 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
-<html><head>
-
-
-
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-9">
-
-<title>How the ActionPlugin Computes Preferences Between Actions</title>
-
-<link href="doxygen.css" rel="stylesheet"
-
-type="text/css">
-
-<link href="tabs.css" rel="stylesheet"
-type="text/css">
-
-    <link rel="stylesheet" type="text/css" media="all"
-href="kbmodaddon_files/reset.css">
-    <link rel="stylesheet" type="text/css" media="all"
-href="kbmodaddon_files/text.css">
-    <link rel="stylesheet" type="text/css" media="all"
-href="kbmodaddon_files/960.css">
-    <link rel="stylesheet" type="text/css" media="all"
-href="kbmodaddon_files/style.css">
-
-
-<style type="text/css">
-<!--
-.cour {
-	font-family: Courier New, Courier, monospace;
-}
--->
-</style>
-</head><body>
-
-
-
-
-
-
-
-<div class="contents">
-
-  <div class="container_12">
-    <h1>dlvhex</h1>
-    <div id="menu"> <a href="/research/systems/dlvhex/">About</a> &nbsp;|&nbsp; <a href="people.html">People</a> &nbsp;|&nbsp; <a href="download.html">Download</a> &nbsp;|&nbsp; <a href="support.html">Support</a> &nbsp;|&nbsp; <a href="documentation.html">Documentation</a> &nbsp;|&nbsp; <a href="http://asptut.gibbi.com/">Demo &amp; ASP Tutorial</a> &nbsp;|&nbsp; <a href="related.html">Related Work</a> &nbsp;|&nbsp; <a href="literature.html">Literature</a> </div>
-  </div>
-  <br/><br/>
-<p> <a id="project"></a>
- </p>
-  <div class="container_12">
-<div class="grid_9">
-  <h2></h2>
-  <h6>How the ActionPlugin Computes Preferences Between Actions</h6>
-  
-<p>We report here the definition of the objective function <em>H<sub>P</sub>(A)</em> (generalized from
-(Leone et al. 2006)). For an answer set <em>A</em>, <em>H<sub>P</sub>(A)</em> is defined in terms of an auxiliary
-function <em>f<sub>p</sub></em> as follows:</p>
-
-<div class="qindex">
-<table width="100%" height="144" class="eq">
-<tr>
-<td align="center">f<sub>P</sub> (1) = 1,</td>
-<td align="right" valign="bottom">(A1)</td>
-</tr>
-<br>
-<tr>
-<td align="center">f<sub>P</sub>(n)=f<sub>P</sub>(n-1)&#183(|AA<sub>w</sub>(grnd(P))|)&#183<span class="scripts">w<sup>P</sup><sub>max</sub></span>+ 1, n > 1 ,</td>
-<td align="right" valign="bottom">(A2)</td>
-</tr>
-<br>
-<tr>
-<td align="center">H<sub>P</sub>(A)=<span class="sigma">&#8721<sub>i=1</sub><sup><span class="sigmaUpper">l<sup>P</sup><sub>max</sub></span></sup></span>(f<sub>P</sub>(i)&#183 <span class="innerSigma">&#8721<sub><span class="sigmaLower">a &isin M<sub>i</sub><sup>P</sup>(a)</span></sub></span> weight(a))</td>
-<td align="right" valign="center">(A3)</td>
-</tr>
-</table> 
-</div>
-
-
-
-
- <p>where <em><span class="scripts">w<sup>P</sup><sub>max</sub></span></em> and <em><span class="scripts">l<sup>P</sup><sub>max</sub></span></em> denote the maximum weight and maximum level over
-   weighted action atoms in <em>grnd(P)</em>, respectively; <em><span class="scripts">M<sup>P</sup><sub>i</sub></span> (A)</em> denotes the set of action
-   atoms with weight and level <em>i</em> that appear in <em>A</em>, and <em>weight(a)</em> denotes the weight
-   of resp. action atom <em>a</em>.
-</p>
-<h3>References</h3>
-Leone, N., Pfeifer, G., Faber, W., Eiter, T., Gottlob, G., Perri, S., and Scarcello, F. 2006. The DLV system for knowledge representation and reasoning. ACM
-Trans. Comput. Log. 7, 3, 499-562.
-
-<p id="pageinfo" class="info" lang="en" dir="ltr"><font size="1" color="grey">last edited 2010-02-21</font>  </p>
-
-
-  
-</body></html>
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>How the ActionPlugin Computes Preferences Between Actions</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../css/reset.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../css/text.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../css/960.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../css/style.css" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/preferences.css" />
+</head>
+<body>
+    <!-- Title -->
+    <div class="container_12">
+        <div class="grid_12" id="title">
+            <h1>
+                dlvhex</h1>
+        </div>
+    </div>
+    <!-- Menu -->
+    <div class="container_12">
+        <div class="grid_12" id="menu">
+            <a href="../index.html">About</a> <a href="../people.html">People</a> <a href="../download.html">
+                Download</a> <a href="../support.html">Support</a> <a href="../documentation.html">Documentation</a>
+            <a href="http://asptut.gibbi.com/">Demo &amp; ASP Tutorial</a> <a href="../related.html">
+                Related Work</a> <a href="../applications.html">Applications</a> <a href="../literature.html">
+                    Literature</a>
+        </div>
+    </div>
+    <div class="container_12">
+        <div class="grid_9">
+            <h2>
+                <a class="a_title" href="../actionplugin.html">The Action Plugin and Action Addon Framework</a></h2>
+            <br />
+            <h3>
+                How the ActionPlugin Computes Preferences Between Actions</h3>
+            <p>
+                We report here the definition of the objective function <em>H<sub>P</sub>(A)</em>
+                (generalized from (Leone et al. 2006)). For an answer set <em>A</em>, <em>H<sub>P</sub>(A)</em>
+                is defined in terms of an auxiliary function <em>f<sub>p</sub></em> as follows:
+            </p>
+            <div class="qindex">
+                <br />
+                <span class="equation">f<sub>P</sub>(1) = 1,</span> <span class="equation_label">(A1)</span>
+                <br style="clear: both;" />
+                <br />
+                <span class="equation">f<sub>P</sub>(n)=f<sub>P</sub>(n-1)&#183(|AA<sub>w</sub>(grnd(P))|)&#183<span
+                    class="scripts">w<sup>P</sup><sub>max</sub></span>+ 1, n > 1 ,</span> <span class="equation_label">
+                        (A2)</span>
+                <br style="clear: both;" />
+                <br />
+                <span class="equation">H<sub>P</sub>(A)=<span class="sigma">&#8721<sub>i=1</sub><sup><span
+                    class="sigmaUpper">l<sup>P</sup><sub>max</sub></span></sup></span>(f<sub>P</sub>(i)&#183
+                    <span class="innerSigma">&#8721<sub><span class="sigmaLower">a &isin M<sub>i</sub><sup>P</sup>(a)</span></sub></span>
+                    weight(a))</span> <span class="equation_label">(A3)</span>
+                <br style="clear: both;" />
+                <br />
+            </div>
+            <p>
+                where <em><span class="scripts">w<sup>P</sup><sub>max</sub></span></em> and <em><span
+                    class="scripts">l<sup>P</sup><sub>max</sub></span></em> denote the maximum weight
+                and maximum level over weighted action atoms in <em>grnd(P)</em>, respectively;
+                <em><span class="scripts">M<sup>P</sup><sub>i</sub></span>(A)</em> denotes the set
+                of action atoms with weight and level <em>i</em> that appear in <em>A</em>, and
+                <em>weight(a)</em> denotes the weight of resp. action atom <em>a</em>.
+            </p>
+            <h3>
+                References</h3>
+            <p>
+                Leone, N., Pfeifer, G., Faber, W., Eiter, T., Gottlob, G., Perri, S., and Scarcello,
+                F. 2006. The DLV system for knowledge representation and reasoning. ACM Trans. Comput.
+                Log. 7, 3, 499-562.</p>
+            <br />
+            <br />
+            <p id="pageinfo" lang="en" dir="ltr" style="color: gray">
+                Last edited 2013-04-23</p>
+        </div>
+    </div>
+</body>
+</html>

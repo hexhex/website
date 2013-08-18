@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>The Reversi Action Addon</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../css/reset.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../css/text.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../css/960.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../css/style.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/addon.css" />
+</head>
+<body>
+    <!-- Title -->
+    <div class="container_12">
+        <div class="grid_12" id="title">
+            <h1>dlvhex</h1>
+        </div>
+    </div>
+    <!-- Menu -->
+    <div class="container_12">
+        <div class="grid_12" id="menu">
+            <a href="../index.html">About</a> <a href="../people.html">People</a> <a href="../download.html">Download</a>
+            <a href="../support.html">Support</a> <a href="../documentation.html">Documentation</a>
+            <a href="http://asptut.gibbi.com/">Demo &amp; ASP Tutorial</a> <a href="../related.html">Related Work</a>
+            <a href="../applications.html">Applications</a> <a href="../literature.html">Literature</a>
+        </div>
+    </div>
+    <div class="container_12">
+        <div class="grid_9">
+            <h2>
+                <a class="a_title" href="../actionplugin.html">The Action Plugin and Action Addon Framework</a></h2>
+            <br />
+            <h3>The Reversi Action Addon</h3>
+            <p>
+                The Reversi Action Addon is an example which shows how it's possible to play an online version of the
+                popular board game Reversi using logic rules to choose the move to be made.
+                We used the online version of the website <a href="http://yourturnmyturn.com/">yourturnmyturn.com</a>
+                but we developed this Addon for research purposes only,
+                please note that the <a href="http://www.yourturnmyturn.com/siterules.php">site rules</a> of yourturnmyturn.com
+                "consider unsporting to use a computer to determine
+                your move" and says that "every form of cheating where you win a board game not on your own is forbidden".
+            </p>
+            <p>
+                There are some actions to set the gamenumber and the login information (the username and the password),
+                to make the move and to wait until the opponent makes the move. The Reversi Action Addon provides a
+                single
+                atom <em>#reversi</em>. It takes three inputs where former is the action name and the others are the
+                options related to action:
+            </p>
+            <div class="synopsis">
+                <div class="atomusage">
+                    <em>#smartRobot[A, AO1, AO2]{O,P}[W:L]</em>
+                </div>
+                <div>
+                    Input:
+                </div>
+                <div class="param">
+                    A
+                </div>
+                <div class="paramtext">
+                    action type, can be <em>setGamenumber</em>, <em>setUsername</em>, <em>setPassword</em>, <em>makeAMove</em>,
+                    <em>wait</em>
+                </div>
+                <div class="param">
+                    AO1
+                </div>
+                <div class="paramtext">
+                    option related to the type of action <em>A</em>
+                </div>
+                <br style="clear: both;" />
+                <div class="param">
+                    AO2
+                </div>
+                <div class="paramtext">
+                    option related to the type of action <em>A</em>
+                </div>
+                <br style="clear: both;" />
+            </div>
+            <p>
+                The Atom Action <b><i>#reversi</i></b> allows you to set the gamenumber, the username and the password,
+                to make the move and to wait until the opponent makes the move.<br />
+                <br />
+                The Action <em>setGamenumber</em> allows to set the gamenumber of the game to play; the
+                parameter AO1 specifies the number of the game, the parameter AO2 is not used.<br />
+                The Action <em>setUsername</em> allows to set the username to login in the website; the
+                parameter AO1 specifies the username, the parameter AO2 is not used.<br />
+                The Action <em>setPassword</em> allows to set the password to login in the website; the
+                parameter AO1 specifies the password, the parameter AO2 is not used.<br />
+                The Action <em>makeAMove</em> allows to make the move in the selected game and with the set username
+                and password; the
+                parameters AO1 and AO2 specify respectively the row and the column where to put the pawn.<br />
+                The Action <em>wait</em> allows to wait until the opponent makes the move; the parameters AO1 and AO2
+                are not used.
+            </p>
+            <br />
+            The Reversi Action Addon provides some External Atoms:
+            <div class="synopsis">
+                <div class="atomusage">
+                    <em>&amp;pawnPlaced[GN](Row,Column,Color)</em>
+                </div>
+                <div>
+                    Input:
+                </div>
+                <div class="param">
+                    GN
+                </div>
+                <div class="paramtext">
+                    gamenumber that identifies the game.
+                </div>
+                <br style="clear: both;" />
+                <div>
+                    Output:
+                </div>
+                <div class="param">
+                    Row
+                </div>
+                <div class="paramtext">
+                    row that identifies the cell.
+                </div>
+                <br style="clear: both;" />
+                <div class="param">
+                    Column
+                </div>
+                <div class="paramtext">
+                    column that identifies the cell.
+                </div>
+                <br style="clear: both;" />
+                <div class="param">
+                    Color
+                </div>
+                <div class="paramtext">
+                    color of the pawn in the cell.
+                </div>
+                <br style="clear: both;" />
+            </div>
+            <div class="synopsis">
+                <div class="atomusage">
+                    <em>&amp;gameFinished[GN]()</em>
+                </div>
+                <div>
+                    Input:
+                </div>
+                <div class="param">
+                    GN
+                </div>
+                <div class="paramtext">
+                    gamenumber that identifies the game.
+                </div>
+                <br style="clear: both;" />
+                <div>
+                    is true if the robot explored the whole maze.
+                </div>
+            </div>
+            <br />
+            <p>
+                We used Perl scripts in order to take information from the website and Javascript (CasperJS) scripts in order to perform actions on the website.
+            </p>
+            <br />
+            <p>
+                You can check it out its source <a href="https://github.com/hexhex/actionplugin-addons/tree/master/Reversi">
+                    here</a>.
+            </p>
+            <p>
+                For other action addons return to the section <a href="../actionplugin.html#ActionAddons">Action Addons</a>
+                of The Action Plugin and Action Addon Framework.
+            </p>
+            <br />
+            <br />
+            <p id="pageinfo" lang="en" dir="ltr" style="color: gray" xml:lang="en">
+                Last edited 2013-04-23
+            </p>
+        </div>
+    </div>
+</body>
+</html>
