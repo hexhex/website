@@ -70,7 +70,7 @@
                         This dlvhex Plugin provides an implementation of the ActHEX language [<a href="#Publications">1</a>].</p>
                     <p>
                         The plugin allows the execution of external actions, via the introduction of <em>Action
-                            Atom</em>s, that can appear in rules&#39; head.</p>
+                            Atoms</em>, that can appear in rules&#39; head.</p>
                     <p>
                         Actions can execute any arbitrary code, access to web sites, execute scripts in
                         any language, update databases etc.</p>
@@ -81,14 +81,14 @@
 </pre>
                     <p>
                         the above can be seen as a rule for scheduling a movement of a given robot indirection
-                        D with execution order T. <em>Action Atom</em>s are executed according to <em>Execution
-                            Schedule</em>s. The latter in turn depend on answer sets, which in their generalized
-                        form, can contain <em>Action Atom</em>s. The order of execution within a schedule
+                        D with execution order T. <em>Action Atoms</em> are executed according to <em>Execution
+                            Schedules</em>. The latter in turn depend on answer sets, which in their generalized
+                        form, can contain <em>Action Atoms</em>. The order of execution within a schedule
                         can be specified using a Precedence attribute (which in the above rule is set by
                         the variable T); also actions can be associated with Weights and Levels (the values
                         2 and 1 above). Weights and Levels are used for computing a cost function which
                         helps in selecting preferred actions, as defined <a href="actionplugin/preferences.html">
-                            here</a>. <em>Action Atom</em>s allow to specify whether they have to be executed
+                            here</a>. <em>Action Atoms</em> allow to specify whether they have to be executed
                         <i>bravely</i> (the <code>b</code> switch above), <i>cautiously</i> or <i>preferred
                             cautiously</i>, respectively meaning that an action atom a can get executed
                         if it appears in at least one, all, or all best cost Answer Sets.</p>
@@ -110,14 +110,14 @@
                         in your system (you can download it from <a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/download.html">
                             here</a>. Once the <b>ActionPlugin</b> and dlvhex are compiled and installed,
                         you will be able to execute your ActHEX programs simply typing <code>dlvhex --action-enable
-                            myprogram</code> from command line. <b>ActionAddon</b>s libraries already developed
+                            myprogram</code> from command line. <b>ActionAddons</b> libraries already developed
                         can be found in the <a href="#Download">Download</a> section.</p>
                     <p>
                         For any issue, you might want to contact <a href="mailto:acthex_AT_mat.unical.it">our
                             research group</a>.</p>
                     <p>
-                        In the next section we introduce the principle of <b>ActionAddon</b>s and <em>Action
-                            Atom</em>s and we give a short hands-on example.</p>
+                        In the next section we introduce the principle of <b>ActionAddons</b> and <em>Action
+                            Atoms</em> and we give a short hands-on example.</p>
                 </div>
                 <br />
                 <h3 id="TheActionAtomFunction">
@@ -169,9 +169,8 @@
                     <p>
                         To begin with, the following header file from dlvhex needs to be included:</p>
                     <pre class="fragment">
-    <span class="preprocessor">#include &quot;<a class="code"
-                        href="https://github.com/hexhex/actionplugin/blob/master/include/acthex/ActionPluginInterface.h"
-                        title="ActionPluginInterface">acthex/ActionPluginInterface.h</a>&quot;</span>
+    <span class="preprocessor">#include &quot;<a class="code" href="https://github.com/hexhex/actionplugin/blob/master/include/acthex/ActionPluginInterface.h"
+        title="ActionPluginInterface">acthex/ActionPluginInterface.h</a>&quot;</span>
 </pre>
                     <p>
                         If the <b>ActionPlugin</b> was installed correctly, this header should be available.</p>
@@ -179,9 +178,9 @@
                         We have to extend the class <a class="el" href="https://github.com/hexhex/actionplugin/blob/master/include/acthex/ActionPluginInterface.h"
                             title="ActionPluginInterface">ActionPluginInterface</a>:</p>
                     <pre class="fragment">
-    <span class="keyword">class</span> SmartRobotActionPlugin : <span
-                        class="keyword">public</span> <a class="code" href="https://github.com/hexhex/actionplugin/blob/master/include/acthex/ActionPluginInterface.h"
-                            title="ActionPluginInterface">ActionPluginInterface</a>
+    <span class="keyword">class</span> SmartRobotActionPlugin : <span class="keyword">public</span> <a
+        class="code" href="https://github.com/hexhex/actionplugin/blob/master/include/acthex/ActionPluginInterface.h"
+        title="ActionPluginInterface">ActionPluginInterface</a>
 </pre>
                     <p>
                         And we have to override the protected virtual function <code>create</code>:</p>
@@ -193,7 +192,7 @@
                     <pre class="fragment">
     ctx.getPluginEnvironment&lt;SmartRobotActionPlugin&gt;();
    
-<span class="keywordflow">return</span> boost::shared_ptr &lt;SmartRobotActionPlugin&gt; (<span
+    <span class="keywordflow">return</span> boost::shared_ptr &lt;SmartRobotActionPlugin&gt; (<span
     class="keyword">new</span> SmartRobotActionPlugin());
 </pre>
                     <br />
@@ -204,16 +203,14 @@
                         and we have to use as template our class that extends the ActionPluginInterface:</p>
                     <pre class="fragment">
     <span class="keyword">class</span> SmartRobotActionAtomGetPosition :
-            <span
-                        class="keyword">public</span> PluginActionAtom &lt;SmartRobotActionPlugin&gt; {
-    <span
-                            class="keyword">public</span>:
+            <span class="keyword">public</span> PluginActionAtom &lt;SmartRobotActionPlugin&gt; {
+    <span class="keyword">public</span>:
 </pre>
                     <p>
                         And we have to override the protected virtual function <code>retrieve</code>:</p>
                     <pre class="fragment">
     <span class="keyword">virtual</span> <span class="keywordtype">void</span> retrieve(<span
-                        class="keywordtype">const</span> Environment&amp; e, <span class="keywordtype">const</span> Query&amp; q, Answer&amp; a)
+        class="keywordtype">const</span> Environment&amp; e, <span class="keywordtype">const</span> Query&amp; q, Answer&amp; a)
 </pre>
                     <br />
                     <h5>
@@ -224,17 +221,15 @@
                         needs to override the method <code>createAtoms</code>:</p>
                     <pre class="fragment">
     <span class="keyword">virtual</span> <span class="keywordtype">std::vector&lt;PluginAtomPtr&gt;</span> createAtoms(ProgramCtx&amp; ctx) <span
-                        class="keywordtype">const</span>
+        class="keywordtype">const</span>
 </pre>
                     <p>
                         With something like:</p>
                     <pre class="fragment">
     std::vector &lt;PluginAtomPtr&gt; ret;
-    ret.push_back(PluginAtomPtr(
-<span class="keyword">new</span> SmartRobotActionAtomGetPosition,
-                                 PluginPtrDeleter&lt;PluginAtom&gt;()));
-    <span
-    class="keywordflow">return</span> ret;
+    ret.push_back(PluginAtomPtr(<span class="keyword">new</span> SmartRobotActionAtomGetPosition,
+                                PluginPtrDeleter&lt;PluginAtom&gt;()));
+    <span class="keywordflow">return</span> ret;
 </pre>
                     <br />
                     <h5>
@@ -244,16 +239,14 @@
                         and we have to use as template our class that extends the ActionPluginInterface:</p>
                     <pre class="fragment">
     <span class="keyword">class</span> SmartRobotAction :
-            <span
-                        class="keyword">public</span> PluginActionAtom &lt;SmartRobotActionPlugin&gt; {
-    <span
-                            class="keyword">public</span>:
+            <span class="keyword">public</span> PluginActionAtom &lt;SmartRobotActionPlugin&gt; {
+    <span class="keyword">public</span>:
 </pre>
                     <p>
                         And we have to override the protected virtual function <code>execute</code>:</p>
                     <pre class="fragment">
     <span class="keyword">virtual</span> <span class="keywordtype">void</span> execute(Environment&amp; e, RegistryPtr r, <span
-                        class="keywordtype">const</span> Tuple&amp; t,
+        class="keywordtype">const</span> Tuple&amp; t,
                           <span class="keywordtype">const</span> InterpretationConstPtr i)
 </pre>
                     <br />
@@ -265,17 +258,15 @@
                         the method <code>createActions</code>:</p>
                     <pre class="fragment">
     <span class="keyword">virtual</span> <span class="keywordtype">std::vector&lt;PluginActionBasePtr&gt;</span> createActions(ProgramCtx&amp; ctx) <span
-                        class="keywordtype">const</span>
+        class="keywordtype">const</span>
 </pre>
                     <p>
                         With something like:</p>
                     <pre class="fragment">
     std::vector &lt;PluginActionBasePtr&gt; ret;
-    ret.push_back(PluginActionBasePtr(
-<span class="keyword">new</span> SmartRobotAction,
-                                       PluginPtrDeleter&lt;PluginActionBase&gt;()));
-    <span
-    class="keywordflow">return</span> ret;
+    ret.push_back(PluginActionBasePtr(<span class="keyword">new</span> SmartRobotAction,
+                                        PluginPtrDeleter&lt;PluginActionBase&gt;()));
+    <span class="keywordflow">return</span> ret;
 </pre>
                     <br />
                     <h5>
@@ -283,8 +274,7 @@
                     <p>
                         To specify the Environment we have to extend the class <code>PluginEnvironment</code>:</p>
                     <pre class="fragment">
-    <span class="keyword">class</span> Environment : <span
-                        class="keyword">public</span> PluginEnvironment {
+    <span class="keyword">class</span> Environment : <span class="keyword">public</span> PluginEnvironment {
     <span class="keyword">public</span>:
 </pre>
                     <br />
@@ -302,8 +292,7 @@
                         this function:</p>
                     <pre class="fragment">
     <span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> void * PLUGINIMPORTFUNCTION() {
-        <span
-                        class="keywordflow">return</span> reinterpret_cast&lt;void*&gt;(&amp; DLVHEX_NAMESPACE theSmartRobotActionPlugin);
+        <span class="keywordflow">return</span> reinterpret_cast&lt;void*&gt;(&amp; DLVHEX_NAMESPACE theSmartRobotActionPlugin);
     }
 </pre>
                 </div>
@@ -344,7 +333,7 @@
                 </div>
                 <br />
                 <h3 id="NewFeaturesOfVersion2_0">
-                    New features of version 2.0</h3>
+                    New features of version 2.0 [<a href="#Publications">2</a>]</h3>
                 <div>
                     <h5>
                         Iterator</h5>
@@ -390,30 +379,28 @@
                         To specify a <i>BestModel Selector</i> we have to extend the class <code>BestModelSelector</code>:</p>
                     <pre class="fragment">
     <span class="keyword">class</span> BestModelSelector {
-    <span
-                        class="keyword">public</span>:
+    <span class="keyword">public</span>:
         BestModelSelector(<span class="keywordtype">std::string</span> name) : name(name) { }
 </pre>
                     <p>
                         And we have to override the public virtual function <code>getBestModel</code>:</p>
                     <pre class="fragment">
     <span class="keyword">virtual</span> <span class="keywordtype">void</span> getBestModel(ActionPluginCtxData::BestModelsContainer::const_iterator&amp;,
-                              <span
-                        class="keywordtype">const</span> ActionPluginCtxData::BestModelsContainer&amp;)
+                              <span class="keywordtype">const</span> ActionPluginCtxData::BestModelsContainer&amp;)
 </pre>
                     <p>
                         In order to integrate one or more <i>BestModel Selector</i> in the interface framework,
                         the Addon author needs to override the method <code>getAllBestModelSelectors</code>:</p>
                     <pre class="fragment">
     <span class="keyword">virtual</span> <span class="keywordtype">std::vector&lt;BestModelSelectorPtr&gt;</span> getAllBestModelSelectors() <span
-                        class="keywordtype">const</span>
+        class="keywordtype">const</span>
 </pre>
                     <p>
                         With something like:</p>
                     <pre class="fragment">
     std::vector&lt;BestModelSelectorPtr&gt; allBestModelSelectors;
    
-<span class="keywordflow">return</span> allBestModelSelectors;
+    <span class="keywordflow">return</span> allBestModelSelectors;
 </pre>
                     <br />
                     <p>
@@ -430,31 +417,29 @@
                         To specify a <i>Execution Schedule Builder</i> we have to extend the class <code>ExecutionScheduleBuilder</code>:</p>
                     <pre class="fragment">
     <span class="keyword">class</span> ExecutionScheduleBuilder {
-    <span
-                        class="keyword">public</span>:
+    <span class="keyword">public</span>:
         ExecutionScheduleBuilder(<span class="keywordtype">std::string</span> name) : name(name) { }
 </pre>
                     <p>
                         And we have to override the public virtual function <code>rewrite</code>:</p>
                     <pre class="fragment">
     <span class="keyword">virtual</span> <span class="keywordtype">void</span> rewrite(<span
-                        class="keywordtype">const</span> std::multimap&lt;int, Tuple&gt; &amp;,
-                         std::list&lt; std::set&lt;Tuple&gt; &gt; &amp;, <span
-                            class="keywordtype">const</span> InterpretationConstPtr)
+        class="keywordtype">const</span> std::multimap&lt;int, Tuple&gt; &amp;,
+                         std::list&lt; std::set&lt;Tuple&gt; &gt; &amp;, <span class="keywordtype">const</span> InterpretationConstPtr)
 </pre>
                     <p>
                         In order to integrate one or more <i>Execution Schedule Builder</i> in the interface
                         framework, the Addon author needs to override the method <code>getAllExecutionScheduleBuilders</code>:</p>
                     <pre class="fragment">
     <span class="keyword">virtual</span> <span class="keywordtype">std::vector&lt;ExecutionScheduleBuilderPtr&gt;</span> getAllExecutionScheduleBuilders() <span
-                        class="keywordtype">const</span>
+        class="keywordtype">const</span>
 </pre>
                     <p>
                         With something like:</p>
                     <pre class="fragment">
     std::vector&lt;ExecutionScheduleBuilderPtr&gt; allExecutionScheduleBuilders;
    
-<span class="keywordflow">return</span> allExecutionScheduleBuilders;
+    <span class="keywordflow">return</span> allExecutionScheduleBuilders;
 </pre>
                     <br />
                     <p>
@@ -521,14 +506,20 @@
                 Publications</h2>
             <hr />
             <div>
-                [1] S. Basol, O. Erdem, M. Fink, G. Ianni, &quot;Hex Programs with Action Atoms&quot;,
-                Twenty-sixth International Conference on Logic Programming (ICLP 2010), submitted.
-                <a href="actionplugin/files/acthex.pdf">[PDF]</a>
+                [1] S. Basol, O. Erdem, M. Fink, G. Ianni. "HEX Programs with Action Atoms." In
+                ICLP (Technical Communications), pp. 24-33. 2010. <a href="actionplugin/files/acthex.pdf">
+                    [PDF]</a>
+            </div>
+            <div>
+                [2] M. Fink, S. Germano, G. Ianni, C. Redl, P. Schüller. "ActHEX: Implementing HEX
+                Programs with Action Atoms." In Logic Programming and Nonmonotonic Reasoning, pp.
+                317-322. Springer Berlin Heidelberg, 2013. <a href="actionplugin/files/acthex2.pdf">
+                    [PDF]</a>
             </div>
             <br />
             <br />
             <p id="pageinfo" lang="en" dir="ltr" style="color: gray" xml:lang="en">
-                Last edited 2013-04-23</p>
+                Last edited 2013-09-27</p>
         </div>
     </div>
 </body>
