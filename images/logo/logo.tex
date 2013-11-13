@@ -1,0 +1,299 @@
+ \documentclass{article}
+\usepackage[table]{xcolor}
+\usepackage[english]{babel}
+
+\usepackage{tikz}
+\pgfrealjobname{logo}
+\usetikzlibrary{shapes,arrows,backgrounds,chains,%
+	matrix,patterns,arrows,decorations.pathmorphing,decorations.pathreplacing,%
+	positioning,fit,calc,decorations.text,shadows,fadings,shadows.blur,decorations.markings%
+}
+
+% Generate the logos by calling:
+%	for j in $(egrep 'beginpgfgraphicnamed\{[^\{\}]*\}' logo.tex | tr \{\} ' ' | awk '{print $2;}'); do pdflatex --jobname=$j logo.tex ; mv $j.pdf logos/ ; done
+
+\newif\ifshade\shadetrue
+\newif\ifcolor\colortrue
+\newif\ifshowgroup\showgrouptrue
+\newif\ifshowinstitute\showinstitutetrue
+\newif\ifshowuniversity\showuniversitytrue
+
+\begin{document}
+
+	\newlength{\textyshift}
+	\newcommand{\dlvhexlogo}{
+		\newdimen\R
+		\R=0.6cm
+
+		\ifshade
+			\ifcolor
+				\tikzstyle{hexagon} = [
+					shade,
+					blur shadow={shadow blur steps=10},
+					top color=white,
+					bottom color=blue!10
+				];
+				\tikzstyle{database} = [
+					draw,
+					shade,
+					blur shadow={shadow blur steps=10},
+					top color=white,
+					bottom color=green!10,
+					shape border rotate=90,
+				];
+				\tikzstyle{doc} = [
+					tape,
+					draw,
+					very thin,
+					solid,
+					shade,
+					top color=white,
+					bottom color=red!10,
+					minimum width=\R,
+					text height=\R/5,
+					inner ysep=0mm,
+				];
+			\else
+				\tikzstyle{hexagon} = [
+					shade,
+					blur shadow={shadow blur steps=10},
+					top color=white,
+					bottom color=black!10
+				];
+				\tikzstyle{database} = [
+					draw,
+					shade,
+					blur shadow={shadow blur steps=10},
+					top color=white,
+					bottom color=black!10,
+					shape border rotate=90
+				];
+				\tikzstyle{doc} = [
+					tape,
+					draw,
+					very thin,
+					solid,
+					shade,
+					top color=white,
+					bottom color=black!10,
+					minimum width=\R,
+					text height=\R/5,
+					inner ysep=0mm,
+				];
+			\fi
+		\else
+			\tikzstyle{hexagon} = [
+			];
+			\tikzstyle{database} = [
+				draw,
+				shape border rotate=90,
+			];
+			\tikzstyle{doc} = [
+				tape,
+				draw,
+				fill=white,
+				very thin,
+				solid,
+				minimum width=\R,
+				text height=\R/5,
+				inner ysep=0mm,
+			];
+		\fi
+
+		\tikzstyle{arrow} = [
+			line width=0.2mm,
+			dotted,
+			color=black,
+			>=stealth'
+		];
+
+		\draw [style=hexagon] (240:\R) -- (300:\R) -- (360:\R) -- (60:\R) -- (120:\R) -- (180:\R) -- (240:\R) -- (300:\R) node (hex) {} ;
+
+		\node [cylinder, aspect=.5, minimum width=2*\R, minimum height=\R] (data) [xshift=2cm, yshift=-\R] {} ;
+		\node [cylinder, aspect=.5, style=database, minimum width=2*\R, minimum height=\R] (data) [xshift=2cm, yshift=-0.7cm] {} ;
+		
+		\path [<->, style=arrow] (0,0) edge [bend right] node [style=doc] {} ($(data)$);
+		
+		\node (text) [above of=data] {\resizebox{1.3cm}{!}{\textsc{dlvhex}}};
+
+		\setlength{\textyshift}{-1.5mm}
+		\ifshowgroup
+			\node (text2) [above of=data, yshift=\the\textyshift] {\resizebox{1.3cm}{!}{\textsc{Knowledge-based Systems Group}}};
+			\addtolength{\textyshift}{-0.7mm}
+		\fi
+		\ifshowinstitute
+			\node (text2) [above of=data, yshift=\the\textyshift] {\resizebox{1.3cm}{!}{\textsc{Institute of Information Systems}}};
+			\addtolength{\textyshift}{-0.7mm}
+		\fi
+		\ifshowuniversity
+			\node (text2) [above of=data, yshift=\the\textyshift] {\resizebox{1.3cm}{!}{\textsc{Vienna University of Technology}}};
+			\addtolength{\textyshift}{-0.7mm}
+		\fi
+	}
+
+	\beginpgfgraphicnamed{logo-color-dlvhex}
+	\begin{tikzpicture}
+		\shadetrue
+		\colortrue
+		\showgroupfalse
+		\showinstitutefalse
+		\showuniversityfalse
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-color-dlvhex-university}
+	\begin{tikzpicture}
+		\shadetrue
+		\colortrue
+		\showgroupfalse
+		\showinstitutefalse
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-color-dlvhex-group-university}
+	\begin{tikzpicture}
+		\shadetrue
+		\colortrue
+		\showgrouptrue
+		\showinstitutefalse
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-color-dlvhex-institute-university}
+	\begin{tikzpicture}
+		\shadetrue
+		\colortrue
+		\showgroupfalse
+		\showinstitutetrue
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-color-dlvhex-group-institute-university}
+	\begin{tikzpicture}
+		\shadetrue
+		\colortrue
+		\showgrouptrue
+		\showinstitutetrue
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-gradient-dlvhex}
+	\begin{tikzpicture}
+		\shadetrue
+		\colorfalse
+		\showgroupfalse
+		\showinstitutefalse
+		\showuniversityfalse
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-gradient-dlvhex-university}
+	\begin{tikzpicture}
+		\shadetrue
+		\colorfalse
+		\showgroupfalse
+		\showinstitutefalse
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-gradient-dlvhex-group-university}
+	\begin{tikzpicture}
+		\shadetrue
+		\colorfalse
+		\showgrouptrue
+		\showinstitutefalse
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-gradient-dlvhex-institute-university}
+	\begin{tikzpicture}
+		\shadetrue
+		\colorfalse
+		\showgroupfalse
+		\showinstitutetrue
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-gradient-dlvhex-group-institute-university}
+	\begin{tikzpicture}
+		\shadetrue
+		\colorfalse
+		\showgrouptrue
+		\showinstitutetrue
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-simple-dlvhex}
+	\begin{tikzpicture}
+		\shadefalse
+		\colorfalse
+		\showgroupfalse
+		\showinstitutefalse
+		\showuniversityfalse
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-simple-dlvhex-university}
+	\begin{tikzpicture}
+		\shadefalse
+		\colorfalse
+		\showgroupfalse
+		\showinstitutefalse
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-simple-dlvhex-group-university}
+	\begin{tikzpicture}
+		\shadefalse
+		\colorfalse
+		\showgrouptrue
+		\showinstitutefalse
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-simple-dlvhex-institute-university}
+	\begin{tikzpicture}
+		\shadefalse
+		\colorfalse
+		\showgroupfalse
+		\showinstitutetrue
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-simple-dlvhex-group-institute-university}
+	\begin{tikzpicture}
+		\shadefalse
+		\colorfalse
+		\showgrouptrue
+		\showinstitutetrue
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+\end{document} 
