@@ -1,3 +1,7 @@
+{#PATH_TO_ROOT#:
+../
+:#PATH_TO_ROOT#}
+
 #include "header.wml"
 #include "title.wml"
 #include "menu.wml"
