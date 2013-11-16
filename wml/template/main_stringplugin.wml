@@ -1,0 +1,105 @@
+	<h2>The String Plugin</h2>
+
+	<p>
+	  The String Plugin provides atoms for string operations and manipulations.
+	</p>
+
+	<p>
+	  <code>&amp;concat</code> takes two strings as input and returns their concatenation:
+	</p>
+
+	<div class="synopsis">
+	  <div class="atomusage">&amp;concat[A,B](X)</div>
+	  <div>Input:</div>
+	  <div class="param">A</div>
+	  <div class="paramtext">string</div>
+	  <div class="param">B</div>
+	  <div class="paramtext">string</div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param">X</div>
+	  <div class="paramtext">Concatenation of A and B</div>
+	  <div style="clear: both;"></div>
+	</div>
+
+	<p>
+	  Example:
+	</p>
+
+	<pre>
+fullstring(Full) :- &amp;concat[P,F](Full), stringpair(P,F).</pre>
+
+	<p>
+	  <code>&amp;strstr</code> evaluates to <code>true</code> if the second input argument is a (case-insensitive) substring of the first:
+	</p>
+
+	<div class="synopsis">
+	  <div class="atomusage">&amp;strstr[A,B]</div>
+	  <div>Input:</div>
+	  <div class="param">A</div>
+	  <div class="paramtext">string</div>
+	  <div class="param">B</div>
+	  <div class="paramtext">string</div>
+	  <div style="clear: both;"></div>
+	</div>
+
+	<p>
+	  Example:
+	</p>
+
+	<pre>
+austrian_phone(P) :- &amp;strstr[P,"+43"], phonenumber(P).</pre>
+
+	<p>
+	  <code>&amp;split</code> splits a string by a specified delimiter:
+	</p>
+
+	<div class="synopsis">
+	  <div class="atomusage">&amp;split[A,D,N](X)</div>
+	  <div>Input:</div>
+	  <div class="param">A</div>
+	  <div class="paramtext">string to split</div>
+	  <div class="param">D</div>
+	  <div class="paramtext">delimiter</div>
+	  <div class="param">N</div>
+	  <div class="paramtext">index of item to return (starting from 0)</div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param">X</div>
+	  <div class="paramtext">N<sup>th</sup> substring of A, split by D</div>
+	  <div style="clear: both;"></div>
+	</div>
+
+	<p>
+	  Example:
+	</p>
+
+	<pre>
+month(M) :- &amp;split["2006-04-26","-",1](M).</pre>
+
+	<p>
+	  <code>&amp;sha1sum</code> calculates the SHA1 sum of a string:
+	</p>
+
+	<div class="synopsis">
+	  <div class="atomusage">&amp;sha1sum[A](X)</div>
+	  <div>Input:</div>
+	  <div class="param">A</div>
+	  <div class="paramtext">string</div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param">X</div>
+	  <div class="paramtext">SHA1 sum of A</div>
+	  <div style="clear: both;"></div>
+	</div>
+
+	<p>
+	  Example:
+	</p>
+
+	<pre>
+owner(ID) :- &amp;sha1sum[X](ID), mailbox(X).</pre>
+
+	<div style="border-top: 1px solid #999; background-color: inherit; color: #999; font-size: 8.5pt;">
+	  <p>$Id$</p>
+	</div>

@@ -1,39 +1,51 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>The Robot Action Addon</title>
-    <link rel="stylesheet" type="text/css" media="all" href="../css/reset.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../css/text.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../css/960.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../css/style.css" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" media="all" href="css/addon.css" />
-</head>
-<body>
+  <head>
+    <title>dlvhex</title>
+    <link rel="stylesheet" type="text/css" media="all" href="
+../
+css/reset.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="
+../
+css/text.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="
+../
+css/960.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="
+../
+css/style.css"></link>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  </head>
+  <body>
     <!-- Title -->
     <div class="container_12">
-        <div class="grid_12" id="title">
-            <h1>
-                dlvhex</h1>
-        </div>
+	<div class="grid_12" id="title">
+	      <h1>dlvhex
+        </h1>
+	</div>
     </div>
     <!-- Menu -->
     <div class="container_12">
-        <div class="grid_12" id="menu">
-            <a href="../index.html">About</a> <a href="../people.html">People</a> <a href="../download.html">
-                Download</a> <a href="../support.html">Support</a> <a href="../documentation.html">Documentation</a>
-            <a href="http://asptut.gibbi.com/">Demo &amp; ASP Tutorial</a> <a href="../related.html">
-                Related Work</a> <a href="../applications.html">Applications</a> <a href="../literature.html">
-                    Literature</a>
-        </div>
+      <div class="grid_12" id="menu">
+	<a href="index.html">About</a>
+	<a href="people.html">People</a>
+	<a href="news.html">News</a>
+	<a href="download.html">Download</a>
+	<a href="support.html">Support</a>
+	<a href="documentation.html">Documentation</a>
+	<a href="http://asptut.gibbi.com/" target="_blank">Demo &amp; ASP Tutorial</a>
+	<a href="related.html">Related Work</a>
+	<a href="applications.html">Applications</a>
+	<a href="literature.html">Literature</a>
+      </div>
     </div>
+    <!-- Information -->
     <div class="container_12">
-        <div class="grid_9">
+      <div class="grid_9">
             <h2>
                 <a class="a_title" href="../actionplugin.html">The Action Plugin and Action Addon Framework</a></h2>
-            <br />
+            <br>
             <h3>
                 The Robot Action Addon</h3>
             <p>
@@ -42,11 +54,11 @@
                 the evenings, depending on the amount of fuel it has, it will either patrol both
                 legs of the corridor or just one leg of it (left or right) and after that it will
                 turn the alarm on. In the mornings, it will turn the alarm off. The robot action
-                addon provides a single atom <em>#robot</em>. It takes two inputs where former is
+                addon provides a single atom <em>&#35;robot</em>. It takes two inputs where former is
                 the action name and the latter is the option related to action:</p>
             <div class="synopsis">
                 <div class="atomusage">
-                    <em>#robot[A, AO]{O,P}</em>
+                    <em>&#35;robot[A, AO]{O,P}</em>
                 </div>
                 <div>
                     Input:
@@ -63,10 +75,10 @@
                 <div class="paramtext">
                     option related to given action by <em>A</em>
                 </div>
-                <br style="clear: both;" />
+                <br style="clear: both;">
             </div>
             <p>
-                <b><i>#robot</i></b> action atom will allow user to control a toy robot simulation
+                <b><i>&#35;robot</i></b> action atom will allow user to control a toy robot simulation
                 on the shell. Action <em>move</em> can be used with one of the three options: <em>left</em>,
                 <em>right</em> and <em>all</em> where as action <em>turnAlarm</em> can be used one
                 of the two options: <em>on</em> and <em>off</em>. By specifying the action type
@@ -80,17 +92,17 @@
                 Example:</p>
             <div class="fragment">
                 <pre class="fragment">
- #robot[move, all]{c, 1} :- fuel(full).
- #robot[move, right]{c, 1} v #robot[move, left] {b, 1} :- not fuel(full).
- #robot[turnAlarm, on]{b, 2} :- night.
+ &#35;robot[move, all]{c, 1} :- fuel(full).
+ &#35;robot[move, right]{c, 1} v &#35;robot[move, left] {b, 1} :- not fuel(full).
+ &#35;robot[turnAlarm, on]{b, 2} :- night.
 </pre>
             </div>
-            <br />
+            <br>
             <p>
                 Note that <em>O</em> (resp. <em>P</em>) are option (resp. precedence) that appears
                 in action atoms. Additionally, mentioned action atoms can be combined with weight
                 and and level.</p>
-            <br />
+            <br>
             In the latest version we added an External Atom:
             <div class="synopsis">
                 <div class="atomusage">
@@ -105,7 +117,7 @@
                 <div class="paramtext">
                     can assume only this value
                 </div>
-                <br style="clear: both;" />
+                <br style="clear: both;">
                 <div>
                     Output:
                 </div>
@@ -115,20 +127,81 @@
                 <div class="paramtext">
                     the level of fuel, may assume either the value low or the value high.
                 </div>
-                <br style="clear: both;" />
+                <br style="clear: both;">
             </div>
-            <br />
+            <br>
             <p>
                 You can check it out its source <a href="https://github.com/hexhex/actionplugin-addons/tree/master/robot">
                     here</a>.</p>
             <p>
                 For other action addons return to the section <a href="../actionplugin.html#ActionAddons">
                     Action Addons</a> of The Action Plugin and Action Addon Framework.</p>
-            <br />
-            <br />
+            <br>
+            <br>
             <p id="pageinfo" lang="en" dir="ltr" style="color: gray" xml:lang="en">
                 Last edited 2013-04-23</p>
-        </div>
-    </div>
-</body>
+      </div>
+      <div class="grid_3">
+  <p>&nbsp;</p>
+  <p>
+    <img width="100%" height="100%" src="
+../
+images/logo_whitebg.png" alt="logo" id="logo">
+  </p>
+  <p>
+	<div style="font-size: 14pt"><label for="q">Search this website</label></div>
+	<form action="http://www.google.com/cse" id="cse-search-box">
+	  <div>
+	    <input name="cx" id="cx" value="010363983165505105153:4bhl-l5ixd4" type="hidden" alt="Search this website">
+	    <input name="ie" id="ie" value="UTF-8" type="hidden" alt="Search this website">
+	    <input style="background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" name="q" id="q" size="19" type="text">
+	    <input name="sa" id="sa" value="Search" type="submit">
+	  </div>
+	</form>
+  </p>
+	<p>
+	  <a href="https://github.com/hexhex/">dlvhex source code @ github.com</a><br>
+	  <!-- a href="https://sourceforge.net/projects/dlvhex/">dlvhex: Sourceforge project</a><br/ -->
+<!-- <a href="http://www.polleres.net/dlvhex-sparql">SPARQL Plugin</a><br> -->
+<a href="
+../
+actionplugin.html">Action Plugin</a><br>
+<a href="
+../
+decisiondiagramsplugin.html">DecisionDiagrams Plugin</a><br>
+<a href="
+../
+dlplugin.html">Description Logics Plugin</a><br>
+<a href="
+../
+mergingplugin.html">MELD: Belief Merging Plugin</a><br>
+<a href="
+../
+../mcsie" target="_blank">MCSIE Plugin</a><br>
+<a href="
+../
+stringplugin.html">String Plugin</a><br>
+<a href="
+../
+https://sourceforge.net/projects/dlvhex-semweb/">dlvhex-semweb Project</a><br>
+	  <a href="doap.rdf">Description-Of-A-Project</a>
+	</p>
+  <p>
+    <span style="font-size: 14pt">Documentation:</span><br>
+    <a href="https://github.com/hexhex/core/blob/master/README">README</a><br>
+    <a href="doc2x">doxygen</a><br>
+    <a href="doc2x/group__pluginframework.html">Writing Plugins</a>
+    <!--
+    <a href="doc1x">doxygen version 1.X</a><br>
+    <a href="doc1x/group__pluginframework.html">Writing Plugins 1.X</a><br>
+    -->
+  </p>
+      </div> <!-- grid_3 -->
+    </div> <!-- container_12 -->
+  </body>
 </html>
+<!--
+        Local Variables:
+        mode: xml
+        End:
+-->

@@ -1,50 +1,62 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>The Sudoku Action Addon</title>
-    <link rel="stylesheet" type="text/css" media="all" href="../css/reset.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../css/text.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../css/960.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../css/style.css" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" media="all" href="css/addon.css" />
-</head>
-<body>
+  <head>
+    <title>dlvhex</title>
+    <link rel="stylesheet" type="text/css" media="all" href="
+../
+css/reset.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="
+../
+css/text.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="
+../
+css/960.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="
+../
+css/style.css"></link>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  </head>
+  <body>
     <!-- Title -->
     <div class="container_12">
-        <div class="grid_12" id="title">
-            <h1>
-                dlvhex</h1>
-        </div>
+	<div class="grid_12" id="title">
+	      <h1>dlvhex
+        </h1>
+	</div>
     </div>
     <!-- Menu -->
     <div class="container_12">
-        <div class="grid_12" id="menu">
-            <a href="../index.html">About</a> <a href="../people.html">People</a> <a href="../download.html">
-                Download</a> <a href="../support.html">Support</a> <a href="../documentation.html">Documentation</a>
-            <a href="http://asptut.gibbi.com/">Demo &amp; ASP Tutorial</a> <a href="../related.html">
-                Related Work</a> <a href="../applications.html">Applications</a> <a href="../literature.html">
-                    Literature</a>
-        </div>
+      <div class="grid_12" id="menu">
+	<a href="index.html">About</a>
+	<a href="people.html">People</a>
+	<a href="news.html">News</a>
+	<a href="download.html">Download</a>
+	<a href="support.html">Support</a>
+	<a href="documentation.html">Documentation</a>
+	<a href="http://asptut.gibbi.com/" target="_blank">Demo &amp; ASP Tutorial</a>
+	<a href="related.html">Related Work</a>
+	<a href="applications.html">Applications</a>
+	<a href="literature.html">Literature</a>
+      </div>
     </div>
+    <!-- Information -->
     <div class="container_12">
-        <div class="grid_9">
+      <div class="grid_9">
             <h2>
                 <a class="a_title" href="../actionplugin.html">The Action Plugin and Action Addon Framework</a></h2>
-            <br />
+            <br>
             <h3>
                 The Sudoku Action Addon</h3>
             <p>
                 The Plugin Sudoku allows to store, in an advanced way, a sudoku and to perform operations
                 on it. Allows to enter in each cell the &quot;correct&quot; value and also values
                 ​​&quot;not candidate&quot; (ie, the values ​​that the cell can not take). The Sudoku
-                Action Addon provides a single atom <em>#sudoku</em>. It takes four inputs where
+                Action Addon provides a single atom <em>&#35;sudoku</em>. It takes four inputs where
                 former is the action name and the others are the options related to action:</p>
             <div class="synopsis">
                 <div class="atomusage">
-                    <em>#sudoku[A, AO1, AO2, AO3]{O,P}[W:L]</em>
+                    <em>&#35;sudoku[A, AO1, AO2, AO3]{O,P}[W &#58; L]</em>
                 </div>
                 <div>
                     Input:
@@ -62,49 +74,49 @@
                 <div class="paramtext">
                     option related to the type of action <em>A</em>
                 </div>
-                <br style="clear: both;" />
+                <br style="clear: both;">
                 <div class="param">
                     AO2
                 </div>
                 <div class="paramtext">
                     option related to the type of action <em>A</em>
                 </div>
-                <br style="clear: both;" />
+                <br style="clear: both;">
                 <div class="param">
                     AO3
                 </div>
                 <div class="paramtext">
                     option related to the type of action <em>A</em>
                 </div>
-                <br style="clear: both;" />
+                <br style="clear: both;">
             </div>
             <p>
-                The Atom Action <b><i>#sudoku</i></b> allows to enter numbers in the sudoku, to
+                The Atom Action <b><i>&#35;sudoku</i></b> allows to enter numbers in the sudoku, to
                 print it on standard output or on a text file, to enter values ​​for &quot;not candidate&quot;
-                and to print it on standard output with all the values ​​that each cell can take.<br />
-                <br />
+                and to print it on standard output with all the values ​​that each cell can take.<br>
+                <br>
                 The Action <em>setDimension</em> allows to specify the size of the grid; every time
                 this action is executed, if the specified size are different from the current one,
                 the grid is destroyed and then recreated; the parameters AO1 and AO2 specify respectively
-                the number of rows and the number columns.<br />
+                the number of rows and the number columns.<br>
                 The Action <em>insertNumber</em> allows to enter a value in a certain position of
                 the grid; the AO1 parameter indicates the row in which to insert the number, the
                 parameter AO2 indicates the column in which to insert the number, AO3 parameter
-                indicates the number to be inserted.<br />
+                indicates the number to be inserted.<br>
                 The Action <em>print</em> allows to print to standard output the sudoku; the parameters
-                are not used.<br />
+                are not used.<br>
                 The Action <em>writeToFile</em> allows to print the sudoku file, the file is written
                 in &quot;append&quot; mode in order to analyze what were the steps that led to the
                 solution; AO1 parameter is used to specify the name of the file to write to, the
-                parameters AO2 and AO3 are not used.<br />
+                parameters AO2 and AO3 are not used.<br>
                 The Action <em>insertNumberNotCandidate</em> allows to enter a value &quot;not candidate&quot;
                 in a certain position of the grid; the AO1 parameter indicates the row in which
                 to insert the number, the parameter AO2 indicates the column in which to insert
-                the number, AO3 parameter indicates the number to be inserted.<br />
+                the number, AO3 parameter indicates the number to be inserted.<br>
                 The Action <em>printWithThePossibilities</em> allows to print to standard output
                 the sudoku with all the values ​​that each cell can take; the parameters are not
                 used.</p>
-            <br />
+            <br>
             The Sudoku Action Addon provides some External Atoms:
             <div class="synopsis">
                 <div class="atomusage">
@@ -119,14 +131,14 @@
                 <div class="paramtext">
                     row
                 </div>
-                <br style="clear: both;" />
+                <br style="clear: both;">
                 <div class="param">
                     C
                 </div>
                 <div class="paramtext">
                     column
                 </div>
-                <br style="clear: both;" />
+                <br style="clear: both;">
                 <div>
                     Output:
                 </div>
@@ -136,7 +148,7 @@
                 <div class="paramtext">
                     the number that is in the cell (R,C).
                 </div>
-                <br style="clear: both;" />
+                <br style="clear: both;">
             </div>
             <div class="synopsis">
                 <div class="atomusage">
@@ -159,14 +171,14 @@
                 <div class="paramtext">
                     row
                 </div>
-                <br style="clear: both;" />
+                <br style="clear: both;">
                 <div class="param">
                     C
                 </div>
                 <div class="paramtext">
                     column
                 </div>
-                <br style="clear: both;" />
+                <br style="clear: both;">
                 <div>
                     Output:
                 </div>
@@ -176,16 +188,16 @@
                 <div class="paramtext">
                     the numbers &quot;not candidate&quot; in the cell (R,C).
                 </div>
-                <br style="clear: both;" />
+                <br style="clear: both;">
             </div>
-            <br />
+            <br>
             <p>
                 You can check it out its source <a href="https://github.com/hexhex/actionplugin-addons/tree/master/Sudoku_2x">
                     here</a>.</p>
             <p>
                 For other action addons return to the section <a href="../actionplugin.html#ActionAddons">
                     Action Addons</a> of The Action Plugin and Action Addon Framework.</p>
-            <br />
+            <br>
             <h3 id="sbench">
                 Some experimental results</h3>
             <p>
@@ -197,8 +209,8 @@
                 current resolution progress. Our ActHEX-based iterative player allows to solve Sudoku
                 tables as large as 81 X 81, which are far out of the performance reach of an ASP-based
                 system using a pure guess &amp; check strategy.</p>
-            <br />
-            <table style="border: 2px solid black;">
+            <br>
+            <table style="border: 2px solid black;" summary="">
                 <tr>
                     <th>
                     </th>
@@ -416,7 +428,7 @@
                 whenever present, data in parentheses account for finished instances out of the
                 total available in a given category.
             </p>
-            <br />
+            <br>
             <p>
                 The above table shows our experiments on a selected number of Sudoku Tables (<a href='http://www.menneske.no/sudoku/eng/'>Source</a>),
                 of increasing size, ranging from 16 X 16 (sub-blocks of size 4) to 81 X 81 (sub-blocks
@@ -453,7 +465,7 @@
                 space. Outcomes show that the implementation of deterministic inferences comes at
                 a performance overhead which is worth its price when Sudoku tables reach a fairly
                 large size.</p>
-            <br />
+            <br>
             <p>
                 <a name="paper1" id="paper1"></a>[1] Calimeri, F., Ianni, G., Perri, S., Zangari,
                 J.: The eternal battle between determinism and nondeterminism: preliminary studies
@@ -463,10 +475,71 @@
             <p>
                 <a name="sudokubook" id="sudokubook"></a>[2] D. Berthier. The Hidden Logic of Sudoku
                 (Second Edition). December 2007. ISBN 9781847534729</p>
-            <br />
+            <br>
             <p id="pageinfo" lang="en" dir="ltr" style="color: gray" xml:lang="en">
                 Last edited 2013-04-23</p>
-        </div>
-    </div>
-</body>
+      </div>
+      <div class="grid_3">
+  <p>&nbsp;</p>
+  <p>
+    <img width="100%" height="100%" src="
+../
+images/logo_whitebg.png" alt="logo" id="logo">
+  </p>
+  <p>
+	<div style="font-size: 14pt"><label for="q">Search this website</label></div>
+	<form action="http://www.google.com/cse" id="cse-search-box">
+	  <div>
+	    <input name="cx" id="cx" value="010363983165505105153:4bhl-l5ixd4" type="hidden" alt="Search this website">
+	    <input name="ie" id="ie" value="UTF-8" type="hidden" alt="Search this website">
+	    <input style="background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" name="q" id="q" size="19" type="text">
+	    <input name="sa" id="sa" value="Search" type="submit">
+	  </div>
+	</form>
+  </p>
+	<p>
+	  <a href="https://github.com/hexhex/">dlvhex source code @ github.com</a><br>
+	  <!-- a href="https://sourceforge.net/projects/dlvhex/">dlvhex: Sourceforge project</a><br/ -->
+<!-- <a href="http://www.polleres.net/dlvhex-sparql">SPARQL Plugin</a><br> -->
+<a href="
+../
+actionplugin.html">Action Plugin</a><br>
+<a href="
+../
+decisiondiagramsplugin.html">DecisionDiagrams Plugin</a><br>
+<a href="
+../
+dlplugin.html">Description Logics Plugin</a><br>
+<a href="
+../
+mergingplugin.html">MELD: Belief Merging Plugin</a><br>
+<a href="
+../
+../mcsie" target="_blank">MCSIE Plugin</a><br>
+<a href="
+../
+stringplugin.html">String Plugin</a><br>
+<a href="
+../
+https://sourceforge.net/projects/dlvhex-semweb/">dlvhex-semweb Project</a><br>
+	  <a href="doap.rdf">Description-Of-A-Project</a>
+	</p>
+  <p>
+    <span style="font-size: 14pt">Documentation:</span><br>
+    <a href="https://github.com/hexhex/core/blob/master/README">README</a><br>
+    <a href="doc2x">doxygen</a><br>
+    <a href="doc2x/group__pluginframework.html">Writing Plugins</a>
+    <!--
+    <a href="doc1x">doxygen version 1.X</a><br>
+    <a href="doc1x/group__pluginframework.html">Writing Plugins 1.X</a><br>
+    -->
+  </p>
+      </div> <!-- grid_3 -->
+    </div> <!-- container_12 -->
+  </body>
 </html>
+<!--
+        Local Variables:
+        mode: xml
+        End:
+-->

@@ -1,61 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-    
   <head>
-    <title>The String Plugin</title>
-    <link rel="stylesheet" type="text/css" media="all" href="css/reset.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="css/text.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="css/960.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="css/style.css" />
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>dlvhex</title>
+    <link rel="stylesheet" type="text/css" media="all" href="css/reset.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="css/text.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="css/960.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="css/style.css"></link>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
   </head>
-    
   <body>
-
+    <!-- Title -->
     <div class="container_12">
-
-      <h1>dlvhex</h1>
-        
-      <div id="menu">
-	<a href="/research/systems/dlvhex/">About</a>
-	&nbsp;|&nbsp;
+	<div class="grid_12" id="title">
+	      <h1>dlvhex
+        </h1>
+	</div>
+    </div>
+    <!-- Menu -->
+    <div class="container_12">
+      <div class="grid_12" id="menu">
+	<a href="index.html">About</a>
 	<a href="people.html">People</a>
-	&nbsp;|&nbsp;
+	<a href="news.html">News</a>
 	<a href="download.html">Download</a>
-	&nbsp;|&nbsp;
 	<a href="support.html">Support</a>
-	&nbsp;|&nbsp;
 	<a href="documentation.html">Documentation</a>
-	&nbsp;|&nbsp;
-	<a href="experiments.html">Experiments</a>
-	&nbsp;|&nbsp;
-	<a href="http://asptut.gibbi.com/">Demo &amp; ASP Tutorial</a>
-	&nbsp;|&nbsp;
+	<a href="http://asptut.gibbi.com/" target="_blank">Demo &amp; ASP Tutorial</a>
 	<a href="related.html">Related Work</a>
-	&nbsp;|&nbsp;
 	<a href="applications.html">Applications</a>
-	&nbsp;|&nbsp;
 	<a href="literature.html">Literature</a>
       </div>
-
     </div>
-
-
+    <!-- Information -->
     <div class="container_12">
-    
       <div class="grid_9">
-
 	<h2>The String Plugin</h2>
-
 	<p>
 	  The String Plugin provides atoms for string operations and manipulations.
 	</p>
-
 	<p>
 	  <code>&amp;concat</code> takes two strings as input and returns their concatenation:
 	</p>
-
 	<div class="synopsis">
 	  <div class="atomusage">&amp;concat[A,B](X)</div>
 	  <div>Input:</div>
@@ -69,18 +55,14 @@
 	  <div class="paramtext">Concatenation of A and B</div>
 	  <div style="clear: both;"></div>
 	</div>
-
 	<p>
 	  Example:
 	</p>
-
 	<pre>
 fullstring(Full) :- &amp;concat[P,F](Full), stringpair(P,F).</pre>
-
 	<p>
 	  <code>&amp;strstr</code> evaluates to <code>true</code> if the second input argument is a (case-insensitive) substring of the first:
 	</p>
-
 	<div class="synopsis">
 	  <div class="atomusage">&amp;strstr[A,B]</div>
 	  <div>Input:</div>
@@ -90,18 +72,14 @@ fullstring(Full) :- &amp;concat[P,F](Full), stringpair(P,F).</pre>
 	  <div class="paramtext">string</div>
 	  <div style="clear: both;"></div>
 	</div>
-
 	<p>
 	  Example:
 	</p>
-
 	<pre>
 austrian_phone(P) :- &amp;strstr[P,"+43"], phonenumber(P).</pre>
-
 	<p>
 	  <code>&amp;split</code> splits a string by a specified delimiter:
 	</p>
-
 	<div class="synopsis">
 	  <div class="atomusage">&amp;split[A,D,N](X)</div>
 	  <div>Input:</div>
@@ -117,18 +95,14 @@ austrian_phone(P) :- &amp;strstr[P,"+43"], phonenumber(P).</pre>
 	  <div class="paramtext">N<sup>th</sup> substring of A, split by D</div>
 	  <div style="clear: both;"></div>
 	</div>
-
 	<p>
 	  Example:
 	</p>
-
 	<pre>
 month(M) :- &amp;split["2006-04-26","-",1](M).</pre>
-
 	<p>
 	  <code>&amp;sha1sum</code> calculates the SHA1 sum of a string:
 	</p>
-
 	<div class="synopsis">
 	  <div class="atomusage">&amp;sha1sum[A](X)</div>
 	  <div>Input:</div>
@@ -140,55 +114,60 @@ month(M) :- &amp;split["2006-04-26","-",1](M).</pre>
 	  <div class="paramtext">SHA1 sum of A</div>
 	  <div style="clear: both;"></div>
 	</div>
-
 	<p>
 	  Example:
 	</p>
-
 	<pre>
 owner(ID) :- &amp;sha1sum[X](ID), mailbox(X).</pre>
-
 	<div style="border-top: 1px solid #999; background-color: inherit; color: #999; font-size: 8.5pt;">
 	  <p>$Id$</p>
 	</div>
-	
       </div>
-      
       <div class="grid_3">
-
+  <p>&nbsp;</p>
+  <p>
+    <img width="100%" height="100%" src="images/logo_whitebg.png" alt="logo" id="logo">
+  </p>
+  <p>
 	<div style="font-size: 14pt"><label for="q">Search this website</label></div>
 	<form action="http://www.google.com/cse" id="cse-search-box">
 	  <div>
-	    <input name="cx" id="cx" value="010363983165505105153:4bhl-l5ixd4" type="hidden" alt="Search this website"/>
-	    <input name="ie" id="ie" value="UTF-8" type="hidden" alt="Search this website"/>
-	    <input style="background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" name="q" id="q" size="20" type="text"/>
-	    <input name="sa" id="sa" value="Search" type="submit"/>
+	    <input name="cx" id="cx" value="010363983165505105153:4bhl-l5ixd4" type="hidden" alt="Search this website">
+	    <input name="ie" id="ie" value="UTF-8" type="hidden" alt="Search this website">
+	    <input style="background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" name="q" id="q" size="19" type="text">
+	    <input name="sa" id="sa" value="Search" type="submit">
 	  </div>
 	</form>
-
-	<p>&nbsp;</p>
-		    
+  </p>
 	<p>
-	  <a href="gettingstarted.html">Getting Started</a><br/>
-	  <a href="hexlanguage.html">HEX-Programs</a>
+	  <a href="https://github.com/hexhex/">dlvhex source code @ github.com</a><br>
+	  <!-- a href="https://sourceforge.net/projects/dlvhex/">dlvhex: Sourceforge project</a><br/ -->
+<!-- <a href="http://www.polleres.net/dlvhex-sparql">SPARQL Plugin</a><br> -->
+<a href="actionplugin.html">Action Plugin</a><br>
+<a href="decisiondiagramsplugin.html">DecisionDiagrams Plugin</a><br>
+<a href="dlplugin.html">Description Logics Plugin</a><br>
+<a href="mergingplugin.html">MELD: Belief Merging Plugin</a><br>
+<a href="../mcsie" target="_blank">MCSIE Plugin</a><br>
+<a href="stringplugin.html">String Plugin</a><br>
+<a href="https://sourceforge.net/projects/dlvhex-semweb/">dlvhex-semweb Project</a><br>
+	  <a href="doap.rdf">Description-Of-A-Project</a>
 	</p>
-
-	<p>
-	  <a href="dlplugin.html">Description Logic Plugin</a><br/>
-	  <a href="rdfplugin.html">RDF Plugin</a><br/>
-	  <a href="stringplugin.html">String Plugin</a><br/>
-	  <a href="mergingplugin.html">Merging Plugin</a>
-	</p>
-
-	<p>
-	  <a href="doc">dlvhex Source Documentation</a><br/>
-	  <a href="doc/group__pluginframework.html">Writing Plugins</a>
-	</p>
-		    
-      </div>
-
-    </div>
-
+  <p>
+    <span style="font-size: 14pt">Documentation:</span><br>
+    <a href="https://github.com/hexhex/core/blob/master/README">README</a><br>
+    <a href="doc2x">doxygen</a><br>
+    <a href="doc2x/group__pluginframework.html">Writing Plugins</a>
+    <!--
+    <a href="doc1x">doxygen version 1.X</a><br>
+    <a href="doc1x/group__pluginframework.html">Writing Plugins 1.X</a><br>
+    -->
+  </p>
+      </div> <!-- grid_3 -->
+    </div> <!-- container_12 -->
   </body>
-    
 </html>
+<!--
+        Local Variables:
+        mode: xml
+        End:
+-->

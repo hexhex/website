@@ -1,15 +1,15 @@
-#include 'template/header.wml'
-#include 'template/title.wml'
-#include 'template/menu.wml'
+#include "header.wml"
+#include "title.wml"
+#include "menu.wml"
 
     <!-- Information -->
     <div class="container_12">
       <div class="grid_9">
-#include 'template/main_related.wml'
+#include "main_related.wml"
       </div>
 
       <div class="grid_3">
-#include 'template/sidebar.wml'
+#include "sidebar.wml"
       </div> <!-- grid_3 -->
     </div> <!-- container_12 -->
-#include 'template/footer.wml'
+#include "footer.wml"

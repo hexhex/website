@@ -2,7 +2,7 @@
   <p>&nbsp;</p>
 
   <p>
-    <img width="100%" height="100%" src="images/logo_whitebg.png" alt="logo" id="logo"/>
+    <img width="100%" height="100%" src="{#PATH_TO_ROOT#}images/logo_whitebg.png" alt="logo" id="logo"/>
   </p>
 
   <p>
@@ -20,11 +20,7 @@
 	<p>
 	  <a href="https://github.com/hexhex/">dlvhex source code @ github.com</a><br/>
 	  <!-- a href="https://sourceforge.net/projects/dlvhex/">dlvhex: Sourceforge project</a><br/ -->
-	  <a href="http://www.polleres.net/dlvhex-sparql">SPARQL plugin</a><br/>
-	  <a href="actionplugin.html">Action plugin</a><br/>
-	  <a href="mergingplugin.html">MELD: Belief Merging plugin</a><br/>
-    <a href="stringplugin.html">string plugin</a><br/>
-	  <a href="https://sourceforge.net/projects/dlvhex-semweb/">dlvhex-semweb project</a><br/>
+#include "plugins.wml"
 	  <a href="doap.rdf">Description-Of-A-Project</a>	  
 	</p>
 

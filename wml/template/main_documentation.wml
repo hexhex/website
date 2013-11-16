@@ -16,14 +16,10 @@
 
 	<p>
 	  We also guide you through the usage of some currently available plugins:
+	<div style="padding-left:20px">
+#include "plugins.wml"
+	</div>
 	</p>
-	<ul>
-	  <li><a href="dlplugin.html">The Description Logic Plugin</a></li>
-	  <li><a href="rdfplugin.html">The RDF Plugin</a></li>
-	  <li><a href="stringplugin.html">The String Plugin</a></li>
-	  <li><a href="mergingplugin.html">The Merging Plugin</a></li>
-	  <li><a href="http://www.kr.tuwien.ac.at/research/systems/mcsie/">The MCS-IE System</a></li>
-	</ul>
 	
 	<h3>For the Developer</h3>
 	<p>

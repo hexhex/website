@@ -6,10 +6,11 @@
 </p>
 
 <p>
-  <a href="http://www.kr.tuwien.ac.at/research/systems/semweblp/">description logic plugin</a><br/>
-  <a href="http://dlvhex-semweb.svn.sourceforge.net/viewvc/dlvhex-semweb">SPARQL-plugin</a><br/>
-  <a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/actionplugin.html">Action plugin</a><br/>
-  <a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/mergingplugin.html">MELD: Belief Merging plugin</a><br/>
-  <a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/stringplugin.html">string plugin</a><br/>
-  <a href="https://sourceforge.net/projects/dlvhex-semweb/">dlvhex-semweb: Sourceforge project</a><br/>
+  <a href="http://www.kr.tuwien.ac.at/research/systems/semweblp/">Description Logic Plugin</a><br/>
+<!--  <a href="http://dlvhex-semweb.svn.sourceforge.net/viewvc/dlvhex-semweb">SPARQL-Plugin</a><br/> -->
+  <a href="http://www.kr.tuwien.ac.at/research/systems/mcsie">MCSIE Plugin</a><br/>
+  <a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/actionplugin.html">Action Plugin</a><br/>
+  <a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/mergingplugin.html">MELD: Belief Merging Plugin</a><br/>
+  <a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex/stringplugin.html">String Plugin</a><br/>
+  <a href="https://sourceforge.net/projects/dlvhex-semweb/">dlvhex-semweb: Sourceforge Project</a><br/>
 </p>

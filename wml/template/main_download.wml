@@ -13,7 +13,7 @@
     and in detail in the <tt>ChangeLog</tt> files.
   </p>
 
-	<p class="caution">
+	<p class="info">
 	  The current release dlvhex 2.X (2013-08-19) is 2.2.0:
 	  <a href="http://sourceforge.net/projects/dlvhex/files/dlvhex/2.2.0/dlvhex-2.2.0.tar.gz/download">source tarball</a>
    (binary of this release is called <code>dlvhex2</code>).
@@ -80,6 +80,12 @@
 	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-wordnetplugin/1.7.0/dlvhex-wordnetplugin-1.7.0.tar.gz/download">1.7.0</a></td> 	
 	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-wordnetplugin/2.0.0/dlvhex-wordnetplugin-2.0.0.tar.gz/download">2.0.0</a></td> 	
 	      <td>Interface to the <a href="http://wordnet.princeton.edu/">Wordnet library</a>.</td>
+	    </tr>
+	    <tr>
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-xpathplugin/">XPath Plugin</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-xpathplugin/0.2.0/dlvhex-xpathplugin-0.2.0.tar.gz/download">1.7.0</a></td> 	
+	      <td>-</td>
+	      <td>Realizes XPath queries for XML documents.</td>
 	    </tr>
 	  </tbody>
 	</table>

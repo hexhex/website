@@ -1,0 +1,19 @@
+{#PATH_TO_ROOT#:
+../
+:#PATH_TO_ROOT#}
+
+#include "header.wml"
+#include "title.wml"
+#include "menu.wml"
+
+    <!-- Information -->
+    <div class="container_12">
+      <div class="grid_9">
+#include "main_ReversiAddon.wml"
+      </div>
+
+      <div class="grid_3">
+#include "sidebar.wml"
+      </div> <!-- grid_3 -->
+    </div> <!-- container_12 -->
+#include "footer.wml"

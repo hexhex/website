@@ -1,59 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-    
   <head>
-    <title>The Description Logic Plugin</title>
-    <link rel="stylesheet" type="text/css" media="all" href="css/reset.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="css/text.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="css/960.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="css/style.css" />
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>dlvhex</title>
+    <link rel="stylesheet" type="text/css" media="all" href="css/reset.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="css/text.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="css/960.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="css/style.css"></link>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
   </head>
-    
   <body>
-
+    <!-- Title -->
     <div class="container_12">
-
-      <h1>dlvhex</h1>
-        
-      <div id="menu">
-	<a href="/research/systems/dlvhex/">About</a>
-	&nbsp;|&nbsp;
+	<div class="grid_12" id="title">
+	      <h1>dlvhex
+        </h1>
+	</div>
+    </div>
+    <!-- Menu -->
+    <div class="container_12">
+      <div class="grid_12" id="menu">
+	<a href="index.html">About</a>
 	<a href="people.html">People</a>
-	&nbsp;|&nbsp;
+	<a href="news.html">News</a>
 	<a href="download.html">Download</a>
-	&nbsp;|&nbsp;
 	<a href="support.html">Support</a>
-	&nbsp;|&nbsp;
 	<a href="documentation.html">Documentation</a>
-	&nbsp;|&nbsp;
-	<a href="experiments.html">Experiments</a>
-	&nbsp;|&nbsp;
-	<a href="http://asptut.gibbi.com/">Demo &amp; ASP Tutorial</a>
-	&nbsp;|&nbsp;
+	<a href="http://asptut.gibbi.com/" target="_blank">Demo &amp; ASP Tutorial</a>
 	<a href="related.html">Related Work</a>
-	&nbsp;|&nbsp;
 	<a href="applications.html">Applications</a>
-	&nbsp;|&nbsp;
 	<a href="literature.html">Literature</a>
       </div>
-
     </div>
-
+    <!-- Information -->
     <div class="container_12">
-    
       <div class="grid_9">
-	
 	<h2>The Description Logic Plugin</h2>
-	
 	<p>
 	  The Description Logic Plugin interfaces OWL ontologies by
 	  using a description logic reasoner. It provides three atoms&mdash;two
 	  for retrieving concept resp. role members and one for
 	  testing the DL-KB for consistency.
 	</p>
-
 	<div class="synopsis">
 	  <div class="atomusage">&amp;dlC[KB,a,b,c,d,Q](X)</div>
 	  <div>Input:</div>
@@ -75,46 +63,35 @@
 	  <div class="paramtext">individuals of concept <code>Q</code></div>
 	  <div style="clear: both;"></div>
 	</div>
-
 	<p>
 	  This looks more difficult than it actually is. For a simple query, all you need is the first and the last input argument.
 	</p>
-
 	<pre>
 student(X) :- &amp;dlC["http://example.org/univ.owl",a,b,c,d,"student"](X).</pre>
-
         <p>
 	  Provided that <code>a</code>, <code>b</code>, <code>c</code>, and <code>d</code> do not occur elsewhere in the hex-program, this rule would do nothing else than putting all members of <code>student</code> into the predicate <code>student</code>.
 	</p>
-
 	<p>
 	  Now imagine you want to extend the concept <code>freshman</code> by "John Doe" before actually querying <code>student</code>:
 	</p>
-
 	<pre>
 student(X) :- &amp;dlC["http://example.org/univ.owl",a,b,c,d,"student"](X).
 a(freshman,"John Doe").</pre>
-
         <p>
 	  Thus, at the second position of its input list, the external atom expects a binary predicate, whose first argument denotes the concept to be extended and the second the actual individuals to be aded to the concept. Naturally, this can become very versatile:
 	</p>
-
 	<pre>
 student(X) :- &amp;dlC["http://example.org/univ.owl",a,b,c,d,"student"](X).
 a(freshman,X) :- attends(X,Y), firstyearcourse(Y).</pre>
-
         <p>
 	  Adding to roles works analogously, e.g.:
 	</p>
-
 	<pre>
 student(X) :- &amp;dlC["http://example.org/univ.owl",a,b,c,d,"student"](X).
 b(enrolled,X,Y) :- person(X), studies(X,Y).</pre>
-
 	<p>
 	  The second atom follows the same input mechansim, but queries a role:
 	</p>
-
 	<div class="synopsis">
 	  <div class="atomusage">&amp;dlR[KB,a,b,c,d,Q](X,Y)</div>
 	  <div>Input:</div>
@@ -136,11 +113,9 @@ b(enrolled,X,Y) :- person(X), studies(X,Y).</pre>
 	  <div class="paramtext">pairs of individuals of property <code>Q</code></div>
 	  <div style="clear: both;"></div>
 	</div>
-
 	<p>
 	  For datatype properties you have to use a different atom:
 	</p>
-
 	<div class="synopsis">
 	  <div class="atomusage">&amp;dlDR[KB,a,b,c,d,Q](X,Y)</div>
 	  <div>Input:</div>
@@ -162,11 +137,9 @@ b(enrolled,X,Y) :- person(X), studies(X,Y).</pre>
 	  <div class="paramtext">pairs of individuals of property <code>Q</code></div>
 	  <div style="clear: both;"></div>
 	</div>
-
 	<p>
 	  Additionally, the DL-Plugin provides an external atom which tests the given DL-KB for consistency under the specified extensions:
 	</p>
-
 	<div class="synopsis">
 	  <div class="atomusage">&amp;dlConsistent[KB,a,b,c,d]()</div>
 	  <div>Input:</div>
@@ -186,53 +159,58 @@ b(enrolled,X,Y) :- person(X), studies(X,Y).</pre>
 	  <div class="paramtext">none.</div>
 	  <div style="clear: both;"></div>
 	</div>
-
 	<p>
 	  If the KB is consistent after possibly augmenting the A-Box according to the input list, the atom evaluates to <i>true</i>, otherwise <i>false</i>.
 	</p>
-	
 	<div style="border-top: 1px solid #999; background-color: inherit; color: #999; font-size: 8.5pt;">
 	  <p>$Id$</p>
 	</div>
-
       </div>
-
-
       <div class="grid_3">
-
+  <p>&nbsp;</p>
+  <p>
+    <img width="100%" height="100%" src="images/logo_whitebg.png" alt="logo" id="logo">
+  </p>
+  <p>
 	<div style="font-size: 14pt"><label for="q">Search this website</label></div>
 	<form action="http://www.google.com/cse" id="cse-search-box">
 	  <div>
-	    <input name="cx" id="cx" value="010363983165505105153:4bhl-l5ixd4" type="hidden" alt="Search this website"/>
-	    <input name="ie" id="ie" value="UTF-8" type="hidden" alt="Search this website"/>
-	    <input style="background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" name="q" id="q" size="20" type="text"/>
-	    <input name="sa" id="sa" value="Search" type="submit"/>
+	    <input name="cx" id="cx" value="010363983165505105153:4bhl-l5ixd4" type="hidden" alt="Search this website">
+	    <input name="ie" id="ie" value="UTF-8" type="hidden" alt="Search this website">
+	    <input style="background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" name="q" id="q" size="19" type="text">
+	    <input name="sa" id="sa" value="Search" type="submit">
 	  </div>
 	</form>
-
-	<p>&nbsp;</p>
-		    
+  </p>
 	<p>
-	  <a href="gettingstarted.html">Getting Started</a><br/>
-	  <a href="hexlanguage.html">HEX-Programs</a>
+	  <a href="https://github.com/hexhex/">dlvhex source code @ github.com</a><br>
+	  <!-- a href="https://sourceforge.net/projects/dlvhex/">dlvhex: Sourceforge project</a><br/ -->
+<!-- <a href="http://www.polleres.net/dlvhex-sparql">SPARQL Plugin</a><br> -->
+<a href="actionplugin.html">Action Plugin</a><br>
+<a href="decisiondiagramsplugin.html">DecisionDiagrams Plugin</a><br>
+<a href="dlplugin.html">Description Logics Plugin</a><br>
+<a href="mergingplugin.html">MELD: Belief Merging Plugin</a><br>
+<a href="../mcsie" target="_blank">MCSIE Plugin</a><br>
+<a href="stringplugin.html">String Plugin</a><br>
+<a href="https://sourceforge.net/projects/dlvhex-semweb/">dlvhex-semweb Project</a><br>
+	  <a href="doap.rdf">Description-Of-A-Project</a>
 	</p>
-
-	<p>
-	  <a href="dlplugin.html">Description Logic Plugin</a><br/>
-	  <a href="rdfplugin.html">RDF Plugin</a><br/>
-	  <a href="stringplugin.html">String Plugin</a><br/>
-	  <a href="mergingplugin.html">Merging Plugin</a>
-	</p>
-
-	<p>
-	  <a href="doc">dlvhex Source Documentation</a><br/>
-	  <a href="doc/group__pluginframework.html">Writing Plugins</a>
-	</p>
-		    
-      </div>
-
-    </div>
-
+  <p>
+    <span style="font-size: 14pt">Documentation:</span><br>
+    <a href="https://github.com/hexhex/core/blob/master/README">README</a><br>
+    <a href="doc2x">doxygen</a><br>
+    <a href="doc2x/group__pluginframework.html">Writing Plugins</a>
+    <!--
+    <a href="doc1x">doxygen version 1.X</a><br>
+    <a href="doc1x/group__pluginframework.html">Writing Plugins 1.X</a><br>
+    -->
+  </p>
+      </div> <!-- grid_3 -->
+    </div> <!-- container_12 -->
   </body>
-    
 </html>
+<!--
+        Local Variables:
+        mode: xml
+        End:
+-->
