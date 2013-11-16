@@ -1,37 +1,32 @@
 	<h2>Writing HEX-Programs</h2>
                         
 	<p>
-	  The language of HEX-programs is an extension of disjunctive datalog. syntactically, it is strongly related to DLV-syntax with the addition of higher-order atoms and external atoms.
+	The language of HEX-programs is an extension of disjunctive datalog.
+	It largely implements the <a href="https://www.mat.unical.it/aspcomp2013/files/ASP-CORE-2.01c.pdf">ASP-Core-2 Standard</a>
+	and extends it with external atoms.
 	</p>
 
 	<p>
-	  The following list displays the language constructs that correspond to DLV (along with the links to the respective DLV-manual section):
+	Syntactically, if the language is restricted to programs without external sources,
+	it is also strongly related to DLV-syntax.
+	The following list displays the language constructs that correspond to DLV (along with the links to the respective DLV-manual section):
 	</p>
                         
 	<ul>
-	  <li><a href="http://www.dbai.tuwien.ac.at/proj/dlv/man/#AEN134">Facts (EDB)</a></li>
-	  <li><a href="http://www.dbai.tuwien.ac.at/proj/dlv/man/#AEN176">Rules (IDB)</a></li>
-	  <li><a href="http://www.dbai.tuwien.ac.at/proj/dlv/man/#AEN401">Integrity constraints</a></li>
-	  <li><a href="http://www.dbai.tuwien.ac.at/proj/dlv/man/#AEN430">Weak Constraints</a></li>
-	  <li><a href="http://www.dbai.tuwien.ac.at/proj/dlv/man/#BUILTIN-COMPARATIVE">Comparative Predicates</a></li>
-	  <li><a href="http://www.dbai.tuwien.ac.at/proj/dlv/man/#AGGREGATES">Aggregate Predicates</a></li>
+	  <li><a href="http://www.dlvsystem.com/html/DLV_User_Manual.html#AEN178">Facts (EDB)</a></li>
+	  <li><a href="http://www.dlvsystem.com/html/DLV_User_Manual.html#AEN220">Rules (IDB)</a></li>
+	  <li><a href="http://www.dlvsystem.com/html/DLV_User_Manual.html#AEN445">Integrity constraints</a></li>
+	  <li><a href="http://www.dlvsystem.com/html/DLV_User_Manual.html#BUILTIN-COMPARATIVE">Comparative Predicates</a></li>
+	  <li><a href="http://www.dlvsystem.com/html/DLV_User_Manual.html#BUILTIN-ARITHMETIC">Arithmetic Predicates</a></li>
+	  <li><a href="http://www.dlvsystem.com/html/DLV_User_Manual.html#QUERIES">Queries</a> (with <code>--query-enable</code>)</li>
+	  <li><a href="http://www.dlvsystem.com/html/DLV_User_Manual.html#AEN474">Weak Constraints</a> (with <code>--weak-enable</code>)</li>
+	  <li><a href="http://www.dlvsystem.com/html/DLV_User_Manual.html#AGGREGATES">Aggregate Predicates</a> (with <code>--aggregate-enable</code>)</li>
 	</ul>
 	
 	<p>
-	  Also the <a href="http://www.dbai.tuwien.ac.at/proj/dlv/man/#SAFETY">chapter about safety</a> there as well applies to dlvhex.
+	  Also the <a href="http://www.dlvsystem.com/html/DLV_User_Manual.html#SAFETY">chapter about safety</a> there as well applies to dlvhex.
 	</p>
 
-	<p>
-	  That said, these are the elements of the DLV language that dlvhex does not parse (yet):
-	</p>
-
-	<ul>
-	  <li><a href="http://www.dbai.tuwien.ac.at/proj/dlv/man/#AEN530">Arithmetic Predicates</a></li>
-	  <li><a href="http://www.dbai.tuwien.ac.at/proj/dlv/man/#BUILTIN-DIV">Division and Modulo</a></li>
-	  <li><a href="http://www.dbai.tuwien.ac.at/proj/dlv/man/#BUILTIN-RANGES">Ranges</a></li>
-	  <li><a href="http://www.dbai.tuwien.ac.at/proj/dlv/man/#QUERIES">Queries</a></li>
-	</ul>
-	
 	<p>
     Please see also the <a href="gettingstarted.html">Getting Started</a> guide.
 	</p>

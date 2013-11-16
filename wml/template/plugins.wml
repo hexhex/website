@@ -3,6 +3,6 @@
 <a href="{#PATH_TO_ROOT#}decisiondiagramsplugin.html">DecisionDiagrams Plugin</a><br/>
 <a href="{#PATH_TO_ROOT#}dlplugin.html">Description Logics Plugin</a><br/>
 <a href="{#PATH_TO_ROOT#}mergingplugin.html">MELD: Belief Merging Plugin</a><br/>
-<a href="{#PATH_TO_ROOT#}../mcsie" target="_blank">MCSIE Plugin</a><br/>
+<a href="{#PATH_TO_ROOT#}../mcsie">MCSIE Plugin</a><br/>
 <a href="{#PATH_TO_ROOT#}stringplugin.html">String Plugin</a><br/>
 <a href="{#PATH_TO_ROOT#}https://sourceforge.net/projects/dlvhex-semweb/">dlvhex-semweb Project</a><br/>
