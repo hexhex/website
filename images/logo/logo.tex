@@ -17,10 +17,13 @@
 \newif\ifshowgroup\showgrouptrue
 \newif\ifshowinstitute\showinstitutetrue
 \newif\ifshowuniversity\showuniversitytrue
+\newif\ifkbslogocol\kbslogocolfalse
+\newif\ifkbslogobw\kbslogobwfalse
 
 \begin{document}
 
 	\newlength{\textyshift}
+	\newlength{\logoxshift}
 	\newcommand{\dlvhexlogo}{
 		\newdimen\R
 		\R=0.6cm
@@ -113,34 +116,52 @@
 			>=stealth'
 		];
 
+		\setlength{\logoxshift}{0cm}
+		\ifkbslogocol
+			\setlength{\logoxshift}{\R}
+		\fi
+		\ifkbslogobw
+			\setlength{\logoxshift}{\R}
+		\fi
+
 		\draw [style=hexagon] (240:\R) -- (300:\R) -- (360:\R) -- (60:\R) -- (120:\R) -- (180:\R) -- (240:\R) -- (300:\R) node (hex) {} ;
 
 		\node [cylinder, aspect=.5, minimum width=2*\R, minimum height=\R] (data) [xshift=2cm, yshift=-\R] {} ;
 		\node [cylinder, aspect=.5, style=database, minimum width=2*\R, minimum height=\R] (data) [xshift=2cm, yshift=-0.7cm] {} ;
 		
 		\path [<->, style=arrow] (0,0) edge [bend right] node [style=doc] {} ($(data)$);
-		
-		\node (text) [above of=data] {\resizebox{1.3cm}{!}{\textsc{dlvhex}}};
 
+		\node (text) [above of=data, xshift=-\the\logoxshift] {\resizebox{1.3cm}{!}{\textsc{dlvhex}}};
 		\setlength{\textyshift}{-1.5mm}
+
 		\ifshowgroup
-			\node (text2) [above of=data, yshift=\the\textyshift] {\resizebox{1.3cm}{!}{\textsc{Knowledge-Based Systems Group}}};
+			\node (text2) [above of=data, yshift=\the\textyshift, xshift=-\the\logoxshift] {\resizebox{1.3cm}{!}{\textsc{Knowledge-Based Systems Group}}};
 			\addtolength{\textyshift}{-0.7mm}
 		\fi
 		\ifshowinstitute
-			\node (text2) [above of=data, yshift=\the\textyshift] {\resizebox{1.3cm}{!}{\textsc{Institute of Information Systems}}};
+			\node (text2) [above of=data, yshift=\the\textyshift, xshift=-\the\logoxshift] {\resizebox{1.3cm}{!}{\textsc{Institute of Information Systems}}};
 			\addtolength{\textyshift}{-0.7mm}
 		\fi
 		\ifshowuniversity
-			\node (text2) [above of=data, yshift=\the\textyshift] {\resizebox{1.3cm}{!}{\textsc{Vienna University of Technology}}};
+			\node (text2) [above of=data, yshift=\the\textyshift, xshift=-\the\logoxshift] {\resizebox{1.3cm}{!}{\textsc{Vienna University of Technology}}};
 			\addtolength{\textyshift}{-0.7mm}
+		\fi
+		\ifkbslogocol
+			\node (kbs) [above of=data, yshift=-0.2\R, xshift=0.7\R] {\includegraphics[width=\the\logoxshift]{logo_KBS_5_RGB}};
+		\fi
+		\ifkbslogobw
+			\node (kbs) [above of=data, yshift=-0.2\R, xshift=0.7\R] {\includegraphics[width=\the\logoxshift]{logo_KBS_5bw_RGB}};
 		\fi
 	}
 
+	\kbslogocolfalse
+	\kbslogobwfalse
+
+	\shadetrue
+	\colortrue
+
 	\beginpgfgraphicnamed{logo-color-dlvhex}
 	\begin{tikzpicture}
-		\shadetrue
-		\colortrue
 		\showgroupfalse
 		\showinstitutefalse
 		\showuniversityfalse
@@ -150,8 +171,6 @@
 
 	\beginpgfgraphicnamed{logo-color-dlvhex-university}
 	\begin{tikzpicture}
-		\shadetrue
-		\colortrue
 		\showgroupfalse
 		\showinstitutefalse
 		\showuniversitytrue
@@ -161,8 +180,6 @@
 
 	\beginpgfgraphicnamed{logo-color-dlvhex-group-university}
 	\begin{tikzpicture}
-		\shadetrue
-		\colortrue
 		\showgrouptrue
 		\showinstitutefalse
 		\showuniversitytrue
@@ -172,8 +189,6 @@
 
 	\beginpgfgraphicnamed{logo-color-dlvhex-institute-university}
 	\begin{tikzpicture}
-		\shadetrue
-		\colortrue
 		\showgroupfalse
 		\showinstitutetrue
 		\showuniversitytrue
@@ -183,8 +198,6 @@
 
 	\beginpgfgraphicnamed{logo-color-dlvhex-group-institute-university}
 	\begin{tikzpicture}
-		\shadetrue
-		\colortrue
 		\showgrouptrue
 		\showinstitutetrue
 		\showuniversitytrue
@@ -192,10 +205,11 @@
 	\end{tikzpicture}
 	\endpgfgraphicnamed
 
+	\shadetrue
+	\colorfalse
+
 	\beginpgfgraphicnamed{logo-gradient-dlvhex}
 	\begin{tikzpicture}
-		\shadetrue
-		\colorfalse
 		\showgroupfalse
 		\showinstitutefalse
 		\showuniversityfalse
@@ -205,8 +219,6 @@
 
 	\beginpgfgraphicnamed{logo-gradient-dlvhex-university}
 	\begin{tikzpicture}
-		\shadetrue
-		\colorfalse
 		\showgroupfalse
 		\showinstitutefalse
 		\showuniversitytrue
@@ -216,8 +228,6 @@
 
 	\beginpgfgraphicnamed{logo-gradient-dlvhex-group-university}
 	\begin{tikzpicture}
-		\shadetrue
-		\colorfalse
 		\showgrouptrue
 		\showinstitutefalse
 		\showuniversitytrue
@@ -227,8 +237,6 @@
 
 	\beginpgfgraphicnamed{logo-gradient-dlvhex-institute-university}
 	\begin{tikzpicture}
-		\shadetrue
-		\colorfalse
 		\showgroupfalse
 		\showinstitutetrue
 		\showuniversitytrue
@@ -238,8 +246,6 @@
 
 	\beginpgfgraphicnamed{logo-gradient-dlvhex-group-institute-university}
 	\begin{tikzpicture}
-		\shadetrue
-		\colorfalse
 		\showgrouptrue
 		\showinstitutetrue
 		\showuniversitytrue
@@ -247,10 +253,11 @@
 	\end{tikzpicture}
 	\endpgfgraphicnamed
 
+	\shadefalse
+	\colorfalse
+
 	\beginpgfgraphicnamed{logo-simple-dlvhex}
 	\begin{tikzpicture}
-		\shadefalse
-		\colorfalse
 		\showgroupfalse
 		\showinstitutefalse
 		\showuniversityfalse
@@ -260,8 +267,6 @@
 
 	\beginpgfgraphicnamed{logo-simple-dlvhex-university}
 	\begin{tikzpicture}
-		\shadefalse
-		\colorfalse
 		\showgroupfalse
 		\showinstitutefalse
 		\showuniversitytrue
@@ -271,8 +276,6 @@
 
 	\beginpgfgraphicnamed{logo-simple-dlvhex-group-university}
 	\begin{tikzpicture}
-		\shadefalse
-		\colorfalse
 		\showgrouptrue
 		\showinstitutefalse
 		\showuniversitytrue
@@ -282,8 +285,6 @@
 
 	\beginpgfgraphicnamed{logo-simple-dlvhex-institute-university}
 	\begin{tikzpicture}
-		\shadefalse
-		\colorfalse
 		\showgroupfalse
 		\showinstitutetrue
 		\showuniversitytrue
@@ -293,8 +294,159 @@
 
 	\beginpgfgraphicnamed{logo-simple-dlvhex-group-institute-university}
 	\begin{tikzpicture}
-		\shadefalse
-		\colorfalse
+		\showgrouptrue
+		\showinstitutetrue
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+
+	\kbslogocoltrue
+	\kbslogobwfalse
+
+	\shadetrue
+	\colortrue
+
+	\beginpgfgraphicnamed{logo-color-dlvhex-kbslogo}
+	\begin{tikzpicture}
+		\showgroupfalse
+		\showinstitutefalse
+		\showuniversityfalse
+		\kbslogocolfalse
+		\kbslogobwfalse
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-color-dlvhex-university-kbslogo}
+	\begin{tikzpicture}
+		\showgroupfalse
+		\showinstitutefalse
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-color-dlvhex-group-university-kbslogo}
+	\begin{tikzpicture}
+		\showgrouptrue
+		\showinstitutefalse
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-color-dlvhex-institute-university-kbslogo}
+	\begin{tikzpicture}
+		\showgroupfalse
+		\showinstitutetrue
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-color-dlvhex-group-institute-university-kbslogo}
+	\begin{tikzpicture}
+		\showgrouptrue
+		\showinstitutetrue
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\kbslogocolfalse
+	\kbslogobwtrue
+
+	\shadetrue
+	\colorfalse
+
+	\beginpgfgraphicnamed{logo-gradient-dlvhex-kbslogo}
+	\begin{tikzpicture}
+		\showgroupfalse
+		\showinstitutefalse
+		\showuniversityfalse
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-gradient-dlvhex-university-kbslogo}
+	\begin{tikzpicture}
+		\showgroupfalse
+		\showinstitutefalse
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-gradient-dlvhex-group-university-kbslogo}
+	\begin{tikzpicture}
+		\showgrouptrue
+		\showinstitutefalse
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-gradient-dlvhex-institute-university-kbslogo}
+	\begin{tikzpicture}
+		\showgroupfalse
+		\showinstitutetrue
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-gradient-dlvhex-group-institute-university-kbslogo}
+	\begin{tikzpicture}
+		\showgrouptrue
+		\showinstitutetrue
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\shadetrue
+	\colorfalse
+
+	\beginpgfgraphicnamed{logo-simple-dlvhex-kbslogo}
+	\begin{tikzpicture}
+		\showgroupfalse
+		\showinstitutefalse
+		\showuniversityfalse
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-simple-dlvhex-university-kbslogo}
+	\begin{tikzpicture}
+		\showgroupfalse
+		\showinstitutefalse
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-simple-dlvhex-group-university-kbslogo}
+	\begin{tikzpicture}
+		\showgrouptrue
+		\showinstitutefalse
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-simple-dlvhex-institute-university-kbslogo}
+	\begin{tikzpicture}
+		\showgroupfalse
+		\showinstitutetrue
+		\showuniversitytrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+
+	\beginpgfgraphicnamed{logo-simple-dlvhex-group-institute-university-kbslogo}
+	\begin{tikzpicture}
 		\showgrouptrue
 		\showinstitutetrue
 		\showuniversitytrue
