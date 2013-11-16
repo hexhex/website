@@ -9,9 +9,7 @@
       </div>
 
       <div class="grid_3">
-	<div style="padding:20px">
 #include "sidebar.wml"
-	</div>
       </div> <!-- grid_3 -->
     </div> <!-- container_12 -->
 #include "footer.wml"
