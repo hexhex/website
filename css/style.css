@@ -82,49 +82,49 @@ h1 {
 a[href^='http']
 {
   background: url(../images/externallink.png) no-repeat right center;
-  padding-right: 1.5em;
+  padding-right: 1.25em;
   }
 
 a[href^='www']
 {
   background: url(../images/externallink.png) no-repeat right center;
-  padding-right: 1.5em;
+  padding-right: 1.25em;
   }
 
 a:visited[href^='http']
 {
   background: url(../images/externallink.png) no-repeat right center;
-  padding-right: 1.5em;
+  padding-right: 1.25em;
   }
 
 a:visited[href^='www']
 {
   background: url(../images/externallink.png) no-repeat right center;
-  padding-right: 1.5em;
+  padding-right: 1.25em;
   }
 
 a:active[href^='http']
 {
   background: url(../images/externallink-active.png) no-repeat right center;
-  padding-right: 1.5em;
+  padding-right: 1.25em;
   }
 
 a:active[href^='www']
 {
   background: url(../images/externallink-active.png) no-repeat right center;
-  padding-right: 1.5em;
+  padding-right: 1.25em;
   }
 
 a:hover[href^='http']
 {
   background: url(../images/externallink-active.png) no-repeat right center;
-  padding-right: 1.5em;
+  padding-right: 1.25em;
   }
 
 a:hover[href^='www']
 {
   background: url(../images/externallink-active.png) no-repeat right center;
-  padding-right: 1.5em;
+  padding-right: 1.25em;
   }
 
 #logo {
