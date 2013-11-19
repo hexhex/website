@@ -35,7 +35,8 @@
 	
 	<p>
 	  <a href="http://www.dbai.tuwien.ac.at/proj/dlv/">DLV</a>, the core
-	  answer set solver that is used by&mdash;hence the name&mdash;dlvhex,
+	  answer set solver that is optionally used by dlvhex
+          as reasoner backend (alternative to Gringo and clasp),
 	  is widely considered the state-of-the-art implementation of
 	  disjunctive logic programming.
 	</p>
