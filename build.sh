@@ -18,7 +18,3 @@ done
 # copy to root
 cp wml/*.html ./
 cp wml/actionplugin/*.html ./actionplugin/
-
-# provide stylesheets and images for to subdirectories
-cp images/*.png ./actionplugin/images/
-cp css/*.css ./actionplugin/css/
