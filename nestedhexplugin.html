@@ -50,7 +50,7 @@
 	  <div class="param">p</div>
 	  <div class="paramtext">Subprogram to be evaluated</div>
 	  <div class="param">i</div>
-	  <div class="paramtext">Input to the subprogram</div>
+	  <div class="paramtext">Input to the subprogram (see below)</div>
 	  <div class="param">q</div>
 	  <div class="paramtext">Query predicate</div>
 	  <div style="clear: both;"></div>
@@ -85,13 +85,14 @@
 		Example:
 	</p>
 <pre>
-inp(p, 1, a).
-inp(p, 1, b).
-inp(r, 1, b).
-out(A) :- &amp;hexCautious[string, "q(X) :- p(X), not r(X).", inp, q](A).
+inp(p, 2, a, x).        % Maximum arity we want to pass is 2 (predicate p).
+inp(p, 2, b, y).        % Therefore input predicate inp has arity 2+2=4.
+inp(r, 1, b, empty).    % r has only arity 1, thus we fill the remaining
+                        % arguments with empty.
+out(A) :- &amp;hexCautious[string, "q(X) :- p(X, Y), not r(X).", inp, q](A).
 </pre>
 	<p>
-		This will deliver <code>out(a)</code> because the input adds <code>p(a)</code>, <code>p(b)</code> and <code>r(b)</code>,
+		This will deliver <code>out(a)</code> because the input adds <code>p(a,x)</code>, <code>p(b,y)</code> and <code>r(b)</code>,
 		thus the single answer set of the subprogram contains <code>q(a)</code>.<br><br>
 	</p>
 	<div class="synopsis">
