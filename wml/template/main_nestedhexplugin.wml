@@ -1,0 +1,226 @@
+	<h2>Nested HEX Plugin</h2>
+
+	<p>
+	  The nestedhexplugin of a set of <a href="#exatoms">external atoms</a> and a <a href="#options">parser for an extended syntax</a> for more user convenience.
+	  The plugin allows for evaluating subprograms and reasoning about their answer sets. In particular, cautious and brave reasoning, and the inspection of answer sets of subprograms are supported.
+	</p>
+
+	  <hr/>
+	<h3 id="exatoms">External Atoms</h3>
+	
+	<div class="synopsis">
+	  <div class="atomusage">&amp;hexCautious[t, p, i, q](x1,...,xn) / &amp;hexBrave[t, p, i, q](x1,...,xn)</div>
+	  <div>Input:</div>
+	  <div class="param">t</div>
+	  <div class="paramtext">A string specifying the type of the subprogram, which is either <code>file</code> or <code>string</code></div>
+	  <div class="param">p</div>
+	  <div class="paramtext">Subprogram to be evaluated</div>
+	  <div class="param">i</div>
+	  <div class="paramtext">Input to the subprogram</div>
+	  <div class="param">q</div>
+	  <div class="paramtext">Query predicate</div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param"></div>
+	  <div class="paramtext">Tuples such that <code>q(x1,...,xn)</code> is cautiously / bravely true in the specified program</div>
+	  <div style="clear: both;"></div>
+	</div>
+	
+	<p>
+		Evaluates the program specified by p (which must be a filename
+		if type t=file and the a string containing the rules if t=string).
+	</p>
+	<p>
+		Prior to evaluation, p is extended by facts specified in higher-order notation
+		by input predicate i. The arity of i is the maximum arity m of all facts to be added + 2.
+	</p>
+	<p>
+		For adding a fact of form f(c1,...,ck), predicate i is suppose to specify
+		element i(f, m, c1,...,ck, empty,...,empty),
+		where the number of terms of form empty is m - k, i.e.,
+		the empty terms fill additional argument positions in i which are not needed for a certain fact
+		due to smaller arity.
+	</p>
+	<p>
+		Parameter q specifies the query predicate of arity n.
+	</p>
+	<p>
+		The external atom evaluates to true for all values x1,...,xn
+		such that q(x1,...,xn) is cautiously/bravely true in p extended with the input from i.
+	</p>
+
+	<p>
+		Example:
+	</p>
+
+<pre>
+inp(p, 1, a).
+inp(p, 1, b).
+inp(r, 1, b).
+out(A) :- &amp;hexCautious[string, "q(X) :- p(X), not r(X).", inp, q](A).
+</pre>
+
+	<p>
+		This will deliver <code>out(a)</code> because the input adds <code>p(a)</code>, <code>p(b)</code> and <code>r(b)</code>,
+		thus the single answer set of the subprogram contains <code>q(a)</code>.<br/><br/>
+	</p>
+
+	<div class="synopsis">
+	  <div class="atomusage">&amp;hexInspection[t, p, i, q](x1,...,xn)</div>
+	  <div>Input:</div>
+	  <div class="param">t</div>
+	  <div class="paramtext">A string specifying the type of the subprogram, which is either <code>file</code> or <code>string</code></div>
+	  <div class="param">p</div>
+	  <div class="paramtext">Subprogram to be evaluated</div>
+	  <div class="param">i</div>
+	  <div class="paramtext">Input to the subprogram</div>
+	  <div class="param">qt</div>
+	  <div class="paramtext">Query type</div>
+	  <div class="param">[qp]</div>
+	  <div class="paramtext">[optional] Query parameter</div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param">x1,x2</div>
+	  <div class="paramtext">Answer to the query specified by <code>qt</code> and <code>qp</code>, see below.</div>
+	  <div style="clear: both;"></div>
+	</div>
+	
+	<p>
+		Evaluates the program p of type t extended with input from i as described above.
+	</p>
+	<p>
+		If <code>qt=program</code> and <code>qp</code> is missing, then the external atom is true for all pairs <code>(x, n)</code> with <code>0 &lt; x &lt;= n</code>,
+		where <code>n</code> is the number of answer sets of the program. Elements <code>x</code> are intended to identify answer sets.
+	</p>
+	<p>
+		If <code>qt=answerset</code> and <code>qp</code> is an integer, then the external atom is true for all pairs <code>(x, a)</code>
+		which encode the true atoms in the answer set identified by <code>qp</code>. A pair <code>(x, a)</code> consists of
+		an integer identifier <code>x</code> for this atom and its arity <code>a</code>.
+	</p>
+	<p>
+		If <code>qt=atom</code> and <code>qp</code> is an integer, then the external atom is true for all pairs <code>(x, t)</code>
+		which encode the atom identified by <code>qp</code>. If the identified atom has arity <code>a</code>, then pairs <code>(x, t)</code>
+		for <code>0 &lt;= x &lt;= a</code> consist of encode the term <code>t</code> at argument position <code>x</code>, where <code>x=0</code> denotes the predicate name.
+	</p>
+
+	<p>
+		Example:
+	</p>
+
+<pre>
+inp(p, 1, a).
+inp(p, 1, b).
+inp(r, 1, b).
+as(AS, C) :- &amp;hexInspection[string, "q(X) :- p(X), not r(X).", inp, program](AS, C).
+atoms(Atom, Arity) :- as(AS, C), &amp;hexInspection[string, "q(X) :- p(X), not r(X).",
+                                                    inp, answerset, AS](Atom, Arity).
+parameters(Atom, Index, Term) :- atoms(Atom, Arity),
+                           &amp;hexInspection[string, "q(X) :- p(X), not r(X).",
+                                              inp, atom, Atom](Index, Term).
+</pre>
+
+	<p>
+		This will deliver <code>as(0,1)</code> to encode that the program has one answer set,
+		<code>atoms(v1,1)</code> for some integer <code>v1</code> (exact value is unspecified) as a reference to the unary atom <code>q(a)</code>
+		in the answer set of the subprogram,
+		and <code>parameters(v1, 0,q)</code> and <code>parameters(v1, 1,a)</code> as an encoding of this atom.
+		Similarily, there will be further atoms which encode the input atoms to the subprogram (because they are also in its answer set).
+	</p>
+
+	<hr/>
+	<h3 id="syntax">Alternative Syntax</h3>
+
+	<p>
+		The plugin further provides a convenient syntax for subprogram queries using dedicated <i>HEX-atoms</i>,
+		which are internally rewritten to the above external atoms.
+		Especially the passing of input to the subprogram is much more convenient using this syntax.
+		The rewriter can be activated by specifying the command-line option <code>--nestedhex</code>.
+	</p>
+
+	<div class="synopsis">
+	  <div class="atomusage">CHEX[program; input; query](x1,...,xn) / BHEX[program; input; query](x1,...,xn)</div>
+	  <div class="atomusage">FCHEX[program; input; query](x1,...,xn) / FBHEX[program; input; query](x1,...,xn)</div>
+	  <div>Input:</div>
+	  <div class="param">program</div>
+	  <div class="paramtext">A string specifying the type of the subprogram, which is a filename if the HEX-atom starts with <code>F</code> and a string containing the rules otherwise.</div>
+	  <div class="param">input</div>
+	  <div class="paramtext">A sequence of input definitions, see below.</div>
+	  <div class="param">query</div>
+	  <div class="paramtext">The query predicate.</div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param"></div>
+	  <div class="paramtext">Tuples such that <code>q(x1,...,xn)</code> is cautiously / bravely true in the specified program</div>
+	  <div style="clear: both;"></div>
+	</div>
+
+	<p>
+		The <i>input definition</i> is a comma-separated list of elements of form <code>p=q/k</code> or <code>q/k</code>, which specifies
+		that the <code>k</code>-ary predicate <code>q</code> from the program containing the HEX-atom is mapped
+		to the (also <code>k</code>-ary) predicate <code>p</code> in the subprogram, i.e.,
+		every true atom <code>q(x1,...,xk)</code> is added as fact <code>p(x1,...,xk)</code>.
+		If the part <code>p=</code> is missing, then this implicitly defines <code>q=q/k</code>, i.e.,
+		the input is mapped to the same predicate.
+	</p>
+
+	<p>
+		Example:
+	</p>
+
+	<pre>
+set1(a).
+set1(b).
+set2(b).
+out(A) :- CHEX["q(X) :- p(X), not r(X)."; p=set1/1, r=set2/1; q](A).
+</pre>
+
+	<p>
+		This will deliver <code>out(a)</code> because the input adds <code>p(a)</code>, <code>p(b)</code> and <code>r(b)</code>,
+		thus the single answer set of the subprogram contains <code>q(a)</code>.<br/><br/>
+	</p>
+
+	<div class="synopsis">
+	  <div class="atomusage">IHEX[program; input; qt, qp](x1,x2) / FIHEX[program; input; qt, qp](x1,x2)</div>
+	  <div>Input:</div>
+	  <div class="param">program</div>
+	  <div class="paramtext">A string specifying the type of the subprogram, which is a filename if the HEX-atom starts with <code>F</code> and a string containing the rules otherwise.</div>
+	  <div class="param">input</div>
+	  <div class="paramtext">A sequence of input definitions, see below.</div>
+	  <div class="param">qt</div>
+	  <div class="paramtext">The query type as described for <code>&amp;hexInspection[t, p, i, q](x1,...,xn)</code>.</div>
+	  <div class="param">[qp]</div>
+	  <div class="paramtext">[optional] The query parameter as described for <code>&amp;hexInspection[t, p, i, q](x1,...,xn)</code>.</div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param">x1,x2</div>
+	  <div class="paramtext">Answer to the query specified by <code>qt</code> and <code>qp</code>, see below.</div>
+	  <div style="clear: both;"></div>
+	</div>
+
+	<p>
+		For a given query type <code>qt</code> and query parameter <code>qp</code>, the meaning of the output arguments is as described for <code>&amp;hexInspection[t, p, i, q](x1,...,xn)</code>.
+	</p>
+
+	<p>
+	  Example:
+	</p>
+
+<pre>
+set1(a).
+set1(b).
+set2(b).
+as(AS, C) :- IHEX["q(X) :- p(X), not r(X)."; p=set1/1, r=set2/1; program](AS, C).
+atoms(Atom, Arity) :- as(AS, C), IHEX["q(X) :- p(X), not r(X).";
+                                      p=set1/1, r=set2/1; answerset, AS](Atom, Arity).
+parameters(Atom, Index, Term) :- atoms(Atom, Arity),
+                           IHEX["q(X) :- p(X), not r(X).";
+                                p=set1/1, r=set2/1; atom, Atom](Index, Term).
+</pre>
+
+	<p>
+		This will deliver <code>as(0,1)</code> to encode that the program has one answer set,
+		<code>atoms(v1,1)</code> for some integer <code>v1</code> (exact value is unspecified) as a reference to the unary atom <code>q(a)</code>
+		in the answer set of the subprogram,
+		and <code>parameters(v1, 0,q)</code> and <code>parameters(v1, 1,a)</code> as an encoding of this atom.
+		Similarily, there will be further atoms which encode the input atoms to the subprogram (because they are also in its answer set).
+	</p>
