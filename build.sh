@@ -5,13 +5,13 @@ rm wml/template/actionplugin/*.html
 for f in wml/*.wml
 do
 	echo $f
-	fn=$(echo $f | cut -d'.' --complement -f2-)
+	fn=$(echo $f | cut -d'.' -f1)
 	wml -I wml/template $f > $fn.html
 done
 for f in wml/actionplugin/*.wml
 do
 	echo $f
-	fn=$(echo $f | cut -d'.' --complement -f2-)
+	fn=$(echo $f | cut -d'.' -f1)
 	wml -I wml/template -I wml/actionplugin $f > $fn.html
 done
 
