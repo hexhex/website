@@ -190,7 +190,7 @@ out(A) :- CHEX["q(X) :- p(X), not r(X)."; p=set1/1, r=set2/1; q](A).
 	  <div class="param">qt</div>
 	  <div class="paramtext">The query type as described for <code>&amp;hexInspection[t, p, i, q](x1,...,xn)</code>.</div>
 	  <div class="param">[qp]</div>
-	  <div class="paramtext">[optional] The query parameter as described for <code>&amp;hexInspection[t, p, i, q](x1,...,xn)</code>.</div>
+	  <div class="paramtext">[optional] The query parameter as described for <code>&amp;hexInspection[t, p, i, qt, qp](x1,x2)</code>.</div>
 	  <div style="clear: both;"></div>
 	  <div>Output:</div>
 	  <div class="param">x1,x2</div>
@@ -199,7 +199,7 @@ out(A) :- CHEX["q(X) :- p(X), not r(X)."; p=set1/1, r=set2/1; q](A).
 	</div>
 
 	<p>
-		For a given query type <code>qt</code> and query parameter <code>qp</code>, the meaning of the output arguments is as described for <code>&amp;hexInspection[t, p, i, q](x1,...,xn)</code>.
+		For a given query type <code>qt</code> and query parameter <code>qp</code>, the meaning of the output arguments is as described for <code>&amp;hexInspection[t, p, i, qt, qp](x1,x2)</code>.
 	</p>
 
 	<p>
