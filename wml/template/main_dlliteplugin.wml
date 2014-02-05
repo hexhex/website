@@ -1,0 +1,169 @@
+	<h2>The Description Logic Lite Plugin</h2>
+	
+	<p>
+	  The Description Logic Lite Plugin interfaces OWL ontologies by
+	  using a description logic reasoner, similar to the <a href="dlplugin.html">DL-Plugin</a>,
+	  but using a DL-reasoner which is directly compiled into the plugin,
+	  and restricted to DLLite ontologies. It provides three atoms&mdash;two
+	  for retrieving concept resp. role members and one for
+	  testing the DL-KB for consistency. Additionally, it features a rewriter for
+	  the more convenient DL-syntax which is automatically translated into a HEX-program.
+	</p>
+
+	<h3>External Atom</h3>
+
+	<div class="synopsis">
+	  <div class="atomusage">&amp;cDL[KB,a,b,c,d,Q](X)</div>
+	  <div>Input:</div>
+	  <div class="param">KB</div>
+	  <div class="paramtext">web address or file path of the OWL Ontology.</div>
+	  <div class="param">a</div>
+	  <div class="paramtext">name of a binary predicate whose extension denotes addition to a concept.</div>
+	  <div class="param">b</div>
+	  <div class="paramtext">name of a binary predicate whose extension denotes addition to the complement of a concept.</div>
+	  <div class="param">c</div>
+	  <div class="paramtext">name of a ternary predicate whose extension denotes addition to a role.</div>
+	  <div class="param">d</div>
+	  <div class="paramtext">name of a ternary predicate whose extension denotes addition to the complement of a role.</div>
+	  <div class="param">Q</div>
+	  <div class="paramtext">name of a concept to be queried.</div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param">X</div>
+	  <div class="paramtext">individuals of concept <code>Q</code></div>
+	  <div style="clear: both;"></div>
+	</div>
+
+	<p>
+	  This looks more difficult than it actually is. For a simple query, all you need is the first and the last input argument.
+	</p>
+
+	<pre>
+student(X) :- &amp;cDL["http://example.org/univ.owl",a,b,c,d,"student"](X).</pre>
+
+        <p>
+	  Provided that <code>a</code>, <code>b</code>, <code>c</code>, and <code>d</code> do not occur elsewhere in the hex-program, this rule would do nothing else than putting all members of <code>student</code> into the predicate <code>student</code>.
+	</p>
+
+	<p>
+	  Now imagine you want to extend the concept <code>freshman</code> by "John Doe" before actually querying <code>student</code>:
+	</p>
+
+	<pre>
+student(X) :- &amp;cDL["http://example.org/univ.owl",a,b,c,d,"student"](X).
+a(freshman,"John Doe").</pre>
+
+        <p>
+	  Thus, at the second position of its input list, the external atom expects a binary predicate, whose first argument denotes the concept to be extended and the second the actual individuals to be aded to the concept. Naturally, this can become very versatile:
+	</p>
+
+	<pre>
+student(X) :- &amp;cDL["http://example.org/univ.owl",a,b,c,d,"student"](X).
+a(freshman,X) :- attends(X,Y), firstyearcourse(Y).</pre>
+
+        <p>
+	  Adding to roles works analogously, e.g.:
+	</p>
+
+	<pre>
+student(X) :- &amp;cDL["http://example.org/univ.owl",a,b,c,d,"student"](X).
+b(enrolled,X,Y) :- person(X), studies(X,Y).</pre>
+
+	<p>
+	  The second atom follows the same input mechansim, but queries a role:
+	</p>
+
+	<div class="synopsis">
+	  <div class="atomusage">&amp;rDL[KB,a,b,c,d,Q](X,Y)</div>
+	  <div>Input:</div>
+	  <div class="param">KB</div>
+	  <div class="paramtext">web address or file path of the OWL Ontology.</div>
+	  <div class="param">a</div>
+	  <div class="paramtext">name of a binary predicate whose extension denotes addition to a concept.</div>
+	  <div class="param">b</div>
+	  <div class="paramtext">name of a binary predicate whose extension denotes addition to the complement of a concept.</div>
+	  <div class="param">c</div>
+	  <div class="paramtext">name of a ternary predicate whose extension denotes addition to a role.</div>
+	  <div class="param">d</div>
+	  <div class="paramtext">name of a ternary predicate whose extension denotes addition to the complement of a role.</div>
+	  <div class="param">Q</div>
+	  <div class="paramtext">name of a object property to be queried.</div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param">X,Y</div>
+	  <div class="paramtext">pairs of individuals of property <code>Q</code></div>
+	  <div style="clear: both;"></div>
+	</div>
+
+	<p>
+	  Additionally, the DLLite-Plugin provides an external atom which tests the given DL-KB for consistency under the specified extensions:
+	</p>
+
+	<div class="synopsis">
+	  <div class="atomusage">&amp;condDL[KB,a,b,c,d]()</div>
+	  <div>Input:</div>
+	  <div class="param">KB</div>
+	  <div class="paramtext">web address or file path of the OWL Ontology.</div>
+	  <div class="param">a</div>
+	  <div class="paramtext">name of a binary predicate whose extension denotes addition to a concept.</div>
+	  <div class="param">b</div>
+	  <div class="paramtext">name of a binary predicate whose extension denotes addition to the complement of a concept.</div>
+	  <div class="param">c</div>
+	  <div class="paramtext">name of a ternary predicate whose extension denotes addition to a role.</div>
+	  <div class="param">d</div>
+	  <div class="paramtext">name of a ternary predicate whose extension denotes addition to the complement of a role.</div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param">&nbsp;</div>
+	  <div class="paramtext">none.</div>
+	  <div style="clear: both;"></div>
+	</div>
+
+	<p>
+	  If the KB is consistent after possibly augmenting the A-Box according to the input list, the atom evaluates to <i>true</i>, otherwise <i>false</i>.
+	</p>
+	
+	<div style="border-top: 1px solid #999; background-color: inherit; color: #999; font-size: 8.5pt;">
+	  <p>$Id$</p>
+	</div>
+
+	<h3>DL-Syntax</h3>
+
+	<p>
+		If the option <code>--ontology=file.owl</code> is specified on the command-line,
+		then DL-atoms which access the ontology <code>file.owl</code> of the following forms might be used.
+	</p>
+
+	<p>
+		A DL-atom for <i>concept queries</i> has the form <code>DL[input; Query](X)</code>,
+		where <i>input</i> is a comma-separated list of expressions of type <code>E+=p</code>
+		or <code>E-=p</code> to extend concept (role) <code>E</code> or <code>-E</code>
+		with the individuals in the unary (binary) predicate <code>p</code>, respectively,
+		and <code>Query</code> is the concept to query. The atom will evaluate the true for all values
+		<code>X</code> which are in concept <code>Query</code> if the ontology is extended
+		as defined by <code>input</code>.
+
+		The program
+	<pre>
+student(X) :- &amp;cDL["http://example.org/univ.owl",a,b,c,d,"student"](X).
+a(freshman,X) :- attends(X,Y), firstyearcourse(Y).</pre>
+		might also be written as
+	<pre>
+student(X) :- DL[freshman+=a; student](X).
+a(X) :- attends(X,Y), firstyearcourse(Y).</pre>
+	</p>
+
+	<p>
+		Similarily, a DL-atom for <i>role queries</i> has the form <code>DL[input; Query](X,Y)</code>,
+		where <i>input</i> is a comma-separated list as described above,
+		and <code>Query</code> is the role to query. The atom will evaluate the true for all pairs
+		<code>(X,Y)</code> which are in role <code>Query</code> if the ontology is extended
+		as defined by <code>input</code>.
+	</p>
+
+	<p>
+		Finally, a DL-atom for <i>consisttency check</i> has the form <code>DL[input]()</code>,
+		where <i>input</i> is a comma-separated list as described above.
+		The atom will evaluate the true if the ontology is consistent
+		after extenting it as defined by <code>input</code>.
+	</p>

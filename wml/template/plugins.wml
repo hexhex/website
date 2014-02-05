@@ -2,6 +2,7 @@
 <a href="{#PATH_TO_ROOT#}actionplugin.html">Action Plugin</a><br/>
 <a href="{#PATH_TO_ROOT#}decisiondiagramsplugin.html">DecisionDiagrams Plugin</a><br/>
 <a href="{#PATH_TO_ROOT#}dlplugin.html">Description Logics Plugin</a><br/>
+<a href="{#PATH_TO_ROOT#}dlliteplugin.html">Description Logics Lite Plugin</a><br/>
 <a href="{#PATH_TO_ROOT#}mergingplugin.html">MELD: Belief Merging Plugin</a><br/>
 <a href="{#PATH_TO_ROOT#}nestedhexplugin.html">Nested HEX Plugin</a><br/>
 <a href="http://www.kr.tuwien.ac.at/research/systems/mcsie">MCSIE Plugin</a><br/>
