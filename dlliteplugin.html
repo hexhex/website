@@ -121,7 +121,7 @@ b(enrolled,X,Y) :- person(X), studies(X,Y).</pre>
 	  Additionally, the DLLite-Plugin provides an external atom which tests the given DL-KB for consistency under the specified extensions:
 	</p>
 	<div class="synopsis">
-	  <div class="atomusage">&amp;condDL[KB,a,b,c,d]()</div>
+	  <div class="atomusage">&amp;consDL[KB,a,b,c,d]()</div>
 	  <div>Input:</div>
 	  <div class="param">KB</div>
 	  <div class="paramtext">web address or file path of the OWL Ontology.</div>
@@ -142,9 +142,28 @@ b(enrolled,X,Y) :- person(X), studies(X,Y).</pre>
 	<p>
 	  If the KB is consistent after possibly augmenting the A-Box according to the input list, the atom evaluates to <i>true</i>, otherwise <i>false</i>.
 	</p>
-	<div style="border-top: 1px solid #999; background-color: inherit; color: #999; font-size: 8.5pt;">
-	  <p>$Id$</p>
+	<div class="synopsis">
+	  <div class="atomusage">&amp;inconsDL[KB,a,b,c,d]()</div>
+	  <div>Input:</div>
+	  <div class="param">KB</div>
+	  <div class="paramtext">web address or file path of the OWL Ontology.</div>
+	  <div class="param">a</div>
+	  <div class="paramtext">name of a binary predicate whose extension denotes addition to a concept.</div>
+	  <div class="param">b</div>
+	  <div class="paramtext">name of a binary predicate whose extension denotes addition to the complement of a concept.</div>
+	  <div class="param">c</div>
+	  <div class="paramtext">name of a ternary predicate whose extension denotes addition to a role.</div>
+	  <div class="param">d</div>
+	  <div class="paramtext">name of a ternary predicate whose extension denotes addition to the complement of a role.</div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param">&nbsp;</div>
+	  <div class="paramtext">none.</div>
+	  <div style="clear: both;"></div>
 	</div>
+	<p>
+	  If the KB is inconsistent after possibly augmenting the A-Box according to the input list, the atom evaluates to <i>true</i>, otherwise <i>false</i>.
+	</p>
 	<h3>DL-Syntax</h3>
 	<p>
 		If the option <code>--ontology=file.owl</code> is specified on the command-line,
@@ -179,7 +198,16 @@ a(X) :- attends(X,Y), firstyearcourse(Y).</pre>
 		where <i>input</i> is a comma-separated list as described above.
 		The atom will evaluate the true if the ontology is consistent
 		after extending it as defined by <code>input</code>.
-	</p>      </div>
+	</p>
+	<h3>Further command-line options</h3>
+	The plugin further supports the option <code>--optimize</code>, which automatically rewrites
+	DL-atoms and DL-related external atoms to improve efficiency. Currently, the single optimization
+	rule rewrites default-negated consistency
+	checks to inconsistency checks, which turns the external atom into a monotonic one
+	and might increase efficiency.
+	<div style="border-top: 1px solid #999; background-color: inherit; color: #999; font-size: 8.5pt;">
+	  <p>$Id$</p>
+	</div>      </div>
       <div class="grid_3">
   <p>&nbsp;</p>
   <p>
