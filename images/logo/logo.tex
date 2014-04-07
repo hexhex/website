@@ -20,6 +20,7 @@
 \newif\ifshowuniversity\showuniversitytrue
 \newif\ifkbslogocol\kbslogocolfalse
 \newif\ifkbslogobw\kbslogobwfalse
+\newif\ifsquare\squaretrue
 
 \begin{document}
 
@@ -85,7 +86,11 @@
 			\draw [style=\style, xshift=0, yshift=-2*\Ri-\Rd] (240:\R) -- (300:\R) -- (360:\R) -- (60:\R) -- (120:\R) -- (180:\R) -- (240:\R) -- (300:\R) node (hex7) {} ;
 		}
 
-		\node (text) [xshift=4\R, minimum height=6\R, anchor=west] {\resizebox{20\R}{!}{\textsc{dlvhex}}};
+		\ifsquare
+			\node (text) [xshift=0, yshift=-4\Ri] {\resizebox{4\Ri+\R}{!}{\textsc{dlvhex}}};
+		\else
+			\node (text) [xshift=4\R, minimum height=6\R, anchor=west] {\resizebox{20\R}{!}{\textsc{dlvhex}}};
+		\fi
 
 		\setlength{\textyshift}{\R}
 		\ifshowgroup
@@ -113,6 +118,17 @@
 
 	\shadetrue
 	\colortrue
+
+	\beginpgfgraphicnamed{square-logo-color-dlvhex}
+	\begin{tikzpicture}
+		\showgroupfalse
+		\showinstitutefalse
+		\showuniversityfalse
+		\squaretrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+	\squarefalse
 
 	\beginpgfgraphicnamed{logo-color-dlvhex}
 	\begin{tikzpicture}
@@ -162,6 +178,17 @@
 	\shadetrue
 	\colorfalse
 
+	\beginpgfgraphicnamed{square-logo-gradient-dlvhex}
+	\begin{tikzpicture}
+		\showgroupfalse
+		\showinstitutefalse
+		\showuniversityfalse
+		\squaretrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+	\squarefalse
+
 	\beginpgfgraphicnamed{logo-gradient-dlvhex}
 	\begin{tikzpicture}
 		\showgroupfalse
@@ -209,6 +236,17 @@
 
 	\shadefalse
 	\colorfalse
+
+	\beginpgfgraphicnamed{square-logo-simple-dlvhex}
+	\begin{tikzpicture}
+		\showgroupfalse
+		\showinstitutefalse
+		\showuniversityfalse
+		\squaretrue
+		\dlvhexlogo
+	\end{tikzpicture}
+	\endpgfgraphicnamed
+	\squarefalse
 
 	\beginpgfgraphicnamed{logo-simple-dlvhex}
 	\begin{tikzpicture}
