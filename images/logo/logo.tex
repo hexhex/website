@@ -1,8 +1,9 @@
- \documentclass{article}
+\documentclass{article}
 \usepackage[table]{xcolor}
 \usepackage[english]{babel}
-
+\usepackage{etex}
 \usepackage{tikz}
+\usepackage{calc}
 \pgfrealjobname{logo}
 \usetikzlibrary{shapes,arrows,backgrounds,chains,%
 	matrix,patterns,arrows,decorations.pathmorphing,decorations.pathreplacing,%
@@ -23,11 +24,17 @@
 \begin{document}
 
 	\newlength{\textyshift}
-	\newlength{\logoxshift}
 	\newcommand{\dlvhexlogo}{
+		\newdimen\Rd
 		\newdimen\R
-		\R=0.6cm
+		\newdimen\Ri
+		\Rd=0.05cm
+		\R=0.3cm
+		\Ri=0.2598076cm	% =R*sqrt(3)/2
 
+		\tikzstyle{invisible} = [
+			draw=none
+		];
 		\ifshade
 			\ifcolor
 				\tikzstyle{hexagon} = [
@@ -36,27 +43,10 @@
 					top color=white,
 					bottom color=blue!10
 				];
-				\tikzstyle{database} = [
-					draw,
-					shade,
-					blur shadow={shadow blur steps=10},
-					top color=white,
-					bottom color=green!10,
-					shape border rotate=90,
-				];
-				\tikzstyle{doc} = [
-					tape,
-					tape bend height=\R/5,
-					tape bend top=none,
-					draw,
-					very thin,
-					solid,
+				\tikzstyle{hexagonplain} = [
 					shade,
 					top color=white,
-					bottom color=red!10,
-					minimum width=\R,
-					text height=\R/3,
-					inner ysep=0mm,
+					bottom color=blue!10
 				];
 			\else
 				\tikzstyle{hexagon} = [
@@ -65,47 +55,16 @@
 					top color=white,
 					bottom color=black!10
 				];
-				\tikzstyle{database} = [
-					draw,
-					shade,
-					blur shadow={shadow blur steps=10},
-					top color=white,
-					bottom color=black!10,
-					shape border rotate=90
-				];
-				\tikzstyle{doc} = [
-					tape,
-					tape bend height=\R/5,
-					tape bend top=none,
-					draw,
-					very thin,
-					solid,
+				\tikzstyle{hexagonplain} = [
 					shade,
 					top color=white,
-					bottom color=black!10,
-					minimum width=\R,
-					text height=\R/3,
-					inner ysep=0mm,
+					bottom color=black!10
 				];
 			\fi
 		\else
 			\tikzstyle{hexagon} = [
 			];
-			\tikzstyle{database} = [
-				draw,
-				shape border rotate=90,
-			];
-			\tikzstyle{doc} = [
-				tape,
-				tape bend height=\R/5,
-				tape bend top=none,
-				draw,
-				fill=white,
-				very thin,
-				solid,
-				minimum width=\R,
-				text height=\R/3,
-				inner ysep=0mm,
+			\tikzstyle{hexagonplain} = [
 			];
 		\fi
 
@@ -116,41 +75,36 @@
 			>=stealth'
 		];
 
-		\setlength{\logoxshift}{0cm}
-		\ifkbslogocol
-			\setlength{\logoxshift}{\R}
-		\fi
-		\ifkbslogobw
-			\setlength{\logoxshift}{\R}
-		\fi
+		\foreach \style in {hexagon, hexagonplain}{
+			\draw [style=invisible] (240:\R) -- (300:\R) -- (360:\R) -- (60:\R) -- (120:\R) -- (180:\R) -- (240:\R) -- (300:\R) node (hex) {} ;
+			\draw [style=\style, xshift=1.5*\R+\Rd*(1.5\R/((1.5\R)^2+\Ri^2)^0.5), yshift=-\Ri-\Rd*(\Ri/((1.5\R)^2+\Ri^2)^0.5)] (240:\R) -- (300:\R) -- (360:\R) -- (60:\R) -- (120:\R) -- (180:\R) -- (240:\R) -- (300:\R) node (hex2) {} ;
+			\draw [style=\style, xshift=1.5*\R+\Rd*(1.5\R/((1.5\R)^2+\Ri^2)^0.5), yshift=\Ri+\Rd*(\Ri/((1.5\R)^2+\Ri^2)^0.5)] (240:\R) -- (300:\R) -- (360:\R) -- (60:\R) -- (120:\R) -- (180:\R) -- (240:\R) -- (300:\R) node (hex3) {} ;
+			\draw [style=\style, xshift=0, yshift=2*\Ri+\Rd] (240:\R) -- (300:\R) -- (360:\R) -- (60:\R) -- (120:\R) -- (180:\R) -- (240:\R) -- (300:\R) node (hex4) {} ;
+			\draw [style=\style, xshift=-1.5*\R-\Rd*(1.5\R/((1.5\R)^2+\Ri^2)^0.5), yshift=\Ri+\Rd*(\Ri/((1.5\R)^2+\Ri^2)^0.5)] (240:\R) -- (300:\R) -- (360:\R) -- (60:\R) -- (120:\R) -- (180:\R) -- (240:\R) -- (300:\R) node (hex5) {} ;
+			\draw [style=\style, xshift=-1.5*\R-\Rd*(1.5\R/((1.5\R)^2+\Ri^2)^0.5), yshift=-\Ri-\Rd*(\Ri/((1.5\R)^2+\Ri^2)^0.5)] (240:\R) -- (300:\R) -- (360:\R) -- (60:\R) -- (120:\R) -- (180:\R) -- (240:\R) -- (300:\R) node (hex6) {} ;
+			\draw [style=\style, xshift=0, yshift=-2*\Ri-\Rd] (240:\R) -- (300:\R) -- (360:\R) -- (60:\R) -- (120:\R) -- (180:\R) -- (240:\R) -- (300:\R) node (hex7) {} ;
+		}
 
-		\draw [style=hexagon] (240:\R) -- (300:\R) -- (360:\R) -- (60:\R) -- (120:\R) -- (180:\R) -- (240:\R) -- (300:\R) node (hex) {} ;
+		\node (text) [xshift=4\R, minimum height=6\R, anchor=west] {\resizebox{20\R}{!}{\textsc{dlvhex}}};
 
-		\node [cylinder, aspect=.5, minimum width=2*\R, minimum height=\R] (data) [xshift=2cm, yshift=-\R] {} ;
-		\node [cylinder, aspect=.5, style=database, minimum width=2*\R, minimum height=\R] (data) [xshift=2cm, yshift=-0.7cm] {} ;
-		
-		\path [<->, style=arrow] (0,0) edge [bend right] node [style=doc] {} ($(data)$);
-
-		\node (text) [above of=data, xshift=-\the\logoxshift] {\resizebox{1.3cm}{!}{\textsc{dlvhex}}};
-		\setlength{\textyshift}{-1.5mm}
-
+		\setlength{\textyshift}{\R}
 		\ifshowgroup
-			\node (text2) [above of=data, yshift=\the\textyshift, xshift=-\the\logoxshift] {\resizebox{1.3cm}{!}{\textsc{Knowledge-Based Systems Group}}};
-			\addtolength{\textyshift}{-0.7mm}
+			\node (text2) [below of=text, yshift=\textyshift] {\resizebox{20\R}{!}{\textsc{Knowledge-Based Systems Group}}};
+			\addtolength{\textyshift}{-\R}
 		\fi
 		\ifshowinstitute
-			\node (text2) [above of=data, yshift=\the\textyshift, xshift=-\the\logoxshift] {\resizebox{1.3cm}{!}{\textsc{Institute of Information Systems}}};
-			\addtolength{\textyshift}{-0.7mm}
+			\node (text2) [below of=text, yshift=\textyshift] {\resizebox{20\R}{!}{\textsc{Institute of Information Systems}}};
+			\addtolength{\textyshift}{-\R}
 		\fi
 		\ifshowuniversity
-			\node (text2) [above of=data, yshift=\the\textyshift, xshift=-\the\logoxshift] {\resizebox{1.3cm}{!}{\textsc{Vienna University of Technology}}};
-			\addtolength{\textyshift}{-0.7mm}
+			\node (text2) [below of=text, yshift=\textyshift] {\resizebox{20\R}{!}{\textsc{Vienna University of Technology}}};
+			\addtolength{\textyshift}{-\R}
 		\fi
 		\ifkbslogocol
-			\node (kbs) [above of=data, yshift=-0.2\R, xshift=0.7\R] {\includegraphics[width=\the\logoxshift]{logo_KBS_5_RGB}};
+			\node (kbs) [right of=hex, xshift=24\R, yshift=2\R] {\includegraphics[height=4\R]{logo_KBS_5_RGB}};
 		\fi
 		\ifkbslogobw
-			\node (kbs) [above of=data, yshift=-0.2\R, xshift=0.7\R] {\includegraphics[width=\the\logoxshift]{logo_KBS_5bw_RGB}};
+			\node (kbs) [right of=hex, xshift=24\R, yshift=2\R] {\includegraphics[height=4\R]{logo_KBS_5bw_RGB}};
 		\fi
 	}
 
