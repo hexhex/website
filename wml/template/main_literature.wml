@@ -1,5 +1,15 @@
 <h2>Literature</h2>
 
+<!--
+<p class="bib"><a name="r2014-phd"></a>
+Christoph Redl<br/>
+ <b>Answer Set Programming with External Sources: Algorithms and Efficient Evaluation</b>.<br/>
+PhD thesis, Vienna University of Technology, Austria, April 2014.<br/>
+[&nbsp;<a href="http://www.kr.tuwien.ac.at/staff/redl/pub-redl/pub-redl-2014_bib.html#r2014-phd">bib</a>&nbsp;|
+&nbsp;<a href="http://www.kr.tuwien.ac.at/staff/redl/publications/r2014-phd.pdf">.pdf</a>&nbsp;]
+</p>
+-->
+
 <p class="bib"><a name="efrs2014-aaai"></a>
 Thomas Eiter, Michael Fink, Christoph Redl, and Daria Stepanova<br/>
  <b>Exploiting Support Sets for Answer Set Programs with External Evaluations</b>.<br/>
