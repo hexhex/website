@@ -36,7 +36,10 @@
 	<img width="30%" src="./dlvhexlogo.png"/><br/>
 	<p>This is an <b>online demo</b> of the <a href="..">dlvhex system</a>. Plugins for the program on the left may be directly implemented in a Python script on the right.</p>
 	<p>Please check out the predefined examples at the bottom right corner for a quick overview or consider the system documentation for a more detailed description.</p>
-	<div style="text-align:right;">(The online demo runs dlvhex version: 2.3.x)</div>
+	<div style="text-align:right;">(The online demo runs <?php
+			print shell_exec("./getversion.sh");
+		?>)
+	</div>
 
         <div style="width:100%;">
 
@@ -55,7 +58,7 @@
 					<select name="example" onchange="this.form.submit()">
 					<?php
 						print "<option name=\"\" value=\"\"></option>";
-						if ($handle = opendir('/home/www/staff/redl/dlvhexonline/examples')) {
+						if ($handle = opendir('./examples')) {
 							while (false !== ($file = readdir($handle))) {
 								if ($file != "." && $file != ".."){
 									print "<option name=\"example\" value=\"$file\">$file</option>";
@@ -80,7 +83,7 @@
 		$reasonercall = trim(file_get_contents("./reasonercall.sh"));
 		$shellstr = "echo \"$hexprogram\" | $reasonercall --";
 #                $shellstr = "echo \"%hexprogram\" | $reasonercall --pythonplugin=<(echo -e \"" . addslashes($extsource) . "\") --")";
-		$answer = shell_exec("$shellstr 2>&1 "); #; echo ret$?");
+		$answer = shell_exec("$shellstr 2>&1; echo ret$?");
 		$pattern = '/ret\d+/i';
 		$replace = '';
 		$retcode = endsWith(trim($answer), "ret0");
