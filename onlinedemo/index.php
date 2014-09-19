@@ -31,6 +31,7 @@
 		$hexprogram = $_POST['hexprogram'];
 		$extsource = $_POST['extsource'];
 		$example = trim($_POST['example']);
+		$evaluate = isset($_POST['evaluate']);
 	?>
 
 	<img width="30%" src="./dlvhexlogo.png"/><br/>
@@ -47,7 +48,7 @@
 			<div style="width:49%;float:left;">
 				<b>HEX-Program:</b></br>
 				<textarea name="hexprogram" style="width:100%;" rows="30"><?php if ($example != ""){print file_get_contents("./examples/" . $example . "/program.hex");}else{print $hexprogram;}?></textarea>
-				<div style="width:100%;text-align:right;"><input type="submit" value="Evaluate"></div>
+				<div style="width:100%;text-align:right;"><input type="submit" name="evaluate" value="Evaluate"></div>
 			</div>
 			<div style="width:2%;float:left;">&nbsp;</div>
 			<div style="width:49%;float:left;">
@@ -80,31 +81,33 @@
 			return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
 		}
 
-		$reasonercall = trim(file_get_contents("./reasonercall.sh"));
-		$shellstr = "echo \"$hexprogram\" | $reasonercall --";
-#                $shellstr = "echo \"%hexprogram\" | $reasonercall --pythonplugin=<(echo -e \"" . addslashes($extsource) . "\") --")";
-		$answer = shell_exec("$shellstr 2>&1; echo ret$?");
-		$pattern = '/ret\d+/i';
-		$replace = '';
-		$retcode = endsWith(trim($answer), "ret0");
-		$answer = preg_replace($pattern, $replace, $answer);
+		if ($evaluate) {
+			$reasonercall = trim(file_get_contents("./reasonercall.sh"));
+			$shellstr = "echo \"$hexprogram\" | $reasonercall --";
+#			$shellstr = "echo \"%hexprogram\" | $reasonercall --pythonplugin=<(echo -e \"" . addslashes($extsource) . "\") --")";
+			$answer = shell_exec("$shellstr 2>&1; echo ret$?");
+			$pattern = '/ret\d+/i';
+			$replace = '';
+			$retcode = endsWith(trim($answer), "ret0");
+			$answer = preg_replace($pattern, $replace, $answer);
 
-		print "<b>Command Line:</b><br/><br/>";
-		print "echo \"[HEX-program code]\" | $reasonercall -- 2>&1";
-#                print "echo \"$hexprogram\" | $reasonercall --pythonplugin=<(echo \"[external source code]\") 2>&1";
-		print "<br/><br/>";
+			print "<b>Command Line:</b><br/><br/>";
+			print "echo \"[HEX-program code]\" | $reasonercall -- 2>&1";
+#               	print "echo \"$hexprogram\" | $reasonercall --pythonplugin=<(echo \"[external source code]\") 2>&1";
+			print "<br/><br/>";
 
-		if ($retcode) {
-			print "<b>Answer Sets:</b>";
-			print "<table class=\"TFTable\">";
-			$ret = shell_exec("echo -e \"$answer\" | tail -n 1");
-			$pattern = '/{([^}]*)}/i';
-			$replace = '<tr><td>{$1}</td></tr>';
-			echo preg_replace($pattern, $replace, $answer);
-			print "</table>";
-		}else{
-			print "<font color=\"red\"><b>Error:</b></font><br/><br/>";
-			print $answer;
+			if ($retcode) {
+				print "<b>Answer Sets:</b>";
+				print "<table class=\"TFTable\">";
+				$ret = shell_exec("echo -e \"$answer\" | tail -n 1");
+				$pattern = '/{([^}]*)}/i';
+				$replace = '<tr><td>{$1}</td></tr>';
+				echo preg_replace($pattern, $replace, $answer);
+				print "</table>";
+			}else{
+				print "<font color=\"red\"><b>Error:</b></font><br/><br/>";
+				print $answer;
+			}
 		}
 	?>
 
