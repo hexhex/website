@@ -1,5 +1,19 @@
 <h2>News</h2>
 
+<h3>September 24, 2014</h3>
+
+<p>
+    <a href="http://sourceforge.net/projects/dlvhex/files/dlvhex/2.4.0/dlvhex-2.4.0.tar.gz/download">Version 2.4.0</a> is out!<br/></br>
+
+	New features:
+	<ul>
+	<li>A new interface which support plugins to be implemented in Python</li>
+	<li>An alternative algortithm for external source compatibility checking based on support sets</li>
+	<li>A plugin interface for customized model generators</li>
+	</ul>
+	In addition it provides numerous bugfixes and optimizations and the solver backend was upgraded to gringo 4.4.0 clasp 3.1.0.
+</p>
+
 <h3>December 14, 2013</h3>
 
 <p>
