@@ -1,0 +1,1 @@
+result(X) :- &concat[hello, world](X).
