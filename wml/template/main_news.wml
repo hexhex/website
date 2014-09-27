@@ -11,7 +11,7 @@
 	<li>An alternative algortithm for external source compatibility checking based on support sets</li>
 	<li>A plugin interface for customized model generators</li>
 	</ul>
-	In addition it provides numerous bugfixes and optimizations and the solver backend was upgraded to gringo 4.4.0 clasp 3.1.0.
+	In addition it provides numerous bugfixes and optimizations and the solver backend was upgraded to gringo 4.4.0 and clasp 3.1.0.
 </p>
 
 <h3>December 14, 2013</h3>
