@@ -136,11 +136,11 @@
 	  href="http://www.kr.tuwien.ac.at/staff/tkren/deb.html">Debian/Ubuntu
 	 packages for ASP systems</a>. </p>
 
-	<p><font color="red"><b>Note:</b>These packages are outdated!</font>
+	<p><font color="red"><b>Note:</b> These packages are outdated!</font>
 	There are currently no pre-compiled packages of dlvhex 2.X available.
 	Please build it from source.
 	However, we offer a <a href="https://tiss.tuwien.ac.at/thesis/thesisDetails.xhtml?thesisId=24536&windowId=5f0">bachelor student project</a> on building new packages;
-	if you are interested please drop us an e-mail.</p>.
+	if you are interested please drop us an e-mail.</p>
 	
 	<h3>Development Version</h3><a name="devel"></a>
 
