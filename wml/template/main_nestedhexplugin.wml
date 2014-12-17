@@ -67,7 +67,7 @@ out(A) :- &amp;hexCautious[string, "q(X) :- p(X, Y), not r(X).", inp, q](A).
 	</p>
 
 	<div class="synopsis">
-	  <div class="atomusage">&amp;hexInspection[t, p, i, qt, qp](x1,...,xn)</div>
+	  <div class="atomusage">&amp;hexInspection[t, p, i, qt, qp](x1,x2)</div>
 	  <div>Input:</div>
 	  <div class="param">t</div>
 	  <div class="paramtext">A string specifying the type of the subprogram, which is either <code>file</code> or <code>string</code></div>
@@ -140,7 +140,7 @@ parameters(Atom, Index, Term) :- atoms(Atom, Arity),
 
 	<div class="synopsis">
 	  <div class="atomusage">CHEX[program; input; query](x1,...,xn) / BHEX[program; input; query](x1,...,xn)</div>
-	  <div class="atomusage">FCHEX[program; input; query](x1,...,xn) / FBHEX[program; input; query](x1,...,xn)</div>
+	  <div class="atomusage">CFHEX[program; input; query](x1,...,xn) / BFHEX[program; input; query](x1,...,xn)</div>
 	  <div>Input:</div>
 	  <div class="param">program</div>
 	  <div class="paramtext">A string specifying the type of the subprogram, which is a filename if the HEX-atom starts with <code>F</code> and a string containing the rules otherwise.</div>
@@ -181,7 +181,7 @@ out(A) :- CHEX["q(X) :- p(X), not r(X)."; p=set1/1, r=set2/1; q](A).
 	</p>
 
 	<div class="synopsis">
-	  <div class="atomusage">IHEX[program; input; qt, qp](x1,x2) / FIHEX[program; input; qt, qp](x1,x2)</div>
+	  <div class="atomusage">IHEX[program; input; qt, qp](x1,x2) / IFHEX[program; input; qt, qp](x1,x2)</div>
 	  <div>Input:</div>
 	  <div class="param">program</div>
 	  <div class="paramtext">A string specifying the type of the subprogram, which is a filename if the HEX-atom starts with <code>F</code> and a string containing the rules otherwise.</div>
