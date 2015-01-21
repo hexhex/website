@@ -65,7 +65,8 @@
 					if ($handle = opendir('demo/examples')) {
 						while (false !== ($file = readdir($handle))) {
 							if ($file != "." && $file != ".."){
-								print "<option name=\"example\" value=\"$file\">$file</option>";
+								$exname = file_get_contents("demo/examples/" . $file . "/name.txt");
+								print "<option name=\"example\" value=\"$file\">$exname</option>";
 							}
 						}
 						closedir($handle);
