@@ -18,7 +18,8 @@ def setdiff(p,q):
 	for x in dlvhex.getTrueInputAtoms():
 		# check if the predicate is p
 		if x.tuple()[0] == p:
-			# check if the atom with predicate being changed to q is NOT in the input
+			# check if the atom with predicate
+			# being changed to q is NOT in the input
 			if dlvhex.isFalse(dlvhex.storeAtom((q, x.tuple()[1]))):
 				# then the element is in the output
 				dlvhex.output((x.tuple()[1], ));
