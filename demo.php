@@ -39,6 +39,9 @@
 		$hexprogram = $_POST['hexprogram'];
 		$extsource = $_POST['extsource'];
 		$example = trim($_POST['example']);
+		if !isset($_POST['Evaluate']){
+			$example = "Tutorial";
+		}
 	?>
 	<!--<img width="30%" src="images/dlvhexlogo.png" alt=""><br>-->
 	<p>This online demo of the dlvhex system allows for

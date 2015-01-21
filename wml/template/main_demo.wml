@@ -4,6 +4,11 @@
 		$hexprogram = $_POST['hexprogram'];
 		$extsource = $_POST['extsource'];
 		$example = trim($_POST['example']);
+
+		# Start with tutorial
+		if !isset($_POST['Evaluate']){
+			$example = "Tutorial";
+		}
 	?>
 
 	<!--<img width="30%" src="images/dlvhexlogo.png"/><br/>-->
