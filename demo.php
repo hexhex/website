@@ -34,27 +34,6 @@
     <!-- Information -->
     <div class="container_12">
       <div class="grid_9">
-	<style type="text/css">
-		.TFtable{
-			width:100%;
-			border-collapse:collapse;
-		}
-		.TFtable td{
-			padding:7px; border:MediumSlateBlue 1px solid;
-		}
-		/* provide some minimal visual accomodation for IE8 and below */
-		.TFtable tr{
-			background: MediumSlateBlue;
-		}
-		/* Define the background color for all the ODD background rows */
-		.TFtable tr:nth-child(odd){
-			background: Lavender;
-		}
-		/* Define the background color for all the EVEN background rows */
-		.TFtable tr:nth-child(even){
-			background: GhostWhite;
-		}
-	</style>
 	<h2>Online Demo</h2>
 	<?php
 		$hexprogram = $_POST['hexprogram'];
@@ -71,6 +50,7 @@
 			print shell_exec("demo/getversion.sh");
 		?>)
 	</div>
+	<br>
         <div style="width:100%;">
 		<form method="post" action="demo.php">
 			<div style="text-align:right;">
@@ -107,13 +87,13 @@
 	     </form>
 	</div>
 	<div style="width:100%;float:right;">
-	<?
+	<?php
 		function endsWith($haystack, $needle) {
 			return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
 		}
 		$commandlineoptions = "";
 		if ($_POST['optLiberalSafety']) { $commandlineoptions = "--liberalsafety"; }
-		if ($_POST['optCustom'] != "") { $commandlineoptions = $commandlineoptions . " " . $_POST['optCustom']) };
+		if ($_POST['optCustom'] != "") { $commandlineoptions = $commandlineoptions . " " . $_POST['optCustom']; };
 		$reasonercall = trim(file_get_contents("demo/reasonercall.sh"));
 		$shellstr = "echo \"$hexprogram\" | $reasonercall $commandlineoptions --";
 		$answer = shell_exec("$shellstr 2>&1; echo ret$?");
