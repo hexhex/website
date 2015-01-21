@@ -47,7 +47,7 @@
 	<p>This <b>online demo of the dlvhex system</b> allows for
 	evaluating programs without local installation.
 	This is intended mainly for testing and learning purposes.
-	External sources for the program on the top may be directly implemented in a Python script below.</p>
+	External sources for the program at the top may be directly implemented in a Python script below.</p>
 	<p>Please check out the predefined <b>examples at the upper right corner</b> for a quick overview or consider the <b>links to the system documentation in the right-hand menu</b> for a more detailed description.</p>
 	<div style="text-align:right;">(The online demo currently runs <i><?php
 			print trim(shell_exec("demo/getversion.sh"));
