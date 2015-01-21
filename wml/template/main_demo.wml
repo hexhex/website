@@ -101,8 +101,8 @@
 
 			# Output of the command line
 			print "<b>Command Line:</b><br/>";
-			print "dlv $commandlineoptions program.hex";
-	#                print "dlvhex2 $commandlineoptions --pythonplugin=extsource.py program.hex 2>&1";
+			print "<tt>shell$ dlv $commandlineoptions program.hex</tt>";
+	#                print "<tt>shell$ dlvhex2 $commandlineoptions --pythonplugin=extsource.py program.hex</tt>";
 			print "<br/>";
 		        print "where program.hex and extsource.py refer to the program and plugin entered above, respectively";
 

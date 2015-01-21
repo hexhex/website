@@ -112,7 +112,7 @@
 			$retcode = endsWith(trim($answer), "ret0");
 			$answer = preg_replace($pattern, $replace, $answer);
 			print "<b>Command Line:</b><br>";
-			print "dlv $commandlineoptions program.hex";
+			print "<tt>shell$ dlv $commandlineoptions program.hex</tt>";
 			print "<br>";
 		        print "where program.hex and extsource.py refer to the program and plugin entered above, respectively";
 			print "<br><br>";
