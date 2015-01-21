@@ -1,6 +1,7 @@
 import dlvhex
 
-# concat has one input parameter of type tuple (=arbitrarily many constants), which specifies the terms to be concatenated
+# concat has one input parameter of type tuple (=arbitrarily many constants),
+# which specifies the terms to be concatenated
 def concat(tup):
 	# start with empty string and append all input constants in sequence
 	ret = ""
@@ -10,7 +11,8 @@ def concat(tup):
 	# output the final string
 	dlvhex.output((ret, ))
 
-# computes the set of all elements in the extension of unary predicate p but not in that of q
+# computes the set of all elements in the extension
+# of unary predicate p but not in that of q
 def setdiff(p,q):
 	# for all input atoms (over p or q)
 	for x in dlvhex.getTrueInputAtoms():
@@ -25,5 +27,6 @@ def setdiff(p,q):
 def register():
 	# setdiff has two predicate input parametrers and its output arity is 1
 	dlvhex.addAtom("setdiff", (dlvhex.PREDICATE, dlvhex.PREDICATE), 1)
-	# concat has arbitrarily many input parameters of type constant (=TUPLE) and its output arity is 1
+	# concat has arbitrarily many input parameters
+	# of type constant (=TUPLE) and its output arity is 1
 	dlvhex.addAtom("concat", (dlvhex.TUPLE, ), 1)
