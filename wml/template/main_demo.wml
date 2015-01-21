@@ -1,14 +1,14 @@
 	<h2>Online Demo</h2>
 
 	<?php
-		$hexprogram = $_POST['hexprogram'];
-		$extsource = $_POST['extsource'];
-		$example = trim($_POST['example']);
+                $hexprogram = $_POST['hexprogram'];
+                $extsource = $_POST['extsource'];
+                $example = trim($_POST['example']);
 
-		# Start with tutorial
-		if !isset($_POST['Evaluate']){
-			$example = "Tutorial";
-		}
+		# Start with tutorial if it is the first call of the page
+                if (!isset($_POST['hexprogram'])){
+                        $example = "Tutorial";
+                }
 	?>
 
 	<!--<img width="30%" src="images/dlvhexlogo.png"/><br/>-->
