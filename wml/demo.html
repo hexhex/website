@@ -79,8 +79,10 @@
 <!-- </div>-->
 <!-- <div style="width:2%;float:left;">&nbsp;</div>-->
 <!-- <div style="width:49%;float:left;">-->
+			<br>
 			<b>External Source Definition:</b></br>
 			<textarea name="extsource" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
+			<br>
 			<b>Command-line Options:</b></br>
 			<table width="100%" summary="">
                         <tr><td>Filter predicates (comma-separated):<td><td><input type="text" name="optFilter" style="width:100%" value="<?php echo isset($_POST['optFilter']) ? $_POST['optFilter'] : ''; ?>"></td></tr>
