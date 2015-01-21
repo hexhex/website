@@ -18,3 +18,6 @@ done
 # copy to root
 cp wml/*.html ./
 cp wml/actionplugin/*.html ./actionplugin/
+
+# demo is a php file
+mv demo.html demo.php
