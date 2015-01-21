@@ -20,7 +20,7 @@
 
         <div style="width:100%;">
 
-		<form method="post" action="demo.html">
+		<form method="post" action="demo.php">
 			<div style="width:49%;float:left;">
 				<b>HEX-Program:</b></br>
 				<textarea name="hexprogram" style="width:100%;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/program.hex");}else{print $hexprogram;}?></textarea>
