@@ -1,1 +1,1 @@
-3-colorability with externally defined graph
+3-Colorability with Externally Defined Graph

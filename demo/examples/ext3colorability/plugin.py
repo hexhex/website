@@ -1,6 +1,7 @@
 import dlvhex
 
 def edge():
+	# output all edges of the graph
 	dlvhex.output((2, 4))
 	dlvhex.output((2, 3))
 	dlvhex.output((3, 5))

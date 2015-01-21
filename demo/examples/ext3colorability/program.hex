@@ -1,6 +1,9 @@
+% use external edge relation to identify the nodes
 node(X) :- &edge[](X,Y).
 node(Y) :- &edge[](X,Y).
 
+% guessing part
 colored(X,r) v colored(X,g) v colored(X,b) :- node(X).
 
+% checking part
 :- &edge[](X,Y), colored(X,C), colored(Y,C).
