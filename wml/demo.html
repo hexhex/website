@@ -96,7 +96,7 @@
 	<h3>Output</h3>
 	<div style="width:100%;float:right;">
 	<?php
-		if (isset($_POST['hexprogram']) && ($_POST['example'] != "")){
+		if (isset($_POST['hexprogram']) && ($_POST['example'] == "")){
 			function endsWith($haystack, $needle) {
 				return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
 			}
