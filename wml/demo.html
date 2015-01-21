@@ -73,32 +73,36 @@
 	</div>
         <div style="width:100%;">
 		<form method="post" action="demo.php">
-			<div style="width:49%;float:left;">
-				<b>HEX-Program:</b></br>
-				<textarea name="hexprogram" style="width:100%;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/program.hex");}else{print $hexprogram;}?></textarea>
-				<div style="width:100%;text-align:right;"><input type="submit" value="Evaluate"></div>
-			</div>
-			<div style="width:2%;float:left;">&nbsp;</div>
-			<div style="width:49%;float:left;">
-				<b>External Source Definition:</b></br>
-				<textarea name="extsource" style="width:100%;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
-				<div style="text-align:right;">
-					Load example:
-					<select name="example" onchange="this.form.submit()">
-					<?php
-						print "<option name=\"\" value=\"\"></option>";
-						if ($handle = opendir('demo/examples')) {
-							while (false !== ($file = readdir($handle))) {
-								if ($file != "." && $file != ".."){
-									print "<option name=\"example\" value=\"$file\">$file</option>";
-								}
+			<div style="text-align:right;">
+				Load example:
+				<select name="example" onchange="this.form.submit()">
+				<?php
+					print "<option name=\"\" value=\"\"></option>";
+					if ($handle = opendir('demo/examples')) {
+						while (false !== ($file = readdir($handle))) {
+							if ($file != "." && $file != ".."){
+								print "<option name=\"example\" value=\"$file\">$file</option>";
 							}
-							closedir($handle);
 						}
-					?>
-					</select>
-				</div>
+						closedir($handle);
+					}
+				?>
+				</select>
 			</div>
+<!-- <div style="width:49%;float:left;">-->
+			<b>HEX-Program:</b></br>
+			<textarea name="hexprogram" style="width:100%;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/program.hex");}else{print $hexprogram;}?></textarea>
+<!-- </div>-->
+<!-- <div style="width:2%;float:left;">&nbsp;</div>-->
+<!-- <div style="width:49%;float:left;">-->
+			<b>External Source Definition:</b></br>
+			<textarea name="extsource" style="width:100%;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
+			<b>Command-line Options:</b></br>
+			<table width="100%" summary="">
+			<tr><td>Liberal safety:<td><td><input type="checkbox" name="optLiberalSafety"></td></tr>
+			<tr><td>Custom options:<td><td><input type="text" name="optCustom" width="100%"></td></tr>
+			<div style="width:100%;text-align:right;"><input type="submit" value="Evaluate"></div>
+<!-- </div>-->
 	     </form>
 	</div>
 	<div style="width:100%;float:right;">
@@ -106,25 +110,35 @@
 		function endsWith($haystack, $needle) {
 			return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
 		}
+		$commandlineoptions = "";
+		if ($_POST['optLiberalSafety']){ $commandlineoptions = "--liberalsafety"; }
+		$commandlineoptions = "$commandlineoptions $_POST['optCustom']";
 		$reasonercall = trim(file_get_contents("demo/reasonercall.sh"));
-		$shellstr = "echo \"$hexprogram\" | $reasonercall --";
+		$shellstr = "echo \"$hexprogram\" | $reasonercall $commandlineoptions --";
 		$answer = shell_exec("$shellstr 2>&1; echo ret$?");
 		$pattern = '/ret\d+/i';
 		$replace = '';
 		$retcode = endsWith(trim($answer), "ret0");
 		$answer = preg_replace($pattern, $replace, $answer);
 		print "<b>Command Line:</b><br><br>";
-		print "echo \"[HEX-program code]\" | $reasonercall -- 2>&1";
+		print "echo \"[HEX-program code]\" | $reasonercall $commandlineoptions -- 2>&1";
 		print "<br><br>";
 		if ($retcode) {
-			print "<b>Answer Sets:</b>";
-			$tabclass = "table class=\"TFTable\"";
-			print "<$tabclass>";
-			$ret = shell_exec("echo -e \"$answer\" | tail -n 1");
-			$pattern = '/{([^}]*)}/i';
-			$replace = '<tr><td>{$1}</td></tr>';
-			echo preg_replace($pattern, $replace, $answer);
-			print "</table>";
+                        print "<b>Answer Sets:</b>";
+                        $tabclass = "table";
+                        print "<$tabclass>";
+                        $ret = shell_exec("echo -e \"$answer\" | tail -n 1");
+                        $answersets = explode(PHP_EOL, trim(shell_exec("echo -e \"$answer\" | head -n -1")));
+                        $nr = 1;
+                        foreach ($answersets as $answerset){
+                                if ($nr % 2 == 0){
+                                        print "<tr><td>$nr</td><td>$answerset</td></tr>";
+                                }else{
+                                        print "<tr class=\"odd\"><td>$nr</td><td>$answerset</td></tr>";
+                                }
+                                $nr++;
+                        }
+                        print "</table>";
 		}else{
 			print "<font color=\"red\"><b>Error:</b></font><br><br>";
 			print $answer;
