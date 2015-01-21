@@ -66,7 +66,7 @@
 					<select name="example" onchange="this.form.submit()">
 					<?php
 						print "<option name=\"\" value=\"\"></option>";
-						if ($handle = opendir('./examples')) {
+						if ($handle = opendir('demo/examples')) {
 							while (false !== ($file = readdir($handle))) {
 								if ($file != "." && $file != ".."){
 									print "<option name=\"example\" value=\"$file\">$file</option>";
