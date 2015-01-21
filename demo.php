@@ -116,12 +116,12 @@
                         $nr = 0;
                         foreach ($answersets as $answerset){
 				if ($answerset != ""){
+					$answerset = preg_replace('/$}/i', '', preg_replace('/^{/i', '', $answerset));
 	       	                        $nr++;
                                         if ($nr % 2 == 0){
                                                 print "<tr><td>$nr</td><td style=\"padding:0px; margin:0px;\">{</td><td style=\"padding:0px; margin:0px; \">$answerset}</td></tr>";
                                         }else{
                                                 print "<tr class=\"odd\"><td>$nr</td><td style=\"padding:0px; margin:0px;\">{</td><td style=\"padding:0px; margin:0px; \">$answerset}</td></tr>";
-/tr>";
                                         }
 				}
                         }
