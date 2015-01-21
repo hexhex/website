@@ -44,14 +44,14 @@
                 }
 	?>
 	<!--<img width="30%" src="images/dlvhexlogo.png" alt=""><br>-->
-	<p>This online demo of the dlvhex system allows for
+	<p>This <b>online demo of the dlvhex system</b> allows for
 	evaluating programs without local installation.
 	This is intended mainly for testing and learning purposes.
 	Plugins for the program on the left may be directly implemented in a Python script on the right.</p>
-	<p>Please check out the predefined examples at the bottom right corner for a quick overview or consider the system documentation for a more detailed description.</p>
-	<div style="text-align:right;">(The online demo runs <?php
-			print shell_exec("demo/getversion.sh");
-		?>)
+	<p>Please check out the predefined <b>examples at the upper right corner</b> for a quick overview or consider the <b>links to the system documentation in the right-hand menu</b> for a more detailed description.</p>
+	<div style="text-align:right;">(The online demo currently runs <i><?php
+			print trim(shell_exec("demo/getversion.sh"));
+		?></i>)
 	</div>
 	<br>
         <div style="width:100%;">
@@ -81,7 +81,7 @@
 <!-- <div style="width:2%;float:left;">&nbsp;</div>-->
 <!-- <div style="width:49%;float:left;">-->
 			<br><br>
-			<b>External Source Definition:</b></br>
+			<b>External Source Definition (Python):</b></br>
 			<textarea name="extsource" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
 			<br><br>
 			<b>Command-line Options:</b></br>
