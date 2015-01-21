@@ -80,9 +80,9 @@
 			<textarea name="extsource" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
 			<b>Command-line Options:</b></br>
 			<table width="100%" summary="">
-                        <tr><td>Filter predicates (comma-separated):<td><td><input type="text" name="optFilter" width="100%" value="<?php echo isset($_POST['optFilter']) ? $_POST['optFilter'] : ''; ?>"></td></tr>
+                        <tr><td>Filter predicates (comma-separated):<td><td><input type="text" name="optFilter" style="width:100%" value="<?php echo isset($_POST['optFilter']) ? $_POST['optFilter'] : ''; ?>"></td></tr>
                         <tr><td>Liberal safety:<td><td><input type="checkbox" name="optLiberalSafety" <?php echo isset($_POST['optLiberalSafety']) ? 'checked' : ''; ?>></td></tr>
-                        <tr><td>Custom options:<td><td><input type="text" name="optCustom" width="100%" value="<?php echo isset($_POST['optCustom']) ? $_POST['optCustom'] : ''; ?>"></td></tr>
+                        <tr><td>Custom options:<td><td><input type="text" name="optCustom" style="width:100%" value="<?php echo isset($_POST['optCustom']) ? $_POST['optCustom'] : ''; ?>"></td></tr>
 			</table>
 			<div style="width:100%;text-align:right;"><input type="submit" value="Evaluate"></div>
 <!-- </div>-->
