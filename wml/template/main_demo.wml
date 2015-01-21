@@ -79,66 +79,63 @@
 	<div style="width:100%;float:right;">
 	<?php
 		if (isset($_POST['hexprogram']) && ($_POST['example'] == "")){
-
-			function endsWith($haystack, $needle) {
-				return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
-			}
+                        function endsWith($haystack, $needle) {
+                                return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
+                        }
 
 			# Assembling of the command-line
-			$commandlineoptions = "";
-			if ($_POST['optFilter'] != "") { $commandlineoptions = $commandlineoptions . " --filter=" . $_POST['optFilter']; };
-			if ($_POST['optLiberalSafety']) { $commandlineoptions = "--liberalsafety"; }
-			if ($_POST['optCustom'] != "") { $commandlineoptions = $commandlineoptions . " " . $_POST['optCustom']; };
+                        $commandlineoptions = "";
+                        if ($_POST['optFilter'] != "") { $commandlineoptions = $commandlineoptions . " --filter=" . $_POST['optFilter']; };
+                        if ($_POST['optLiberalSafety']) { $commandlineoptions = "--liberalsafety"; }
+                        if ($_POST['optCustom'] != "") { $commandlineoptions = $commandlineoptions . " " . $_POST['optCustom']; };
 
 			# Evaluation
-			$reasonercall = trim(file_get_contents("demo/reasonercall.sh"));
-			$shellstr = "echo \"$hexprogram\" | $reasonercall $commandlineoptions --";
+                        $reasonercall = trim(file_get_contents("demo/reasonercall.sh"));
+                        $shellstr = "$reasonercall $commandlineoptions --";
 	#                $shellstr = "echo \"%hexprogram\" | $reasonercall $commandlineoptions --pythonplugin=<(echo -e \"" . addslashes($extsource) . "\") --")";
-			$answer = shell_exec("$shellstr 2>&1; echo ret$?");
-			$pattern = '/ret\d+/i';
-			$replace = '';
-			$retcode = endsWith(trim($answer), "ret0");
-			$answer = preg_replace($pattern, $replace, $answer);
+                        exec("echo \"$hexprogram\" | $shellstr 2>&1", $answer, $retcode);
+                        $replace = '';
+
+			# Command line
+                        print "<b>Command Line:</b><br>";
+                        print "<tt>shell$ dlv $commandlineoptions program.hex</tt>";
+	#                print "<tt>shell$ dlvhex2 $commandlineoptions --pythonplugin=extsource.py program.hex</tt>";
+                        print "<br>";
+                        print "where program.hex and extsource.py refer to the program and plugin entered above, respectively";
+                        print "<br><br>";
 
 			# Output of the command line
-			print "<b>Command Line:</b><br/>";
-			print "<tt>shell$ dlv $commandlineoptions program.hex</tt>";
-	#                print "<tt>shell$ dlvhex2 $commandlineoptions --pythonplugin=extsource.py program.hex</tt>";
-			print "<br/>";
-		        print "where program.hex and extsource.py refer to the program and plugin entered above, respectively";
-
-			print "<br/><br/>";
-
-		        if ($retcode) {
-		                print "<b>Answer Sets:</b>";
-		                $astab = "";
-		                $ret = shell_exec("echo -e \"$answer\" | tail -n 1");
-		                $answersets = explode(PHP_EOL, trim(shell_exec("echo -e \"$answer\" | head -n -1")));
-		                $nr = 0;
-		                foreach ($answersets as $answerset){
-		                        if ($answerset != ""){
-	#                                       $answerset = preg_replace('/}$/i', '', preg_replace('/^{/i', '', $answerset));
-		                                $nr++;
-		                                if ($nr % 2 == 0){
-		                                        $astab = $astab . "<tr><td width=\"10%\">" . $nr . "</td><td>" . $answerset . "</td></tr>";
-		                                }else{
-		                                        $astab = $astab . "<tr class=\"odd\"><td width=\"10%\">" . $nr . "</td><td>" . $answerset . "</td></tr>";
-		                                }
-		                        }
-		                }
-
-				$tabtag = "table"; # prevent WML from adding the summary attribute
-		                if ($nr == 0){
-		                        print "<$tabtag><tr><td><font color=\"blue\"><b>None</b><br/>(program is inconsistent)</font></td></tr></table>";
-		                }else{
-		                        print "<$tabtag><tbody>"; #<thead><tr><th width=\"10%\">Number</th><th>Set</th></tr></thead><tbody>";
-		                        print $astab;
-		                        print "<tbody></table>";
-		                }
-		        }else{
-		                print "<font color=\"red\"><b>Error:</b></font><br>";
-		                print $answer;
-		        }
+                        if ($retcode == 0) {
+                                print "<b>Answer Sets:</b>";
+                                $astab = "";
+                                $ret = shell_exec("echo -e \"$answer\"");
+                                $nr = 0;
+                                foreach ($answer as $answerset){
+                                        if ($answerset != ""){
+                                                $nr++;
+                                                if ($nr % 2 == 0){
+                                                        $astab = $astab . "<tr><td width=\"10%\">" . $nr . "</td><td>" . $answerset . "</td></tr>";
+                                                }else{
+                                                        $astab = $astab . "<tr class=\"odd\"><td width=\"10%\">" . $nr . "</td><td>" . $answerset . "</td></tr>";
+                                                }
+                                        }
+                                }
+                                $tabtag = "table"; # prevent WML from adding the summary attribute
+                                if ($nr == 0){
+                                        print "<$tabtag><tr><td><font color=\"blue\"><b>None</b><br>(program is inconsistent)</font></td></tr></table>";
+                                }else{
+                                        print "<$tabtag><tbody>"; #<thead><tr><th width=\"10%\">Number</th><th>Set</th></tr></thead><tbody>";
+                                        print $astab;
+                                        print "<tbody></table>";
+                                }
+                        }else if ($retcode == 137){
+                                print "<font color=\"red\"><b>Timeout due to limited resources of the demo server, please simplify your program or install the system locally</b></font><br>";
+                        }else{
+                                print "<font color=\"red\"><b>Error:</b></font><br>";
+                                foreach ($answer as $line){
+                                        print $line . "<br/>";
+                                }
+                        }
 		}else{
 			print "Please click 'Evaluate' to run the reasoner";
 		}
