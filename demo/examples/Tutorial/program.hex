@@ -1,1 +1,19 @@
-result(X) :- &concat[hello, world](X).
+% 1. Working with constant input parameters to external sources
+
+% define some strings
+systems(dlvhex). systems(clasp).
+
+% for each system, concat strings hello and the system name
+% output: sayhello(hellodlvhex), sayhello(helloclasp)
+sayhello(X) :- &concat[hello, Y](X), systems(Y).
+
+
+% 2. Working with predicate input parameters
+
+% define two sets
+set1(a). set1(b). set1(c).
+set2(b). set2(c). set2(d).
+
+% compute set1 minus set2 using the external source
+% output: set3(a)
+set3(X) :- &setdiff[set1, set2](X).
