@@ -141,7 +141,7 @@
 		                        print "<tbody></table>";
 		                }
 		        }else{
-		                print "<font color=\"red\"><b>Error:</b></font><br><br>";
+		                print "<font color=\"red\"><b>Error:</b></font><br>";
 		                print $answer;
 		        }
 		}else{
