@@ -34,6 +34,27 @@
     <!-- Information -->
     <div class="container_12">
       <div class="grid_9">
+	<style type="text/css">
+		.TFtable{
+			width:100%;
+			border-collapse:collapse;
+		}
+		.TFtable td{
+			padding:7px; border:MediumSlateBlue 1px solid;
+		}
+		/* provide some minimal visual accomodation for IE8 and below */
+		.TFtable tr{
+			background: MediumSlateBlue;
+		}
+		/* Define the background color for all the ODD background rows */
+		.TFtable tr:nth-child(odd){
+			background: Lavender;
+		}
+		/* Define the background color for all the EVEN background rows */
+		.TFtable tr:nth-child(even){
+			background: GhostWhite;
+		}
+	</style>
 	<h2>Online Demo</h2>
 	<?php
 		$hexprogram = $_POST['hexprogram'];
