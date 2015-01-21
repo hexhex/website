@@ -52,6 +52,7 @@
 	</div>
 	<br>
         <div style="width:100%;">
+		<h3>Input</h3>
 		<form method="post" action="demo.php">
 			<div style="text-align:right;">
 				Load example:
@@ -86,6 +87,7 @@
 <!-- </div>-->
 	     </form>
 	</div>
+	<h3>Output</h3>
 	<div style="width:100%;float:right;">
 	<?php
 		function endsWith($haystack, $needle) {
@@ -102,7 +104,8 @@
 		$retcode = endsWith(trim($answer), "ret0");
 		$answer = preg_replace($pattern, $replace, $answer);
 		print "<b>Command Line:</b><br><br>";
-		print "echo \"[HEX-program code]\" | $reasonercall $commandlineoptions -- 2>&1";
+		print "dlv $commandlineoptions program.hex";
+		print "where program.hex and extsource.py refer to the program and plugin entered above, respectively"
 		print "<br><br>";
 		if ($retcode) {
                         print "<b>Answer Sets:</b>";
@@ -114,11 +117,12 @@
                         foreach ($answersets as $answerset){
 				if ($answerset != ""){
 	       	                        $nr++;
-	                                if ($nr % 2 == 0){
-        	                                print "<tr><td>$nr</td><td>$answerset</td></tr>";
-        	                        }else{
-        	                                print "<tr class=\"odd\"><td>$nr</td><td>$answerset</td></tr>";
-        	                        }
+                                        if ($nr % 2 == 0){
+                                                print "<tr><td>$nr</td><td style=\"padding:0px; margin:0px;\">{</td><td style=\"padding:0px; margin:0px; \">$answerset}</td></tr>";
+                                        }else{
+                                                print "<tr class=\"odd\"><td>$nr</td><td style=\"padding:0px; margin:0px;\">{</td><td style=\"padding:0px; margin:0px; \">$answerset}</td></tr>";
+/tr>";
+                                        }
 				}
                         }
                         print "</table>";
