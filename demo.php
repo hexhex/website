@@ -91,16 +91,17 @@
 			</div>
 <!-- <div style="width:49%;float:left;">-->
 			<b>HEX-Program:</b></br>
-			<textarea name="hexprogram" style="width:100%;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/program.hex");}else{print $hexprogram;}?></textarea>
+			<textarea name="hexprogram" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/program.hex");}else{print $hexprogram;}?></textarea>
 <!-- </div>-->
 <!-- <div style="width:2%;float:left;">&nbsp;</div>-->
 <!-- <div style="width:49%;float:left;">-->
 			<b>External Source Definition:</b></br>
-			<textarea name="extsource" style="width:100%;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
+			<textarea name="extsource" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
 			<b>Command-line Options:</b></br>
 			<table width="100%" summary="">
-			<tr><td>Liberal safety:<td><td><input type="checkbox" name="optLiberalSafety"></td></tr>
-			<tr><td>Custom options:<td><td><input type="text" name="optCustom" width="100%"></td></tr>
+                        <tr><td>Liberal safety:<td><td><input type="checkbox" name="optLiberalSafety" <?php echo isset($_POST['optLiberalSafety']) ? 'checked' : ''; ?>></td></tr>
+                        <tr><td>Custom options:<td><td><input type="text" name="optCustom" width="100%" value="<?php echo isset($_POST['optCustom']) ? $_POST['optCustom'] : ''; ?>"></td></tr>
+			</table>
 			<div style="width:100%;text-align:right;"><input type="submit" value="Evaluate"></div>
 <!-- </div>-->
 	     </form>
@@ -111,8 +112,8 @@
 			return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
 		}
 		$commandlineoptions = "";
-		if ($_POST['optLiberalSafety']){ $commandlineoptions = "--liberalsafety"; }
-		$commandlineoptions = "$commandlineoptions $_POST['optCustom']";
+		if ($_POST['optLiberalSafety']) { $commandlineoptions = "--liberalsafety"; }
+		if ($_POST['optCustom'] != "") { $commandlineoptions = $commandlineoptions . " " . $_POST['optCustom']) };
 		$reasonercall = trim(file_get_contents("demo/reasonercall.sh"));
 		$shellstr = "echo \"$hexprogram\" | $reasonercall $commandlineoptions --";
 		$answer = shell_exec("$shellstr 2>&1; echo ret$?");
@@ -129,16 +130,21 @@
                         print "<$tabclass>";
                         $ret = shell_exec("echo -e \"$answer\" | tail -n 1");
                         $answersets = explode(PHP_EOL, trim(shell_exec("echo -e \"$answer\" | head -n -1")));
-                        $nr = 1;
+                        $nr = 0;
                         foreach ($answersets as $answerset){
-                                if ($nr % 2 == 0){
-                                        print "<tr><td>$nr</td><td>$answerset</td></tr>";
-                                }else{
-                                        print "<tr class=\"odd\"><td>$nr</td><td>$answerset</td></tr>";
-                                }
-                                $nr++;
+				if ($answerset != ""){
+	       	                        $nr++;
+	                                if ($nr % 2 == 0){
+        	                                print "<tr><td>$nr</td><td>$answerset</td></tr>";
+        	                        }else{
+        	                                print "<tr class=\"odd\"><td>$nr</td><td>$answerset</td></tr>";
+        	                        }
+				}
                         }
                         print "</table>";
+			if ($nr == 0){
+				print "<font color=\"blue\"><b>None</b> (program is inconsistent)</font><br><br>";
+			}
 		}else{
 			print "<font color=\"red\"><b>Error:</b></font><br><br>";
 			print $answer;
