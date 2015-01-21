@@ -97,7 +97,8 @@
 		print "<br><br>";
 		if ($retcode) {
 			print "<b>Answer Sets:</b>";
-			print "<table class=\"TFTable\" summary="">";
+			$tabclass = "class=\"TFTable\"";
+			print "<table $tabclass summary="">";
 			$ret = shell_exec("echo -e \"$answer\" | tail -n 1");
 			$pattern = '/{([^}]*)}/i';
 			$replace = '<tr><td>{$1}</td></tr>';
