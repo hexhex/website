@@ -110,18 +110,18 @@
 #                                       $answerset = preg_replace('/}$/i', '', preg_replace('/^{/i', '', $answerset));
                                         $nr++;
                                         if ($nr % 2 == 0){
-                                                $astab = $astab . "<tr><td>$nr</td><td>$answerset</td></tr>";
+                                                $astab = $astab . "<tr><td>" . $nr . "</td><td>" . $answerset . "</td></tr>";
                                         }else{
-                                                $astab = $astab . "<tr class=\"odd\"><td>$nr</td><td>$answerset</td></tr>";
+                                                $astab = $astab . "<tr class=\"odd\"><td>" . $nr . "</td><td>" . $answerset . "</td></tr>";
                                         }
                                 }
                         }
 
+			$tabtag = "table"; # prevent WML from adding the summary attribute
                         if ($nr == 0){
-                                print "<table><tr><td><font color=\"blue\"><b>None</b><br/>(program is inconsistent)</font></td></tr></table>";
+                                print "<$tabtag><tr><td><font color=\"blue\"><b>None</b><br/>(program is inconsistent)</font></td></tr></table>";
                         }else{
-                                $tabtag = "table"; # prevent WML from adding the summary attribute
-                                print "<$tabtag summary=\"\"><tbody>"; #<thead><tr><th width=\"10%\">Number</th><th>Set</th></tr></thead><tbody>";
+                                print "<$tabtag><tbody>"; #<thead><tr><th width=\"10%\">Number</th><th>Set</th></tr></thead><tbody>";
                                 print $astab;
                                 print "<tbody></table>";
                         }
