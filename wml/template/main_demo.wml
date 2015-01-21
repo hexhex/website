@@ -91,7 +91,7 @@
 		print "<b>Command Line:</b><br/><br/>";
 		print "dlv $commandlineoptions program.hex";
 #                print "dlvhex2 $commandlineoptions --pythonplugin=extsource.py program.hex 2>&1";
-		print "where program.hex and extsource.py refer to the program and plugin entered above, respectively"
+		print "where program.hex and extsource.py refer to the program and plugin entered above, respectively";
 		print "<br/><br/>";
 
 		# Output of the answer sets

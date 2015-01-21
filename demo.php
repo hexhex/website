@@ -105,7 +105,7 @@
 		$answer = preg_replace($pattern, $replace, $answer);
 		print "<b>Command Line:</b><br><br>";
 		print "dlv $commandlineoptions program.hex";
-		print "where program.hex and extsource.py refer to the program and plugin entered above, respectively"
+		print "where program.hex and extsource.py refer to the program and plugin entered above, respectively";
 		print "<br><br>";
 		if ($retcode) {
                         print "<b>Answer Sets:</b>";
