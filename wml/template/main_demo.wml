@@ -119,9 +119,9 @@
 	#                                       $answerset = preg_replace('/}$/i', '', preg_replace('/^{/i', '', $answerset));
 		                                $nr++;
 		                                if ($nr % 2 == 0){
-		                                        $astab = $astab . "<tr><td>" . $nr . "</td><td>" . $answerset . "</td></tr>";
+		                                        $astab = $astab . "<tr><td width=\"10%\">" . $nr . "</td><td>" . $answerset . "</td></tr>";
 		                                }else{
-		                                        $astab = $astab . "<tr class=\"odd\"><td>" . $nr . "</td><td>" . $answerset . "</td></tr>";
+		                                        $astab = $astab . "<tr class=\"odd\"><td width=\"10%\">" . $nr . "</td><td>" . $answerset . "</td></tr>";
 		                                }
 		                        }
 		                }
