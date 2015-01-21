@@ -79,10 +79,10 @@
 <!-- </div>-->
 <!-- <div style="width:2%;float:left;">&nbsp;</div>-->
 <!-- <div style="width:49%;float:left;">-->
-			<br>
+			<br><br>
 			<b>External Source Definition:</b></br>
 			<textarea name="extsource" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
-			<br>
+			<br><br>
 			<b>Command-line Options:</b></br>
 			<table width="100%" summary="">
                         <tr><td>Filter predicates (comma-separated):<td><td><input type="text" name="optFilter" style="width:100%" value="<?php echo isset($_POST['optFilter']) ? $_POST['optFilter'] : ''; ?>"></td></tr>
@@ -110,8 +110,9 @@
 		$replace = '';
 		$retcode = endsWith(trim($answer), "ret0");
 		$answer = preg_replace($pattern, $replace, $answer);
-		print "<b>Command Line:</b><br><br>";
+		print "<b>Command Line:</b><br>";
 		print "dlv $commandlineoptions program.hex";
+		print "<br>";
                 print "where program.hex and extsource.py refer to the program and plugin entered above, respectively";
         ?>
         <br><br>
