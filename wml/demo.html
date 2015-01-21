@@ -80,6 +80,7 @@
 			<textarea name="extsource" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
 			<b>Command-line Options:</b></br>
 			<table width="100%" summary="">
+                        <tr><td>Filter predicates (comma-separated):<td><td><input type="text" name="optFilter" width="100%" value="<?php echo isset($_POST['optFilter']) ? $_POST['optFilter'] : ''; ?>"></td></tr>
                         <tr><td>Liberal safety:<td><td><input type="checkbox" name="optLiberalSafety" <?php echo isset($_POST['optLiberalSafety']) ? 'checked' : ''; ?>></td></tr>
                         <tr><td>Custom options:<td><td><input type="text" name="optCustom" width="100%" value="<?php echo isset($_POST['optCustom']) ? $_POST['optCustom'] : ''; ?>"></td></tr>
 			</table>
@@ -94,6 +95,7 @@
 			return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
 		}
 		$commandlineoptions = "";
+		if ($_POST['optFilter'] != "") { $commandlineoptions = $commandlineoptions . " --filter=" . $_POST['optFilter']; };
 		if ($_POST['optLiberalSafety']) { $commandlineoptions = "--liberalsafety"; }
 		if ($_POST['optCustom'] != "") { $commandlineoptions = $commandlineoptions . " " . $_POST['optCustom']; };
 		$reasonercall = trim(file_get_contents("demo/reasonercall.sh"));
@@ -105,35 +107,39 @@
 		$answer = preg_replace($pattern, $replace, $answer);
 		print "<b>Command Line:</b><br><br>";
 		print "dlv $commandlineoptions program.hex";
-		print "where program.hex and extsource.py refer to the program and plugin entered above, respectively";
-		print "<br><br>";
-		if ($retcode) {
+                print "where program.hex and extsource.py refer to the program and plugin entered above, respectively";
+        ?>
+        <br><br>
+        <?php
+                if ($retcode) {
                         print "<b>Answer Sets:</b>";
-                        $tabclass = "table";
-                        print "<$tabclass>";
+                        $astab = "";
                         $ret = shell_exec("echo -e \"$answer\" | tail -n 1");
                         $answersets = explode(PHP_EOL, trim(shell_exec("echo -e \"$answer\" | head -n -1")));
                         $nr = 0;
                         foreach ($answersets as $answerset){
-				if ($answerset != ""){
-					$answerset = preg_replace('/$}/i', '', preg_replace('/^{/i', '', $answerset));
-	       	                        $nr++;
+                                if ($answerset != ""){
+                                        $nr++;
                                         if ($nr % 2 == 0){
-                                                print "<tr><td>$nr</td><td style=\"padding:0px; margin:0px;\">{</td><td style=\"padding:0px; margin:0px; \">$answerset}</td></tr>";
+                                                $astab = $astab . "<tr><td>$nr</td><td>$answerset</td></tr>";
                                         }else{
-                                                print "<tr class=\"odd\"><td>$nr</td><td style=\"padding:0px; margin:0px;\">{</td><td style=\"padding:0px; margin:0px; \">$answerset}</td></tr>";
+                                                $astab = $astab . "<tr class=\"odd\"><td>$nr</td><td>$answerset</td></tr>";
                                         }
-				}
+                                }
                         }
-                        print "</table>";
-			if ($nr == 0){
-				print "<font color=\"blue\"><b>None</b> (program is inconsistent)</font><br><br>";
-			}
-		}else{
-			print "<font color=\"red\"><b>Error:</b></font><br><br>";
-			print $answer;
-		}
-	?>
+                        if ($nr == 0){
+                                print "<table summary=""><tr><td><font color=\"blue\"><b>None</b><br>(program is inconsistent)</font></td></tr></table>";
+                        }else{
+                                $tabtag = "table"; # prevent WML from adding the summary attribute
+                                print "<$tabtag summary=\"\"><tbody>"; #<thead><tr><th width=\"10%\">Number</th><th>Set</th></tr></thead><tbody>";
+                                print $astab;
+                                print "<tbody></table>";
+                        }
+                }else{
+                        print "<font color=\"red\"><b>Error:</b></font><br><br>";
+                        print $answer;
+                }
+        ?>
 	</div>
       </div>
       <div class="grid_3">
