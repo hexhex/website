@@ -39,10 +39,19 @@
 	<script type="text/javascript">
 		<!--
                 function evaluateHEX(){
-                        var outputdiv=document.getElementById("outputdiv");
-			imgtag="img "; // workaround to make sure that wml is not aware of the img tag (otherwise it destroys it since it does not use escape sequences for added quotation marks)
-                        outputdiv.innerHTML = "<div align=\"center\"><p style=\"font-size:20px;\">Processing ...</p><br><" + imgtag + "id=\"logo\" src=\"demo/dlvhexlogoanimated.gif\" /></div>";
-                        window.setTimeout(callReasoner, 0);
+			var outputdiv=document.getElementById("outputdiv");
+			// display loading animation
+			var img=document.createElement('img');
+			img.src = "demo/dlvhexlogoanimated.gif";
+			img.width = 80;
+			img.height = 80;
+			var centerimg=document.createElement('center');
+			centerimg.appendChild(img);
+			outputdiv.innerHTML = "<div align="center"><p style=\"font-size:20px\">Processing ...</p></div></br>";
+			outputdiv.appendChild(centerimg);
+			window.setTimeout(scrollToResults, 0);
+			// call reasoner
+			window.setTimeout(callReasoner, 0);
                 }
                 function callReasoner(){
                         // assemble command-line arguments
