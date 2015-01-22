@@ -62,7 +62,7 @@
                         if (document.getElementById("optCustom").value != "") commandlineoptions = commandlineoptions + " " + document.getElementById("optCustom").value;
                         // assemble query
                         var args = "?mode=evalhex";
-                        args = args + "&commandlineoptions=";
+                        args = args + "&commandlineoptions=" + encodeURIComponent(commandlineoptions);
 			if (document.getElementById("useeditarea").checked){
 				args = args + "&hexprogram=" + encodeURIComponent(editAreaLoader.getValue("hexprogram"));
 				args = args + "&extsource=" + encodeURIComponent(editAreaLoader.getValue("extsource"));
