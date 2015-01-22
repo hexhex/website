@@ -154,8 +154,12 @@
 	<?php
                 $hexprogram = $_POST['hexprogram'];
                 $extsource = $_POST['extsource'];
-                $example = trim($_POST['example']);
-                if (!isset($_POST['formsubmitted'])){
+		if (isset($_POST['btnLoad'])){
+	                $example = trim($_POST['example']);
+		}else{
+			$example = "";
+		}
+                if (!isset($_POST['btnEvaluate']) && !isset($_POST['btnLoad'])){
                         $example = "Tutorial";
                 }
 	?>
@@ -173,7 +177,6 @@
         <div style="width:100%;">
 		<h3>Input</h3>
 		<form method="post" action="demo.php">
-			<input type="checkbox" style="display:none" checked name="formsubmitted">
                         <div style="text-align:right;">
                                 Load example:
                                 <?php
@@ -189,21 +192,22 @@
                                         }
                                 ?>
 				<noscript>
-                                <select name="example" onchange="this.form.submit()">
+                                <select name="example">
                                 <?php print $exampleList; ?>
                                 </select>
+				<input type="submit" name="btnLoad" value="Load">
 				</noscript>
                                 <select class="jsonly" id="cmbExample" onchange="loadExample();">
                                 <?php print $exampleList; ?>
                                 </select><br>
 				<noscript><b>Your browser does not support JavaScript.</b><br>Please enable it to make use of advanced features.</a></noscript>
-                                <input class="jsonly" type="checkbox" id="useeditarea" name="useeditarea" onclick="updateEditAreas();" <?php echo (!isset($_POST['formsubmitted']) || isset($_POST['useeditarea'])) ? 'checked' : ''; ?>>Use advanced editor (powered by <a href="http://www.cdolivet.com/editarea" target="_blank">EditArea</a>)</input>
+                                <input class="jsonly" type="checkbox" id="useeditarea" name="useeditarea" onclick="updateEditAreas();" <?php echo ((!isset($_POST['btnLoad']) && !isset($_POST['btnEvaluate'])) || isset($_POST['useeditarea'])) ? 'checked' : ''; ?> value="Use advanced editor (powered by <a href='http://www.cdolivet.com/editarea' target='_blank'>EditArea</a>)" />
                         </div>
-			<input type="checkbox" style="display:none" id="visible_hexprogramdiv" name="visible_hexprogramdiv" <?php echo (!isset($_POST['formsubmitted']) || isset($_POST['visible_hexprogramdiv'])) ? 'checked' : ''; ?> />
+			<input type="checkbox" style="display:none" id="visible_hexprogramdiv" name="visible_hexprogramdiv" <?php echo ((!isset($_POST['btnLoad']) && !isset($_POST['btnEvaluate'])) || isset($_POST['visible_hexprogramdiv'])) ? 'checked' : ''; ?> />
 			<input type="checkbox" style="display:none" id="visible_extsourcediv" name="visible_extsourcediv" <?php echo isset($_POST['visible_extsourcediv']) ? 'checked' : ''; ?> />
 			<input type="checkbox" style="display:none" id="visible_commandlineoptionsdiv" name="visible_commandlineoptionsdiv" <?php echo isset($_POST['visible_commandlineoptionsdiv']) ? 'checked' : ''; ?> />
 <!-- <div style="width:49%;float:left;">-->
-			<b>HEX-Program:</b><br>[<a class="jsonly" id="hide_hexprogramdiv" href="javascript:void(0)" onclick="toggle_visibility('hexprogramdiv'); updateEditArea('hexprogram');">Hide</a>]</br>
+			<b>HEX-Program:</b><br><p class="jsonly">[<a id="hide_hexprogramdiv" href="javascript:void(0)" onclick="toggle_visibility('hexprogramdiv'); updateEditArea('hexprogram');">Hide</a>]</p></br>
 			<div id="hexprogramdiv" style="width:100%">
 			<textarea id="hexprogram" name="hexprogram" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/program.hex");}else{print $hexprogram;}?></textarea>
 			</div>
@@ -211,12 +215,12 @@
 <!-- <div style="width:2%;float:left;">&nbsp;</div>-->
 <!-- <div style="width:49%;float:left;">-->
 			<br><br>
-			<b>External Source Definition (Python):</b><br>[<a class="jsonly" id="hide_extsourcediv" href="javascript:void(0)" onclick="toggle_visibility('extsourcediv'); updateEditArea('extsource');">Hide</a>]</br>
+			<b>External Source Definition (Python):</b><br><p class="jsonly">[<a id="hide_extsourcediv" href="javascript:void(0)" onclick="toggle_visibility('extsourcediv'); updateEditArea('extsource');">Hide</a>]</p></br>
 			<div id="extsourcediv" style="width:100%">
 			<textarea id="extsource" name="extsource" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
 			</div>
 			<br><br>
-			<b>Command-line Options:</b><br>[<a class="jsonly" id="hide_commandlineoptionsdiv" href="javascript:void(0)" onclick="toggle_visibility('commandlineoptionsdiv');">Hide</a>]</br>
+			<b>Command-line Options:</b><br><p class="jsonly">[<a id="hide_commandlineoptionsdiv" href="javascript:void(0)" onclick="toggle_visibility('commandlineoptionsdiv');">Hide</a>]</p></br>
 			<div id="commandlineoptionsdiv" style="width:100%">
                         <table id="commandlineoptions" summary="">
                         <tr><td style="white-space: nowrap">Filter predicates (comma-separated):</td><td style="width:1000%"><input type="text" id="optFilter" name="optFilter" style="width:100%" value="<?php echo isset($_POST['optFilter']) ? $_POST['optFilter'] : ''; ?>"></td></tr>
@@ -226,7 +230,7 @@
                         </table>
 			</div>
 			<div style="width:100%;text-align:right;">
-				<noscript><input type="submit" value="Evaluate"></noscript>
+				<noscript><input type="submit" name="btnEvaluate" value="Evaluate"></noscript>
 				<input class="jsonly" type="button" onclick="evaluateHEX();" value="Evaluate JS">
 			</div>
 <!-- </div>-->
@@ -235,7 +239,7 @@
 	<h3>Output</h3>
 	<div id="outputdiv" style="width:100%;float:right;">
 	<?php
-		if (isset($_POST['formsubmitted']) && ($_POST['example'] == "")){
+		if (isset($_POST['btnEvaluate'])){
                         function endsWith($haystack, $needle) {
                                 return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
                         }
