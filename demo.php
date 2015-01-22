@@ -80,24 +80,28 @@
 		<h3>Input</h3>
 		<form method="post" action="demo.php">
 			<input type="checkbox" style="display:none" checked name="formsubmitted">
-			<div style="text-align:right;">
-				Load example:
-				<select name="example" onchange="this.form.submit()">
-				<?php
-					print "<option name=\"\" value=\"\"></option>";
-					if ($handle = opendir('demo/examples')) {
-						while (false !== ($file = readdir($handle))) {
-							if ($file != "." && $file != ".."){
-								$exname = file_get_contents("demo/examples/" . $file . "/name.txt");
-								print "<option name=\"example\" value=\"$file\">$exname</option>";
-							}
-						}
-						closedir($handle);
-					}
-				?>
-				</select><br>
+                        <div style="text-align:right;">
+                                Load example:
+                                <?php
+                                        $exampleList = "<option name=\"\" value=\"\"></option>";
+                                        if ($handle = opendir('demo/examples')) {
+                                                while (false !== ($file = readdir($handle))) {
+                                                        if ($file != "." && $file != ".."){
+                                                                $exname = file_get_contents("demo/examples/" . $file . "/name.txt");
+                                                                $exampleList = $exampleList . "<option name=\"example\" value=\"$file\">$exname</option>";
+                                                        }
+                                                }
+                                                closedir($handle);
+                                        }
+                                ?>
+                                <select name="example" onchange="this.form.submit()">
+                                <?php print $exampleList; ?>
+                                </select>
+                                <select id="cmbExample" onchange="loadExample();">
+                                <?php print $exampleList; ?>
+                                </select><br>
                                 <input type="checkbox" id="useeditarea" name="useeditarea" onclick="updateEditAreas();" <?php echo (!isset($_POST['formsubmitted']) || isset($_POST['useeditarea'])) ? 'checked' : ''; ?>>Use advanced editor (powered by <a href="http://www.cdolivet.com/editarea" target="_blank">EditArea</a>)</input>
-			</div>
+                        </div>
 			<input type="checkbox" style="display:none" id="visible_hexprogramdiv" name="visible_hexprogramdiv" <?php echo (!isset($_POST['formsubmitted']) || isset($_POST['visible_hexprogramdiv'])) ? 'checked' : ''; ?> />
 			<input type="checkbox" style="display:none" id="visible_extsourcediv" name="visible_extsourcediv" <?php echo isset($_POST['visible_extsourcediv']) ? 'checked' : ''; ?> />
 			<input type="checkbox" style="display:none" id="visible_commandlineoptionsdiv" name="visible_commandlineoptionsdiv" <?php echo isset($_POST['visible_commandlineoptionsdiv']) ? 'checked' : ''; ?> />
