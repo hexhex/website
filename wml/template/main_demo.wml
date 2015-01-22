@@ -71,6 +71,58 @@
                         }
                         document.getElementById("cmbExample").value = "";
                 }
+		// HEX-program loading
+                var load_hexprogram = document.createElement('input');
+                load_hexprogram.setAttribute('type', 'file');
+                load_hexprogram.addEventListener('change', loadHexprogram, false);
+		function loadHexprogram(evt) {
+			var files = evt.target.files;
+
+			if (files) {
+				var r = new FileReader();
+				f = files[0];
+				r.onload = (function (f) {
+					return function (e) {
+						editAreaLoader.setValue("hexprogram", e.target.result);
+					};
+				})(f);
+				r.readAsText(f);
+				load_hexprogram.value = "";
+			}
+		}
+                function saveHexprogram(id, content){
+			var a = document.createElement('a');
+			var blob = new Blob( [editAreaLoader.getValue("hexprogram")], {'type':'application/octet-stream'});
+			a.href = window.URL.createObjectURL(blob);
+			a.download = "program.hex";
+			a.click();
+                }
+		// external source loading
+                var load_extsource = document.createElement('input');
+                load_extsource.setAttribute('type', 'file');
+                load_extsource.addEventListener('change', loadExtsource, false);
+		function loadExtsource(evt) {
+			var files = evt.target.files;
+
+			if (files) {
+				var r = new FileReader();
+				f = files[0];
+				r.onload = (function (f) {
+					return function (e) {
+						editAreaLoader.setValue("extsource", e.target.result);
+					};
+				})(f);
+				r.readAsText(f);
+				load_extsource.value = "";
+			}
+		}
+                function saveExtsource(id, content){
+			var a = document.createElement('a');
+			var blob = new Blob( [editAreaLoader.getValue("extsource")], {'type':'application/octet-stream'});
+			a.href = window.URL.createObjectURL(blob);
+			a.download = "extsource.py";
+			a.click();
+                }
 		function updateEditAreas(){
 			updateEditArea('hexprogram');
 			updateEditArea('extsource');
@@ -86,6 +138,9 @@
 						,language: "en"
 						,syntax: "hex"
 						,allow_toggle: false
+                                                ,toolbar: "save, load, select_font"
+                                                ,load_callback: "load_hexprogram.click"
+                                                ,save_callback: "saveHexprogram"
 					});
 				}
 				if (id == "extsource"){
@@ -96,7 +151,13 @@
 						,word_wrap: true
 						,language: "en"
 						,syntax: "python"
+                                                ,toolbar: "save, load, select_font"
+                                                ,load_callback: "loadExtsource"
+                                                ,save_callback: "saveExtsource"
 						,allow_toggle: false
+                                                ,toolbar: "save, load, select_font"
+                                                ,load_callback: "load_extsource.click"
+                                                ,save_callback: "saveExtsource"
 					});
 				}
 			}else{
