@@ -105,10 +105,13 @@
                         if ($_POST['optFilter'] != "") { $commandlineoptions = $commandlineoptions . " --filter=" . $_POST['optFilter']; };
                         if ($_POST['optLiberalSafety']) { $commandlineoptions = "--liberalsafety"; }
                         if ($_POST['optCustom'] != "") { $commandlineoptions = $commandlineoptions . " " . $_POST['optCustom']; };
-                        $reasonercall = trim(file_get_contents("demo/reasonercall.sh"));
-                        $shellstr = "$reasonercall $commandlineoptions --";
-                        exec("echo \"$hexprogram\" | $shellstr 2>&1", $answer, $retcode);
-                        $replace = '';
+			$args = "?commandlineoptions=" . urlencode($commandlineoptions) .
+				"&hexprogram =" . urlencode($hexprogram) .
+				"&extsource =" . urlencode($extsource);
+			$contents = trim(file_get_contents(trim(file_get_contents('demo/evalurl.txt')) . $args));
+			$answer = explode("\n", $contents);
+			$retcode = $answer[0];
+			$answer = array_slice($answer, 1);
                         print "<b>Command Line:</b><br>";
                         print "<tt>shell$ dlv $commandlineoptions program.hex</tt>";
                         print "<br>";

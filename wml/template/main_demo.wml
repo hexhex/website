@@ -90,11 +90,13 @@
                         if ($_POST['optCustom'] != "") { $commandlineoptions = $commandlineoptions . " " . $_POST['optCustom']; };
 
 			# Evaluation
-                        $reasonercall = trim(file_get_contents("demo/reasonercall.sh"));
-                        $shellstr = "$reasonercall $commandlineoptions --";
-	#                $shellstr = "echo \"%hexprogram\" | $reasonercall $commandlineoptions --pythonplugin=<(echo -e \"" . addslashes($extsource) . "\") --")";
-                        exec("echo \"$hexprogram\" | $shellstr 2>&1", $answer, $retcode);
-                        $replace = '';
+			$args = "?commandlineoptions=" . urlencode($commandlineoptions) .
+				"&hexprogram =" . urlencode($hexprogram) .
+				"&extsource =" . urlencode($extsource);
+			$contents = trim(file_get_contents(trim(file_get_contents('demo/evalurl.txt')) . $args));
+			$answer = explode("\n", $contents);
+			$retcode = $answer[0];
+			$answer = array_slice($answer, 1);
 
 			# Command line
                         print "<b>Command Line:</b><br>";
