@@ -148,10 +148,6 @@
 		                element.style.display = 'none';
 		        }
 		}
-		update_visibility('hexprogramdiv');
-		update_visibility('extsourcediv');
-		update_visibility('commandlineoptionsdiv');
-		updateEditAreas();
         </script>
 	<h2>Online Demo</h2>
 	<?php
@@ -258,6 +254,12 @@
 		}
         ?>
 	</div>
+        <script language="Javascript" type="text/javascript">
+		update_visibility('hexprogramdiv');
+		update_visibility('extsourcediv');
+		update_visibility('commandlineoptionsdiv');
+		updateEditAreas();
+        </script>
       </div>
       <div class="grid_3">
   <p>&nbsp;</p>
