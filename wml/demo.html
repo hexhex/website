@@ -36,23 +36,23 @@
       <div class="grid_9">
 	<script type="text/javascript">
 	<!--
-	function toggle_visibility(id) {
-		var checkbox=document.getElementById("visible_" + id);
-		checkbox.checked = !e.checked;
-		update_visibility(id);
-	}
-	function update_visibility(id) {
-		var checkbox=document.getElementById("visible_" + id);
-		var hidebutton=document.getElementById("hide_" + id);
-		var element=document.getElementById(id);
-		if(checkbox.checked){
-			element.style.display = 'block';
-			hidebutton.innerHTML = "Hide";
-		}else{
-			element.style.display = 'none';
-			hidebutton.innerHTML = "Show";
-		}
-	}
+        function toggle_visibility(id) {
+                var checkbox=document.getElementById("visible_" + id);
+                checkbox.checked = !checkbox.checked;
+                update_visibility(id);
+        }
+        function update_visibility(id) {
+                var checkbox=document.getElementById("visible_" + id);
+                var hidebutton=document.getElementById("hide_" + id);
+                var element=document.getElementById(id);
+                if(checkbox.checked){
+                        hidebutton.innerHTML = "Hide";
+                        element.style.display = 'block';
+                }else{
+                        hidebutton.innerHTML = "Show";
+                        element.style.display = 'none';
+                }
+        }
 	//-->
 	</script>
 	<h2>Online Demo</h2>
@@ -95,20 +95,20 @@
 				?>
 				</select>
 			</div>
-			<input type="checkbox" name="visible_hexprogram" <?php echo isset($_POST['visible_hexprogram']) ? 'checked' : ''; ?> />
-			<input type="checkbox" name="visible_extsource" <?php echo isset($_POST['visible_extsource']) ? 'checked' : ''; ?> />
-			<input type="checkbox" name="visible_commandlineoptions" <?php echo isset($_POST['visible_commandlineoptions']) ? 'checked' : ''; ?> />
+			<input type="checkbox" style="display:none" id="visible_hexprogram" name="visible_hexprogram" <?php echo isset($_POST['visible_hexprogram']) ? 'checked' : ''; ?> />
+			<input type="checkbox" style="display:none" id="visible_extsource" name="visible_extsource" <?php echo isset($_POST['visible_extsource']) ? 'checked' : ''; ?> />
+			<input type="checkbox" style="display:none" id="visible_commandlineoptions" name="visible_commandlineoptions" <?php echo isset($_POST['visible_commandlineoptions']) ? 'checked' : ''; ?> />
 <!-- <div style="width:49%;float:left;">-->
-			<b>HEX-Program:</b> [<a id="hide_hexprogram" href="#" onclick="toggle_visibility('hexprogram');" onload="update_visibility('hexprogram')">Hide</a>]</br>
-			<textarea name="hexprogram" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/program.hex");}else{print $hexprogram;}?></textarea>
+			<b>HEX-Program:</b> [<a id="hide_hexprogram" href="#" onclick="toggle_visibility('hexprogram');">Hide</a>]</br>
+			<textarea id="hexprogram" name="hexprogram" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/program.hex");}else{print $hexprogram;}?></textarea>
 <!-- </div>-->
 <!-- <div style="width:2%;float:left;">&nbsp;</div>-->
 <!-- <div style="width:49%;float:left;">-->
 			<br><br>
-			<b>External Source Definition (Python):</b></br>
-			<textarea name="extsource" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
+			<b>External Source Definition (Python):</b> [<a id="hide_extsource" href="#" onclick="toggle_visibility('extsource');">Hide</a>]</br>
+			<textarea id="extsource" name="extsource" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
 			<br><br>
-			<b>Command-line Options:</b></br>
+			<b>Command-line Options:</b> [<a id="hide_commandlineoptions" href="#" onclick="toggle_visibility('commandlineoptions');">Hide</a>]</br>
 			<table id="commandlineoptions" width="100%" summary="">
                         <tr><td>Filter predicates (comma-separated):<td><td><input type="text" name="optFilter" style="width:100%" value="<?php echo isset($_POST['optFilter']) ? $_POST['optFilter'] : ''; ?>"></td></tr>
                         <tr><td>Liberal safety:<td><td><input type="checkbox" name="optLiberalSafety" <?php echo isset($_POST['optLiberalSafety']) ? 'checked' : ''; ?>></td></tr>
@@ -117,6 +117,13 @@
 			<div style="width:100%;text-align:right;"><input type="submit" value="Evaluate"></div>
 <!-- </div>-->
 	     </form>
+	<script type="text/javascript">
+	<!-- update visibility of elements
+update_visibility('hexprogram');
+update_visibility('extsource');
+update_visibility('commandlineoptions');
+	-->
+	</script>
 	</div>
 	<h3>Output</h3>
 	<div style="width:100%;float:right;">
