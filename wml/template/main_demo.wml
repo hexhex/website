@@ -99,20 +99,20 @@
 			<b>Command-line Options:</b><br/>[<a id="hide_commandlineoptionsdiv" href="javascript:void(0)" onclick="toggle_visibility('commandlineoptionsdiv');">Hide</a>]</br>
 			<div id="commandlineoptionsdiv" style="width:100%">
                         <table id="commandlineoptions">
-                        <tr><td style="white-space: nowrap">Filter predicates (comma-separated):</td><td style="width:1000%"><input type="text" name="optFilter" style="width:100%" value="<?php echo isset($_POST['optFilter']) ? $_POST['optFilter'] : ''; ?>"/></td></tr>
-                        <tr><td style="white-space: nowrap">Number of answer sets to compute<br/>(empty or 0 means all):</td><td><input type="text" name="optNumAS" style="width:100%" value="<?php echo isset($_POST['optNumAS']) ? $_POST['optNumAS'] : ''; ?>"/></td></tr>
-                        <tr><td style="white-space: nowrap">Liberal safety:</td><td><input type="checkbox" name="optLiberalSafety" <?php echo isset($_POST['optLiberalSafety']) ? 'checked' : ''; ?>/></td></tr>
-                        <tr><td style="white-space: nowrap">Custom options:</td><td><span><input type="text" name="optCustom" style="display:table-cell; width:100%" value="<?php echo isset($_POST['optCustom']) ? $_POST['optCustom'] : ''; ?>"/></span></td></tr>
+                        <tr><td style="white-space: nowrap">Filter predicates (comma-separated):</td><td style="width:1000%"><input type="text" id="optFilter" name="optFilter" style="width:100%" value="<?php echo isset($_POST['optFilter']) ? $_POST['optFilter'] : ''; ?>"/></td></tr>
+                        <tr><td style="white-space: nowrap">Number of answer sets to compute<br/>(empty or 0 means all):</td><td><input type="text" id="optNumAS" name="optNumAS" style="width:100%" value="<?php echo isset($_POST['optNumAS']) ? $_POST['optNumAS'] : ''; ?>"/></td></tr>
+                        <tr><td style="white-space: nowrap">Liberal safety:</td><td><input type="checkbox" id="optLiberalSafety" name="optLiberalSafety" <?php echo isset($_POST['optLiberalSafety']) ? 'checked' : ''; ?>/></td></tr>
+                        <tr><td style="white-space: nowrap">Custom options:</td><td><span><input type="text" id="optCustom" name="optCustom" style="display:table-cell; width:100%" value="<?php echo isset($_POST['optCustom']) ? $_POST['optCustom'] : ''; ?>"/></span></td></tr>
                         </table>
 			</div>
-			<div style="width:100%;text-align:right;"><input type="submit" value="Evaluate"></div>
+			<div style="width:100%;text-align:right;"><input type="submit" value="Evaluate"/><input type="button" onclick="evaluateHEX();" value="Evaluate JS"/></div>
 <!--			</div>-->
 	     </form>
 	</div>
 
 	<h3>Output</h3>
 
-	<div style="width:100%;float:right;">
+	<div id="outputdiv" style="width:100%;float:right;">
 	<?php
 		if (isset($_POST['formsubmitted']) && ($_POST['example'] == "")){
                         function endsWith($haystack, $needle) {
@@ -131,58 +131,40 @@
 				"&commandlineoptions=" . urlencode($commandlineoptions) .
 				"&hexprogram=" . urlencode($hexprogram) .
 				"&extsource=" . urlencode($extsource);
-			$contents = trim(file_get_contents(trim(file_get_contents('demo/evalurl.txt')) . $args));
-			$answer = explode("\n", $contents);
-			$retcode = $answer[0];
-			$answer = array_slice($answer, 1);
-
-			# Command line
-                        print "<b>Command Line:</b><br>";
-                        print "<tt>shell$ dlv $commandlineoptions program.hex</tt>";
-	#                print "<tt>shell$ dlvhex2 $commandlineoptions --pythonplugin=extsource.py program.hex</tt>";
-                        print "<br>";
-                        print "where <tt>program.hex</tt> and <tt>extsource.py</tt> refer to the program and plugin entered above, respectively";
-                        print "<br><br>";
-
-			# Output of the command line
-                        if ($retcode == 0) {
-                                print "<b>Answer Sets:</b>";
-                                $astab = "";
-                                $ret = shell_exec("echo -e \"$answer\"");
-                                $nr = 0;
-                                foreach ($answer as $answerset){
-                                        if ($answerset != ""){
-                                                $nr++;
-                                                if ($nr % 2 == 0){
-                                                        $astab = $astab . "<tr><td width=\"10%\">" . $nr . "</td><td>" . $answerset . "</td></tr>";
-                                                }else{
-                                                        $astab = $astab . "<tr class=\"odd\"><td width=\"10%\">" . $nr . "</td><td>" . $answerset . "</td></tr>";
-                                                }
-                                        }
-                                }
-                                $tabtag = "table"; # prevent WML from adding the summary attribute
-                                if ($nr == 0){
-                                        print "<$tabtag><tr><td><font color=\"blue\"><b>None</b><br>(program is inconsistent)</font></td></tr></table>";
-                                }else{
-                                        print "<$tabtag><tbody>"; #<thead><tr><th width=\"10%\">Number</th><th>Set</th></tr></thead><tbody>";
-                                        print $astab;
-                                        print "<tbody></table>";
-                                }
-                        }else if ($retcode == 137){
-                                print "<font color=\"red\"><b>Timeout due to limited resources of the demo server, please simplify your program or install the system locally</b></font><br>";
-                        }else{
-                                print "<font color=\"red\"><b>Error:</b></font><br>";
-                                foreach ($answer as $line){
-                                        print $line . "<br/>";
-                                }
-                        }
-		}else{
-			print "Please click 'Evaluate' to run the reasoner";
-		}
+			$contents = trim(file_get_contents(trim(file_get_contents('demo/evalandformaturl.txt')) . $args));
+			print $contents;
         ?>
 	</div>
 
         <script language="Javascript" type="text/javascript">
+		function evaluateHEX(){
+			var outputdiv = document.getElementById("outputdiv");
+
+			// assemble command-line arguments
+			var commandlineoptions = "";
+			if (document.getElementById("optFilter").value != "") commandlineoptions = commandlineoptions + " --filter=" + document.getElementById("optFilter").value;
+			if (document.getElementById("optNumAS").value != "") commandlineoptions = commandlineoptions + " -n=" + document.getElementById("optNumAS").value;
+			if (document.getElementById("optLiberalSafety").value != "") commandlineoptions = commandlineoptions + " --liberalsafety";
+			if (document.getElementById("optCustom").value != "") commandlineoptions = commandlineoptions + " " + document.getElementById("optCustom").value;
+
+			// assemble query
+			var args = "?mode=evalhex";
+			args = args + "&commandlineoptions=";
+			args = args + "&hexprogram=" + encodeURIComponent(document.getElementById("hexprogram").value);
+			args = args + "&extsource=" + encodeURIComponent(document.getElementById("extsource").value);
+
+			// send query
+			xmlHttp = new XMLHttpRequest();
+			xmlHttp.open("GET", "demo/evalandformaturl.txt", false);
+			xmlHttp.send(null);
+			evalandformaturl = xmlHttp.responseText;
+			xmlHttp.open("GET", evalandformaturl + args, false);
+			xmlHttp.send(null);
+			answer = xmlHttp.responseText;
+
+			// write output to page
+			outputdiv.innerHTML = answer;
+		}
 		function updateEditAreas(){
 			updateEditArea('hexprogram');
 			updateEditArea('extsource');
