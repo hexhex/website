@@ -2,7 +2,7 @@
   <p>&nbsp;</p>
 
   <p>
-    <img width="100%" height="auto" src="{#PATH_TO_ROOT#}images/logo_whitebg.png" alt="logo" id="logo"/>
+    <img width="200" height="44" src="{#PATH_TO_ROOT#}images/logo_whitebg.png" alt="logo" id="logo"/>
   </p>
 
   <p>
