@@ -35,28 +35,6 @@
     <div class="container_12">
       <div class="grid_9">
         <script language="Javascript" type="text/javascript" src="demo/edit_area/edit_area_full.js"></script>
-        <script language="Javascript" type="text/javascript">
-		if (document.getElementById("useeditarea").checked){
-		        editAreaLoader.init({
-		                id: "hexprogram" // id of the textarea to transform
-		                ,start_highlight: true // if start with highlight
-		                ,allow_resize: "no"
-		                ,word_wrap: true
-		                ,language: "en"
-		                ,syntax: "python"
-		                ,allow_toggle: false
-		        });
-		        editAreaLoader.init({
-		                id: "extsource" // id of the textarea to transform
-		                ,start_highlight: true // if start with highlight
-		                ,allow_resize: "no"
-		                ,word_wrap: true
-		                ,language: "en"
-		                ,syntax: "python"
-		                ,allow_toggle: false
-		        });
-		}
-        </script>
 	<script type="text/javascript">
 	<!--
         function toggle_visibility(id) {
@@ -103,7 +81,6 @@
 		<form method="post" action="demo.php">
 			<input type="checkbox" style="display:none" checked name="formsubmitted">
 			<div style="text-align:right;">
-				<input type="checkbox" name="useeditarea" <?php echo (!isset($_POST['useeditarea']) || isset($_POST['useeditarea'])) ? 'checked' : ''; ?>>Use advanced editor (powered by <a href="http://www.cdolivet.com/editarea">editarea</a>)</input>
 				Load example:
 				<select name="example" onchange="this.form.submit()">
 				<?php
@@ -118,7 +95,8 @@
 						closedir($handle);
 					}
 				?>
-				</select>
+				</select><br>
+                                <input type="checkbox" id="useeditarea" name="useeditarea" onclick="updateEditArea();" <?php echo (!isset($_POST['formsubmitted']) || isset($_POST['useeditarea'])) ? 'checked' : ''; ?>>Use advanced editor (powered by <a href="http://www.cdolivet.com/editarea">editarea</a>)</input>
 			</div>
 			<input type="checkbox" style="display:none" id="visible_hexprogramdiv" name="visible_hexprogramdiv" <?php echo (!isset($_POST['formsubmitted']) || isset($_POST['visible_hexprogramdiv'])) ? 'checked' : ''; ?> />
 			<input type="checkbox" style="display:none" id="visible_extsourcediv" name="visible_extsourcediv" <?php echo isset($_POST['visible_extsourcediv']) ? 'checked' : ''; ?> />
@@ -218,6 +196,34 @@ update_visibility('commandlineoptions');
 		}
         ?>
 	</div>
+        <script language="Javascript" type="text/javascript">
+		function updateEditArea(){
+			if (document.getElementById("useeditarea").checked){
+				editAreaLoader.init({
+				        id: "hexprogram" // id of the textarea to transform
+				        ,start_highlight: true // if start with highlight
+				        ,allow_resize: "no"
+				        ,word_wrap: true
+				        ,language: "en"
+				        ,syntax: "python"
+				        ,allow_toggle: false
+				});
+				editAreaLoader.init({
+				        id: "extsource" // id of the textarea to transform
+				        ,start_highlight: true // if start with highlight
+				        ,allow_resize: "no"
+				        ,word_wrap: true
+				        ,language: "en"
+				        ,syntax: "python"
+				        ,allow_toggle: false
+				});
+			}else{
+				editAreaLoader.delete_instance("hexprogram");
+				editAreaLoader.delete_instance("extsource");
+			}
+		}
+		updateEditArea();
+        </script>
       </div>
       <div class="grid_3">
   <p>&nbsp;</p>
