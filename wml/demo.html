@@ -34,6 +34,29 @@
     <!-- Information -->
     <div class="container_12">
       <div class="grid_9">
+        <script language="Javascript" type="text/javascript" src="demo/edit_area/edit_area_full.js"></script>
+        <script language="Javascript" type="text/javascript">
+		if (document.getElementById("useeditarea").checked){
+		        editAreaLoader.init({
+		                id: "hexprogram" // id of the textarea to transform
+		                ,start_highlight: true // if start with highlight
+		                ,allow_resize: "no"
+		                ,word_wrap: true
+		                ,language: "en"
+		                ,syntax: "python"
+		                ,allow_toggle: false
+		        });
+		        editAreaLoader.init({
+		                id: "extsource" // id of the textarea to transform
+		                ,start_highlight: true // if start with highlight
+		                ,allow_resize: "no"
+		                ,word_wrap: true
+		                ,language: "en"
+		                ,syntax: "python"
+		                ,allow_toggle: false
+		        });
+		}
+        </script>
 	<script type="text/javascript">
 	<!--
         function toggle_visibility(id) {
@@ -80,6 +103,7 @@
 		<form method="post" action="demo.php">
 			<input type="checkbox" style="display:none" checked name="formsubmitted">
 			<div style="text-align:right;">
+				<input type="checkbox" name="useeditarea" <?php echo (!isset($_POST['useeditarea']) || isset($_POST['useeditarea'])) ? 'checked' : ''; ?>>Use advanced editor (powered by <a href="http://www.cdolivet.com/editarea">editarea</a>)</input>
 				Load example:
 				<select name="example" onchange="this.form.submit()">
 				<?php
@@ -96,26 +120,32 @@
 				?>
 				</select>
 			</div>
-			<input type="checkbox" style="display:none" id="visible_hexprogram" name="visible_hexprogram" <?php echo (!isset($_POST['formsubmitted']) || isset($_POST['visible_hexprogram'])) ? 'checked' : ''; ?> />
-			<input type="checkbox" style="display:none" id="visible_extsource" name="visible_extsource" <?php echo isset($_POST['visible_extsource']) ? 'checked' : ''; ?> />
-			<input type="checkbox" style="display:none" id="visible_commandlineoptions" name="visible_commandlineoptions" <?php echo isset($_POST['visible_commandlineoptions']) ? 'checked' : ''; ?> />
+			<input type="checkbox" style="display:none" id="visible_hexprogramdiv" name="visible_hexprogramdiv" <?php echo (!isset($_POST['formsubmitted']) || isset($_POST['visible_hexprogramdiv'])) ? 'checked' : ''; ?> />
+			<input type="checkbox" style="display:none" id="visible_extsourcediv" name="visible_extsourcediv" <?php echo isset($_POST['visible_extsourcediv']) ? 'checked' : ''; ?> />
+			<input type="checkbox" style="display:none" id="visible_commandlineoptionsdiv" name="visible_commandlineoptionsdiv" <?php echo isset($_POST['visible_commandlineoptionsdiv']) ? 'checked' : ''; ?> />
 <!-- <div style="width:49%;float:left;">-->
-			<b>HEX-Program:</b><br>[<a id="hide_hexprogram" href="javascript:void(0)" onclick="toggle_visibility('hexprogram');">Hide</a>]</br>
+			<b>HEX-Program:</b><br>[<a id="hide_hexprogramdiv" href="javascript:void(0)" onclick="toggle_visibility('hexprogramdiv');">Hide</a>]</br>
+			<div id="hexprogramdiv" style="width:100%">
 			<textarea id="hexprogram" name="hexprogram" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/program.hex");}else{print $hexprogram;}?></textarea>
+			</div>
 <!-- </div>-->
 <!-- <div style="width:2%;float:left;">&nbsp;</div>-->
 <!-- <div style="width:49%;float:left;">-->
 			<br><br>
-			<b>External Source Definition (Python):</b><br>[<a id="hide_extsource" href="javascript:void(0)" onclick="toggle_visibility('extsource');">Hide</a>]</br>
+			<b>External Source Definition (Python):</b><br>[<a id="hide_extsourcediv" href="javascript:void(0)" onclick="toggle_visibility('extsourcediv');">Hide</a>]</br>
+			<div id="hexprogramdiv" style="width:100%">
 			<textarea id="extsource" name="extsource" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
+			</div>
 			<br><br>
-			<b>Command-line Options:</b><br>[<a id="hide_commandlineoptions" href="javascript:void(0)" onclick="toggle_visibility('commandlineoptions');">Hide</a>]</br>
-			<table id="commandlineoptions" width="100%" summary="">
-                        <tr><td style="width:50%">Filter predicates (comma-separated):<td><td style="width:50%"><input type="text" name="optFilter" style="width:100%" value="<?php echo isset($_POST['optFilter']) ? $_POST['optFilter'] : ''; ?>"></td></tr>
-                        <tr><td style="width:50%">Number of answer sets to compute (leave empty or input 0 for all):<td style="width:50%"><td><input type="text" name="optNumAS" style="width:100%" value="<?php echo isset($_POST['optNumAS']) ? $_POST['optNumAS'] : ''; ?>"></td></tr>
-                        <tr><td style="width:50%">Liberal safety:<td><td style="width:50%"><input type="checkbox" name="optLiberalSafety" <?php echo isset($_POST['optLiberalSafety']) ? 'checked' : ''; ?>></td></tr>
-                        <tr><td style="width:50%">Custom options:<td><td style="width:50%"><input type="text" name="optCustom" style="width:100%" value="<?php echo isset($_POST['optCustom']) ? $_POST['optCustom'] : ''; ?>"></td></tr>
-			</table>
+			<b>Command-line Options:</b><br>[<a id="hide_commandlineoptionsdiv" href="javascript:void(0)" onclick="toggle_visibility('commandlineoptionsdiv');">Hide</a>]</br>
+			<div id="commandlineoptionsdiv" style="width:100%">
+                        <table id="commandlineoptions" summary="">
+                        <tr><td style="white-space: nowrap">Filter predicates (comma-separated):</td><td style="width:1000%"><input type="text" name="optFilter" style="width:100%" value="<?php echo isset($_POST['optFilter']) ? $_POST['optFilter'] : ''; ?>"></td></tr>
+                        <tr><td style="white-space: nowrap">Number of answer sets to compute<br>(empty or 0 means all):</td><td><input type="text" name="optNumAS" style="width:100%" value="<?php echo isset($_POST['optNumAS']) ? $_POST['optNumAS'] : ''; ?>"></td></tr>
+                        <tr><td style="white-space: nowrap">Liberal safety:</td><td><input type="checkbox" name="optLiberalSafety" <?php echo isset($_POST['optLiberalSafety']) ? 'checked' : ''; ?> /></td></tr>
+                        <tr><td style="white-space: nowrap">Custom options:</td><td><span><input type="text" name="optCustom" style="display:table-cell; width:100%" value="<?php echo isset($_POST['optCustom']) ? $_POST['optCustom'] : ''; ?>"></span></td></tr>
+                        </table>
+			</div>
 			<div style="width:100%;text-align:right;"><input type="submit" value="Evaluate"></div>
 <!-- </div>-->
 	     </form>
@@ -150,7 +180,7 @@ update_visibility('commandlineoptions');
                         print "<b>Command Line:</b><br>";
                         print "<tt>shell$ dlv $commandlineoptions program.hex</tt>";
                         print "<br>";
-                        print "where program.hex and extsource.py refer to the program and plugin entered above, respectively";
+                        print "where <tt>program.hex</tt> and <tt>extsource.py</tt> refer to the program and plugin entered above, respectively";
                         print "<br><br>";
                         if ($retcode == 0) {
                                 print "<b>Answer Sets:</b>";
