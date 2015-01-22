@@ -111,7 +111,7 @@
 <!-- <div style="width:49%;float:left;">-->
 			<br><br>
 			<b>External Source Definition (Python):</b><br>[<a id="hide_extsourcediv" href="javascript:void(0)" onclick="toggle_visibility('extsourcediv');">Hide</a>]</br>
-			<div id="hexprogramdiv" style="width:100%">
+			<div id="extsourcediv" style="width:100%">
 			<textarea id="extsource" name="extsource" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
 			</div>
 			<br><br>
@@ -127,13 +127,6 @@
 			<div style="width:100%;text-align:right;"><input type="submit" value="Evaluate"></div>
 <!-- </div>-->
 	     </form>
-	<script type="text/javascript">
-	<!-- update visibility of elements
-update_visibility('hexprogram');
-update_visibility('extsource');
-update_visibility('commandlineoptions');
-	-->
-	</script>
 	</div>
 	<h3>Output</h3>
 	<div style="width:100%;float:right;">
@@ -223,6 +216,9 @@ update_visibility('commandlineoptions');
 			}
 		}
 		updateEditArea();
+		update_visibility('hexprogram');
+		update_visibility('extsource');
+		update_visibility('commandlineoptions');
         </script>
       </div>
       <div class="grid_3">
