@@ -34,127 +34,9 @@
     <!-- Information -->
     <div class="container_12">
       <div class="grid_9">
+	<noscript><style> .jsonly { display: none } </style></noscript>
         <script language="Javascript" type="text/javascript" src="demo/edit_area/edit_area_full.js"></script>
 	<script type="text/javascript">
-	<!--
-        function toggle_visibility(id) {
-                var checkbox=document.getElementById("visible_" + id);
-                checkbox.checked = !checkbox.checked;
-                update_visibility(id);
-        }
-        function update_visibility(id) {
-                var checkbox=document.getElementById("visible_" + id);
-                var hidebutton=document.getElementById("hide_" + id);
-                var element=document.getElementById(id);
-                if(checkbox.checked){
-                        hidebutton.innerHTML = "Hide";
-                        element.style.display = 'block';
-                }else{
-                        hidebutton.innerHTML = "Show";
-                        element.style.display = 'none';
-                }
-        }
-	//-->
-	</script>
-	<h2>Online Demo</h2>
-	<?php
-                $hexprogram = $_POST['hexprogram'];
-                $extsource = $_POST['extsource'];
-                $example = trim($_POST['example']);
-                if (!isset($_POST['formsubmitted'])){
-                        $example = "Tutorial";
-                }
-	?>
-	<!--<img width="30%" src="images/dlvhexlogo.png" alt=""><br>-->
-	<p>This <b>online demo of the dlvhex system</b> allows for
-	evaluating programs without local installation.
-	This is intended mainly for testing and learning purposes.
-	External sources for the program at the top may be directly implemented in a Python script below.</p>
-	<p>Please check out the predefined <b>examples at the upper right corner</b> for a quick overview or consider the <b>links to the system documentation in the right-hand menu</b> for a more detailed description.</p>
-	<div style="text-align:right;">(The online demo currently runs <i><?php
-			print trim(file_get_contents(trim(file_get_contents('demo/evalurl.txt')) . "?mode=getversion"));
-		?></i>)
-	</div>
-	<br>
-        <div style="width:100%;">
-		<h3>Input</h3>
-		<form method="post" action="demo.php">
-			<input type="checkbox" style="display:none" checked name="formsubmitted">
-                        <div style="text-align:right;">
-                                Load example:
-                                <?php
-                                        $exampleList = "<option name=\"\" value=\"\"></option>";
-                                        if ($handle = opendir('demo/examples')) {
-                                                while (false !== ($file = readdir($handle))) {
-                                                        if ($file != "." && $file != ".."){
-                                                                $exname = file_get_contents("demo/examples/" . $file . "/name.txt");
-                                                                $exampleList = $exampleList . "<option name=\"example\" value=\"$file\">$exname</option>";
-                                                        }
-                                                }
-                                                closedir($handle);
-                                        }
-                                ?>
-                                <select name="example" onchange="this.form.submit()">
-                                <?php print $exampleList; ?>
-                                </select>
-                                <select id="cmbExample" onchange="loadExample();">
-                                <?php print $exampleList; ?>
-                                </select><br>
-                                <input type="checkbox" id="useeditarea" name="useeditarea" onclick="updateEditAreas();" <?php echo (!isset($_POST['formsubmitted']) || isset($_POST['useeditarea'])) ? 'checked' : ''; ?>>Use advanced editor (powered by <a href="http://www.cdolivet.com/editarea" target="_blank">EditArea</a>)</input>
-                        </div>
-			<input type="checkbox" style="display:none" id="visible_hexprogramdiv" name="visible_hexprogramdiv" <?php echo (!isset($_POST['formsubmitted']) || isset($_POST['visible_hexprogramdiv'])) ? 'checked' : ''; ?> />
-			<input type="checkbox" style="display:none" id="visible_extsourcediv" name="visible_extsourcediv" <?php echo isset($_POST['visible_extsourcediv']) ? 'checked' : ''; ?> />
-			<input type="checkbox" style="display:none" id="visible_commandlineoptionsdiv" name="visible_commandlineoptionsdiv" <?php echo isset($_POST['visible_commandlineoptionsdiv']) ? 'checked' : ''; ?> />
-<!-- <div style="width:49%;float:left;">-->
-			<b>HEX-Program:</b><br>[<a id="hide_hexprogramdiv" href="javascript:void(0)" onclick="toggle_visibility('hexprogramdiv'); updateEditArea('hexprogram');">Hide</a>]</br>
-			<div id="hexprogramdiv" style="width:100%">
-			<textarea id="hexprogram" name="hexprogram" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/program.hex");}else{print $hexprogram;}?></textarea>
-			</div>
-<!-- </div>-->
-<!-- <div style="width:2%;float:left;">&nbsp;</div>-->
-<!-- <div style="width:49%;float:left;">-->
-			<br><br>
-			<b>External Source Definition (Python):</b><br>[<a id="hide_extsourcediv" href="javascript:void(0)" onclick="toggle_visibility('extsourcediv'); updateEditArea('extsource');">Hide</a>]</br>
-			<div id="extsourcediv" style="width:100%">
-			<textarea id="extsource" name="extsource" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
-			</div>
-			<br><br>
-			<b>Command-line Options:</b><br>[<a id="hide_commandlineoptionsdiv" href="javascript:void(0)" onclick="toggle_visibility('commandlineoptionsdiv');">Hide</a>]</br>
-			<div id="commandlineoptionsdiv" style="width:100%">
-                        <table id="commandlineoptions" summary="">
-                        <tr><td style="white-space: nowrap">Filter predicates (comma-separated):</td><td style="width:1000%"><input type="text" id="optFilter" name="optFilter" style="width:100%" value="<?php echo isset($_POST['optFilter']) ? $_POST['optFilter'] : ''; ?>"></td></tr>
-                        <tr><td style="white-space: nowrap">Number of answer sets to compute<br>(empty or 0 means all):</td><td><input type="text" id="optNumAS" name="optNumAS" style="width:100%" value="<?php echo isset($_POST['optNumAS']) ? $_POST['optNumAS'] : ''; ?>"></td></tr>
-                        <tr><td style="white-space: nowrap">Liberal safety:</td><td><input type="checkbox" id="optLiberalSafety" name="optLiberalSafety" <?php echo isset($_POST['optLiberalSafety']) ? 'checked' : ''; ?> /></td></tr>
-                        <tr><td style="white-space: nowrap">Custom options:</td><td><span><input type="text" id="optCustom" name="optCustom" style="display:table-cell; width:100%" value="<?php echo isset($_POST['optCustom']) ? $_POST['optCustom'] : ''; ?>"></span></td></tr>
-                        </table>
-			</div>
-			<div style="width:100%;text-align:right;"><input type="submit" value="Evaluate"><input type="button" onclick="evaluateHEX();" value="Evaluate JS"></div>
-<!-- </div>-->
-	     </form>
-	</div>
-	<h3>Output</h3>
-	<div id="outputdiv" style="width:100%;float:right;">
-	<?php
-		if (isset($_POST['formsubmitted']) && ($_POST['example'] == "")){
-                        function endsWith($haystack, $needle) {
-                                return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
-                        }
-                        $commandlineoptions = "";
-                        if ($_POST['optFilter'] != "") { $commandlineoptions = $commandlineoptions . " --filter=" . $_POST['optFilter']; };
-                        if ($_POST['optNumAS'] != "") { $commandlineoptions = $commandlineoptions . " -n=" . $_POST['optNumAS']; };
-                        if ($_POST['optLiberalSafety']) { $commandlineoptions = "--liberalsafety"; }
-                        if ($_POST['optCustom'] != "") { $commandlineoptions = $commandlineoptions . " " . $_POST['optCustom']; };
-			$args = "?mode=evalhex" .
-				"&commandlineoptions=" . urlencode($commandlineoptions) .
-				"&hexprogram=" . urlencode($hexprogram) .
-				"&extsource=" . urlencode($extsource);
-			$contents = trim(file_get_contents(trim(file_get_contents('demo/evalandformaturl.txt')) . $args));
-			print $contents;
-		}else{
-			print "Please prepare your input and click &#039;Evaluate&#039; to run the reasoner";
-		}
-        ?>
-	</div>
         <script language="Javascript" type="text/javascript">
                 function evaluateHEX(){
                         var outputdiv = document.getElementById("outputdiv");
@@ -171,8 +53,13 @@
                         // assemble query
                         var args = "?mode=evalhex";
                         args = args + "&commandlineoptions=";
-                        args = args + "&hexprogram=" + encodeURIComponent(document.getElementById("hexprogram").value);
-                        args = args + "&extsource=" + encodeURIComponent(document.getElementById("extsource").value);
+			if (document.getElementById("useeditarea").checked){
+				args = args + "&hexprogram=" + encodeURIComponent(editAreaLoader.getValue("hexprogram"));
+				args = args + "&extsource=" + encodeURIComponent(editAreaLoader.getValue("extsource"));
+			}else{
+		                args = args + "&hexprogram=" + encodeURIComponent(document.getElementById("hexprogram").value);
+		                args = args + "&extsource=" + encodeURIComponent(document.getElementById("extsource").value);
+			}
                         // send query
                         xmlHttp = new XMLHttpRequest();
                         xmlHttp.open("GET", "demo/evalandformaturl.txt", false);
@@ -244,11 +131,133 @@
 				}
 			}
 		}
+		function toggle_visibility(id) {
+		        var checkbox = document.getElementById("visible_" + id);
+		        checkbox.checked = !checkbox.checked;
+		        update_visibility(id);
+		}
+		function update_visibility(id) {
+		        var checkbox = document.getElementById("visible_" + id);
+		        var hidebutton = document.getElementById("hide_" + id);
+		        var element = document.getElementById(id);
+		        if(checkbox.checked){
+		                hidebutton.innerHTML = "Hide";
+		                element.style.display = 'block';
+		        }else{
+		                hidebutton.innerHTML = "Show";
+		                element.style.display = 'none';
+		        }
+		}
 		update_visibility('hexprogramdiv');
 		update_visibility('extsourcediv');
 		update_visibility('commandlineoptionsdiv');
 		updateEditAreas();
         </script>
+	<h2>Online Demo</h2>
+	<?php
+                $hexprogram = $_POST['hexprogram'];
+                $extsource = $_POST['extsource'];
+                $example = trim($_POST['example']);
+                if (!isset($_POST['formsubmitted'])){
+                        $example = "Tutorial";
+                }
+	?>
+	<!--<img width="30%" src="images/dlvhexlogo.png" alt=""><br>-->
+	<p>This <b>online demo of the dlvhex system</b> allows for
+	evaluating programs without local installation.
+	This is intended mainly for testing and learning purposes.
+	External sources for the program at the top may be directly implemented in a Python script below.</p>
+	<p>Please check out the predefined <b>examples at the upper right corner</b> for a quick overview or consider the <b>links to the system documentation in the right-hand menu</b> for a more detailed description.</p>
+	<div style="text-align:right;">(The online demo currently runs <i><?php
+			print trim(file_get_contents(trim(file_get_contents('demo/evalurl.txt')) . "?mode=getversion"));
+		?></i>)
+	</div>
+	<br>
+        <div style="width:100%;">
+		<h3>Input</h3>
+		<form method="post" action="demo.php">
+			<input type="checkbox" style="display:none" checked name="formsubmitted">
+                        <div style="text-align:right;">
+                                Load example:
+                                <?php
+                                        $exampleList = "<option name=\"\" value=\"\"></option>";
+                                        if ($handle = opendir('demo/examples')) {
+                                                while (false !== ($file = readdir($handle))) {
+                                                        if ($file != "." && $file != ".."){
+                                                                $exname = file_get_contents("demo/examples/" . $file . "/name.txt");
+                                                                $exampleList = $exampleList . "<option name=\"example\" value=\"$file\">$exname</option>";
+                                                        }
+                                                }
+                                                closedir($handle);
+                                        }
+                                ?>
+				<noscript>
+                                <select name="example" onchange="this.form.submit()">
+                                <?php print $exampleList; ?>
+                                </select>
+				</noscript>
+                                <select id="cmbExample" onchange="loadExample();">
+                                <?php print $exampleList; ?>
+                                </select><br>
+				<noscript><a href="next_page.php?nojs=1"><b>Your browser does not support JavaScript.</b><br>Please enable it to make use of advanced features.</a></noscript>
+                                <input class="jsonly" type="checkbox" id="useeditarea" name="useeditarea" onclick="updateEditAreas();" <?php echo (!isset($_POST['formsubmitted']) || isset($_POST['useeditarea'])) ? 'checked' : ''; ?>>Use advanced editor (powered by <a href="http://www.cdolivet.com/editarea" target="_blank">EditArea</a>)</input>
+                        </div>
+			<input type="checkbox" style="display:none" id="visible_hexprogramdiv" name="visible_hexprogramdiv" <?php echo (!isset($_POST['formsubmitted']) || isset($_POST['visible_hexprogramdiv'])) ? 'checked' : ''; ?> />
+			<input type="checkbox" style="display:none" id="visible_extsourcediv" name="visible_extsourcediv" <?php echo isset($_POST['visible_extsourcediv']) ? 'checked' : ''; ?> />
+			<input type="checkbox" style="display:none" id="visible_commandlineoptionsdiv" name="visible_commandlineoptionsdiv" <?php echo isset($_POST['visible_commandlineoptionsdiv']) ? 'checked' : ''; ?> />
+<!-- <div style="width:49%;float:left;">-->
+			<b>HEX-Program:</b><br>[<a id="hide_hexprogramdiv" href="javascript:void(0)" onclick="toggle_visibility('hexprogramdiv'); updateEditArea('hexprogram');">Hide</a>]</br>
+			<div id="hexprogramdiv" style="width:100%">
+			<textarea id="hexprogram" name="hexprogram" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/program.hex");}else{print $hexprogram;}?></textarea>
+			</div>
+<!-- </div>-->
+<!-- <div style="width:2%;float:left;">&nbsp;</div>-->
+<!-- <div style="width:49%;float:left;">-->
+			<br><br>
+			<b>External Source Definition (Python):</b><br>[<a id="hide_extsourcediv" href="javascript:void(0)" onclick="toggle_visibility('extsourcediv'); updateEditArea('extsource');">Hide</a>]</br>
+			<div id="extsourcediv" style="width:100%">
+			<textarea id="extsource" name="extsource" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
+			</div>
+			<br><br>
+			<b>Command-line Options:</b><br>[<a id="hide_commandlineoptionsdiv" href="javascript:void(0)" onclick="toggle_visibility('commandlineoptionsdiv');">Hide</a>]</br>
+			<div id="commandlineoptionsdiv" style="width:100%">
+                        <table id="commandlineoptions" summary="">
+                        <tr><td style="white-space: nowrap">Filter predicates (comma-separated):</td><td style="width:1000%"><input type="text" id="optFilter" name="optFilter" style="width:100%" value="<?php echo isset($_POST['optFilter']) ? $_POST['optFilter'] : ''; ?>"></td></tr>
+                        <tr><td style="white-space: nowrap">Number of answer sets to compute<br>(empty or 0 means all):</td><td><input type="text" id="optNumAS" name="optNumAS" style="width:100%" value="<?php echo isset($_POST['optNumAS']) ? $_POST['optNumAS'] : ''; ?>"></td></tr>
+                        <tr><td style="white-space: nowrap">Liberal safety:</td><td><input type="checkbox" id="optLiberalSafety" name="optLiberalSafety" <?php echo isset($_POST['optLiberalSafety']) ? 'checked' : ''; ?> /></td></tr>
+                        <tr><td style="white-space: nowrap">Custom options:</td><td><span><input type="text" id="optCustom" name="optCustom" style="display:table-cell; width:100%" value="<?php echo isset($_POST['optCustom']) ? $_POST['optCustom'] : ''; ?>"></span></td></tr>
+                        </table>
+			</div>
+			<div style="width:100%;text-align:right;">
+				<noscript><input type="submit" value="Evaluate"></noscript>
+				<input class="jsonly" type="button" onclick="evaluateHEX();" value="Evaluate JS">
+			</div>
+<!-- </div>-->
+	     </form>
+	</div>
+	<h3>Output</h3>
+	<div id="outputdiv" style="width:100%;float:right;">
+	<?php
+		if (isset($_POST['formsubmitted']) && ($_POST['example'] == "")){
+                        function endsWith($haystack, $needle) {
+                                return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
+                        }
+                        $commandlineoptions = "";
+                        if ($_POST['optFilter'] != "") { $commandlineoptions = $commandlineoptions . " --filter=" . $_POST['optFilter']; };
+                        if ($_POST['optNumAS'] != "") { $commandlineoptions = $commandlineoptions . " -n=" . $_POST['optNumAS']; };
+                        if ($_POST['optLiberalSafety']) { $commandlineoptions = "--liberalsafety"; }
+                        if ($_POST['optCustom'] != "") { $commandlineoptions = $commandlineoptions . " " . $_POST['optCustom']; };
+			$args = "?mode=evalhex" .
+				"&commandlineoptions=" . urlencode($commandlineoptions) .
+				"&hexprogram=" . urlencode($hexprogram) .
+				"&extsource=" . urlencode($extsource);
+			$contents = trim(file_get_contents(trim(file_get_contents('demo/evalandformaturl.txt')) . $args));
+			print $contents;
+		}else{
+			print "Please prepare your input and click &#039;Evaluate&#039; to run the reasoner";
+		}
+        ?>
+	</div>
       </div>
       <div class="grid_3">
   <p>&nbsp;</p>
