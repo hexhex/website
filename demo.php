@@ -201,7 +201,7 @@
                                 <?php print $exampleList; ?>
                                 </select><br>
 				<noscript><b>Your browser does not support JavaScript.</b><br>Please enable it to make use of advanced features.</a></noscript>
-                                <input class="jsonly" type="checkbox" id="useeditarea" name="useeditarea" onclick="updateEditAreas();" <?php echo ((!isset($_POST['btnLoad']) && !isset($_POST['btnEvaluate'])) || isset($_POST['useeditarea'])) ? 'checked' : ''; ?> value="Use advanced editor (powered by <a href='http://www.cdolivet.com/editarea' target='_blank'>EditArea</a>)" />
+                                <p class="jsonly"><input type="checkbox" id="useeditarea" name="useeditarea" onclick="updateEditAreas();" <?php echo ((!isset($_POST['btnLoad']) && !isset($_POST['btnEvaluate'])) || isset($_POST['useeditarea'])) ? 'checked' : ''; ?>>Use advanced editor (powered by <a href='http://www.cdolivet.com/editarea' target='_blank'>EditArea</a>)</input></p>
                         </div>
 			<input type="checkbox" style="display:none" id="visible_hexprogramdiv" name="visible_hexprogramdiv" <?php echo ((!isset($_POST['btnLoad']) && !isset($_POST['btnEvaluate'])) || isset($_POST['visible_hexprogramdiv'])) ? 'checked' : ''; ?> />
 			<input type="checkbox" style="display:none" id="visible_extsourcediv" name="visible_extsourcediv" <?php echo isset($_POST['visible_extsourcediv']) ? 'checked' : ''; ?> />
@@ -231,7 +231,7 @@
 			</div>
 			<div style="width:100%;text-align:right;">
 				<noscript><input type="submit" name="btnEvaluate" value="Evaluate"></noscript>
-				<input class="jsonly" type="button" onclick="evaluateHEX();" value="Evaluate JS">
+				<input class="jsonly" type="button" onclick="evaluateHEX();" value="Evaluate">
 			</div>
 <!-- </div>-->
 	     </form>
