@@ -146,33 +146,63 @@
 				"&extsource=" . urlencode($extsource);
 			$contents = trim(file_get_contents(trim(file_get_contents('demo/evalandformaturl.txt')) . $args));
 			print $contents;
+		}else{
+			print "Please prepare your input and click &#039;Evaluate&#039; to run the reasoner";
+		}
         ?>
 	</div>
         <script language="Javascript" type="text/javascript">
-		function evaluateHEX(){
-			var outputdiv = document.getElementById("outputdiv");
-			// assemble command-line arguments
-			var commandlineoptions = "";
-			if (document.getElementById("optFilter").value != "") commandlineoptions = commandlineoptions + " --filter=" + document.getElementById("optFilter").value;
-			if (document.getElementById("optNumAS").value != "") commandlineoptions = commandlineoptions + " -n=" + document.getElementById("optNumAS").value;
-			if (document.getElementById("optLiberalSafety").value != "") commandlineoptions = commandlineoptions + " --liberalsafety";
-			if (document.getElementById("optCustom").value != "") commandlineoptions = commandlineoptions + " " + document.getElementById("optCustom").value;
-			// assemble query
-			var args = "?mode=evalhex";
-			args = args + "&commandlineoptions=";
-			args = args + "&hexprogram=" + encodeURIComponent(document.getElementById("hexprogram").value);
-			args = args + "&extsource=" + encodeURIComponent(document.getElementById("extsource").value);
-			// send query
-			xmlHttp = new XMLHttpRequest();
-			xmlHttp.open("GET", "demo/evalandformaturl.txt", false);
-			xmlHttp.send(null);
-			evalandformaturl = xmlHttp.responseText;
-			xmlHttp.open("GET", evalandformaturl + args, false);
-			xmlHttp.send(null);
-			answer = xmlHttp.responseText;
-			// write output to page
-			outputdiv.innerHTML = answer;
-		}
+                function evaluateHEX(){
+                        var outputdiv = document.getElementById("outputdiv");
+                        outputdiv.innerHTML = "Processing...";
+                        window.setTimeout(callReasoner, 0);
+                }
+                function callReasoner(){
+                        // assemble command-line arguments
+                        var commandlineoptions = "";
+                        if (document.getElementById("optFilter").value != "") commandlineoptions = commandlineoptions + " --filter=" + document.getElementById("optFilter").value;
+                        if (document.getElementById("optNumAS").value != "") commandlineoptions = commandlineoptions + " -n=" + document.getElementById("optNumAS").value;
+                        if (document.getElementById("optLiberalSafety").value != "") commandlineoptions = commandlineoptions + " --liberalsafety";
+                        if (document.getElementById("optCustom").value != "") commandlineoptions = commandlineoptions + " " + document.getElementById("optCustom").value;
+                        // assemble query
+                        var args = "?mode=evalhex";
+                        args = args + "&commandlineoptions=";
+                        args = args + "&hexprogram=" + encodeURIComponent(document.getElementById("hexprogram").value);
+                        args = args + "&extsource=" + encodeURIComponent(document.getElementById("extsource").value);
+                        // send query
+                        xmlHttp = new XMLHttpRequest();
+                        xmlHttp.open("GET", "demo/evalandformaturl.txt", false);
+                        xmlHttp.send(null);
+                        evalandformaturl = xmlHttp.responseText;
+                        xmlHttp.open("GET", evalandformaturl + args, false);
+                        xmlHttp.send(null);
+                        answer = xmlHttp.responseText;
+                        // write output to page
+                        outputdiv.innerHTML = answer;
+                        window.setTimeout(scrollToResults, 0);
+                }
+                function scrollToResults(){
+                        document.getElementById("outputdiv").scrollIntoView();
+                }
+                function loadExample(){
+                        example = document.getElementById("cmbExample").value;
+                        xmlHttp = new XMLHttpRequest();
+                        xmlHttp.open("GET", "demo/examples/" + example + "/program.hex", false);
+                        xmlHttp.send(null);
+                        if (document.getElementById("useeditarea").checked){
+                                editAreaLoader.setValue("hexprogram", xmlHttp.responseText);
+                        }else{
+                                document.getElementById("hexprogram").value = xmlHttp.responseText;
+                        }
+                        xmlHttp.open("GET", "demo/examples/" + example + "/plugin.py", false);
+                        xmlHttp.send(null);
+                        if (document.getElementById("useeditarea").checked){
+                                editAreaLoader.setValue("extsource", xmlHttp.responseText);
+                        }else{
+                                document.getElementById("extsource").value = xmlHttp.responseText;
+                        }
+                        document.getElementById("cmbExample").value = "";
+                }
 		function updateEditAreas(){
 			updateEditArea('hexprogram');
 			updateEditArea('extsource');
