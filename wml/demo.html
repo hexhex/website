@@ -47,7 +47,7 @@
 			img.height = 80;
 			var centerimg=document.createElement('center');
 			centerimg.appendChild(img);
-			outputdiv.innerHTML = "<div align="center"><p style=\"font-size:20px\">Processing ...</p></div></br>";
+			outputdiv.innerHTML = "<div align=\"center\"><p style=\"font-size:20px\">Processing ...</p></div></br>";
 			outputdiv.appendChild(centerimg);
 			window.setTimeout(scrollToResults, 0);
 			// call reasoner
