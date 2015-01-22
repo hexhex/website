@@ -50,7 +50,7 @@
 	External sources for the program at the top may be directly implemented in a Python script below.</p>
 	<p>Please check out the predefined <b>examples at the upper right corner</b> for a quick overview or consider the <b>links to the system documentation in the right-hand menu</b> for a more detailed description.</p>
 	<div style="text-align:right;">(The online demo currently runs <i><?php
-			$contents = trim(file_get_contents(trim(file_get_contents('demo/evalurl.txt')) . "?mode=getversion"));
+			print trim(file_get_contents(trim(file_get_contents('demo/evalurl.txt')) . "?mode=getversion"));
 		?></i>)
 	</div>
 	<br>
