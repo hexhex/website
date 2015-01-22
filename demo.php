@@ -96,13 +96,13 @@
 					}
 				?>
 				</select><br>
-                                <input type="checkbox" id="useeditarea" name="useeditarea" onclick="updateEditArea();" <?php echo (!isset($_POST['formsubmitted']) || isset($_POST['useeditarea'])) ? 'checked' : ''; ?>>Use advanced editor (powered by <a href="http://www.cdolivet.com/editarea" target="_blank">EditArea</a>)</input>
+                                <input type="checkbox" id="useeditarea" name="useeditarea" onclick="updateEditAreas();" <?php echo (!isset($_POST['formsubmitted']) || isset($_POST['useeditarea'])) ? 'checked' : ''; ?>>Use advanced editor (powered by <a href="http://www.cdolivet.com/editarea" target="_blank">EditArea</a>)</input>
 			</div>
 			<input type="checkbox" style="display:none" id="visible_hexprogramdiv" name="visible_hexprogramdiv" <?php echo (!isset($_POST['formsubmitted']) || isset($_POST['visible_hexprogramdiv'])) ? 'checked' : ''; ?> />
 			<input type="checkbox" style="display:none" id="visible_extsourcediv" name="visible_extsourcediv" <?php echo isset($_POST['visible_extsourcediv']) ? 'checked' : ''; ?> />
 			<input type="checkbox" style="display:none" id="visible_commandlineoptionsdiv" name="visible_commandlineoptionsdiv" <?php echo isset($_POST['visible_commandlineoptionsdiv']) ? 'checked' : ''; ?> />
 <!-- <div style="width:49%;float:left;">-->
-			<b>HEX-Program:</b><br>[<a id="hide_hexprogramdiv" href="javascript:void(0)" onclick="toggle_visibility('hexprogramdiv');">Hide</a>]</br>
+			<b>HEX-Program:</b><br>[<a id="hide_hexprogramdiv" href="javascript:void(0)" onclick="toggle_visibility('hexprogramdiv'); updateEditArea('hexprogram');">Hide</a>]</br>
 			<div id="hexprogramdiv" style="width:100%">
 			<textarea id="hexprogram" name="hexprogram" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/program.hex");}else{print $hexprogram;}?></textarea>
 			</div>
@@ -110,7 +110,7 @@
 <!-- <div style="width:2%;float:left;">&nbsp;</div>-->
 <!-- <div style="width:49%;float:left;">-->
 			<br><br>
-			<b>External Source Definition (Python):</b><br>[<a id="hide_extsourcediv" href="javascript:void(0)" onclick="toggle_visibility('extsourcediv');">Hide</a>]</br>
+			<b>External Source Definition (Python):</b><br>[<a id="hide_extsourcediv" href="javascript:void(0)" onclick="toggle_visibility('extsourcediv'); updateEditArea('extsource');">Hide</a>]</br>
 			<div id="extsourcediv" style="width:100%">
 			<textarea id="extsource" name="extsource" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
 			</div>
@@ -190,35 +190,47 @@
         ?>
 	</div>
         <script language="Javascript" type="text/javascript">
-		function updateEditArea(){
+		function updateEditAreas(){
+			updateEditArea('hexprogram');
+			updateEditArea('extsource');
+		}
+		function updateEditArea(id){
 			if (document.getElementById("useeditarea").checked){
-				editAreaLoader.init({
-				        id: "hexprogram" // id of the textarea to transform
-				        ,start_highlight: true // if start with highlight
-				        ,allow_resize: "no"
-				        ,word_wrap: true
-				        ,language: "en"
-				        ,syntax: "hex"
-				        ,allow_toggle: false
-				});
-				editAreaLoader.init({
-				        id: "extsource" // id of the textarea to transform
-				        ,start_highlight: true // if start with highlight
-				        ,allow_resize: "no"
-				        ,word_wrap: true
-				        ,language: "en"
-				        ,syntax: "python"
-				        ,allow_toggle: false
-				});
+				if (id == "hexprogram"){
+					editAreaLoader.init({
+						id: "hexprogram" // id of the textarea to transform
+						,start_highlight: true // if start with highlight
+						,allow_resize: "no"
+						,word_wrap: true
+						,language: "en"
+						,syntax: "hex"
+						,allow_toggle: false
+					});
+				}
+				if (id == "extsource"){
+					editAreaLoader.init({
+						id: "extsource" // id of the textarea to transform
+						,start_highlight: true // if start with highlight
+						,allow_resize: "no"
+						,word_wrap: true
+						,language: "en"
+						,syntax: "python"
+						,allow_toggle: false
+					});
+				}
 			}else{
-				editAreaLoader.delete_instance("hexprogram");
-				editAreaLoader.delete_instance("extsource");
+				if (id == "hexprogram"){
+					editAreaLoader.delete_instance("hexprogram");
+				}
+				if (id == "extsource"){
+					editAreaLoader.delete_instance("extsource");
+				}
 			}
 		}
-		updateEditArea();
 		update_visibility('hexprogramdiv');
 		update_visibility('extsourcediv');
 		update_visibility('commandlineoptionsdiv');
+		updateEditAreas();
         </script>
       </div>
       <div class="grid_3">
