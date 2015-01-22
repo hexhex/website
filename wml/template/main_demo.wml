@@ -1,3 +1,26 @@
+	<script type="text/javascript">
+	<!--
+	function toggle_visibility(id) {
+		var checkbox = document.getElementById("visible_" + id);
+		checkbox.checked = !e.checked;
+		update_visibility(id);
+	}
+
+	function update_visibility(id) {
+		var checkbox = document.getElementById("visible_" + id);
+		var hidebutton = document.getElementById("hide_" + id);
+		var element = document.getElementById(id);
+		if(checkbox.checked){
+			element.style.display = 'block';
+			hidebutton.innerHTML = "Hide";
+		}else{
+			element.style.display = 'none';
+			hidebutton.innerHTML = "Show";
+		}
+	}
+	//-->
+	</script>
+
 	<h2>Online Demo</h2>
 
 	<?php
@@ -48,8 +71,12 @@
 				</select>
 			</div>
 
+			<input type="checkbox" name="visible_hexprogram" <?php echo isset($_POST['visible_hexprogram']) ? 'checked' : ''; ?> />
+			<input type="checkbox" name="visible_extsource" <?php echo isset($_POST['visible_extsource']) ? 'checked' : ''; ?> />
+			<input type="checkbox" name="visible_commandlineoptions" <?php echo isset($_POST['visible_commandlineoptions']) ? 'checked' : ''; ?> />
+
 <!--			<div style="width:49%;float:left;">-->
-			<b>HEX-Program:</b></br>
+			<b>HEX-Program:</b> [<a id="hide_hexprogram" href="#" onclick="toggle_visibility('hexprogram');" onload="update_visibility('hexprogram')">Hide</a>]</br>
 			<textarea name="hexprogram" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/program.hex");}else{print $hexprogram;}?></textarea>
 <!--			</div>-->
 
@@ -63,7 +90,7 @@
 
 			<br/><br/>
 			<b>Command-line Options:</b></br>
-			<table width="100%">
+			<table id="commandlineoptions" width="100%">
                         <tr><td>Filter predicates (comma-separated):<td><td><input type="text" name="optFilter" style="width:100%" value="<?php echo isset($_POST['optFilter']) ? $_POST['optFilter'] : ''; ?>"></td></tr>
                         <tr><td>Liberal safety:<td><td><input type="checkbox" name="optLiberalSafety" <?php echo isset($_POST['optLiberalSafety']) ? 'checked' : ''; ?>></td></tr>
                         <tr><td>Custom options:<td><td><input type="text" name="optCustom" style="width:100%" value="<?php echo isset($_POST['optCustom']) ? $_POST['optCustom'] : ''; ?>"></td></tr>
