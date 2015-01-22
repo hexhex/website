@@ -4,7 +4,7 @@
 		<!--
                 function evaluateHEX(){
                         var outputdiv = document.getElementById("outputdiv");
-                        outputdiv.innerHTML = "Processing...";
+                        outputdiv.innerHTML = "<center><p style=\"font-size:20px;\">Processing ...</p><br/><img src=\"demo/dlvhexlogoanimated.gif\"/></center>";
                         window.setTimeout(callReasoner, 0);
                 }
                 function callReasoner(){

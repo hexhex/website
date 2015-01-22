@@ -40,34 +40,34 @@
 		<!--
                 function evaluateHEX(){
                         var outputdiv=document.getElementById("outputdiv");
-                        outputdiv.innerHTML = "Processing...";
+                        outputdiv.innerHTML = "<div align="center"><p style=\"font-size:20px;\">Processing ...</p><br><img src=\"demo/dlvhexlogoanimated.gif\" alt=""></div>";
                         window.setTimeout(callReasoner, 0);
                 }
                 function callReasoner(){
                         // assemble command-line arguments
-                        var commandlineoptions="";
-                        if (document.getElementById("optFilter").value != "") commandlineoptions=commandlineoptions + " --filter=" + document.getElementById("optFilter").value;
-                        if (document.getElementById("optNumAS").value != "") commandlineoptions=commandlineoptions + " -n=" + document.getElementById("optNumAS").value;
-                        if (document.getElementById("optLiberalSafety").value != "") commandlineoptions=commandlineoptions + " --liberalsafety";
-                        if (document.getElementById("optCustom").value != "") commandlineoptions=commandlineoptions + " " + document.getElementById("optCustom").value;
+                        var commandlineoptions = "";
+                        if (document.getElementById("optFilter").value != "") commandlineoptions = commandlineoptions + " --filter=" + document.getElementById("optFilter").value;
+                        if (document.getElementById("optNumAS").value != "") commandlineoptions = commandlineoptions + " -n=" + document.getElementById("optNumAS").value;
+                        if (document.getElementById("optLiberalSafety").value != "") commandlineoptions = commandlineoptions + " --liberalsafety";
+                        if (document.getElementById("optCustom").value != "") commandlineoptions = commandlineoptions + " " + document.getElementById("optCustom").value;
                         // assemble query
-                        var args="?mode=evalhex";
-                        args=args + "&commandlineoptions=";
+                        var args = "?mode=evalhex";
+                        args = args + "&commandlineoptions=";
 			if (document.getElementById("useeditarea").checked){
-				args=args + "&hexprogram=" + encodeURIComponent(editAreaLoader.getValue("hexprogram"));
-				args=args + "&extsource=" + encodeURIComponent(editAreaLoader.getValue("extsource"));
+				args = args + "&hexprogram=" + encodeURIComponent(editAreaLoader.getValue("hexprogram"));
+				args = args + "&extsource=" + encodeURIComponent(editAreaLoader.getValue("extsource"));
 			}else{
-		                args=args + "&hexprogram=" + encodeURIComponent(document.getElementById("hexprogram").value);
-		                args=args + "&extsource=" + encodeURIComponent(document.getElementById("extsource").value);
+		                args = args + "&hexprogram=" + encodeURIComponent(document.getElementById("hexprogram").value);
+		                args = args + "&extsource=" + encodeURIComponent(document.getElementById("extsource").value);
 			}
                         // send query
-                        xmlHttp=new XMLHttpRequest();
+                        xmlHttp = new XMLHttpRequest();
                         xmlHttp.open("GET", "demo/evalandformaturl.txt", false);
                         xmlHttp.send(null);
-                        evalandformaturl=xmlHttp.responseText;
+                        evalandformaturl = xmlHttp.responseText;
                         xmlHttp.open("GET", evalandformaturl + args, false);
                         xmlHttp.send(null);
-                        answer=xmlHttp.responseText;
+                        answer = xmlHttp.responseText;
                         // write output to page
                         outputdiv.innerHTML = answer;
                         window.setTimeout(scrollToResults, 0);
@@ -76,8 +76,8 @@
                         document.getElementById("outputdiv").scrollIntoView();
                 }
                 function loadExample(){
-                        example=document.getElementById("cmbExample").value;
-                        xmlHttp=new XMLHttpRequest();
+                        example = document.getElementById("cmbExample").value;
+                        xmlHttp = new XMLHttpRequest();
                         xmlHttp.open("GET", "demo/examples/" + example + "/program.hex", false);
                         xmlHttp.send(null);
                         if (document.getElementById("useeditarea").checked){
@@ -132,14 +132,14 @@
 			}
 		}
 		function toggle_visibility(id) {
-		        var checkbox=document.getElementById("visible_" + id);
+		        var checkbox = document.getElementById("visible_" + id);
 		        checkbox.checked = !checkbox.checked;
 		        update_visibility(id);
 		}
 		function update_visibility(id) {
-		        var checkbox=document.getElementById("visible_" + id);
-		        var hidebutton=document.getElementById("hide_" + id);
-		        var element=document.getElementById(id);
+		        var checkbox = document.getElementById("visible_" + id);
+		        var hidebutton = document.getElementById("hide_" + id);
+		        var element = document.getElementById(id);
 		        if(checkbox.checked){
 		                hidebutton.innerHTML = "Hide";
 		                element.style.display = 'block';
