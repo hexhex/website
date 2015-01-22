@@ -92,10 +92,10 @@
 			<br/><br/>
 			<b>Command-line Options:</b><br/>[<a id="hide_commandlineoptions" href="javascript:void(0)" onclick="toggle_visibility('commandlineoptions');">Hide</a>]</br>
 			<table id="commandlineoptions" width="100%">
-                        <tr><td>Filter predicates (comma-separated):<td><td><input type="text" name="optFilter" style="width:100%" value="<?php echo isset($_POST['optFilter']) ? $_POST['optFilter'] : ''; ?>"></td></tr>
-                        <tr><td>Number of answer sets (leave empty for all):<td><td><input type="text" name="optNumAS" style="width:100%" value="<?php echo isset($_POST['optNumAS']) ? $_POST['optNumAS'] : ''; ?>"></td></tr>
-                        <tr><td>Liberal safety:<td><td><input type="checkbox" name="optLiberalSafety" <?php echo isset($_POST['optLiberalSafety']) ? 'checked' : ''; ?>></td></tr>
-                        <tr><td>Custom options:<td><td><input type="text" name="optCustom" style="width:100%" value="<?php echo isset($_POST['optCustom']) ? $_POST['optCustom'] : ''; ?>"></td></tr>
+                        <tr><td style="width:50%">Filter predicates (comma-separated):<td><td style="width:50%"><input type="text" name="optFilter" style="width:100%" value="<?php echo isset($_POST['optFilter']) ? $_POST['optFilter'] : ''; ?>"></td></tr>
+                        <tr><td style="width:50%">Number of answer sets to compute (leave empty or input 0 for all):<td style="width:50%"><td><input type="text" name="optNumAS" style="width:100%" value="<?php echo isset($_POST['optNumAS']) ? $_POST['optNumAS'] : ''; ?>"></td></tr>
+                        <tr><td style="width:50%">Liberal safety:<td><td style="width:50%"><input type="checkbox" name="optLiberalSafety" <?php echo isset($_POST['optLiberalSafety']) ? 'checked' : ''; ?>></td></tr>
+                        <tr><td style="width:50%">Custom options:<td><td style="width:50%"><input type="text" name="optCustom" style="width:100%" value="<?php echo isset($_POST['optCustom']) ? $_POST['optCustom'] : ''; ?>"></td></tr>
 			</table>
 
 			<div style="width:100%;text-align:right;"><input type="submit" value="Evaluate"></div>
