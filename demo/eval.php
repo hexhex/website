@@ -2,7 +2,7 @@
         header("Content-Type: text/plain");
 
         if ($_GET["mode"] == "getversion"){
-		print trim(shell_exec("getversion.sh"));
+		print trim(shell_exec(file_get_contents("getversion.sh")));
 	}
 
         if ($_GET["mode"] == "evalhex"){
@@ -14,9 +14,9 @@
 		$shellstr = "$reasonercall $commandlineoptions --";
 		#$shellstr = "echo \"%hexprogram\" | $reasonercall $commandlineoptions --pythonplugin=<(echo -e \"" . addslashes($extsource) . "\") --")";
 		exec("echo \"$hexprogram\" | $shellstr 2>&1", $answer, $retcode);
-		foreach ($answer as $line){
-		        print $line . "\n";
-		}
 		print $retcode;
+		foreach ($answer as $line){
+		        print "\n" . $line;
+		}
 	}
 ?>

@@ -107,8 +107,8 @@
                         if ($_POST['optCustom'] != "") { $commandlineoptions = $commandlineoptions . " " . $_POST['optCustom']; };
 			$args = "?mode=evalhex" .
 				"&commandlineoptions=" . urlencode($commandlineoptions) .
-				"&hexprogram =" . urlencode($hexprogram) .
-				"&extsource =" . urlencode($extsource);
+				"&hexprogram=" . urlencode($hexprogram) .
+				"&extsource=" . urlencode($extsource);
 			$contents = trim(file_get_contents(trim(file_get_contents('demo/evalurl.txt')) . $args));
 			$answer = explode("\n", $contents);
 			$retcode = $answer[0];
