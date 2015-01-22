@@ -58,7 +58,7 @@
                         var commandlineoptions = "";
                         if (document.getElementById("optFilter").value != "") commandlineoptions = commandlineoptions + " --filter=" + document.getElementById("optFilter").value;
                         if (document.getElementById("optNumAS").value != "") commandlineoptions = commandlineoptions + " -n=" + document.getElementById("optNumAS").value;
-                        if (document.getElementById("optLiberalSafety").value != "") commandlineoptions = commandlineoptions + " --liberalsafety";
+                        if (document.getElementById("optLiberalSafety").checked) commandlineoptions = commandlineoptions + " --liberalsafety";
                         if (document.getElementById("optCustom").value != "") commandlineoptions = commandlineoptions + " " + document.getElementById("optCustom").value;
                         // assemble query
                         var args = "?mode=evalhex";
