@@ -60,7 +60,7 @@
                 $hexprogram = $_POST['hexprogram'];
                 $extsource = $_POST['extsource'];
                 $example = trim($_POST['example']);
-                if (!isset($_POST['hexprogram'])){
+                if (!isset($_POST['formsubmitted'])){
                         $example = "Tutorial";
                 }
 	?>
@@ -78,6 +78,7 @@
         <div style="width:100%;">
 		<h3>Input</h3>
 		<form method="post" action="demo.php">
+			<input type="checkbox" style="display:none" checked name="reloaded">
 			<div style="text-align:right;">
 				Load example:
 				<select name="example" onchange="this.form.submit()">
@@ -95,7 +96,7 @@
 				?>
 				</select>
 			</div>
-			<input type="checkbox" style="display:none" id="visible_hexprogram" name="visible_hexprogram" <?php echo isset($_POST['visible_hexprogram']) ? 'checked' : ''; ?> />
+			<input type="checkbox" style="display:none" id="visible_hexprogram" name="visible_hexprogram" <?php echo isset(!$_POST['formsubmitted'] || $_POST['visible_hexprogram']) ? 'checked' : ''; ?> />
 			<input type="checkbox" style="display:none" id="visible_extsource" name="visible_extsource" <?php echo isset($_POST['visible_extsource']) ? 'checked' : ''; ?> />
 			<input type="checkbox" style="display:none" id="visible_commandlineoptions" name="visible_commandlineoptions" <?php echo isset($_POST['visible_commandlineoptions']) ? 'checked' : ''; ?> />
 <!-- <div style="width:49%;float:left;">-->
@@ -128,7 +129,7 @@ update_visibility('commandlineoptions');
 	<h3>Output</h3>
 	<div style="width:100%;float:right;">
 	<?php
-		if (isset($_POST['hexprogram']) && ($_POST['example'] == "")){
+		if (isset($_POST['formsubmitted']) && ($_POST['example'] == "")){
                         function endsWith($haystack, $needle) {
                                 return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
                         }
