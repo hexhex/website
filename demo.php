@@ -96,7 +96,7 @@
 					}
 				?>
 				</select><br>
-                                <input type="checkbox" id="useeditarea" name="useeditarea" onclick="updateEditArea();" <?php echo (!isset($_POST['formsubmitted']) || isset($_POST['useeditarea'])) ? 'checked' : ''; ?>>Use advanced editor (powered by <a href="http://www.cdolivet.com/editarea">editarea</a>)</input>
+                                <input type="checkbox" id="useeditarea" name="useeditarea" onclick="updateEditArea();" <?php echo (!isset($_POST['formsubmitted']) || isset($_POST['useeditarea'])) ? 'checked' : ''; ?>>Use advanced editor (powered by <a href="http://www.cdolivet.com/editarea" target="_blank">EditArea</a>)</input>
 			</div>
 			<input type="checkbox" style="display:none" id="visible_hexprogramdiv" name="visible_hexprogramdiv" <?php echo (!isset($_POST['formsubmitted']) || isset($_POST['visible_hexprogramdiv'])) ? 'checked' : ''; ?> />
 			<input type="checkbox" style="display:none" id="visible_extsourcediv" name="visible_extsourcediv" <?php echo isset($_POST['visible_extsourcediv']) ? 'checked' : ''; ?> />
@@ -198,7 +198,7 @@
 				        ,allow_resize: "no"
 				        ,word_wrap: true
 				        ,language: "en"
-				        ,syntax: "python"
+				        ,syntax: "hex"
 				        ,allow_toggle: false
 				});
 				editAreaLoader.init({
@@ -216,9 +216,9 @@
 			}
 		}
 		updateEditArea();
-		update_visibility('hexprogram');
-		update_visibility('extsource');
-		update_visibility('commandlineoptions');
+		update_visibility('hexprogramdiv');
+		update_visibility('extsourcediv');
+		update_visibility('commandlineoptionsdiv');
         </script>
       </div>
       <div class="grid_3">
