@@ -72,12 +72,12 @@
 				</select>
 			</div>
 
-			<input type="checkbox" style="display:none" id="visible_hexprogram" name="visible_hexprogram" <?php echo (!isset($_POST['formsubmitted'] || $_POST['visible_hexprogram'])) ? 'checked' : ''; ?> />
+			<input type="checkbox" style="display:none" id="visible_hexprogram" name="visible_hexprogram" <?php echo (!isset($_POST['formsubmitted']) || isset($_POST['visible_hexprogram'])) ? 'checked' : ''; ?> />
 			<input type="checkbox" style="display:none" id="visible_extsource" name="visible_extsource" <?php echo isset($_POST['visible_extsource']) ? 'checked' : ''; ?> />
 			<input type="checkbox" style="display:none" id="visible_commandlineoptions" name="visible_commandlineoptions" <?php echo isset($_POST['visible_commandlineoptions']) ? 'checked' : ''; ?> />
 
 <!--			<div style="width:49%;float:left;">-->
-			<b>HEX-Program:</b> [<a id="hide_hexprogram" href="javascript:void(0)" onclick="toggle_visibility('hexprogram');">Hide</a>]</br>
+			<b>HEX-Program:</b><br/>[<a id="hide_hexprogram" href="javascript:void(0)" onclick="toggle_visibility('hexprogram');">Hide</a>]</br>
 			<textarea id="hexprogram" name="hexprogram" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/program.hex");}else{print $hexprogram;}?></textarea>
 <!--			</div>-->
 
@@ -86,13 +86,14 @@
 <!--			<div style="width:49%;float:left;">-->
 
 			<br/><br/>
-			<b>External Source Definition (Python):</b> [<a id="hide_extsource" href="javascript:void(0)" onclick="toggle_visibility('extsource');">Hide</a>]</br>
+			<b>External Source Definition (Python):</b><br/>[<a id="hide_extsource" href="javascript:void(0)" onclick="toggle_visibility('extsource');">Hide</a>]</br>
 			<textarea id="extsource" name="extsource" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
 
 			<br/><br/>
-			<b>Command-line Options:</b> [<a id="hide_commandlineoptions" href="javascript:void(0)" onclick="toggle_visibility('commandlineoptions');">Hide</a>]</br>
+			<b>Command-line Options:</b><br/>[<a id="hide_commandlineoptions" href="javascript:void(0)" onclick="toggle_visibility('commandlineoptions');">Hide</a>]</br>
 			<table id="commandlineoptions" width="100%">
                         <tr><td>Filter predicates (comma-separated):<td><td><input type="text" name="optFilter" style="width:100%" value="<?php echo isset($_POST['optFilter']) ? $_POST['optFilter'] : ''; ?>"></td></tr>
+                        <tr><td>Number of answer sets (leave empty for all):<td><td><input type="text" name="optNumAS" style="width:100%" value="<?php echo isset($_POST['optNumAS']) ? $_POST['optNumAS'] : ''; ?>"></td></tr>
                         <tr><td>Liberal safety:<td><td><input type="checkbox" name="optLiberalSafety" <?php echo isset($_POST['optLiberalSafety']) ? 'checked' : ''; ?>></td></tr>
                         <tr><td>Custom options:<td><td><input type="text" name="optCustom" style="width:100%" value="<?php echo isset($_POST['optCustom']) ? $_POST['optCustom'] : ''; ?>"></td></tr>
 			</table>
@@ -123,6 +124,7 @@ update_visibility('commandlineoptions');
 			# Assembling of the command-line
                         $commandlineoptions = "";
                         if ($_POST['optFilter'] != "") { $commandlineoptions = $commandlineoptions . " --filter=" . $_POST['optFilter']; };
+                        if ($_POST['optNumAS'] != "") { $commandlineoptions = $commandlineoptions . " -n=" . $_POST['optNumAS']; };
                         if ($_POST['optLiberalSafety']) { $commandlineoptions = "--liberalsafety"; }
                         if ($_POST['optCustom'] != "") { $commandlineoptions = $commandlineoptions . " " . $_POST['optCustom']; };
 
