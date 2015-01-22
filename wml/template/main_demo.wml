@@ -4,7 +4,7 @@
 		<!--
                 function evaluateHEX(){
                         var outputdiv = document.getElementById("outputdiv");
-                        outputdiv.innerHTML = "<div align=\"center\"><p style=\"font-size:20px;\">Processing ...</p><br/><img id=\"logo\" width=\"100\" src=\"demo/dlvhexlogoanimated.gif\"/></div>";
+                        outputdiv.innerHTML = "<div align=\"center\"><p style=\"font-size:20px;\">Processing ...</p><br/><img id=\"logo\" width=\"100\" height=\"auto\" src=\"demo/dlvhexlogoanimated.gif\"/></div>";
                         window.setTimeout(callReasoner, 0);
                 }
                 function callReasoner(){

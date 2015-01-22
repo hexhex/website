@@ -40,7 +40,7 @@
 		<!--
                 function evaluateHEX(){
                         var outputdiv=document.getElementById("outputdiv");
-                        outputdiv.innerHTML = "<div align=\"center\"><p style=\"font-size:20px;\">Processing ...</p><br><img id=\"logo\" width=\"100\" src=\"demo/dlvhexlogoanimated.gif\" alt=""></div>";
+                        outputdiv.innerHTML = "<div align=\"center\"><p style=\"font-size:20px;\">Processing ...</p><br><img id=\"logo\" width=\"100\" height=\"auto\" src=\"demo/dlvhexlogoanimated.gif\" alt=""></div>";
                         window.setTimeout(callReasoner, 0);
                 }
                 function callReasoner(){
@@ -271,7 +271,7 @@
       <div class="grid_3">
   <p>&nbsp;</p>
   <p>
-    <img width="100%" src="images/logo_whitebg.png" alt="logo" id="logo" height="22">
+    <img width="100%" height="auto" src="images/logo_whitebg.png" alt="logo" id="logo" height="22">
   </p>
   <p>
 	<div style="font-size: 14pt"><label for="q">Search this website</label></div>
