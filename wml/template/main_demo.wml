@@ -5,7 +5,7 @@
                 function evaluateHEX(){
                         var outputdiv = document.getElementById("outputdiv");
 			imgtag = "img "; // workaround to make sure that wml is not aware of the img tag (otherwise it destroys it since it does not use escape sequences for added quotation marks)
-                        outputdiv.innerHTML = "<div align=\"center\"><p style=\"font-size:20px;\">Processing ...</p><br/><" + imgtag + "id=\"logo\" width=\"100\" height=\"100\" src=\"demo/dlvhexlogoanimated.gif\"/></div>";
+                        outputdiv.innerHTML = "<div align=\"center\"><p style=\"font-size:20px;\">Processing ...</p><br/><" + imgtag + "id=\"logo\" src=\"demo/dlvhexlogoanimated.gif\"/></div>";
                         window.setTimeout(callReasoner, 0);
                 }
                 function callReasoner(){
