@@ -1,15 +1,15 @@
 <?php
         header("Content-Type: text/plain");
 
-	# evaluate query
-	$contents = file_get_contents(trim(file_get_contents('demo/eval.txt') + "?commandlineoptions=" + $_POST['commandlineoptions'] + "&hexprogram=" $_POST['hexprogram'] + "&extsource=" + $_POST['extsource'])
+        # evaluate query
+        $contents = file_get_contents(trim(file_get_contents('evalurl.txt')) . "?mode=evalhex" . "&commandlineoptions=" . urlencode($_GET['commandlineoptions']) . "&hexprogram=" . urlencode($_GET['hexprogram']) . "&extsource=" . urlencode($_GET['extsource']));
 
-	# format query
-	$answer = explode("\n", $contents);
-	$retcode = $answer[0];
-	$answer = array_slice($answer, 1);
+        # format query
+        $answer = explode("\n", $contents);
+        $retcode = $answer[0];
+        $answer = array_slice($answer, 1);
         print "<b>Command Line:</b><br>";
-        print "<tt>shell$ dlv $commandlineoptions program.hex</tt>";
+        print "<tt>shell$ dlv " . $_POST['commandlineoptions'] . " program.hex</tt>";
         print "<br>";
         print "where <tt>program.hex</tt> and <tt>extsource.py</tt> refer to the program and plugin entered above, respectively";
         print "<br><br>";
