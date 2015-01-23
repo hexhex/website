@@ -140,7 +140,7 @@
 						,language: "en"
 						,syntax: "hex"
 						,allow_toggle: false
-                                                ,toolbar: "save, load, select_font"
+                                                ,toolbar: "load, save, select_font"
                                                 ,load_callback: "load_hexprogram.click"
                                                 ,save_callback: "saveHexprogram"
 					});
@@ -157,7 +157,7 @@
                                                 ,load_callback: "loadExtsource"
                                                 ,save_callback: "saveExtsource"
 						,allow_toggle: false
-                                                ,toolbar: "save, load, select_font"
+                                                ,toolbar: "load, save, select_font"
                                                 ,load_callback: "load_extsource.click"
                                                 ,save_callback: "saveExtsource"
 					});
