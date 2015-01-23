@@ -123,9 +123,10 @@
 			}
 		}
                 function saveHexprogram(id, content){
-			var a = document.createElement('a');
-			var blob = new Blob( [editAreaLoader.getValue("hexprogram")], {'type':'application/octet-stream'});
-			a.href = window.URL.createObjectURL(blob);
+			a = document.createElement('a');
+			document.body.appendChild(a);
+			a.download = name;
+			a.href = "data:application/octet-stream," + encodeURIComponent(editAreaLoader.getValue("hexprogram"));
 			a.download = "program.hex";
 			a.click();
                 }
@@ -148,9 +149,10 @@
 			}
 		}
                 function saveExtsource(id, content){
-			var a = document.createElement('a');
-			var blob = new Blob( [editAreaLoader.getValue("extsource")], {'type':'application/octet-stream'});
-			a.href = window.URL.createObjectURL(blob);
+			a = document.createElement('a');
+			document.body.appendChild(a);
+			a.download = name;
+			a.href = "data:application/octet-stream," + encodeURIComponent(editAreaLoader.getValue("extsource"));
 			a.download = "extsource.py";
 			a.click();
                 }
