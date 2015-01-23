@@ -18,14 +18,19 @@
   </p>
 
 	<p>
+    <span style="font-size: 14pt">General</span><br/>
 	  <a href="https://github.com/hexhex/">dlvhex source code @ github.com</a><br/>
 	  <!-- a href="https://sourceforge.net/projects/dlvhex/">dlvhex: Sourceforge project</a><br/ -->
-#include "plugins.wml"
 	  <a href="doap.rdf">Description-Of-A-Project</a>	  
 	</p>
 
   <p>
-    <span style="font-size: 14pt">Documentation:</span><br/>
+    <span style="font-size: 14pt">Popular Plugins</span><br/>
+#include "plugins.wml"
+	</p>
+
+  <p>
+    <span style="font-size: 14pt">Documentation</span><br/>
     <a href="https://github.com/hexhex/core/blob/master/README">README</a><br/>
     <a href="{#PATH_TO_ROOT#}doc2x">doxygen</a><br/>
     <a href="{#PATH_TO_ROOT#}doc2x/group__pluginframework.html">Writing Plugins in C++</a><br/>
