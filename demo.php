@@ -39,6 +39,15 @@
         <script language="Javascript" type="text/javascript" src="demo/edit_area/edit_area_full.js"></script>
 	<script type="text/javascript">
 		<!--
+		function clear(){
+                        if (document.getElementById("useeditarea").checked){
+                                editAreaLoader.setValue("hexprogram", "");
+                                editAreaLoader.setValue("extsource", "");
+                        }else{
+                                document.getElementById("hexprogram").value = "";
+                                document.getElementById("extsource").value = "";
+                        }
+		}
                 function evaluateHEX(){
 			var outputdiv=document.getElementById("outputdiv");
 			// display loading animation
@@ -225,14 +234,16 @@
         </script>
 	<h2>Online Demo</h2>
 	<?php
-                $hexprogram = $_POST['hexprogram'];
-                $extsource = $_POST['extsource'];
+		if (!isset($_POST['btnClear'])){
+	                $hexprogram = $_POST['hexprogram'];
+        	        $extsource = $_POST['extsource'];
+		}
 		if (isset($_POST['btnLoad'])){
 	                $example = trim($_POST['example']);
 		}else{
 			$example = "";
 		}
-                if (!isset($_POST['btnEvaluate']) && !isset($_POST['btnLoad'])){
+                if (!isset($_POST['reloaded'])){
                         $example = "Tutorial";
                 }
 	?>
@@ -250,6 +261,7 @@
         <div style="width:100%;">
 		<h3>Input</h3>
 		<form method="post" action="demo.php">
+			<input type="text" style="display:none" name="reloaded">
                         <div style="text-align:right;">
                                 Load example:
                                 <?php
@@ -274,9 +286,9 @@
                                 <?php print $exampleList; ?>
                                 </select><br>
 				<noscript><b>Your browser does not support JavaScript.</b><br>Please enable it to make use of advanced features.</a></noscript>
-                                <p class="jsonly"><input type="checkbox" id="useeditarea" name="useeditarea" onclick="updateEditAreas();" <?php echo ((!isset($_POST['btnLoad']) && !isset($_POST['btnEvaluate'])) || isset($_POST['useeditarea'])) ? 'checked' : ''; ?>>Use advanced editor (powered by <a href='http://www.cdolivet.com/editarea' target='_blank'>EditArea</a>)</input></p>
+                                <p class="jsonly"><input type="checkbox" id="useeditarea" name="useeditarea" onclick="updateEditAreas();" <?php echo (!isset($_POST['reloaded']) || isset($_POST['useeditarea'])) ? 'checked' : ''; ?>>Use advanced editor (powered by <a href='http://www.cdolivet.com/editarea' target='_blank'>EditArea</a>)</input></p>
                         </div>
-			<input type="checkbox" style="display:none" id="visible_hexprogramdiv" name="visible_hexprogramdiv" <?php echo ((!isset($_POST['btnLoad']) && !isset($_POST['btnEvaluate'])) || isset($_POST['visible_hexprogramdiv'])) ? 'checked' : ''; ?> />
+			<input type="checkbox" style="display:none" id="visible_hexprogramdiv" name="visible_hexprogramdiv" <?php echo (!isset($_POST['reloaded']) || isset($_POST['visible_hexprogramdiv'])) ? 'checked' : ''; ?> />
 			<input type="checkbox" style="display:none" id="visible_extsourcediv" name="visible_extsourcediv" <?php echo isset($_POST['visible_extsourcediv']) ? 'checked' : ''; ?> />
 			<input type="checkbox" style="display:none" id="visible_commandlineoptionsdiv" name="visible_commandlineoptionsdiv" <?php echo isset($_POST['visible_commandlineoptionsdiv']) ? 'checked' : ''; ?> />
 <!-- <div style="width:49%;float:left;">-->
@@ -298,14 +310,14 @@
                         <table id="commandlineoptions" summary="">
                         <tr><td style="white-space: nowrap">Filter predicates (comma-separated):</td><td style="width:1000%"><input type="text" id="optFilter" name="optFilter" style="width:100%" value="<?php echo isset($_POST['optFilter']) ? $_POST['optFilter'] : ''; ?>"></td></tr>
                         <tr><td style="white-space: nowrap">Number of answer sets to compute<br>(empty or 0 means all):</td><td><input type="text" id="optNumAS" name="optNumAS" style="width:100%" value="<?php echo isset($_POST['optNumAS']) ? $_POST['optNumAS'] : ''; ?>"></td></tr>
-                        <tr><td style="white-space: nowrap">Allow strong negation:</td><td><input type="checkbox" id="optStrongNegation" name="optStrongNegation" <?php echo (!isset($_POST['btnLoad']) && !isset($_POST['btnEvaluate'])) || isset($_POST['optStrongNegation']) ? 'checked' : ''; ?> /></td></tr>
+                        <tr><td style="white-space: nowrap">Allow strong negation:</td><td><input type="checkbox" id="optStrongNegation" name="optStrongNegation" <?php echo !isset($_POST['reloaded']) || isset($_POST['optStrongNegation']) ? 'checked' : ''; ?> /></td></tr>
                         <tr><td style="white-space: nowrap">Liberal safety:</td><td><input type="checkbox" id="optLiberalSafety" name="optLiberalSafety" <?php echo isset($_POST['optLiberalSafety']) ? 'checked' : ''; ?> /></td></tr>
                         <tr><td style="white-space: nowrap">Custom options:</td><td><span><input type="text" id="optCustom" name="optCustom" style="display:table-cell; width:100%" value="<?php echo isset($_POST['optCustom']) ? $_POST['optCustom'] : ''; ?>"></span></td></tr>
                         </table>
 			</div>
 			<div style="width:100%;text-align:right;">
-				<noscript><input type="submit" name="btnEvaluate" value="Evaluate"></noscript>
-				<input class="jsonly" type="button" onclick="evaluateHEX();" value="Evaluate">
+				<noscript><input type="submit" name="btnClear" value="Clear"> <input type="submit" name="btnEvaluate" value="Evaluate"></noscript>
+				<input class="jsonly" type="button" onclick="clear();" value="Clear"> <input class="jsonly" type="button" onclick="evaluateHEX();" value="Evaluate">
 			</div>
 <!-- </div>-->
 	     </form>
