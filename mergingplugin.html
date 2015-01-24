@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>dlvhex</title>
+    <link rel="stylesheet" type="text/css" media="all" href="css/reset.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="css/text.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="css/960.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="css/style.css"></link>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  </head>
+  <body>
+    <!-- Title -->
+<!--
+    <div class="container_12">
+	<div class="grid_12" id="title">
+	      <h1>dlvhex</h1>
+	</div>
+    </div>
+-->
+    <!-- Menu -->
+    <div class="container_12">
+      <div class="grid_12" id="menu">
+	<a href="index.html">About</a>
+	<a href="people.html">People</a>
+	<a href="news.html">News</a>
+	<a href="download.html">Download</a>
+	<a href="support.html">Support</a>
+	<a href="documentation.html">Documentation</a>
+	<a href="http://asptut.gibbi.com/">Demo &amp; ASP Tutorial</a>
+	<a href="related.html">Related Work</a>
+	<a href="applications.html">Applications</a>
+	<a href="literature.html">Literature</a>
+      </div>
+    </div>
+    <!-- Information -->
+    <div class="container_12">
+      <div class="grid_9">
+	<h2>The Belief Merging Plugin MELD</h2>
+	<p>
+	  The mergingplugin (<u>ME</u>rging <u>L</u>ibrary for <u>Dlvhex</u>) consists of a set of <a href="#exatoms">external atoms</a> and <a href="#options">additional command-line optios</a> for dlvhex,
+	  the definition of a <a href="#language">merging plan language</a>, and a command-line tool called <code><a href="#mpcompiler">mpcompiler</a></code> (merging plan compiler).
+	</p>
+	<p>
+	  Altogether these components can be used to merge several belief bases into one. Belief bases are considered to be given in form of HEX programs. The answer sets are assumed to
+	  be the knowledge stored in the bases. The result of a merging process will again be a set of answer sets.
+	</p>
+	<p>
+		For a quick introduction, take a look at our <a href="#examples">examples</a>.
+	</p>
+	<p>
+		If you wish to write user-defined merging operators, read the section about <a href="#operators">operator implementation</a>.
+	</p>
+	<p>
+		<b>Application:</b> An important application of the MELD system is the merging of decision diagrams. For more information we refer to the <a href="./ddm.html">Decision Diagram Plugin</a>.
+	</p>
+	  <hr>
+	<h3 id="exatoms">External Atoms</h3>
+	Preliminary remark: Even though the external atoms can be used directly, they are rather considered to be a basis for the <code><a href="#mpcompiler">mpcompiler</a></code>. This means,
+	in practical applications, the user will use these atoms only indirectly when the <a href="#language">merging task specification</a> is translated into a semantically equivalent HEX program.<br><br>
+	<p>
+	  <code>&amp;hex</code> takes two strings that describe a nested HEX program as input and returns a symbolic handle to the program result.
+	</p>
+	<div class="synopsis">
+	  <div class="atomusage">&amp;hex[Prog,Args](A)</div>
+	  <div>Input:</div>
+	  <div class="param">Prog</div>
+	  <div class="paramtext">A string literal containing a valid HEX program to be executed<br>(Quoting: character " must be encoded as \' and character \ as \\)</div>
+	  <div class="param">[Args]</div>
+	  <div class="paramtext">[optional] The command-line options for dlvhex when <code>Prog</code> is evaluated</div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param">A</div>
+	  <div class="paramtext">A symbolic integer which refers to the result of the nested HEX program</div>
+	  <div style="clear: both;"></div>
+	</div>
+	<p>
+	  Example:
+	</p>
+	<pre>handle(A) :- &amp;hex["a. b.", ""](A).</pre>
+	This will deliver <code>handle(0)</code>, where <code>0</code> is a handle to the answer of the nested HEX program. To look into this answer, see below.<br><br>
+	<p>
+	  <code>&amp;hexfile</code> takes two strings that describe a nested HEX program as input and returns a symbolic handle to the program result.
+	</p>
+	<div class="synopsis">
+	  <div class="atomusage">&amp;hexfile[File,Args](A)</div>
+	  <div>Input:</div>
+	  <div class="param">Prog</div>
+	  <div class="paramtext">A string literal containing the path and name of a valid HEX program to be executed</div>
+	  <div class="param">[Args]</div>
+	  <div class="paramtext">[optional] The command-line options for dlvhex when <code>File</code> is evaluated</div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param">A</div>
+	  <div class="paramtext">A symbolic integer which refers to the result of the nested HEX program</div>
+	  <div style="clear: both;"></div>
+	</div>
+	<p>
+	  Example:
+	</p>
+	<pre>handle(A) :- &amp;hexfile["./programs/myprog.hex", ""](A).</pre>
+	This will deliver <code>handle(0)</code>, where <code>0</code> is a handle to the answer of the nested HEX program. To look into this answer, see below.<br><br>
+	<p>
+	  <code>&amp;callhex{n}</code> takes the nested HEX program as string constant, <code>n</code> predicate names over which the input facts to the subprogram are specified (<code>1 &le; n &le; 32</code>), and an optional string constant containing the command line arguments to the reasoner. It returns a symbolic handle to the program result.
+	</p>
+	<div class="synopsis">
+	  <div class="atomusage">&amp;callhex{n}[Prog,P[1],...,P[n],Args](A)</div>
+	  <div>Input:</div>
+	  <div class="param">Prog</div>
+	  <div class="paramtext">A string literal containing a valid HEX program to be executed<br>(Quoting: character " must be encoded as \' and character \ as \\)</div>
+	  <div class="param">P[1], ..., P[n]</div>
+	  <div class="paramtext">Sequence of a <code>n</code> predicate names which specify the input facts to the subprogram. The number must match the <code>{n}</code>, where <code>1 &le; n &le; 32</code></div>
+	  <div class="param">[Args]</div>
+	  <div class="paramtext">[optional] The command-line options for dlvhex when <code>Prog</code> is evaluated</div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param">A</div>
+	  <div class="paramtext">A symbolic integer which refers to the result of the nested HEX program</div>
+	  <div style="clear: both;"></div>
+	</div>
+	<p>
+	  Example:
+	</p>
+	<pre>isA(sue, cat).
+isA(bob, dog).
+isFemale(sue).
+isMale(bob).
+handle(A) :- &amp;callhex3["a. b.", isA, isFemale, isMale, ""](A).</pre>
+	This will deliver <code>handle(0)</code>, where <code>0</code> is a handle to the answer of the nested HEX programrun on the facts specified over <code>isA</code>, <code>isFemale</code> and <code>isMale</code><br><br>
+	<p>
+	  <code>&amp;callhexfile{n}</code> takes the filename of the nested HEX program as string constant, <code>n</code> predicate names over which the input facts to the subprogram are specified (<code>1 &le; n &le; 32</code>), and an optional string constant containing the command line arguments to the reasoner. It returns a symbolic handle to the program result.
+	</p>
+	<div class="synopsis">
+	  <div class="atomusage">&amp;callhexfile{n}[File,P[1],...,P[n],Args](A)</div>
+	  <div>Input:</div>
+	  <div class="param">File</div>
+	  <div class="paramtext">A string literal containing the path and name of a valid HEX program to be executed</div>
+	  <div class="param">P[1], ..., P[n]</div>
+	  <div class="paramtext">Sequence of a <code>n</code> predicate names which specify the input facts to the subprogram. The number must match the <code>{n}</code>, where <code>1 &le; n &le; 32</code></div>
+	  <div class="param">[Args]</div>
+	  <div class="paramtext">[optional] The command-line options for dlvhex when <code>File</code> is evaluated</div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param">A</div>
+	  <div class="paramtext">A symbolic integer which refers to the result of the nested HEX program</div>
+	  <div style="clear: both;"></div>
+	</div>
+	<p>
+	  Example:
+	</p>
+	<pre>isA(sue, cat).
+isA(bob, dog).
+isFemale(sue).
+isMale(bob).
+handle(A) :- &amp;callhexfile3["./programs/myprog.hex", isA, isFemale, isMale, ""](A).</pre>
+	This will deliver <code>handle(0)</code>, where <code>0</code> is a handle to the answer of the nested HEX program run on the facts specified over <code>isA</code>, <code>isFemale</code> and <code>isMale</code>. To look into this answer, see below.<br><br>
+	<p>
+	  <code>&amp;answersets</code> returns a list of handles to the answer sets of a given HEX program
+	</p>
+	<div class="synopsis">
+	  <div class="atomusage">&amp;answersets[A](AS)</div>
+	  <div>Input:</div>
+	  <div class="param">A</div>
+	  <div class="paramtext">A handle to the result of a nested HEX program (as returned by <code>&amp;hex</code> or <code>&amp;hexfile</code></div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param">AS</div>
+	  <div class="paramtext">A list of handles to the answer sets withing answer <code>A</code><br>Note: <code>AS</code> is only unique within an answer, i.e., a complete identification is only possible with the tuple <code>(A, AS)</code></div>
+	  <div style="clear: both;"></div>
+	</div>
+	<p>
+	  Example:
+	</p>
+	<pre>handles(A, AS) :- &amp;hex["a v b.", ""], &amp;answersets[A](AS).</pre>
+	This rule will deliver an answer set containing 2 handles since <code>/a v b.</code> has two answer sets. For looking into answer sets, see below.<br><br>
+	<p>
+	  <code>&amp;predicates</code> returns a list of predicate/arity tuples contained in an answer set of a nested program.
+	</p>
+	<div class="synopsis">
+	  <div class="atomusage">&amp;predicates[A, AS](Pred, Arity)</div>
+	  <div>Input:</div>
+	  <div class="param">A</div>
+	  <div class="paramtext">Handle to an answer</div>
+	  <div class="param">AS</div>
+	  <div class="paramtext">Handle to an answer set within answer <code>A</code></div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param">Pred</div>
+	  <div class="paramtext">A predicate name occuring in <code>A, AS</code></div>
+	  <div class="param">Arity</div>
+	  <div class="paramtext">The arity of predicate <code>Pred</code></div>
+	  <div style="clear: both;"></div>
+	</div>
+	<p>
+	  Example:
+	</p>
+	<pre>
+preds(Pred, Arity) :- &amp;hex["a. p(x).", ""], &amp;answersets[A](AS),
+                      &amp;predicates[A, AS](Pred, Arity).
+	</pre>
+	This rule will deliver two atoms upon <code>preds</code>, namely <code>preds(a, 0)</code> and <code>preds(p, 1)</code> since the inner program uses propositional atom <code>a</code> and unary predicate <code>p</code>.<br><br>
+	<p>
+	  <code>&amp;arguments</code> returns a list of triplets describing the atoms upon a certain predicate name within an answer set.
+	</p>
+	<div class="synopsis">
+	  <div class="atomusage">&amp;arguments[A, AS, Pred](I, ArgIndex, Value)</div>
+	  <div>Input:</div>
+	  <div class="param">A</div>
+	  <div class="paramtext">Handle to an answer</div>
+	  <div class="param">AS</div>
+	  <div class="paramtext">Handle to an answer set within answer <code>A</code></div>
+	  <div class="param">Pred</div>
+	  <div class="paramtext">Some predicate name occurring in <code>A, AS</code></div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param">I</div>
+	  <div class="paramtext">A running index without any inherent meaning. The only purpose of this index is to allow the user to figure out which triples belong together (namely all with the same index)</div>
+	  <div class="param">ArgIndex</div>
+	  <div class="paramtext">The argument index described by this triplet; this is either a value in range 0 to n-1 (with n being the arity of <code>Pred</code>) or the special value <code>s</code> to retrieve the sign of the atom (0 for positive, 1 for strongly negated)</div>
+	  <div class="param">Value</div>
+	  <div class="paramtext">The value of argument with index <code>ArgIndex</code> in the <code>I</code>-th occurrence of the given predicate</div>
+	  <div style="clear: both;"></div>
+	</div>
+	<p>
+	  Example:
+	</p>
+	<pre>
+pInner(Value1, Value2) :- &amp;hex["p(x, y). p(a, b).", ""], &amp;answersets[A](AS),
+                          &amp;arguments[A, AS, p](I, 0, Value1),
+                          &amp;arguments[A, AS, p](I, 1, Value2).
+	</pre>
+	This rule will deliver two atoms upon <code>pInner</code>: <code>pInner(x, y)</code> and <code>pInner(a, b)</code>.<br><br>
+	Parameter <code>I</code> is used in both evaluations of <code>&amp;arguments</code>. This makes sure that we actually retrieve the first and second argument (indices 0 and 1) of the <i>same</i> occurrence of this predicate.
+	<p>
+	  <code>&amp;operator</code> takes one string (operator name) and two binary predicates as parameters. Its output parameter is an integer handle to the operator's result.
+	</p>
+	<div class="synopsis">
+	  <div class="atomusage">&amp;operator[OPName,Args,KVPairs](A)</div>
+	  <div>Input:</div>
+	  <div class="param">OPName</div>
+	  <div class="paramtext">A string literal containing the name of the operator to apply</div>
+	  <div class="param">Args</div>
+	  <div class="paramtext">A binary predicate. Each tuple must contain a pair <code>I,H</code>, where <code>I</code> is a parameter index and <code>H</code> the handle to some program or operator result, which shall be passed to the operator as its <code>I</code>-th argument</div>
+	  <div class="param">KVPairs</div>
+	  <div class="paramtext">A binary predicate with key-value pairs that describe additional parameters for this operator (operator dependent)</div>
+	  <div style="clear: both;"></div>
+	  <div>Output:</div>
+	  <div class="param">A</div>
+	  <div class="paramtext">A symbolic integer which refers to the result of the operator application</div>
+	  <div style="clear: both;"></div>
+	</div>
+	<p>
+	  Example:
+	</p>
+<pre>
+args(0, A) :- &amp;hex["a. b.", ""](A).
+args(1, A) :- &amp;hex["c.", ""](A).
+
+innerPreds(Pred, Arity) :- &amp;operator["union", args, kvpairs](H),
+                           &amp;answersets[H](AS),
+                           &amp;predicates[H, AS](Pred, Arity).
+</pre>
+	The program will evaluate both nested programs and pass their answers to operator <code>union</code>. Then, the operator result is investigated using atoms <code>&amp;answersets</code> and <code>&amp;predicates</code>.
+	This will deliver the final result <code>innerPreds(a, 0)</code>, <code>innerPreds(b, 0)</code> and <code>innerPreds(c, 0)</code>.<br><br>
+	<hr>
+	<h3 id="options">Command-Line Options</h3>
+		The mergingplugin recognizes the following command line arguments
+		<h4><code>--operatorpath</code> or <code>--op</code></h4>
+			Using the syntax
+			<div align="center">
+				<code>--operatorpath=path1,path2,...</code> or <code>--op=path1,path2,...</code>
+			</div>
+			additional paths where operators are loaded from can be specified. A path can point to a directory or a shared object library. In case of a directory, operator libs
+			that are <code>directly</code> within this directory will be loaded (<code>non-recursive</code>!).
+		<h4><code>--inputrewriter</code> or <code>--irw</code></h4>
+			The syntax
+			<div align="center">
+				<code>--inputrewriter=program</code> or <code>--irw=program</code>
+			</div>
+			specifies an <code>input rewriter</code>. This can be an arbitrary tool that reads from standard input and writes to standard output. The complete dlvhex input will be
+			directed through this program before reasoning starts.
+		<h4><code>--operatorinfo</code> or <code>--opinfo</code></h4>
+			The syntax
+			<div align="center">
+				<code>--operatorinfo=OPERATOR_NAME</code> or <code>--opinfo=OPERATOR_NAME</code>
+			</div>
+			prints some online help message for a certain operator, if available. Example: <code>--opinfo=union</code>
+	<hr>
+	  <h3 id="language">Merging Plan Language</h3>
+			The merging scenario is defined in merging plan files of the following form:<br><br>
+			<pre>
+[common signature]
+predicate: pred1/arity1;
+...
+predicate: predN/arityN;
+
+[belief base]
+name: nameOfBeliefBase1;
+mapping: "head1 :- body1."
+...
+mapping: "headM :- bodyM."
+
+...
+
+[belief base]
+name: nameOfBeliefBaseK;
+mapping: "head1 :- body1."
+...
+mapping: "headJ :- bodyJ."
+
+[merging plan]
+{
+	operator: someOperatorsName;
+	key1: value1;
+	...
+	keyN: valueN;
+	source: {
+		operator: subPlanOperator;
+		...
+		source: {nameOfBeliefBase1};
+		source: {nameOfBeliefBase2};
+	};
+	source: {
+		...
+	};
+}
+			</pre>
+			Essentially the file consists of 3 sections which are described in the following subsections.<br><br>
+			<h4>Common Signature</h4>
+				In statements of form
+				<div align="center">
+					<i>predicate: pred1/arity1;</i>
+				</div>
+				all relevant predicates that occur in the belief bases are defined. Those predicates will be output by dlvhex after the merging plan was processed.<br><br>
+			<h4>Belief Bases</h4>
+				Belief bases can be any data source: relational databases, XML files, etc.. The only requirement is that they are accessible from dlvhex through an
+				appropriate external atom. Belief bases are defined by blocks of form:<br><br>
+				<pre>
+[belief base]
+name: nameOfBeliefBase1;
+mapping: "head1 :- body1.";
+...
+mapping: "headM :- bodyM.";
+				</pre>
+				where the <i>name</i> defines a legal name for this belief base, followed by an arbitrary number of <i>mappings</i>. Mappings can essentially be arbitrary dlvhex
+				code fragments. However, in reasonable applications they access the underlying (prorietary) belief base and map their content onto the common signature (see above).
+				Alternatively they can also be defined by<br><br>
+				<pre>
+[belief base]
+name: nameOfBeliefBase1;
+source: "externalfile.hex";
+				</pre>
+				where &quot;externalfile.hex&quot; is an external file containing (computation source access rules and) mapping rules. Note that <i>mapping</i> and <i>source</i>
+				cannot be used simultaneously.<br><br>
+			<h4>Merging Plan</h4>
+				The merging plan is a hierarchical structure that combines the belief bases such that only one final result survives at the end of the day. A merging plan section is of
+				form:<br><br>
+				<pre>
+operator: XYZ.
+key1: value1;
+...
+keyN: valueN;
+source: ...;
+source: ...;
+				</pre>
+				Such a section defines the operator to apply, the key-value pairs that shall be passed to the operator and the sub merging plans (<i>source</i>). A sub merging plan
+				(after a <i>source</i> statement) can either be a belief base (denoted as <i>{bbName};</i>) or a <i>composed merging plan</i> (i.e. the result of a prior operator application).<br><br>
+			<h4>Syntax</h4>
+		The following table summarizes the complete syntax of merging task files.
+		<table summary="">
+			<tr><td colspan="3"><b>Lexer</b></td></tr>
+			<tr><td>Literal</td><td>=&gt;</td><td>    <u>-</u>?&Sigma;p(<u>(</u>(&Sigma;c|&Sigma;v)(<u>,</u>&Sigma;c|&Sigma;v)*<u>)</u>)? </td></tr>
+			<tr><td>PredicateName</td><td>=&gt;</td><td> [<u>a</u>-<u>z</u>] ( [<u>a</u>-<u>z</u>]|[<u>A</u>-<u>Z</u>]|[<u>0</u>-<u>9</u>])* </td></tr>
+			<tr><td>KBName</td><td>=&gt;</td><td>     ([<u>a</u>-<u>z</u>]|[<u>A</u>-<u>Z</u>]) ( [<u>a</u>-<u>z</u>]|[<u>A</u>-<u>Z</u>]|[<u>0</u>-<u>9</u>])* </td></tr>
+			<tr><td>OPName</td><td>=&gt;</td><td>       ([<u>a</u>-<u>z</u>]|[<u>A</u>-<u>Z</u>]) ( [<u>a</u>-<u>z</u>]|[<u>A</u>-<u>Z</u>]|[<u>0</u>-<u>9</u>])* </td></tr>
+			<tr><td>Variable</td><td>=&gt;</td><td>          [<u>A</u>-<u>Z</u>] ( [<u>a</u>-<u>z</u>]|[<u>A</u>-<u>Z</u>]|[<u>0</u>-<u>9</u>])* </td></tr>
+			<tr><td>Number</td><td>=&gt;</td><td>   ([<u>1</u>-<u>9</u>] [<u>0</u>-<u>9</u>]*) <u>0</u>            </td></tr>
+			<tr><td colspan="3"><b>General ASP Grammer</b></td></tr>
+			<tr><td>Fact</td><td>=&gt;</td><td>        RuleHead <u>.</u>       </td></tr>
+			<tr><td>Constraint</td><td>=&gt;</td><td>        <u>:</u> <u>-</u> RuleBody <u>.</u>       </td></tr>
+			<tr><td>Query</td><td>=&gt;</td><td>     <u>not</u>? Literal (<u>,</u> <u>not</u>? Literal)* </td></tr>
+			<tr><td>RuleHead</td><td>=&gt;</td><td>   Literal (<u>v</u> Literal)* </td></tr>
+			<tr><td>RuleBody</td><td>=&gt;</td><td>      Query </td></tr>
+			<tr><td colspan="3"><b>Merging Plan Specific Grammer</b></td></trd>
+			<tr><td>Program</td><td>=&gt;</td><td>  CommonSigDef Mappings MergingPlan </td></tr>
+			<tr><td>CommonSigDef</td><td>=&gt;</td><td>    <u>[common signature]</u> PredicateDefinition* </td></tr>
+			<tr><td>Mappings</td><td>=&gt;</td><td>     KnowledgeBase* </td></tr>
+			<tr><td>MergingPlan</td><td>=&gt;</td><td>     <u>[merging plan]</u> MergingPlanNode </td></tr>
+			<tr><td>MergingPlanNode</td><td>=&gt;</td><td>     <u>{</u> <u>operator</u> <u>:</u> OPName <u>;</u> (key <u>:</u> value)* (<u>source</u> <u>:</u> MergingPlanNode <u>;</u>)* <u>}</u> | KBName </td></tr>
+			<tr><td>PredicateDefinition</td><td>=&gt;</td><td>     <u>predicate</u> <u>:</u> PredicateName <u>/</u> Number <u>;</u>          </td></tr>
+			<tr><td>PredicateName</td><td>=&gt;</td><td>     <u>[knowledge base]</u> <u>name</u> <u>:</u> KBName <u>;</u> (MappingRule*)|ExternalSource </td></tr>
+			<tr><td>MappingRule</td><td>=&gt;</td><td>     <u>mapping></u> <u>:</u> <u>&quot;</u> Rule <u>&quot;</u> <u>;</u>          </td></tr>
+			<tr><td>ExternalSource</td><td>=&gt;</td><td>     <u>source</u> <u>:</u> Filename <u>;</u>          </td></tr>
+			<tr><td>stringliteral</td><td>=&gt;</td><td>     <u>&quot;</u>{<u>&quot;</u>}c <u>&quot;</u> (where Sc is the complement of set S) </td></tr>
+			<tr><td>Filename</td><td>=&gt;</td><td>     stringliteral </td></tr>
+			<tr><td>key</td><td>=&gt;</td><td>     &Sigma;c|stringliteral </td></tr>
+			<tr><td>value</td><td>=&gt;</td><td>     &Sigma;c|stringliteral </td></tr>
+		</table>
+	<hr>
+	<h3 id="mpcompiler">Merging Plan Compiler</h3>
+		The merging plan compiler is a command-line tool which installed as part of the mergingplugin. It can be called in command-line by entering:
+		<div align="center">
+			<code>mpcompiler</code>
+		</div>
+		with appropriate parameters.
+		This tool translates a belief merging scenario into a dlvhex program. The merging scenario is defined in one or more input files or is read from standard input.<br><br>
+		<h4>Options</h4>
+			The command-line options are:
+			<ul>
+				<li> <code>-parsetree</code> <br>
+						Generates a parse tree rather than dlvhex code (mostly for debug tasks).
+				<li> <code>-help</code> <br>
+						Prints an online help message.
+				<li> <code>-spirit</code> or <code>-bison</code> <br>
+						Forces the compiler to use a <code>boost spirit</code> resp. <code>bison</code> generated parser. Default is spirit.
+			</ul>
+			If no filenames are passed, the compiler will read from standard input. If at least filename is passed, standard input will <i>not</i> be processed by default.
+			However, if <code>--</code> passed as additional parameter, standard input will be read additionally to the input files.<br><br>
+	  <hr>
+	<h3 id="examples">Examples</h3>
+	The plugin comes with 4 built-in merging operators which are explained in the following subsections.<br><br>
+	All examples can be tried out by copying them into a textfile <i>plan.mp</i> and executing
+	<div align="center">
+		<i>mpcompiler plan.mp | dlvhex --</i>
+	</div>
+	Note that the output will contain some intermediate atoms due to technical reasons. To generate a more readable result, add parameter <code>--filter=</code> with the attributes
+	mentioned in the common signature, e.g., in the first example: <code>--filter=a,b,c</code><br><br>
+	In the following examples, the source programs are directly embedded in the merging plan using <code>mapping</code> statements. This was only done to provide compact code snippets
+	in single files. In realistic applications, one would rather use mapping rules that access some external source of computation by the use of appropriate external atoms.<br><br>
+	<h4>Union</h4>
+		The union operator computes the pairwise union of answer sets of it's input belief bases. The following program delivers <code>{a,b,c}</code><br><br>
+		Example program:<br><br>
+<pre>
+[common signature]
+predicate: a/0;
+predicate: b/0;
+predicate: c/0;
+
+[belief base]
+name: kb1;
+mapping: "
+	a.
+";
+
+[belief base]
+name: kb2;
+mapping: "
+	b.
+	c :- b.
+";
+
+[merging plan]
+{
+	operator: union;
+	{
+		kb1
+	};
+	{
+		kb2
+	};
+}
+</pre>
+	<h4>Setminus</h4>
+		The setminus operator expects two parameters and computes the set difference between it's first input belief base and all answer sets of it's second one. The following program delivers <code>{a,c}</code><br><br>
+		Example program:<br><br>
+<pre>
+[common signature]
+predicate: a/0;
+predicate: b/0;
+predicate: c/0;
+
+[belief base]
+name: kb1;
+mapping: "
+	a.
+	b.
+	c.
+";
+
+[belief base]
+name: kb2;
+mapping: "
+	b.
+";
+
+[merging plan]
+{
+	operator: setminus;
+	{
+		kb1
+	};
+	{
+		kb2
+	};
+}
+</pre>
+	<h4>Dalal's Operator</h4>
+		Dalal's operator computes an answer set, which is as similar to it's input answer sets as possible, without introducing logical contradictions. The following program delivers <code>{}</code> and <code>{p(x)}</code>
+		Both answer sets have minimum distance to the sources. <code>{}</code> differs in 2 literals from <code>bb1</code> and in 0 from <code>bb2</code> and <code>bb3</code>, thus 2 in total.
+		<code>p(x)</code> differs in 1 literal from <code>bb1</code>, in 1 from <code>bb2</code> and in 0 from <code>bb3</code>, thus also 0 in total. For details about the distance computation we refer
+		to the plugin's built-in documentation system.<br><br>
+		Example program:<br><br>
+<pre>
+[common signature]
+predicate: a/0;
+predicate: p/1;
+
+[belief base]
+name: bb1;
+mapping: "a. p(x).";
+
+[belief base]
+name: bb2;
+mapping: "-a. -p(x).";
+
+[belief base]
+name: bb3;
+mapping: "-a.";
+
+[merging plan]
+{
+	operator: dalal;
+	aggregate: "sum";
+	{bb1};
+	{bb2};
+	{bb3};
+}
+
+</pre>
+	<h4>Majority Selection</h4>
+		The majority selection operator expects the user to specify some propositional atom. Then it will check if the majority of the answer sets in it's first and only argument accept or deny this atom.
+		Finally, all answer sets which do not follow the majority will be killed.
+		The example delivers two answer sets: <code>{a, d}</code> and <code>{a, b, d}</code>, because the majority of the answer sets accept <code>d</code>. The third answer set, <code>{b, -d}</code>, does
+		not follow the majority and is therefore killed.<br><br>
+		Example program:<br><br>
+<pre>
+[common signature]
+predicate: a/0;
+predicate: b/0;
+predicate: d/0;
+
+[belief base]
+name: bb;
+mapping: "
+	a1 v a2 v a3.
+	a :- a1.
+	d :- a1.
+
+	b :- a2.
+	-d :- a2.
+
+	a :- a3.
+	b :- a3.
+	d :- a3.
+";
+
+[merging plan]
+{
+	operator: majorityselection;
+	majorityOf: "d";
+	{bb};
+}
+
+</pre>
+	<h3 id="operators">Operator Implementation</h3>
+		This section describes the principles for implementing user-defined merging operators. For a more detailed explanation we refer to the developer manual.<br><br>
+		<h4>Operator Libraries</h4>
+		Operators are organized as <i>operator libararies</i>, where each library can contain arbitrary many operators. An operator library must be compiled as shared object library
+		that is installed either in the system or the user plugin directory of dlvhex.
+		Note: Additional plugin directories that are passed to dlvhex using the command line argument <code>--plugindir</code> (or <code>-p</code>) will <i>not</i> be searched for operator libraries.
+		However, the mergingplugin provides an own command line parameter for specifying additional operator locations.
+		Entry point of an operator library is a method with the following signature:
+		<div align="center">
+			<code>std::vector&lt;IOperator*&gt; OPERATORIMPORTFUNCTION()</code>
+		</div>
+		This method must return a vector with pointers to instances of all the operator implementations in this library (see below). the mergingplugin will call this method on
+		startup and load all operators that are returned by this function.<br><br>
+		<h4>Operator Classes</h4>
+		Operators are C++ classes (within operator libraries) that implement the interface <code>IOperator</code>, which is installed in the following subdirectory of the include
+		directory:
+		<div align="center">
+			<code>dlvhex/mergingplugin/IOperator.h</code>
+		</div>
+		The interface defines two abstract methods, namely:<br><br>
+		<ul>
+			<ul> <b><code>std::string getName()</code></b> <br>
+					The operator is expected to return it's desired name. Later, the same name is expected as parameter for the <code>&amp;operator</code> predicate to call this operator.
+					In case that multiple operators with the same name are defined, the mergingplugin will print a warning on startup and ignore all but the first one.<br><br>
+			<ul> <b><code>HexAnswer apply(int arity, std::vector\textless HexAnswer*>&amp; answers, OperatorArguments&amp; parameters) throw (OperatorException)</code></b> <br>
+					This method is called when the operator is actually applied. It's input is the number of answers that are passed to the operator (arity) as well as the answers
+					themselves (answers). The answers are passed as vector of <code>HexAnswer</code>, which is defined as vector of <code>AtomSet</code> (since a HEX answer is a
+					set of answer-sets.
+					Finally, <code>OperatorArguments</code> is the set of key-value pairs. It is defined as <code>std::pair&lt;string, string&gt;</code>.
+					The method is expected to return the operator's result as set of answer-sets (i.e. <code>HexAnswer</code>). In case of an error, an <code>OperatorException</code>
+					can be thrown which will result in a <code>PluginError</code> and thus a termination of dlvhex.
+		</ul>
+      </div>
+      <div class="grid_3">
+  <p>&nbsp;</p>
+  <p>
+    <img width="200" height="44" src="images/logo_whitebg.png" alt="dlvhex" id="logo">
+  </p>
+  <p>
+	<div style="font-size: 14pt"><label for="q">Search this Website</label></div>
+	<form action="http://www.google.com/cse" id="cse-search-box">
+	  <div>
+	    <input name="cx" id="cx" value="010363983165505105153:4bhl-l5ixd4" type="hidden" alt="Search this website">
+	    <input name="ie" id="ie" value="UTF-8" type="hidden" alt="Search this website">
+	    <input style="background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" name="q" id="q" size="19" type="text">
+	    <input name="sa" id="sa" value="Go" type="submit">
+	  </div>
+	</form>
+  </p>
+	<p>
+    <span style="font-size: 14pt">General</span><br>
+	  <a href="https://github.com/hexhex/">dlvhex source code @ github.com</a><br>
+	  <!-- a href="https://sourceforge.net/projects/dlvhex/">dlvhex: Sourceforge project</a><br/ -->
+	  <a href="doap.rdf">Description-Of-A-Project</a>
+	</p>
+  <p>
+    <span style="font-size: 14pt">Popular Plugins</span><br>
+<!-- <a href="http://www.polleres.net/dlvhex-sparql">SPARQL Plugin</a><br> -->
+<a href="actionplugin.html">Action Plugin</a><br>
+<a href="decisiondiagramsplugin.html">DecisionDiagrams Plugin</a><br>
+<a href="dlplugin.html">Description Logics Plugin</a><br>
+<a href="dlliteplugin.html">Description Logics Lite Plugin</a><br>
+<a href="mergingplugin.html">MELD: Belief Merging Plugin</a><br>
+<a href="nestedhexplugin.html">Nested HEX Plugin</a><br>
+<a href="http://www.kr.tuwien.ac.at/research/systems/mcsie">MCSIE Plugin</a><br>
+<a href="stringplugin.html">String Plugin</a><br>
+<a href="https://sourceforge.net/projects/dlvhex-semweb/">dlvhex-semweb Project</a><br>
+	</p>
+  <p>
+    <span style="font-size: 14pt">Documentation</span><br>
+    <a href="https://github.com/hexhex/core/blob/master/README">README</a><br>
+    <a href="doc2x">doxygen</a><br>
+    <a href="doc2x/group__pluginframework.html">Writing Plugins in C++</a><br>
+    <a href="doc2x/group__pythonpluginframework.html">Writing Plugins in Python</a>
+    <!--
+    <a href="doc1x">doxygen version 1.X</a><br>
+    <a href="doc1x/group__pluginframework.html">Writing Plugins 1.X</a><br>
+    -->
+  </p>
+      </div> <!-- grid_3 -->
+    </div> <!-- container_12 -->
+  </body>
+</html>
+<!--
+        Local Variables:
+        mode: xml
+        End:
+-->

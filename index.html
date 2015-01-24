@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>dlvhex</title>
+    <link rel="stylesheet" type="text/css" media="all" href="css/reset.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="css/text.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="css/960.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="css/style.css"></link>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  </head>
+  <body>
+    <!-- Title -->
+<!--
+    <div class="container_12">
+	<div class="grid_12" id="title">
+	      <h1>dlvhex</h1>
+	</div>
+    </div>
+-->
+    <!-- Menu -->
+    <div class="container_12">
+      <div class="grid_12" id="menu">
+	<a href="index.html">About</a>
+	<a href="people.html">People</a>
+	<a href="news.html">News</a>
+	<a href="download.html">Download</a>
+	<a href="support.html">Support</a>
+	<a href="documentation.html">Documentation</a>
+	<a href="http://asptut.gibbi.com/">Demo &amp; ASP Tutorial</a>
+	<a href="related.html">Related Work</a>
+	<a href="applications.html">Applications</a>
+	<a href="literature.html">Literature</a>
+      </div>
+    </div>
+    <!-- Information -->
+    <div class="container_12">
+      <div class="grid_9">
+<!--<h2>The dlvhex Solver</h2>-->
+<img width="100%" height="100%" src="./images/biglogo_whitebg.png" alt="dlvhex">
+<br>
+<br>
+<p>
+  The <b><i>dlvhex</i></b> system is a logic-programming reasoner for
+  computing the models of so-called <b>HEX-programs</b>, which
+  are an extension of <b>answer-set programs</b> towards
+  integration of <b>external computation sources</b>.
+</p>
+<p>
+  The source code of dlvhex is hosted using git at
+  <a href="https://github.com/hexhex/">github.com/hexhex</a>.
+  Packages (tarballs) of dlvhex can be downloaded from the
+  <a href="http://sourceforge.net/projects/dlvhex/files/">SourceForge dlvhex</a> project page.
+  The latest release of the software runs on Linux-based systems, (Mac) OS X,
+  and Microsoft Windows.
+  For some systems we provide
+  <a href="http://www.kr.tuwien.ac.at/staff/tkren/deb.html">pre-built packages</a>,
+  for others you may <a href="download.html">build the software from source</a>.
+</p>
+<p>
+  Please also visit our <a href="https://www.facebook.com/dlvhex">Facebook page</a>.
+</p>
+<!--
+<p>
+  If you are looking for the RDF-plugin, please have a look at the
+  <a href="https://sourceforge.net/projects/dlvhex-semweb/">SourceForge dlvhex-semweb</a> project page.
+</p>
+-->
+<h3>A Brief History</h3>
+<p>
+  At the beginning of this project, we were pondering
+  about how to contribute to the current efforts of
+  shaping the Semantic Web. People seem to have agreed on
+  the Ontology Layer with OWL as its prominent
+  specification language. The next step is to add rules in
+  order to have powerful and sophisticated inference
+  mechanisms on top of ontologies. This is were we saw the
+  opportunity of introducing Answer Set Programming (ASP)
+  to the Semantic Web development&mdash;believing in the
+  benefits of a fully declarative and nonmonotonic logic
+  programming semantics.
+</p>
+<p>
+  Our first goal was to extend ASP towards an interface to
+  Description Logics, which are the theoretical foundation
+  of ontology languages like OWL. We developed so
+  called <a href="http://www.kr.tuwien.ac.at/research/systems/semweblp/">dl-programs</a>,
+  which allow for a bidirectional flow of information
+  between an answer-set program and a DL knowledge base by
+  a novel type of atoms.
+</p>
+<p>
+  For recent updates, please visit our <a href="news.html">News page</a>.
+</p>
+<h3>HEX-Programs</h3>
+<p>
+  Motivated by the need to interoperate with a broader set
+  of external computation sources and the observation,
+  that for meta-reasoning in the context of the Semantic
+  Web, no adequate support is available in ASP to date, we
+  extended the dl-program approach to HEX-programs, that
+  is, higher-order logic programs (which accommodate
+  meta-reasoning through higher-order atoms) with external
+  atoms for software interoperability. Intuitively, a
+  higher-order atom allows to quantify values over
+  predicate names, and to freely exchange predicate
+  symbols with constant symbols, like in the rule
+</p>
+<pre>
+C(X) :- subClassOf(D,C), D(X).</pre>
+<p>
+  An external atom facilitates to determine the truth
+  value of an atom through an external source of
+  computation. For instance, the rule
+</p>
+<pre>
+reached(X) :- &amp;reach[edge,a](X)</pre>
+<p>
+  computes the predicate reached taking values from the
+  predicate &amp;reach, which computes via
+  &amp;reach[edge, a] all the reachable nodes in the graph
+  edge from node a, delegating this task to an external
+  computation source (e.g., an external deduction system,
+  an execution library, etc.).
+</p>
+<div style="border-top: 1px solid #999; background-color: inherit; color: #999; font-size: 8.5pt;">
+  <p>$Id$</p>
+</div>
+      </div>
+      <div class="grid_3">
+  <p>&nbsp;</p>
+  <p>
+    <img width="200" height="44" src="images/logo_whitebg.png" alt="dlvhex" id="logo">
+  </p>
+  <p>
+	<div style="font-size: 14pt"><label for="q">Search this Website</label></div>
+	<form action="http://www.google.com/cse" id="cse-search-box">
+	  <div>
+	    <input name="cx" id="cx" value="010363983165505105153:4bhl-l5ixd4" type="hidden" alt="Search this website">
+	    <input name="ie" id="ie" value="UTF-8" type="hidden" alt="Search this website">
+	    <input style="background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" name="q" id="q" size="19" type="text">
+	    <input name="sa" id="sa" value="Go" type="submit">
+	  </div>
+	</form>
+  </p>
+	<p>
+    <span style="font-size: 14pt">General</span><br>
+	  <a href="https://github.com/hexhex/">dlvhex source code @ github.com</a><br>
+	  <!-- a href="https://sourceforge.net/projects/dlvhex/">dlvhex: Sourceforge project</a><br/ -->
+	  <a href="doap.rdf">Description-Of-A-Project</a>
+	</p>
+  <p>
+    <span style="font-size: 14pt">Popular Plugins</span><br>
+<!-- <a href="http://www.polleres.net/dlvhex-sparql">SPARQL Plugin</a><br> -->
+<a href="actionplugin.html">Action Plugin</a><br>
+<a href="decisiondiagramsplugin.html">DecisionDiagrams Plugin</a><br>
+<a href="dlplugin.html">Description Logics Plugin</a><br>
+<a href="dlliteplugin.html">Description Logics Lite Plugin</a><br>
+<a href="mergingplugin.html">MELD: Belief Merging Plugin</a><br>
+<a href="nestedhexplugin.html">Nested HEX Plugin</a><br>
+<a href="http://www.kr.tuwien.ac.at/research/systems/mcsie">MCSIE Plugin</a><br>
+<a href="stringplugin.html">String Plugin</a><br>
+<a href="https://sourceforge.net/projects/dlvhex-semweb/">dlvhex-semweb Project</a><br>
+	</p>
+  <p>
+    <span style="font-size: 14pt">Documentation</span><br>
+    <a href="https://github.com/hexhex/core/blob/master/README">README</a><br>
+    <a href="doc2x">doxygen</a><br>
+    <a href="doc2x/group__pluginframework.html">Writing Plugins in C++</a><br>
+    <a href="doc2x/group__pythonpluginframework.html">Writing Plugins in Python</a>
+    <!--
+    <a href="doc1x">doxygen version 1.X</a><br>
+    <a href="doc1x/group__pluginframework.html">Writing Plugins 1.X</a><br>
+    -->
+  </p>
+      </div> <!-- grid_3 -->
+    </div> <!-- container_12 -->
+  </body>
+</html>
+<!--
+        Local Variables:
+        mode: xml
+        End:
+-->

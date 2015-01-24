@@ -1,0 +1,79 @@
+            <h2>
+                <a class="a_title" href="../actionplugin.html">The Action Plugin and Action Addon Framework</a></h2>
+            <br>
+            <h3>
+                An Example of Update to a Web Source After Reasoning Under ASP Semantics</h3>
+            <p>
+                The ActHex program below (in <em>dlvhex</em> native syntax) illustrates how to import
+                knowledge from known web sources and perform subsequent reasoning; we exploit a
+                <em>#createEvent</em> action predicate for updating the web sources at hand. Many
+                constructs allowed in the dlvhex system are conveniently exploited, e.g. namespace
+                declarations, the <em>&rdf</em> import predicate, string and aggregate external
+                functions: the reader can find useful documentation about dlvhex constructs on the
+                system <a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex">web site</a>.</p>
+            <div class="fragment">
+                <pre class="fragment">
+<em>%authentication information</em>
+ user("acthex").
+ password("secretpassword").
+ meetingDate("'2010-02-02'"). <em>%
+                    The extra apostrophe is necessary</em>
+
+ <em>%calendar ids of each team</em>
+ googleCalendar(team1, "gcal.02ngn7n8s87fi6oojbn06sre4g@group.calendar.google.com/private/full").
+ googleCalendar(team2, "gcal.3h4m35be5g8q35hrb17dfq4ubk@group.calendar.google.com/private/full").
+
+ <em>%rdf
+                        sources of each teams calendar</em>
+ calendar(team1, "cals.02ngn7n8s87fi6oojbn06sre4g@group.calendar.google.com/public/basic").
+ calendar(team2, "cals.3h4m35be5g8q35hrb17dfq4ubk@group.calendar.google.com/public/basic").
+
+ <em>%Getting
+                            rdf triples from calendars</em>
+ calendarTriples(P,X, Y,Z) :- calendar(P,Q), &rdf[Q](X, Y,Z).
+ event(M,X) :- calendarTriples(M,X, "rdf.type", "ical.Vevent").
+ aboutEvents(M,X,Y,Z) :- event(M,X), calendarTriples(M,X,Y,Z).
+
+ <em>%
+                                Legenda % M = Person Name (team1, team2, team3, ...) % X = Event ID % S = Event
+                                Start Time in ICAL format % F = Event Finish Time in ICAL format % T = Event type
+                                (transparent, opaque). % Opaque Events have higher priority than transparent ones.</em>
+ eventDetails(M,X, S, F, T) :- calendarTriples(M,X, "ical.dtstart", S1),
+ calendarTriples(M, S1, "ical.dateTime", S),
+ calendarTriples(M,X, "ical.dtend", F1),
+ calendarTriples(M, F1, "ical.dateTime", F),
+ calendarTriples(M,X, "ical.transp", T).
+
+ <em>%
+                                    Given two ternary predicates test range and busy in format (EventCode,StartTime,EndTime)
+                                    % overlap(E1,E2) returns whether events overlap with each other</em>
+ nonoverlap(X, Y,Z) :- testRange(X, Sx, Fx), busy(Y, Sy, Fy,Z), Fx &lt;= Sy.
+ nonoverlap(X, Y,Z) :- busy(X, Sx, Fx,Z), testRange(Y, Sy, Fy), Fx &lt;= Sy.
+ nonoverlap(X, Y,Z) :- nonoverlap(Y,X,Z).
+ overlap(X, Y,Z) :- testRange(X, , ), busy(Y, , ,Z),X &lt;&gt; Y, not nonoverlap(X, Y,Z).
+ overlap(X, Y,Z) :- busy(X, , ,Z), testRange(Y, , ),X &lt;&gt; Y, not nonoverlap(X, Y,Z).
+
+ <em>%
+                                        Select a meeting hour nondeterministically</em>
+ any(X) v !any(X) :- inrange(X).
+ :- any(X), any(Y),X &lt;&gt; Y.
+ :- not one.
+ one :- inrange(X), any(X).
+
+ <em>%Subprogram
+                                            for finding the slots in which a participant is busy % Legenda. busy(PersonID,StartTime,EndTime,TypeOfMeeting)</em>
+ busy(M, S, F, T) :- meetingDate(D), eventDetails(M,X, S, F, T),&split[S, "T", 0](D).
+ busy(M, S, F, T) :- meetingDate(D), eventDetails(M,X, S, F, T),&split[F, "T", 0](D).
+ succ(Last, F) :- meetingDate(D),
+ &amp;concat[D, "'T19.00.00Z'"](Last),&amp;concat[D, "'T20.00.00Z'"](F).
+ succ(S, F) :- inrange(S), inrange(F), S &lt; F, not someinthemiddle(S, F).
+ someinthemiddle(S, F) :- inrange(S), inrange(F), inrange(M), S &lt; M,M &lt; F.
+ chosenSlot(all, S) :- any(S).
+ testRange(all, S, F) :- chosenSlot(all, S), succ(S, F).
+ :~ overlap(all, Y, "'OPAQUE'").[1,1]
+     :- password(Password), user(User), googleCalendar(Team, Url), chosenSlot(_, Date).</pre>
+            </div>
+            <br>
+            <br>
+            <p id="pageinfo" lang="en" dir="ltr" style="color: gray">
+                Last edited 2013-02-01</p>
