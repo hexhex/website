@@ -214,21 +214,23 @@
 	</p>
 	
 	<table>
-		<tr>
-			<td><b>Format</b></td> <td><b>Parameter name</b></td>
-		</tr>
-		<tr>
+		<thead>
+			<th><b>Format</b></th> <th><b>Parameter name</b></th>
+		</thead>
+		<tbody>
+		<tr class="odd">
 			<td>DOT graph</td> <td><code>dot</code></td>
 		</tr>
 		<tr>
 			<td>HEX program</td> <td><code>hexprogram</code> or <code>hex</code></td>
 		</tr>
-		<tr>
+		<tr class="odd">
 			<td>answer-set</td> <td><code>answerset</code> or <code>as</code></td>
 		</tr>
 		<tr>
 			<td>RapidMiner XML</td> <td><code>rmxml</code> or <code>xml</code></td>
 		</tr>
+		</tbody>
 	</table>
   <hr>
 
