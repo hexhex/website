@@ -39,7 +39,7 @@
         <script language="Javascript" type="text/javascript" src="demo/edit_area/edit_area_full.js"></script>
 	<script type="text/javascript">
 		<!--
-		function clear(){
+		function clearHexprogramAndExtsource(){
                         if (document.getElementById("useeditarea").checked){
                                 editAreaLoader.setValue("hexprogram", "");
                                 editAreaLoader.setValue("extsource", "");
@@ -317,7 +317,7 @@
 			</div>
 			<div style="width:100%;text-align:right;">
 				<noscript><input type="submit" name="btnClear" value="Clear"> <input type="submit" name="btnEvaluate" value="Evaluate"></noscript>
-				<input class="jsonly" type="button" onclick="clear();" value="Clear"> <input class="jsonly" type="button" onclick="evaluateHEX();" value="Evaluate">
+				<input class="jsonly" type="button" onclick="clearHexprogramAndExtsource();" value="Clear"> <input class="jsonly" type="button" onclick="evaluateHEX();" value="Evaluate">
 			</div>
 <!-- </div>-->
 	     </form>
