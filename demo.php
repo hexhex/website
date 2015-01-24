@@ -40,13 +40,15 @@
 	<script type="text/javascript">
 		<!--
 		function clearHexprogramAndExtsource(){
-                        if (document.getElementById("useeditarea").checked){
-                                editAreaLoader.setValue("hexprogram", "");
-                                editAreaLoader.setValue("extsource", "");
-                        }else{
-                                document.getElementById("hexprogram").value = "";
-                                document.getElementById("extsource").value = "";
-                        }
+			if(confirm('Do you really want to clear the HEX-program and the external source definition?')){
+	                        if (document.getElementById("useeditarea").checked){
+        	                        editAreaLoader.setValue("hexprogram", "");
+        	                        editAreaLoader.setValue("extsource", "");
+        	                }else{
+        	                        document.getElementById("hexprogram").value = "";
+        	                        document.getElementById("extsource").value = "";
+        	                }
+			}
 		}
                 function evaluateHEX(){
 			var outputdiv=document.getElementById("outputdiv");
