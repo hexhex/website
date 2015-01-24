@@ -59,6 +59,7 @@
                         var commandlineoptions = "";
                         if (document.getElementById("optFilter").value != "") commandlineoptions = commandlineoptions + " --filter=" + document.getElementById("optFilter").value;
                         if (document.getElementById("optNumAS").value != "") commandlineoptions = commandlineoptions + " -n=" + document.getElementById("optNumAS").value;
+                        if (document.getElementById("optStrongNegation").checked) commandlineoptions = commandlineoptions + " --strongnegation-enable";
                         if (document.getElementById("optLiberalSafety").checked) commandlineoptions = commandlineoptions + " --liberalsafety";
                         if (document.getElementById("optCustom").value != "") commandlineoptions = commandlineoptions + " " + document.getElementById("optCustom").value;
                         // assemble query
@@ -297,6 +298,7 @@
                         <table id="commandlineoptions" summary="">
                         <tr><td style="white-space: nowrap">Filter predicates (comma-separated):</td><td style="width:1000%"><input type="text" id="optFilter" name="optFilter" style="width:100%" value="<?php echo isset($_POST['optFilter']) ? $_POST['optFilter'] : ''; ?>"></td></tr>
                         <tr><td style="white-space: nowrap">Number of answer sets to compute<br>(empty or 0 means all):</td><td><input type="text" id="optNumAS" name="optNumAS" style="width:100%" value="<?php echo isset($_POST['optNumAS']) ? $_POST['optNumAS'] : ''; ?>"></td></tr>
+                        <tr><td style="white-space: nowrap">Allow strong negation:</td><td><input type="checkbox" id="optStrongNegation" name="optStrongNegation" <?php echo (!isset($_POST['btnLoad']) && !isset($_POST['btnEvaluate'])) || isset($_POST['optStrongNegation']) ? 'checked' : ''; ?> /></td></tr>
                         <tr><td style="white-space: nowrap">Liberal safety:</td><td><input type="checkbox" id="optLiberalSafety" name="optLiberalSafety" <?php echo isset($_POST['optLiberalSafety']) ? 'checked' : ''; ?> /></td></tr>
                         <tr><td style="white-space: nowrap">Custom options:</td><td><span><input type="text" id="optCustom" name="optCustom" style="display:table-cell; width:100%" value="<?php echo isset($_POST['optCustom']) ? $_POST['optCustom'] : ''; ?>"></span></td></tr>
                         </table>
@@ -319,6 +321,7 @@
                         if ($_POST['optFilter'] != "") { $commandlineoptions = $commandlineoptions . " --filter=" . $_POST['optFilter']; };
                         if ($_POST['optNumAS'] != "") { $commandlineoptions = $commandlineoptions . " -n=" . $_POST['optNumAS']; };
                         if ($_POST['optLiberalSafety']) { $commandlineoptions = "--liberalsafety"; }
+                        if ($_POST['optStrongNegation']) { $commandlineoptions = "--strongnegation-enable"; }
                         if ($_POST['optCustom'] != "") { $commandlineoptions = $commandlineoptions . " " . $_POST['optCustom']; };
 			$args = "?mode=evalhex" .
 				"&commandlineoptions=" . urlencode($commandlineoptions) .
