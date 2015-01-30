@@ -246,7 +246,7 @@
 			$example = "";
 		}
                 if (!isset($_POST['reloaded'])){
-                        $example = "Tutorial";
+                        $example = "001_intro";
                 }
 	?>
 	<!--<img width="30%" src="images/dlvhexlogo.png" alt=""><br>-->
@@ -268,14 +268,19 @@
                                 Load example:
                                 <?php
                                         $exampleList = "<option name=\"\" value=\"\"></option>";
-                                        if ($handle = opendir('demo/examples')) {
-                                                while (false !== ($file = readdir($handle))) {
-                                                        if ($file != "." && $file != ".."){
-                                                                $exname = file_get_contents("demo/examples/" . $file . "/name.txt");
-                                                                $exampleList = $exampleList . "<option name=\"example\" value=\"$file\">$exname</option>";
-                                                        }
-                                                }
-                                                closedir($handle);
+					# sort examples by directory name
+					$dirhandle=opendir('demo/examples');
+					while($file=readdir($dirhandle)){
+						$file_array[] = $file;
+					}
+					closedir($dirhandle);
+					sort($file_array);
+					# output
+					foreach ($file_array as $file){
+                                                if ($file != "." && $file != ".."){
+                                                        $exname = file_get_contents("demo/examples/" . $file . "/name.txt");
+                                                	$exampleList = $exampleList . "<option name=\"example\" value=\"$file\">$exname</option>";
+                                        	}
                                         }
                                 ?>
 				<noscript>
