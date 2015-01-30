@@ -23,7 +23,7 @@
 		$commandlineoptionsQuoted = addslashes(addslashes($commandlineoptions));
 
 		# direct call without virtual machine
-		$shellstr = "echo \"$hexprogram\" | $reasonercall $commandlineoptions --pythonplugin=<(echo -e \"" . addslashes($extsource) . ") --";
+		$shellstr = "hexprogramfile=$(mktemp); extsourcefile=$(mktemp); echo -e \"$hexprogramQuoted\" > \$hexprogramfile; echo -e \"$extsourceQuoted\" > \$extsourcefile; $reasonercall $commandlineoptions --pythonplugin=\$extsourcefile \$hexprogramfile; rm \$hexprogramfile; rm \$extsourcefile";
 
 		# actual execution of the command
 		exec("$shellstr 2>&1", $answer, $retcode);
