@@ -11,7 +11,7 @@ editAreaLoader.load_syntax["hex"] = {
 	,'QUOTEMARKS' : {1: "'", 2: '"'}
 	,'KEYWORD_CASE_SENSITIVE' : true
 	,'OPERATORS' :[
-		'v', ':-', '.', 'not'
+		' v ', ':-', '.', 'not'
 	]
 	,'DELIMITERS' :[
 		'(', ')', '[', ']', '{', '}', ','
