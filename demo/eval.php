@@ -21,13 +21,9 @@
 		$extsourceQuoted = addslashes(addslashes($extsource));
 		# single escaping suffices as the string will be interpreted only when ssh is called
 		$commandlineoptionsQuoted = addslashes(addslashes($commandlineoptions));
-		$shellstr = "$sshforwarding \"
-				source ~/.profile;
-				# double escaping of quotation marks here because they will be interpreted twice (when PHP is interpreted and when ssh is called)
-				echo -e \\\"$hexprogramQuoted\\\" | $reasonercall $commandlineoptionsQuoted --pythonplugin=<(echo -e \\\"$extsourceQuoted\\\") --\"";
 
 		# direct call without virtual machine
-#		$shellstr = "echo \"$hexprogram\" | $reasonercall $commandlineoptions --pythonplugin=<(echo -e \"" . addslashes($extsource) . "\") --\")";
+		$shellstr = "echo \"$hexprogram\" | $reasonercall $commandlineoptions --pythonplugin=<(echo -e \"" . addslashes($extsource) . " --\")";
 
 		# actual execution of the command
 		exec("$shellstr 2>&1", $answer, $retcode);
