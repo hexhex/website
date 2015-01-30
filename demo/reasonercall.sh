@@ -1,1 +1,1 @@
-/home/staff/redl/bin/dlv -silent
+/home/dlvhex/local/bin/dlvhex2.sh -silent
