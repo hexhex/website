@@ -13,6 +13,12 @@
 </p>
 
 <p>
+  For a quick overview, some examples and the possibility to evaluate HEX-programs directly in
+  your browser, please check out the <a href="demo.php">online demo</a>.
+  However, the system can also be installed locally.
+</p>
+
+<p>
   The source code of dlvhex is hosted using git at
   <a href="https://github.com/hexhex/">github.com/hexhex</a>.
   Packages (tarballs) of dlvhex can be downloaded from the 
