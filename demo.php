@@ -26,7 +26,8 @@
 	<a href="download.html">Download</a>
 	<a href="support.html">Support</a>
 	<a href="documentation.html">Documentation</a>
-	<a href="http://asptut.gibbi.com/">Demo &amp; ASP Tutorial</a>
+	<a href="demo.php">dlvhex Online Demo</a>
+	<a href="http://asptut.gibbi.com/">ASP Tutorial</a>
 	<a href="related.html">Related Work</a>
 	<a href="applications.html">Applications</a>
 	<a href="literature.html">Literature</a>
@@ -39,31 +40,31 @@
         <script language="Javascript" type="text/javascript" src="demo/edit_area/edit_area_full.js"></script>
 	<script type="text/javascript">
 		<!--
-		function clearHexprogramAndExtsource(){
-			if(confirm('Do you really want to clear the HEX-program and the external source definition?')){
-	                        if (document.getElementById("useeditarea").checked){
-        	                        editAreaLoader.setValue("hexprogram", "");
-        	                        editAreaLoader.setValue("extsource", "");
-        	                }else{
-        	                        document.getElementById("hexprogram").value = "";
-        	                        document.getElementById("extsource").value = "";
-        	                }
-			}
-		}
+                function clearHexprogramAndExtsource(){
+                        if(confirm('Do you really want to clear the HEX-program and the external source definition?')){
+                                if (document.getElementById("useeditarea").checked){
+                                        editAreaLoader.setValue("hexprogram", "");
+                                        editAreaLoader.setValue("extsource", "");
+                                }else{
+                                        document.getElementById("hexprogram").value = "";
+                                        document.getElementById("extsource").value = "";
+                                }
+                        }
+                }
                 function evaluateHEX(){
-			var outputdiv=document.getElementById("outputdiv");
-			// display loading animation
-			var img=document.createElement('img');
-			img.src = "demo/dlvhexlogoanimated.gif";
-			img.width = 80;
-			img.height = 80;
-			var centerimg=document.createElement('center');
-			centerimg.appendChild(img);
-			outputdiv.innerHTML = "<div align=\"center\"><p style=\"font-size:20px\">Reasoning ...</p></div></br>";
-			outputdiv.appendChild(centerimg);
-			window.setTimeout(scrollToResults, 0);
-			// call reasoner
-			window.setTimeout(callReasoner, 0);
+                        var outputdiv=document.getElementById("outputdiv");
+                        // display loading animation
+                        var img=document.createElement('img');
+                        img.src = "demo/dlvhexlogoanimated.gif";
+                        img.width = 80;
+                        img.height = 80;
+                        var centerimg=document.createElement('center');
+                        centerimg.appendChild(img);
+                        outputdiv.innerHTML = "<div align=\"center\"><p style=\"font-size:20px\">Reasoning ...</p></div></br>";
+                        outputdiv.appendChild(centerimg);
+                        window.setTimeout(scrollToResults, 0);
+                        // call reasoner
+                        window.setTimeout(callReasoner, 0);
                 }
                 function callReasoner(){
                         // assemble command-line arguments
@@ -76,30 +77,30 @@
                         // assemble query
                         var args = "?mode=evalhex";
                         args = args + "&commandlineoptions=" + encodeURIComponent(commandlineoptions);
-			if (document.getElementById("useeditarea").checked){
-				args = args + "&hexprogram=" + encodeURIComponent(editAreaLoader.getValue("hexprogram"));
-				args = args + "&extsource=" + encodeURIComponent(editAreaLoader.getValue("extsource"));
-			}else{
-		                args = args + "&hexprogram=" + encodeURIComponent(document.getElementById("hexprogram").value);
-		                args = args + "&extsource=" + encodeURIComponent(document.getElementById("extsource").value);
-			}
+                        if (document.getElementById("useeditarea").checked){
+                                args = args + "&hexprogram=" + encodeURIComponent(editAreaLoader.getValue("hexprogram"));
+                                args = args + "&extsource=" + encodeURIComponent(editAreaLoader.getValue("extsource"));
+                        }else{
+                                args = args + "&hexprogram=" + encodeURIComponent(document.getElementById("hexprogram").value);
+                                args = args + "&extsource=" + encodeURIComponent(document.getElementById("extsource").value);
+                        }
                         // send query
                         xmlHttp = new XMLHttpRequest();
                         xmlHttp.open("GET", "demo/evalandformaturl.txt", false);
                         xmlHttp.send(null);
-			evalandformaturl = xmlHttp.responseText;
-			xmlHttp.open("GET", evalandformaturl + args, true);
-			xmlHttp.send(null);
-			xmlHttp.onreadystatechange = function () {
-				if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-					// content is loaded...hide the gif and display the content...
-					if (xmlHttp.responseText) {
-						document.getElementById('outputdiv').innerHTML = xmlHttp.responseText;
-						window.setTimeout(scrollToResults, 0);
-				 	}
-				}
-			};
-		}
+                        evalandformaturl = xmlHttp.responseText;
+                        xmlHttp.open("GET", evalandformaturl + args, true);
+                        xmlHttp.send(null);
+                        xmlHttp.onreadystatechange = function () {
+                                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                                        // content is loaded...hide the gif and display the content...
+                                        if (xmlHttp.responseText) {
+                                                document.getElementById('outputdiv').innerHTML = xmlHttp.responseText;
+                                                window.setTimeout(scrollToResults, 0);
+                                        }
+                                }
+                        };
+                }
                 function scrollToResults(){
                         document.getElementById("outputdiv").scrollIntoView();
                 }
@@ -254,16 +255,15 @@
                         $example = "001_intro";
                 }
 	?>
-	<!--<img width="30%" src="images/dlvhexlogo.png" alt=""><br>-->
-	<p>This <b>online demo of the dlvhex system</b> allows for
-	evaluating programs without local installation.
-	This is intended mainly for testing and learning purposes.
-	External sources for the program at the top may be directly implemented in a Python script below.</p>
-	<p>Please check out the predefined <b>examples at the upper right corner</b> for a quick overview or consider the <b>links to the system documentation in the right-hand menu</b> for a more detailed description.</p>
-	<div style="text-align:right;">(The online demo currently runs <i><?php
-			print trim(file_get_contents(trim(file_get_contents('demo/evalurl.txt')) . "?mode=getversion"));
-		?></i>)
-	</div>
+        <p>This <b>online demo of the dlvhex system</b> allows for
+        evaluating programs without local installation.
+        This is intended mainly for testing and learning purposes.
+        External sources for the program at the top may be directly implemented in a Python script below.</p>
+        <p>Please check out the predefined <b>examples at the upper right corner</b> for a quick overview or consider the <b>links to the system documentation in the right-hand menu</b> for a more detailed description.</p>
+        <div style="text-align:right;">(The online demo currently runs <i><?php
+                        print trim(file_get_contents(trim(file_get_contents('demo/evalurl.txt')) . "?mode=getversion"));
+                ?></i>)
+        </div>
 	<br>
         <div style="width:100%;">
 		<h3>Input</h3>
@@ -273,17 +273,15 @@
                                 Load example:
                                 <?php
                                         $exampleList = "<option name=\"\" value=\"\"></option>";
-					# sort examples by directory name
-					$dirhandle=opendir('demo/examples');
-					while($file=readdir($dirhandle)){
+                                        $dirhandle=opendir('demo/examples');
+                                        while($file=readdir($dirhandle)){
                                                 if ($file != "" && $file != "." && $file != ".."){
-							$file_array[] = $file;
-						}
-					}
-					closedir($dirhandle);
-					sort($file_array);
-					# output
-					foreach ($file_array as $file){
+                                                        $file_array[] = $file;
+                                                }
+                                        }
+                                        closedir($dirhandle);
+                                        sort($file_array);
+                                        foreach ($file_array as $file){
                                                 $exname = file_get_contents("demo/examples/" . $file . "/name.txt");
                                                 $exampleList = $exampleList . "<option name=\"example\" value=\"$file\">$exname</option>";
                                         }
@@ -306,7 +304,7 @@
 <!-- <div style="width:49%;float:left;">-->
 			<b>HEX-Program:</b><br><p class="jsonly">[<a id="hide_hexprogramdiv" href="javascript:void(0)" onclick="toggle_visibility('hexprogramdiv'); updateEditArea('hexprogram');">Hide</a>]</p>
 			<div id="hexprogramdiv" style="width:100%">
-			<textarea id="hexprogram" spellcheck=false name="hexprogram" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/program.hex");}else{print $hexprogram;}?></textarea>
+			<textarea id="hexprogram" name="hexprogram" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/program.hex");}else{print $hexprogram;}?></textarea>
 			</div>
 <!-- </div>-->
 <!-- <div style="width:2%;float:left;">&nbsp;</div>-->
@@ -314,7 +312,7 @@
 			<br><br>
 			<b>External Source Definition (Python):</b><br><p class="jsonly">[<a id="hide_extsourcediv" href="javascript:void(0)" onclick="toggle_visibility('extsourcediv'); updateEditArea('extsource');">Hide</a>]</p>
 			<div id="extsourcediv" style="width:100%">
-			<textarea id="extsource" spellcheck=false name="extsource" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
+			<textarea id="extsource" name="extsource" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
 			</div>
 			<br><br>
 			<b>Command-line Options:</b><br><p class="jsonly">[<a id="hide_commandlineoptionsdiv" href="javascript:void(0)" onclick="toggle_visibility('commandlineoptionsdiv');">Hide</a>]</p>
