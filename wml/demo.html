@@ -321,7 +321,7 @@
                         <tr><td style="white-space: nowrap">Filter predicates (comma-separated):</td><td style="width:1000%"><input type="text" id="optFilter" name="optFilter" style="width:100%" value="<?php echo isset($_POST['optFilter']) ? $_POST['optFilter'] : ''; ?>"></td></tr>
                         <tr><td style="white-space: nowrap">Number of answer sets to compute<br>(empty or 0 means all):</td><td><input type="text" id="optNumAS" name="optNumAS" style="width:100%" value="<?php echo isset($_POST['optNumAS']) ? $_POST['optNumAS'] : ''; ?>"></td></tr>
                         <tr><td style="white-space: nowrap">Allow strong negation:</td><td><input type="checkbox" id="optStrongNegation" name="optStrongNegation" <?php echo !isset($_POST['reloaded']) || isset($_POST['optStrongNegation']) ? 'checked' : ''; ?> /></td></tr>
-                        <tr><td style="white-space: nowrap">Liberal safety:</td><td><input type="checkbox" id="optLiberalSafety" name="optLiberalSafety" <?php echo isset($_POST['optLiberalSafety']) ? 'checked' : ''; ?> /></td></tr>
+                        <tr><td style="white-space: nowrap">Liberal safety:</td><td><input type="checkbox" id="optLiberalSafety" name="optLiberalSafety" <?php echo !isset($_POST['reloaded']) || isset($_POST['optLiberalSafety']) ? 'checked' : ''; ?> /></td></tr>
                         <tr><td style="white-space: nowrap">Custom options:</td><td><span><input type="text" id="optCustom" name="optCustom" style="display:table-cell; width:100%" value="<?php echo isset($_POST['optCustom']) ? $_POST['optCustom'] : ''; ?>"></span></td></tr>
                         </table>
 			</div>
