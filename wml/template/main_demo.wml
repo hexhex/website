@@ -238,9 +238,9 @@
 	<?php
 		$reasonerversion = trim(file_get_contents(trim(file_get_contents('demo/evalurl.txt')) . "?mode=getversion"));
 		if ($reasonerversion != "") {
-        		print '<div style="text-align:right;">(The online demo currently runs <i>' . $reasonerversion . '</i>)</dev>';
+        		print '<div style="text-align:right;">(The online demo currently runs <i>' . $reasonerversion . '</i>)</div>';
 		}else{
-			print '<div style="text-align:right;">(The online demo is <font color="red">currently offline</font>)</dev>';
+			print '<div style="text-align:right;">(The online demo is <font color="red">currently offline</font>)</div>';
 		}
 	?>
 	</p>
