@@ -23,7 +23,7 @@
 		$commandlineoptionsQuoted = $commandlineoptions;
 
 		# direct call without virtual machine
-		$shellstr = 'hexprogramfile=$(mktemp); extsourcefile=$(mktemp); echo "' . $hexprogramQuoted . '" > $hexprogramfile; echo "' . $extsourceQuoted . '" > $extsourcefile; ' . $reasonercall . ' ' . $commandlineoptions . ' --pythonplugin=$extsourcefile $hexprogramfile; rm $hexprogramfile; rm $extsourcefile';
+		$shellstr = 'hexprogramfile=$(mktemp); extsourcefile=$(mktemp); stderrfile=$(mktemp); echo "' . $hexprogramQuoted . '" > $hexprogramfile; echo "' . $extsourceQuoted . '" > $extsourcefile; ' . $reasonercall . ' ' . $commandlineoptions . ' --pythonplugin=$extsourcefile $hexprogramfile 2>$stderrfile; ret=$?; rm $hexprogramfile; rm $extsourcefile; if [ $ret -ne -0 ]; then cat $stderrfile; fi; exit $ret';
 
 		# actual execution of the command
 		exec("$shellstr 2>&1", $answer, $retcode);
