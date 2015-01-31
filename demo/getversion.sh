@@ -1,1 +1,1 @@
-echo ":- not a." | /home/staff/redl/bin/dlv -- | head -n 1
+echo ":- not a." | dlvhex2 -- | head -n 1
