@@ -344,8 +344,8 @@
                         $commandlineoptions = "";
                         if ($_POST['optFilter'] != "") { $commandlineoptions = $commandlineoptions . " --filter=" . $_POST['optFilter']; };
                         if ($_POST['optNumAS'] != "") { $commandlineoptions = $commandlineoptions . " -n=" . $_POST['optNumAS']; };
-                        if ($_POST['optLiberalSafety']) { $commandlineoptions = $commandlineoptions . "--liberalsafety"; } else { $commandlineoptions = $commandlineoptions . "--strongsafety"; }
-                        if ($_POST['optStrongNegation']) { $commandlineoptions = $commandlineoptions . "--strongnegation-enable"; }
+                        if ($_POST['optLiberalSafety']) { $commandlineoptions = $commandlineoptions . " --liberalsafety"; } else { $commandlineoptions = $commandlineoptions . " --strongsafety"; }
+                        if ($_POST['optStrongNegation']) { $commandlineoptions = $commandlineoptions . " --strongnegation-enable"; }
                         if ($_POST['optCustom'] != "") { $commandlineoptions = $commandlineoptions . " " . $_POST['optCustom']; };
 			$args = "?mode=evalhex" .
 				"&commandlineoptions=" . urlencode($commandlineoptions) .
