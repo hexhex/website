@@ -2,10 +2,10 @@ import dlvhex
 
 # concat has one input parameter of type tuple, which consists of terms to be concatenated
 def concat(tup):
-	x = ""
+	ret = ""
 	for x in tup:
-		ret = ret + x.getValue()
-	dlvhex.output((x, ))
+		ret = ret + x.value()
+	dlvhex.output((ret, ))
 
 # register all external atoms
 def register():
