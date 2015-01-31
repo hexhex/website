@@ -16,14 +16,14 @@
 
 		# now delegate the reasoner call to a dedicated virtual machine
 
-		# double escaping here because strings will be interpreted twice (when ssh is called and when the echo statements below are evaluated)
-		$hexprogramQuoted = addslashes(addslashes($hexprogram));
-		$extsourceQuoted = addslashes(addslashes($extsource));
-		# single escaping suffices as the string will be interpreted only when ssh is called
-		$commandlineoptionsQuoted = addslashes(addslashes($commandlineoptions));
+		# escaping here because strings will be interpreted when the echo statements below is evaluated
+		$hexprogramQuoted = addslashes($hexprogram);
+		$extsourceQuoted = addslashes($extsource);
+		# no escaping because this string is not passed through an echo command
+		$commandlineoptionsQuoted = $commandlineoptions;
 
 		# direct call without virtual machine
-		$shellstr = "hexprogramfile=$(mktemp); extsourcefile=$(mktemp); echo -e \"$hexprogramQuoted\" > \$hexprogramfile; echo -e \"$extsourceQuoted\" > \$extsourcefile; $reasonercall $commandlineoptions --pythonplugin=\$extsourcefile \$hexprogramfile; rm \$hexprogramfile; rm \$extsourcefile";
+		$shellstr = 'hexprogramfile=$(mktemp); extsourcefile=$(mktemp); echo "' . $hexprogramQuoted . '" > $hexprogramfile; echo "' . $extsourceQuoted . '" > $extsourcefile; ' . $reasonercall . ' ' . $commandlineoptions . ' --pythonplugin=$extsourcefile $hexprogramfile; rm $hexprogramfile; rm $extsourcefile';
 
 		# actual execution of the command
 		exec("$shellstr 2>&1", $answer, $retcode);
@@ -33,6 +33,6 @@
 		foreach ($answer as $line){
 		        print "\n" . $line;
 		}
-		#print "Executed: " . "$shellstr 2>&1";
+		print "Executed: " . "$shellstr 2>&1";
 	}
 ?>
