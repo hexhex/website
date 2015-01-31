@@ -22,9 +22,9 @@
                         if ($answerset != ""){
                                 $nr++;
                                 if ($nr % 2 == 0){
-                                        $astab = $astab . "<tr><td width=\"10%\">" . $nr . "</td><td>" . $answerset . "</td></tr>";
+                                        $astab = $astab . "<tr><td width=\"10%\">" . $nr . "</td><td>" . str_replace(",", ",<wbr>", $answerset) . "</td></tr>";
                                 }else{
-                                        $astab = $astab . "<tr class=\"odd\"><td width=\"10%\">" . $nr . "</td><td>" . $answerset . "</td></tr>";
+                                        $astab = $astab . "<tr class=\"odd\"><td width=\"10%\">" . $nr . "</td><td>" . str_replace(",", ",<wbr>", $answerset) . "</td></tr>";
                                 }
                         }
                 }

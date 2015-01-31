@@ -271,16 +271,16 @@
 					# sort examples by directory name
 					$dirhandle=opendir('demo/examples');
 					while($file=readdir($dirhandle)){
-						$file_array[] = $file;
+                                                if ($file != "" && $file != "." && $file != ".."){
+							$file_array[] = $file;
+						}
 					}
 					closedir($dirhandle);
 					sort($file_array);
 					# output
 					foreach ($file_array as $file){
-                                                if ($file != "." && $file != ".."){
-                                                        $exname = file_get_contents("demo/examples/" . $file . "/name.txt");
-                                                	$exampleList = $exampleList . "<option name=\"example\" value=\"$file\">$exname</option>";
-                                        	}
+                                                $exname = file_get_contents("demo/examples/" . $file . "/name.txt");
+                                                $exampleList = $exampleList . "<option name=\"example\" value=\"$file\">$exname</option>";
                                         }
                                 ?>
 				<noscript>
