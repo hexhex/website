@@ -301,7 +301,7 @@
 <!-- <div style="width:49%;float:left;">-->
 			<b>HEX-Program:</b><br><p class="jsonly">[<a id="hide_hexprogramdiv" href="javascript:void(0)" onclick="toggle_visibility('hexprogramdiv'); updateEditArea('hexprogram');">Hide</a>]</p>
 			<div id="hexprogramdiv" style="width:100%">
-			<textarea id="hexprogram" name="hexprogram" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/program.hex");}else{print $hexprogram;}?></textarea>
+			<textarea id="hexprogram" spellcheck=false name="hexprogram" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/program.hex");}else{print $hexprogram;}?></textarea>
 			</div>
 <!-- </div>-->
 <!-- <div style="width:2%;float:left;">&nbsp;</div>-->
@@ -309,7 +309,7 @@
 			<br><br>
 			<b>External Source Definition (Python):</b><br><p class="jsonly">[<a id="hide_extsourcediv" href="javascript:void(0)" onclick="toggle_visibility('extsourcediv'); updateEditArea('extsource');">Hide</a>]</p>
 			<div id="extsourcediv" style="width:100%">
-			<textarea id="extsource" name="extsource" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
+			<textarea id="extsource" spellcheck=false name="extsource" style="width:100%; resize:none;" rows="30"><?php if ($example != ""){print file_get_contents("demo/examples/" . $example . "/plugin.py");}else{print $extsource;}?></textarea>
 			</div>
 			<br><br>
 			<b>Command-line Options:</b><br><p class="jsonly">[<a id="hide_commandlineoptionsdiv" href="javascript:void(0)" onclick="toggle_visibility('commandlineoptionsdiv');">Hide</a>]</p>
