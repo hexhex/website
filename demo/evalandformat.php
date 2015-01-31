@@ -13,7 +13,10 @@
         print "<br>";
         print "where <tt>program.hex</tt> and <tt>extsource.py</tt> refer to the program and plugin entered above, respectively";
         print "<br><br>";
-        if ($retcode == 0) {
+	if ($retcode == "") {
+                print "<font color=\"red\"><b>Error:</b></font><br>";
+                print "Reasoning server unreachable<br>";
+        }else if ($retcode == 0) {
                 print "<b>Answer Sets:</b>";
                 $astab = "";
                 $ret = shell_exec("echo -e \"$answer\"");
