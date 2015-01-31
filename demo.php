@@ -59,7 +59,7 @@
 			img.height = 80;
 			var centerimg=document.createElement('center');
 			centerimg.appendChild(img);
-			outputdiv.innerHTML = "<div align=\"center\"><p style=\"font-size:20px\">Processing ...</p></div></br>";
+			outputdiv.innerHTML = "<div align=\"center\"><p style=\"font-size:20px\">Reasoning ...</p></div></br>";
 			outputdiv.appendChild(centerimg);
 			window.setTimeout(scrollToResults, 0);
 			// call reasoner
@@ -87,14 +87,19 @@
                         xmlHttp = new XMLHttpRequest();
                         xmlHttp.open("GET", "demo/evalandformaturl.txt", false);
                         xmlHttp.send(null);
-                        evalandformaturl = xmlHttp.responseText;
-                        xmlHttp.open("GET", evalandformaturl + args, false);
-                        xmlHttp.send(null);
-                        answer = xmlHttp.responseText;
-                        // write output to page
-                        outputdiv.innerHTML = answer;
-                        window.setTimeout(scrollToResults, 0);
-                }
+			evalandformaturl = xmlHttp.responseText;
+			xmlHttp.open("GET", evalandformaturl + args, true);
+			xmlHttp.send(null);
+			xmlHttp.onreadystatechange = function () {
+				if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+					// content is loaded...hide the gif and display the content...
+					if (xmlHttp.responseText) {
+						document.getElementById('outputdiv').innerHTML = xmlHttp.responseText;
+						window.setTimeout(scrollToResults, 0);
+				 	}
+				}
+			};
+		}
                 function scrollToResults(){
                         document.getElementById("outputdiv").scrollIntoView();
                 }
