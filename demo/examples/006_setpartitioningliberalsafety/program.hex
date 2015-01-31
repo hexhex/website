@@ -1,0 +1,16 @@
+dom(a).
+dom(b).
+dom(c).
+dom(d).
+dom(e).
+
+% This program partitions the elements in the extension of dom
+% into two sets using the set difference operation.
+
+% The following two rules build a cycle through external atoms
+% which is not bounded by a domain predicate,
+% thus they are not strongly safe.
+% However, since all output elements of &setdiff must occur in the input,
+% the program is liberally safe.
+s1(X) :- &setdiff[dom, s2](X).
+s2(X) :- &setdiff[dom, s1](X).

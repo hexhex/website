@@ -1,1 +1,1 @@
-3-Colorability
+3-Colorability in Ordinary ASP

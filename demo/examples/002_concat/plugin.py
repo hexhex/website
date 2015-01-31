@@ -1,6 +1,10 @@
 import dlvhex
 
-# concat has one input parameter of type tuple, which consists of terms to be concatenated
+# This is a minimal plugin to be used as a template
+# for first experiments with custom plugins.
+
+# concat has one input parameter of type tuple,
+# which consists of terms to be concatenated
 def concat(tup):
 	ret = ""
 	for x in tup:

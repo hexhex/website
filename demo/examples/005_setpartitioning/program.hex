@@ -4,5 +4,11 @@ dom(c).
 dom(d).
 dom(e).
 
-s1 :- &setdiff[dom, s2](X).
-s2 :- &setdiff[dom, s1](X).
+% This program partitions the elements in the extension of dom
+% into two sets using the set difference operation.
+
+% The following two rules build a cycle through external atoms.
+% However, as output variable X is bounded by domain predicate dom,
+% the program is strongly safe.
+s1(X) :- dom(X), &setdiff[dom, s2](X).
+s2(X) :- dom(X), &setdiff[dom, s1](X).

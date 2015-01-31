@@ -1,1 +1,1 @@
-String Concatenation
+Template for Custom Plugins (String Concatenation)
