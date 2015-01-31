@@ -26,7 +26,7 @@
 	<a href="download.html">Download</a>
 	<a href="support.html">Support</a>
 	<a href="documentation.html">Documentation</a>
-	<a href="demo.php">dlvhex Online Demo</a>
+	<a href="demo.php">Online Demo</a>
 	<a href="http://asptut.gibbi.com/">ASP Tutorial</a>
 	<a href="related.html">Related Work</a>
 	<a href="applications.html">Applications</a>
