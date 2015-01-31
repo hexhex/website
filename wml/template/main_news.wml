@@ -1,6 +1,12 @@
 <h2>News</h2>
 
+<h3>January 31, 2015</h3>
+
 <h3>September 24, 2014</h3>
+
+	We are happy to announce an <a href="demo.php">online demo of dlvhex</a>.<br/><br/>
+	It allows for evaluating simple HEX-programs in the browser without local installation.
+	Also customized external atoms may be specified in a Python script directly in the browser.
 
 <p>
     <a href="http://sourceforge.net/projects/dlvhex/files/dlvhex/2.4.0/dlvhex-2.4.0.tar.gz/download">Version 2.4.0</a> is out!<br/></br>
