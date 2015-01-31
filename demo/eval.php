@@ -33,6 +33,6 @@
 		foreach ($answer as $line){
 		        print "\n" . $line;
 		}
-		print "Executed: " . "$shellstr 2>&1";
+		#print "Executed: " . "$shellstr 2>&1";
 	}
 ?>
