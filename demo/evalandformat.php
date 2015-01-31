@@ -9,7 +9,7 @@
         $retcode = $answer[0];
         $answer = array_slice($answer, 1);
         print "<b>Command Line:</b><br>";
-        print "<tt>shell$ dlvhex2 " . $_GET['commandlineoptions'] . " program.hex</tt>";
+        print "<tt>shell$ dlvhex2 " . $_GET['commandlineoptions'] . " --pythonplugin=extsource.py program.hex</tt>";
         print "<br>";
         print "where <tt>program.hex</tt> and <tt>extsource.py</tt> refer to the program and plugin entered above, respectively";
         print "<br><br>";
