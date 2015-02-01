@@ -19,8 +19,7 @@ def register():
 	# setdiff is monotonic in input predicate 0 and antimonotonic in input predicate 1
 	prop.addMonotonicInputPredicate(0)
 	prop.addAntimonotonicInputPredicate(1)
-	# output element 0 can only contain values which appear in the input
+	# output element 0 can only contain values which appear in the first input predicate
 	prop.addRelativeFiniteOutputDomain(0, 0)
-        prop.addRelativeFiniteOutputDomain(0, 1)
 	# setdiff has two predicate input parametrers and its output arity is 1
 	dlvhex.addAtom("setdiff", (dlvhex.PREDICATE, dlvhex.PREDICATE), 1, prop)
