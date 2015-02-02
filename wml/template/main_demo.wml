@@ -35,7 +35,7 @@
                         var commandlineoptions = "";
                         if (document.getElementById("optFilter").value != "") commandlineoptions = commandlineoptions + " --filter=" + document.getElementById("optFilter").value;
                         if (document.getElementById("optNumAS").value != "") commandlineoptions = commandlineoptions + " -n=" + document.getElementById("optNumAS").value;
-                        if (document.getElementById("optStrongNegation").checked) commandlineoptions = commandlineoptions + " --strongnegation-enable";
+                        if (document.getElementById("optStrongNegation").checked) commandlineoptions = commandlineoptions + " --strongnegation-enable=true"; else commandlineoptions = commandlineoptions + " --strongnegation-enable=false";
                         if (document.getElementById("optLiberalSafety").checked) commandlineoptions = commandlineoptions + " --liberalsafety"; else commandlineoptions = commandlineoptions + " --strongsafety";
                         if (document.getElementById("optCustom").value != "") commandlineoptions = commandlineoptions + " " + document.getElementById("optCustom").value;
                         // assemble query
@@ -338,7 +338,7 @@
                         if ($_POST['optFilter'] != "") { $commandlineoptions = $commandlineoptions . " --filter=" . $_POST['optFilter']; };
                         if ($_POST['optNumAS'] != "") { $commandlineoptions = $commandlineoptions . " -n=" . $_POST['optNumAS']; };
                         if ($_POST['optLiberalSafety']) { $commandlineoptions = $commandlineoptions . " --liberalsafety"; } else { $commandlineoptions = $commandlineoptions . " --strongsafety"; }
-                        if ($_POST['optStrongNegation']) { $commandlineoptions = $commandlineoptions . " --strongnegation-enable"; }
+                        if ($_POST['optStrongNegation']) { $commandlineoptions = $commandlineoptions . " --strongnegation-enable=true"; } else { $commandlineoptions = $commandlineoptions . " --strongnegation-enable=false"; }
                         if ($_POST['optCustom'] != "") { $commandlineoptions = $commandlineoptions . " " . $_POST['optCustom']; };
 
 			# Evaluation
