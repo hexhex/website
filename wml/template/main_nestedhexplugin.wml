@@ -124,7 +124,7 @@ parameters(Atom, Index, Term) :- atoms(Atom, Arity),
 		This will deliver <code>as(0,1)</code> to encode that the program has one answer set,
 		<code>atoms(v1,1)</code> for some integer <code>v1</code> (exact value is unspecified) as a reference to the unary atom <code>q(a)</code>
 		in the answer set of the subprogram,
-		and <code>parameters(v1, 0,q)</code> and <code>parameters(v1, 1,a)</code> as an encoding of this atom.
+		and <code>parameters(v1, 0, q)</code> and <code>parameters(v1, 1, a)</code> as an encoding of this atom.
 		Similarily, there will be further atoms which encode the input atoms to the subprogram (because they are also in its answer set).
 	</p>
 
