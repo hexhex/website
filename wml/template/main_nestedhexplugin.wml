@@ -151,7 +151,7 @@ parameters(Atom, Index, Term) :- atoms(Atom, Arity),
 	  <div style="clear: both;"></div>
 	  <div>Output:</div>
 	  <div class="param"></div>
-	  <div class="paramtext">Tuples such that <code>q(x1,...,xn)</code> is cautiously (<code>(F)CHEX</code>) / bravely (<code>(F)BHEX</code>) true in the specified program</div>
+	  <div class="paramtext">Tuples such that <code>q(x1,...,xn)</code> is cautiously (<code>C(F)HEX</code>) / bravely (<code>B(F)HEX</code>) true in the specified program</div>
 	  <div style="clear: both;"></div>
 	</div>
 
