@@ -90,7 +90,7 @@ out(A) :- &amp;hexCautious[string, "q(X) :- p(X, Y), not r(X).", inp, q](A).
 		Evaluates the program p of type t extended with input from i as described above.
 	</p>
 	<p>
-		If <code>qt=program</code> and <code>qp</code> is missing, then the external atom is true for all pairs <code>(x, n)</code> with <code>0 &lt; x &lt;= n</code>,
+		If <code>qt=program</code> and <code>qp</code> is missing, then the external atom is true for all pairs <code>(x, n)</code> with <code>0 &lt;= x &lt; n</code>,
 		where <code>n</code> is the number of answer sets of the program. Elements <code>x</code> are intended to identify answer sets.
 	</p>
 	<p>
