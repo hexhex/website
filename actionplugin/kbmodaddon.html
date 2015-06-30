@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>dlvhex</title>
+    <link rel="stylesheet" type="text/css" media="all" href="
+../
+css/reset.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="
+../
+css/text.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="
+../
+css/960.css"></link>
+    <link rel="stylesheet" type="text/css" media="all" href="
+../
+css/style.css"></link>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  </head>
+  <body>
+    <!-- Title -->
+<!--
+    <div class="container_12">
+	<div class="grid_12" id="title">
+	      <h1>dlvhex</h1>
+	</div>
+    </div>
+-->
+    <!-- Menu -->
+    <div class="container_12">
+      <div class="grid_12" id="menu">
+	<a href="
+../
+index.html">About</a>
+	<a href="
+../
+people.html">People</a>
+	<a href="
+../
+news.html">News</a>
+	<a href="
+../
+download.html">Download</a>
+	<a href="
+../
+support.html">Support</a>
+	<a href="
+../
+documentation.html">Documentation</a>
+	<a href="
+../
+demo.php">Online Demo</a>
+	<a href="
+../
+http://asptut.gibbi.com/">ASP Tutorial</a>
+	<a href="
+../
+related.html">Related Work</a>
+	<a href="
+../
+applications.html">Applications</a>
+	<a href="
+../
+literature.html">Literature</a>
+      </div>
+    </div>
+    <!-- Information -->
+    <div class="container_12">
+      <div class="grid_9">
+            <h2>
+                <a class="a_title" href="../actionplugin.html">The Action Plugin and Action Addon Framework</a></h2>
+            <br>
+            <h3>
+                The Knowledge Base Modification (KBMod) Action Addon</h3>
+            <p>
+                The Knowledge Base Modification Action Addon (in short KBMod) is an addon which
+                provides essential action facilities enabling users to alter external knowledge
+                bases by asserting and rectracting knowledge.</p>
+            <p>
+                Note that, as of ActHEX 2.0, one can consider, instead of opting for the KBMod features,
+                using an internal source of knowledge (an <a href="../actionplugin.html#Environment">
+                    Environment</a>) for storing information. Note that Environments are performance-wise
+                a better option, although they require some (little) programming burden.</p>
+            <p>
+                Moreover, KBMod provides the ability to execute arbitrary commands in the shell.
+                The KBMod functionalities are provided by three different action atoms: <a href="#retract">
+                    &#35;retract</a>, <a href="#assert">&#35;assert</a>, <a href="#execute">&#35;execute</a>.</p>
+            <br>
+            <p>
+                Quick reference for action atoms of the addon follow.</p>
+            <h4>
+                <a class="anchor" name="retract" id="retract">#retract Atom</a></h4>
+            <div class="synopsis">
+                <div class="atomusage">
+                    <em>&#35;retract[F, RO, S<sup>+</sup>]{O,P}</em>
+                </div>
+                <div>
+                    Input:
+                </div>
+                <div class="param">
+                    F
+                </div>
+                <div class="paramtext">
+                    file path of the knowledge base
+                </div>
+                <div class="param">
+                    RO
+                </div>
+                <div class="paramtext">
+                    retract option, either <em>exact</em> or <em>predicate</em>
+                </div>
+                <div class="param">
+                    S<sup>+</sup>
+                </div>
+                <div class="paramtext">
+                    one or more instances of <em>S</em> whose concatenation will be used when executing
+                    retraction. <em>S</em>+ is a comma separated list of one or more strings or integers
+                </div>
+                <br style="clear: both;">
+            </div>
+            <p>
+                <b><i>&#35;retract</i></b> action atom will allow user to retract knowledge from knowledge
+                base whose path is <em>F</em>. In the case that the retract option is set to <em>exact</em>,
+                the lines that exactly match the string <em>S<sup>+</sup></em> concatenated with
+                &quot;.&quot; will be retracted from the knowledge base. On the other hand, when
+                the retract option is set to <em>predicate</em> the lines that contains an atom
+                whose predicate is exactly <em>S<sup>+</sup></em> will be removed from the knowledge
+                base. Note that there is an implicit assumption that each line contains only one
+                fact or one rule.</p>
+            <p>
+                Example:</p>
+            <div class="fragment">
+                <pre class="fragment">
+ &#35;retract[&quot;kb.lp&quot;, predicate, &quot;size&quot;]{b, 1}.
+</pre>
+            </div>
+            <p>
+                This fact will remove any line that contains an atom with predicate &quot;<em>size</em>&quot;
+                from the knowledge base available at <em>kb.lp</em>.</p>
+            <div class="fragment">
+                <pre class="fragment">
+ &#35;retract[&quot;kb.lp&quot;, exact, &quot;vertex(&quot;, N, &quot;)&quot;]{c, 4} :- unreachable(N).
+</pre>
+            </div>
+            <p>
+                This rule will remove any line that exactly matches &quot;<em>vertex(N).</em>&quot;
+                from the knowledge based available at <em>kb.lp</em> where <em>N</em> will be instantiated
+                according to the rule body. Note that we will retract every &quot;<em>vertex(i)</em>.&quot;
+                for every &quot;<em>unreachable(i)&quot;.</em></p>
+            <h4>
+                <a class="anchor" name="assert" id="assert">&#35;assert Atom</a></h4>
+            <div class="synopsis">
+                <div class="atomusage">
+                    <em>&#35;assert[F, S<sup>+</sup>]{O,P}</em>
+                </div>
+                <div>
+                    Input:
+                </div>
+                <div class="param">
+                    F
+                </div>
+                <div class="paramtext">
+                    file path of the knowledge base
+                </div>
+                <div class="param">
+                    S<sup>+</sup>
+                </div>
+                <div class="paramtext">
+                    one or more instances of <em>S</em> whose concatenation will be used in the assert
+                    action. <em>S</em>+ is a comma separated list of one or more strings or integers
+                </div>
+                <br style="clear: both;">
+            </div>
+            <p>
+                <b><i>&#35;assert</i></b> action atom will allow users to add knowledge to the knowledge
+                base whose path is <em>F</em>. The string <em>S<sup>+</sup></em> will be added to
+                the knowledge base. Note that no syntactic check is applied to the asserted knowledge.
+                Hence, users are expected to respect the syntactic rules of the knowledge base.</p>
+            <p>
+                Example:</p>
+            <div class="fragment">
+                <pre class="fragment">
+ &#35;assert[&quot;kb.lp&quot;, &quot;size(5)&quot;]{b, 1}.
+</pre>
+            </div>
+            <p>
+                The fact will add &quot;<em>size(5).</em>&quot; to the knowledge base whose path
+                is <em>F</em>.</p>
+            <h4>
+                <a class="anchor" name="execute" id="execute">&#35;execute Atom</a></h4>
+            <div class="synopsis">
+                <div class="atomusage">
+                    <em>&#35;execute[S<sup>+</sup>]{O,P}</em>
+                </div>
+                <div>
+                    Input:
+                </div>
+                <div class="param">
+                    S<sup>+</sup>
+                </div>
+                <div class="paramtext">
+                    one or more instances of <em>S</em> whose concatenation will be used in execute
+                    action as the command where <em>S</em> is a string or integer
+                </div>
+                <br style="clear: both;">
+            </div>
+            <p>
+                <b><i>&#35;execute action</i></b> atom will allow users to execute the string <em>S<sup>+</sup></em>
+                in the shell while the dlvhex program is still running.</p>
+            <p>
+                Example:</p>
+            <div class="fragment">
+                <pre class="fragment">
+ &#35;execute[&quot;dlvhex --firstorder kb.lp&quot;]{c,3}.
+</pre>
+            </div>
+            <p>
+                The fact will execute &quot;<em>dlvhex</em>&quot; with &quot;<em>firstorder</em>&quot;
+                option on the knowledge base whose path is &quot;<em>kb.lp</em>&quot;.</p>
+            <div class="fragment">
+                <pre class="fragment">
+ &#35;execute[&quot;dlv --firstorder&quot; -n=&quot;,X,&quot; kb.lp&quot;]{b,2}:- size(X).
+</pre>
+            </div>
+            <p>
+                The rule will execute &quot;<em>dlv</em>&quot; with &quot;<em>firstorder</em>&quot;
+                option and &quot; <em>-n</em>&quot; option set equal to <em>X</em> on the knowledge
+                base whose path is &quot;<em>kb.lp</em>&quot;. Notice that <em>X</em> is not a string
+                thus it will be instantiated depending on the <em>size</em> atoms that are in the
+                interpretation.</p>
+            <br>
+            <p>
+                In all of the examples, <em>O</em> (resp. <em>P</em>) are option (resp. precedence)
+                that appears in action atoms. Additionally, mentioned action atoms can be combined
+                with weight and level.</p>
+            <br>
+            <p>
+                You can check it out its source <a href="https://github.com/hexhex/actionplugin-addons/tree/master/kbmod">
+                    here</a>.</p>
+            <p>
+                For other action addons return to the section <a href="../actionplugin.html#ActionAddons">
+                    Action Addons</a> of The Action Plugin and Action Addon Framework.</p>
+            <br>
+            <br>
+            <p id="pageinfo" lang="en" dir="ltr" style="color: gray" xml:lang="en">
+                Last edited 2013-04-23</p>
+      </div>
+      <div class="grid_3">
+  <p>&nbsp;</p>
+  <p>
+    <img width="200" height="44" src="
+../
+images/logo_whitebg.png" alt="dlvhex" id="logo">
+  </p>
+  <p>
+	<div style="font-size: 14pt"><label for="q">Search this Website</label></div>
+	<form action="http://www.google.com/cse" id="cse-search-box">
+	  <div>
+	    <input name="cx" id="cx" value="010363983165505105153:4bhl-l5ixd4" type="hidden" alt="Search this website">
+	    <input name="ie" id="ie" value="UTF-8" type="hidden" alt="Search this website">
+	    <input style="background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" name="q" id="q" size="19" type="text">
+	    <input name="sa" id="sa" value="Go" type="submit">
+	  </div>
+	</form>
+  </p>
+	<p>
+    <span style="font-size: 14pt">General</span><br>
+	  <a href="https://github.com/hexhex/">dlvhex source code @ github.com</a><br>
+	  <!-- a href="https://sourceforge.net/projects/dlvhex/">dlvhex: Sourceforge project</a><br/ -->
+	  <a href="doap.rdf">Description-Of-A-Project</a>
+	</p>
+  <p>
+    <span style="font-size: 14pt">Popular Plugins</span><br>
+<!-- <a href="http://www.polleres.net/dlvhex-sparql">SPARQL Plugin</a><br> -->
+<a href="
+../
+actionplugin.html">Action Plugin</a><br>
+<a href="
+../
+decisiondiagramsplugin.html">DecisionDiagrams Plugin</a><br>
+<a href="
+../
+dlplugin.html">Description Logics Plugin</a><br>
+<a href="
+../
+dlliteplugin.html">Description Logics Lite Plugin</a><br>
+<a href="
+../
+mergingplugin.html">MELD: Belief Merging Plugin</a><br>
+<a href="
+../
+nestedhexplugin.html">Nested HEX Plugin</a><br>
+<a href="http://www.kr.tuwien.ac.at/research/systems/mcsie">MCSIE Plugin</a><br>
+<a href="
+../
+stringplugin.html">String Plugin</a><br>
+<a href="https://sourceforge.net/projects/dlvhex-semweb/">dlvhex-semweb Project</a><br>
+	</p>
+  <p>
+    <span style="font-size: 14pt">Documentation</span><br>
+    <a href="https://github.com/hexhex/core/blob/master/README">README</a><br>
+    <a href="
+../
+doc2x">doxygen</a><br>
+    <a href="
+../
+doc2x/group__pluginframework.html">Writing Plugins in C++</a><br>
+    <a href="
+../
+doc2x/group__pythonpluginframework.html">Writing Plugins in Python</a>
+    <!--
+    <a href="doc1x">doxygen version 1.X</a><br>
+    <a href="doc1x/group__pluginframework.html">Writing Plugins 1.X</a><br>
+    -->
+  </p>
+      </div> <!-- grid_3 -->
+    </div> <!-- container_12 -->
+  </body>
+</html>
+<!--
+        Local Variables:
+        mode: xml
+        End:
+-->

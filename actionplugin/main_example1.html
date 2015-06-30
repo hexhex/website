@@ -1,0 +1,55 @@
+            <h2>
+                <a class="a_title" href="../actionplugin.html">The Action Plugin and Action Addon Framework</a></h2>
+            <br>
+            <h3>
+                An Example of Observe-Think-Act Cycle with ActHEX Programs</h3>
+            <p>
+                Using knowledge base update actions, ActHEX programs provide a convenient medium
+                for modelling iteration and optimization tasks<sup>1</sup>. We can model optimization
+                problems as a series of decision problems where each decision problem corresponds
+                to an ActHEX program. The action atoms can coordinate these series of decision problems
+                to find the optimal solution. An example can be the <em>maximal clique problem</em>.
+            </p>
+            <div>
+                <p>
+                    Let <em>G</em> be a graph encoded by means of <em>vertex</em> and <em>edge</em>
+                    predicates. A fact <em>size(n)</em> (initially <em>n = 1</em>) is put within a knowledge
+                    base called <em>clique</em>, together with the following program:
+                </p>
+                <div class="fragment">
+                    <pre class="fragment">
+ in(X) v in(X) &larr; vertex(X).
+ &larr; in(X), in(Y ), not edge(X, Y ),X != Y.
+ &larr; &amp;count[in](X),X &lt; N, size(N).
+                </div>
+            </div>
+            <p>
+                At each call to this program, we find whether there exist a clique of size <em>N</em><sup>2</sup>.
+                If a clique of such a size exists, the selected execution plan removes former assertions
+                for the <em>size</em> predicate and then the assertion <em>size(N +1)</em> is pushed
+                to <em>clique</em> by means of an appropriate <em>#assert</em> action: <em>clique</em>
+                is then executed again. The precedence value of the <em>#execute</em> action atom
+                is the largest among the other action atoms which ensures that reexecution of the
+                program is issued after all the changes to the program are done. Notice that execution
+                terminates for some size <em>N'</em> (which is the optimal clique size augmented
+                by <em>1</em>) for which <em>clique</em> turns in an inconsistent program (having
+                thus no execution schedules).
+            </p>
+            <h3>
+                References</h3>
+            <p>
+                Leone, N., Pfeifer, G., Faber, W., Eiter, T., Gottlob, G., Perri, S., and Scarcello,
+                F. 2006. The DLV system for knowledge representation and reasoning. ACM Trans. Comput.
+                Log. 7, 3, 499-562.
+            </p>
+            <ol>
+                <li>The example is illustrative of knowledge update action constructs only and is not
+                    to be considered as an alternative proposal for choices and other optimization construct
+                    known in ASP.</li>
+                <li>The external atom <em>&count[in](X)<em> can be seen as as equivalent to the DLV
+                    (Leone et al. 2006) aggregate construct <em>#count{Y : in(Y)} = X</em>. </li>
+            </ol>
+            <br>
+            <br>
+            <p id="pageinfo" lang="en" dir="ltr" style="color: gray">
+                Last edited 2013-04-23</p>
