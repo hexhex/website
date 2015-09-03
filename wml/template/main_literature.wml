@@ -1,5 +1,49 @@
 <h2>Literature</h2>
 
+<p class="bib"><a name="icghrstw2015-ieee"></a>
+Giovambattista Ianni, Francesco Calimeri, Stefano Germano, Andreas Humenberger, Christoph Redl, Daria Stepanova, Andrea Tucci, and Anton Wimmer.<br/>
+ <b>Angry-HEX: an Artificial Player for Angry Birds Based on Declarative Knowledge Bases</b>.<br/>
+ IEEE Transactions on Computational Intelligence and AI in Games<!--, 12(4-5):659-679, July 2012-->, 2015. Accepted for publication.<br/>
+[&nbsp;<a href="http://www.kr.tuwien.ac.at/staff/redl/pub-redl/pub-redl-2015_bib.html#icghrstw2015-ieee">bib</a><!--&nbsp;| 
+<a href="http://www.kr.tuwien.ac.at/staff/redl/publications/icghrstw2015-ieee">paper</a>-->&nbsp;]
+</p>
+
+<p class="bib"><a name="efikrs2015-rr-1843-15-01"></a>
+Thomas Eiter, Michael Fink, Giovambattista Ianni, Thomas Krennwallner, Christoph Redl, and Peter Sch&uuml;ller.<br/>
+ <b>A Model Building Framework for Answer Set Programming with External Computations</b>.<br/>
+ Theory and Practice of Logic Programming<!--, 12(4-5):659-679, July 2012-->. Accepted for publication.<br/>
+[&nbsp;<a href="http://www.kr.tuwien.ac.at/staff/redl/pub-redl/pub-redl-2015_bib.html#efikrs2015-tplp">bib</a><!--&nbsp;| 
+<a href="http://www.kr.tuwien.ac.at/staff/redl/publications/efikrs2015-tplp.pdf">paper</a>-->&nbsp;]
+</p>
+
+<p class="bib"><a name="derr2015-aspocp"></a>
+Alessandro De Rosis, Thomas Eiter, Christoph Redl, and Francesco Ricca.<br/>
+ <b>Constraint Answer Set Programming based on HEX-Programs</b>.<br/>
+ In Eighth Workshop on Answer Set Programming and Other Computing Paradigms (ASPOCP 2015), August 31, 2015, Cork, Ireland, August 2015. Accepted for publication.<br/>
+[&nbsp;<a href="http://www.kr.tuwien.ac.at/staff/redl/pub-redl/pub-redl-2015_bib.html#derr2015-aspocp">bib</a><!--&nbsp;| 
+<a href="http://www.kr.tuwien.ac.at/staff/redl/publications/derr2015-aspocp.pdf">paper</a>-->&nbsp;]
+</p>
+
+<p class="bib"><a name="efikrs2015-rr-1843-15-01"></a>
+Thomas Eiter, Michael Fink, Giovambattista Ianni, Thomas Krennwallner, Christoph Redl, and Peter Sch&uuml;ller.<br/>
+ <b>A Model Building Framework for Answer Set Programming with External Computations</b>.<br/>
+ Technical Report INFSYS RR-1843-15-01, Institut f&uuml;r
+  Informationssysteme, TU Wien, Favoritenstra&szlig;e 9-11, A-1040 Vienna,
+  January 2015.<br/>
+[&nbsp;<a href="http://www.kr.tuwien.ac.at/staff/redl/pub-redl/pub-redl-2015_bib.html#efikrs2015-rr-1843-15-01">bib</a>&nbsp;| 
+<a href="http://www.kr.tuwien.ac.at/staff/redl/publications/efikrs2015-rr-1843-15-01.pdf">paper</a>&nbsp;]
+</p>
+
+<p class="bib"><a name="efkrs2014-rr-1843-14-02"></a>
+Thomas Eiter, Michael Fink, Thomas Krennwallner, and Christoph Redl.<br/>
+ <b>Domain Expansion for ASP-Programs with External Sources</b>.<br/>
+ Technical Report INFSYS RR-1843-14-02, Institut f&uuml;r
+  Informationssysteme, TU Wien, Favoritenstra&szlig;e 9-11, A-1040 Vienna,
+  September 2014.<br/>
+[&nbsp;<a href="http://www.kr.tuwien.ac.at/staff/redl/pub-redl/pub-redl-2014_bib.html#efkrs2014-rr-1843-14-02">bib</a>&nbsp;| 
+<a href="http://www.kr.tuwien.ac.at/staff/redl/efkrs2012-rr-1843-14-02.pdf">paper</a>&nbsp;]
+</p>
+
 <p class="bib"><a name="s2015-phd"></a>
 Daria Stepanova.<br/>
  <b>Inconsistencies in Hybrid Knowledge Bases</b>.<br/>
