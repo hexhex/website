@@ -38,30 +38,74 @@
     <!-- Information -->
     <div class="container_12">
       <div class="grid_9">
-	<h2>The RDF Plugin</h2>
+	<h2>Download Binaries</h2>
+	<font color="red"><b>Page under construction:</b></font> Links will work shortly.
 	<p>
-	  The RDF Plugin provides a single atom. It takes a single constant as input, which denotes the
-	  RDF-source, and returns rdf-triples:
-	</p>
-	<div class="synopsis">
-	  <div class="atomusage">&amp;rdf[I](X,Y,Z)</div>
-	  <div>Input:</div>
-	  <div class="param">I</div>
-	  <div class="paramtext">web address or file path</div>
-	  <div style="clear: both;"></div>
-	  <div>Output:</div>
-	  <div class="param">X,Y,Z</div>
-	  <div class="paramtext">RDF triples</div>
-	  <div style="clear: both;"></div>
-	</div>
+    You can download pre-built stable release versions of dlvhex and its
+	  plugins from this page.
+  </p>
 	<p>
-	  Example:
+		You will need the <b>dlvhex core</b> in any case. It provides base functionality such as the evaluation of ASP- and HEX-programs and can be extended with the plugins listed below.
 	</p>
-	<pre>
-triple(S,P,O) :- &amp;rdf["http://example.org/foaf.rdf"](S,P,O).</pre>
-        <div style="border-top: 1px solid #999; background-color: inherit; color: #999; font-size: 8.5pt;">
-	  <p>$Id$</p>
-	</div>
+	<p>
+            If you are using operating systems which are not listed below, or if you prefer to build from sourcecode for other reasons, please visit the <a href="downloads.html">Download Sourcecode</a> page.
+  </p>
+	<h3>Release 2.5.0</h3>
+        <table summary="">
+          <thead>
+            <tr>
+              <th>dlvhex core</th>
+              <th>Linux</th>
+              <th>Mac OS X</th>
+              <th>Windows</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="odd">
+              <td>dlvhex core</td>
+              <td><a href="/download/release250/linux/dlvhex-core/dlvhex2">Download</a></td>
+              <td><a href="/download/release250/macosx/dlvhex-core/dlvhex2">Download</a></td>
+              <td><a href="/download/release250/windows/dlvhex-core/dlvhex2.exe">Download</a></td>
+              <td>The core system (required for all plugins below).</td>
+            </tr>
+          </tbody>
+        </table>
+	<table summary="">
+	  <thead>
+	    <tr>
+              <th>Plugin</th>
+              <th>Linux</th>
+              <th>Mac OS X</th>
+              <th>Windows</th>
+              <th>Description</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr class="odd">
+	      <td>MCSIE-Plugin</td>
+	      <td><a href="/download/release250/linux/dlvhex-mcsieplugin/libdlvhexplugin-mcsie.so">Download</a></td>
+              <td><a href="/download/release250/macosx/dlvhex-mcsieplugin/libdlvhexplugin-mcsie.so">Download</a></td>
+              <td><a href="/download/release250/windows/dlvhex-mcsieplugin/libdlvhexplugin-mcsie.dll">Download</a></td>
+	      <td>MCS-IE Plugin, see the <a href="/research/systems/mcsie/">MCS-IE homepage</a>.</td>
+	    </tr>
+	    <tr class="even">
+	      <td>String Plugin</td>
+              <td><a href="/download/release250/linux/dlvhex-mcsieplugin/libdlvhexplugin-string.so">Download</a></td>
+              <td><a href="/download/release250/macosx/dlvhex-mcsieplugin/libdlvhexplugin-string.so">Download</a></td>
+              <td><a href="/download/release250/windows/dlvhex-mcsieplugin/libdlvhexplugin-string.dll">Download</a></td>
+	      <td>Operates on strings, see the <a
+	  href="stringplugin.html">string-plugin documentation</a></td>
+	    </tr>
+	    <tr class="odd">
+	      <td>Nested-HEX Plugin</td>
+              <td><a href="/download/release250/linux/dlvhex-mcsieplugin/libdlvhexplugin-nestedhex.so">Download</a></td>
+              <td><a href="/download/release250/macosx/dlvhex-mcsieplugin/libdlvhexplugin-nestedhex.so">Download</a></td>
+              <td><a href="/download/release250/windows/dlvhex-mcsieplugin/libdlvhexplugin-nestedhex.dll">Download</a></td>
+	      <td>Support for subprograms.</a>.</td>
+	    </tr>
+	  </tbody>
+	</table>
       </div>
       <div class="grid_3">
   <p>&nbsp;</p>

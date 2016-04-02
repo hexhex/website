@@ -28,13 +28,13 @@
 	    <li>Annemarie Goldmann (Mathematica plugin)</li>
 	    <li>Anton Korosec (Script plugin)</li>
 	    <li>Sabine Laszakovits (Porting String, Script, Aggregate, and Wordnet plugin to version 2.X)</li>
+	    <li>Alexander Leutg&ouml;b (pre-compiled binaries for multiple platforms)</li>
 	    <li>Nuno Lopes (RDF and SPARQL plugin)</li>
 	    <li>Marco Marano (XPath plugin)</li>
 	    <li>Alessandra Martello (GiaBATA system, SPARQL plugin, dlvdb integration, dlvhex patches)</li>
 	    <li>Mustafa Mehuljic (manual)</li>
 	    <li>Emmanouil Paissios (RDF plugin)</li>
 	    <li>Axel Polleres (SPARQL plugin)</li>
-	    <!-- li>Christoph Redl (Belief Merging plugin)</li -->
 	    <li>Daniel Scheikl (XPath plugin)</li>
 	    <li>Patrik Schneider (RDF plugin)</li>
 	    <li>Javier Sierra (SPARQL plugin optimization)</li>

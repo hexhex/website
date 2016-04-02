@@ -1,0 +1,76 @@
+	<h2>Download Binaries</h2>
+
+	<font color="red"><b>Page under construction:</b></font> Links will work shortly.
+
+	<p>
+    You can download pre-built stable release versions of dlvhex and its
+	  plugins from this page.
+  </p>
+
+	<p>
+		You will need the <b>dlvhex core</b> in any case. It provides base functionality such as the evaluation of ASP- and HEX-programs and can be extended with the plugins listed below.
+	</p>
+
+	<p>
+            If you are using operating systems which are not listed below, or if you prefer to build from sourcecode for other reasons, please visit the <a href="downloads.html">Download Sourcecode</a> page.
+  </p>
+
+	<h3>Release 2.5.0</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>dlvhex core</th>
+              <th>Linux</th>
+              <th>Mac OS X</th>
+              <th>Windows</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="odd">
+              <td>dlvhex core</td>
+              <td><a href="{#PATH_TO_ROOT#}/download/release250/linux/dlvhex-core/dlvhex2">Download</a></td>
+              <td><a href="{#PATH_TO_ROOT#}/download/release250/macosx/dlvhex-core/dlvhex2">Download</a></td>
+              <td><a href="{#PATH_TO_ROOT#}/download/release250/windows/dlvhex-core/dlvhex2.exe">Download</a></td>
+              <td>The core system (required for all plugins below).</td>
+            </tr>
+          </tbody>
+        </table>
+
+	<table>
+	  <thead>
+	    <tr>
+              <th>Plugin</th>
+              <th>Linux</th>
+              <th>Mac OS X</th>
+              <th>Windows</th>
+              <th>Description</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr class="odd">
+	      <td>MCSIE-Plugin</td>
+	      <td><a href="{#PATH_TO_ROOT#}/download/release250/linux/dlvhex-mcsieplugin/libdlvhexplugin-mcsie.so">Download</a></td>
+              <td><a href="{#PATH_TO_ROOT#}/download/release250/macosx/dlvhex-mcsieplugin/libdlvhexplugin-mcsie.so">Download</a></td>
+              <td><a href="{#PATH_TO_ROOT#}/download/release250/windows/dlvhex-mcsieplugin/libdlvhexplugin-mcsie.dll">Download</a></td>
+	      <td>MCS-IE Plugin, see the <a href="/research/systems/mcsie/">MCS-IE homepage</a>.</td>
+	    </tr>
+	    <tr class="even">
+	      <td>String Plugin</td> 	
+              <td><a href="{#PATH_TO_ROOT#}/download/release250/linux/dlvhex-mcsieplugin/libdlvhexplugin-string.so">Download</a></td>
+              <td><a href="{#PATH_TO_ROOT#}/download/release250/macosx/dlvhex-mcsieplugin/libdlvhexplugin-string.so">Download</a></td>
+              <td><a href="{#PATH_TO_ROOT#}/download/release250/windows/dlvhex-mcsieplugin/libdlvhexplugin-string.dll">Download</a></td>
+	      <td>Operates on strings, see the <a
+	  href="stringplugin.html">string-plugin documentation</a></td>
+	    </tr>	
+	    <tr class="odd">
+	      <td>Nested-HEX Plugin</td> 	
+              <td><a href="{#PATH_TO_ROOT#}/download/release250/linux/dlvhex-mcsieplugin/libdlvhexplugin-nestedhex.so">Download</a></td>
+              <td><a href="{#PATH_TO_ROOT#}/download/release250/macosx/dlvhex-mcsieplugin/libdlvhexplugin-nestedhex.so">Download</a></td>
+              <td><a href="{#PATH_TO_ROOT#}/download/release250/windows/dlvhex-mcsieplugin/libdlvhexplugin-nestedhex.dll">Download</a></td>
+	      <td>Support for subprograms.</a>.</td>
+	    </tr>
+	  </tbody>
+	</table>
+

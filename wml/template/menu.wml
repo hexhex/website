@@ -6,7 +6,8 @@
 	<a href="{#PATH_TO_ROOT#}index.html">About</a>
 	<a href="{#PATH_TO_ROOT#}people.html">People</a>
 	<a href="{#PATH_TO_ROOT#}news.html">News</a>
-	<a href="{#PATH_TO_ROOT#}download.html">Download</a>
+        <a href="{#PATH_TO_ROOT#}downloadb.html">Download Binaries</a>
+	<a href="{#PATH_TO_ROOT#}downloads.html">Download Sourcecode</a>
 	<a href="{#PATH_TO_ROOT#}support.html">Support</a>
 	<a href="{#PATH_TO_ROOT#}documentation.html">Documentation</a>
 	<a href="{#PATH_TO_ROOT#}demo.php">Online Demo</a>
