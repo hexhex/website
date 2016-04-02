@@ -31,6 +31,7 @@
 
   <p>
     <span style="font-size: 14pt">Documentation</span><br/>
+    <a href="{#PATH_TO_ROOT#}docs/userguide.pdf">User Guide</a><br/>
     <a href="https://github.com/hexhex/core/blob/master/README">README</a><br/>
     <a href="{#PATH_TO_ROOT#}doc2x">doxygen</a><br/>
     <a href="{#PATH_TO_ROOT#}doc2x/group__pluginframework.html">Writing Plugins in C++</a><br/>
