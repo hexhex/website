@@ -24,7 +24,7 @@
 	<a href="people.html">People</a>
 	<a href="news.html">News</a>
         <a href="downloadb.html">Download Binaries</a>
-	<a href="downloads.html">Download Sourcecode</a>
+	<a href="downloads.html">Download Source</a>
 	<a href="support.html">Support</a>
 	<a href="documentation.html">Documentation</a>
 	<a href="demo.php">Online Demo</a>

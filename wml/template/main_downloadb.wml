@@ -22,7 +22,7 @@
             <tr>
               <th>dlvhex core</th>
               <th>Linux</th>
-              <th>Mac OS X</th>
+              <th>OS X</th>
               <th>Windows</th>
               <th>Description</th>
             </tr>
@@ -43,7 +43,7 @@
 	    <tr>
               <th>Plugin</th>
               <th>Linux</th>
-              <th>Mac OS X</th>
+              <th>OS X</th>
               <th>Windows</th>
               <th>Description</th>
 	    </tr>
