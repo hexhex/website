@@ -14,16 +14,16 @@
   </p>
 
 	<p class="info">
-	  The current release dlvhex 2.X (2014-09-24) is 2.4.0:
-	  <a href="http://sourceforge.net/projects/dlvhex/files/dlvhex/2.4.0/dlvhex-2.4.0.tar.gz/download">source tarball</a>
+	  The current release dlvhex 2.X (2016-04-12) is 2.5.0:
+	  <a href="{#PATH_TO_ROOT#}download/release250/dlvhex-2.5.0.tar.gz">source tarball</a>
    (binary of this release is called <code>dlvhex2</code>).
   </p>
+
 	<p>
 	  The deprecated release of dlvhex 1.X (2012-10-19) is 1.7.4:
 	  <a href="http://sourceforge.net/projects/dlvhex/files/dlvhex/1.7.4/dlvhex-1.7.4.tar.gz/download">source tarball</a>
    (binary of this release is called <code>dlvhex</code>).
 	</p>
-
 	<p>
 	  The release versions of some core plugins are listed below.
 	</p>
@@ -125,8 +125,8 @@
 	</p>
 	
 	<p>
-	  Please note that dlvhex is currently only working for
-	  UNIX-based operating systems like Linux and Mac OS X.
+	  dlvhex works under
+	  UNIX-based operating systems like Linux and Mac OS X and Microsoft Windows.
 	</p>
 
 
