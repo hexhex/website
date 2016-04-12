@@ -15,7 +15,7 @@
 
 	<p class="info">
 	  The current release dlvhex 2.X (2016-04-12) is 2.5.0:
-	  <a href="{#PATH_TO_ROOT#}download/release250/dlvhex-2.5.0.tar.gz">source tarball</a>
+	  <a href="{#PATH_TO_ROOT#}download/release250/dlvhex2-2.5.0.tar.gz">source tarball</a>
    (binary of this release is called <code>dlvhex2</code>).
   </p>
 
