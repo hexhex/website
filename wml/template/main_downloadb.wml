@@ -1,8 +1,7 @@
 	<h2>Download Binaries</h2>
 
 	<p>
-    You can download pre-built stable release versions of dlvhex and its
-	  plugins from this page.
+    You can download pre-built stable release versions of dlvhex and its plugins from this page.
   </p>
 
 	<p>
@@ -10,32 +9,39 @@
 	</p>
 
 	<p>
-            If you are using operating systems which are not listed below, or if you prefer to build from sourcecode for other reasons, please visit the <a href="downloads.html">Download Sourcecode</a> page.
+    If you are using operating systems which are not listed below, or if you prefer to build from sourcecode for other reasons, please visit the <a href="downloads.html">Download Sourcecode</a> page.
   </p>
 
 	<h3>Release 2.5.0</h3>
 
-        <table>
-          <thead>
-            <tr>
-              <th>dlvhex core</th>
-              <th>Linux</th>
-              <th>OS X</th>
-              <th>Windows</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="odd">
-              <td>dlvhex core</td>
-              <td><a href="{#PATH_TO_ROOT#}/download/release250/linux/dlvhex-core/dlvhex2">Download</a></td>
-              <td><a href="{#PATH_TO_ROOT#}/download/release250/macosx/dlvhex-core/dlvhex2">Download</a></td>
-              <td><a href="{#PATH_TO_ROOT#}/download/release250/windows/dlvhex-core/dlvhex2.exe">Download</a></td>
-              <td>The core system (required for all plugins below).</td>
-            </tr>
-          </tbody>
-        </table>
+  <table>
+    <thead>
+      <tr>
+        <th>dlvhex core</th>
+        <th>Linux</th>
+        <th>OS X</th>
+        <th>Windows</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="odd">
+        <td>dlvhex core</td>
+        <td><a href="{#PATH_TO_ROOT#}/download/release250/linux/dlvhex-core/dlvhex2">Download</a></td>
+        <td><a href="{#PATH_TO_ROOT#}/download/release250/macosx/dlvhex-core/dlvhex2">Download</a></td>
+        <td><a href="{#PATH_TO_ROOT#}/download/release250/windows/dlvhex-core/dlvhex2.exe">Download</a></td>
+        <td>The core system (required for all plugins below).</td>
+      </tr>
+    </tbody>
+  </table>
 
+  dlvhex requires Python 2.7.8.
+
+  <b>Note for Windows users:</b> You can download and install Python from <a href="https://www.python.org/ftp/python/2.7.8/python-2.7.8.msi">here</a>. Please make sure to use the 32 bit version (even when using a 64 bit Windows) and to select the <i>"Add python.exe to Path"</i> option during installation.
+
+  Note for Windows users: dlvhex requires Python 2.7.8 (32bit) to be found in your path, you can download and install Python from <a href="https://www.python.org/ftp/python/2.7.8/python-2.7.8.msi">here</a>.
+
+  <!--
 	<table>
 	  <thead>
 	    <tr>
@@ -55,15 +61,15 @@
 	      <td>MCS-IE Plugin, see the <a href="/research/systems/mcsie/">MCS-IE homepage</a>.</td>
 	    </tr>
 	    <tr class="even">
-	      <td>String Plugin</td> 	
+	      <td>String Plugin</td>
               <td><a href="{#PATH_TO_ROOT#}/download/release250/linux/dlvhex-mcsieplugin/libdlvhexplugin-string.so">Download</a></td>
               <td><a href="{#PATH_TO_ROOT#}/download/release250/macosx/dlvhex-mcsieplugin/libdlvhexplugin-string.so">Download</a></td>
               <td><a href="{#PATH_TO_ROOT#}/download/release250/windows/dlvhex-mcsieplugin/libdlvhexplugin-string.dll">Download</a></td>
 	      <td>Operates on strings, see the <a
 	  href="stringplugin.html">string-plugin documentation</a></td>
-	    </tr>	
+	    </tr>
 	    <tr class="odd">
-	      <td>Nested-HEX Plugin</td> 	
+	      <td>Nested-HEX Plugin</td>
               <td><a href="{#PATH_TO_ROOT#}/download/release250/linux/dlvhex-mcsieplugin/libdlvhexplugin-nestedhex.so">Download</a></td>
               <td><a href="{#PATH_TO_ROOT#}/download/release250/macosx/dlvhex-mcsieplugin/libdlvhexplugin-nestedhex.so">Download</a></td>
               <td><a href="{#PATH_TO_ROOT#}/download/release250/windows/dlvhex-mcsieplugin/libdlvhexplugin-nestedhex.dll">Download</a></td>
@@ -71,4 +77,4 @@
 	    </tr>
 	  </tbody>
 	</table>
-
+  -->
