@@ -27,9 +27,9 @@
     <tbody>
       <tr class="odd">
         <td>dlvhex core</td>
-        <td><a href="{#PATH_TO_ROOT#}/download/release250/linux/dlvhex-core/dlvhex2">Download</a></td>
-        <td><a href="{#PATH_TO_ROOT#}/download/release250/macosx/dlvhex-core/dlvhex2">Download</a></td>
-        <td><a href="{#PATH_TO_ROOT#}/download/release250/windows/dlvhex-core/dlvhex2.exe">Download</a></td>
+        <td><a href="{#PATH_TO_ROOT#}/download/release250/linux/dlvhex-core/dlvhex2.tar.gz">Download</a></td>
+        <td><a href="{#PATH_TO_ROOT#}/download/release250/macosx/dlvhex-core/dlvhex2.zip">Download</a></td>
+        <td><a href="{#PATH_TO_ROOT#}/download/release250/windows/dlvhex-core/dlvhex2.zip">Download</a></td>
         <td>The core system (required for all plugins below).</td>
       </tr>
     </tbody>
