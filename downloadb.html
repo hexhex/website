@@ -49,6 +49,9 @@
     If you are using operating systems which are not listed below, or if you prefer to build from sourcecode for other reasons, please visit the <a href="downloads.html">Download Sourcecode</a> page.
   </p>
 	<h3>Release 2.5.0</h3>
+  <p>
+    The current dlvhex release is 2.5.0 (2016-04-12):
+  </p>
   <table summary="">
     <thead>
       <tr>
@@ -69,46 +72,70 @@
       </tr>
     </tbody>
   </table>
-  dlvhex requires Python 2.7.8.
-  <b>Note for Windows users:</b> You can download and install Python from <a href="https://www.python.org/ftp/python/2.7.8/python-2.7.8.msi">here</a>. Please make sure to use the 32 bit version (even when using a 64 bit Windows) and to select the <i>"Add python.exe to Path"</i> option during installation.
-  Note for Windows users: dlvhex requires Python 2.7.8 (32bit) to be found in your path, you can download and install Python from <a href="https://www.python.org/ftp/python/2.7.8/python-2.7.8.msi">here</a>.
-  <!--
-	<table summary="">
-	  <thead>
-	    <tr>
-              <th>Plugin</th>
-              <th>Linux</th>
-              <th>OS X</th>
-              <th>Windows</th>
-              <th>Description</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr class="odd">
-	      <td>MCSIE-Plugin</td>
-	      <td><a href="/download/release250/linux/dlvhex-mcsieplugin/libdlvhexplugin-mcsie.so">Download</a></td>
-              <td><a href="/download/release250/macosx/dlvhex-mcsieplugin/libdlvhexplugin-mcsie.so">Download</a></td>
-              <td><a href="/download/release250/windows/dlvhex-mcsieplugin/libdlvhexplugin-mcsie.dll">Download</a></td>
-	      <td>MCS-IE Plugin, see the <a href="/research/systems/mcsie/">MCS-IE homepage</a>.</td>
-	    </tr>
-	    <tr class="even">
-	      <td>String Plugin</td>
-              <td><a href="/download/release250/linux/dlvhex-mcsieplugin/libdlvhexplugin-string.so">Download</a></td>
-              <td><a href="/download/release250/macosx/dlvhex-mcsieplugin/libdlvhexplugin-string.so">Download</a></td>
-              <td><a href="/download/release250/windows/dlvhex-mcsieplugin/libdlvhexplugin-string.dll">Download</a></td>
-	      <td>Operates on strings, see the <a
-	  href="stringplugin.html">string-plugin documentation</a></td>
-	    </tr>
-	    <tr class="odd">
-	      <td>Nested-HEX Plugin</td>
-              <td><a href="/download/release250/linux/dlvhex-mcsieplugin/libdlvhexplugin-nestedhex.so">Download</a></td>
-              <td><a href="/download/release250/macosx/dlvhex-mcsieplugin/libdlvhexplugin-nestedhex.so">Download</a></td>
-              <td><a href="/download/release250/windows/dlvhex-mcsieplugin/libdlvhexplugin-nestedhex.dll">Download</a></td>
-	      <td>Support for subprograms.</a>.</td>
-	    </tr>
-	  </tbody>
-	</table>
-  -->
+  <h4>Plugins</h2>
+  <p>
+    Download the pre-built plugin for your operating system from below and extract it to a sub-directory called <i>plugins</i>, located relative to the <i>dlvhex2</i> core binary.
+  <p>
+    If a pre-built plugin is missing for your operating system, you can also download the sourcecode from the <a href="downloads.html">Download Sourcecode</a> page and build it on your own.
+  </p>
+  <table summary="">
+    <thead>
+      <tr>
+        <th>Plugin</th>
+        <th>Linux</th>
+        <th>OS X</th>
+        <th>Windows</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="odd">
+        <td>Action Plugin</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Action Plugin, see the <a href="actionplugin.html">nexted action-plugin documentation.</td>
+      </tr>
+      <tr>
+        <td>Action Addons</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Action Addons, see the <a href="actionplugin.html">nexted action-plugin documentation.</td>
+      </tr>
+      <tr class="odd">
+        <td>MCSIE Plugin</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>MCS-IE Plugin, see the <a href="/research/systems/mcsie/">MCS-IE homepage</a>.</td>
+      </tr>
+      <tr>
+        <td>Nested HEX Plugin</td>
+        <td><a href="download/release250/linux/dlvhex-plugins/dlvhexplugin-nestedhex.tar.gz">Download</a></td>
+        <td></td>
+        <td></td>
+        <td>Nested HEX Plugin, see the <a href="nextedhexplugin.html">nexted hex-plugin documentation</a></td>
+      </tr>
+      <tr class="odd">
+        <td>String Plugin</td>
+        <td><a href="download/release250/linux/dlvhex-plugins/dlvhexplugin-string.tar.gz">Download</a></td>
+        <td></td>
+        <td></td>
+        <td>Operates on strings, see the <a href="stringplugin.html">string-plugin documentation</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4>Requirements</h2>
+  <p>
+    dlvhex requires Python 2.7.8.
+  </p>
+  <p>
+    <b>Note for Windows users:</b> You can download and install Python from <a href="https://www.python.org/ftp/python/2.7.8/python-2.7.8.msi">here</a>. Please make sure to use the 32 bit version (even when using a 64 bit Windows) and to select the <i>"Add python.exe to Path"</i> option during installation.
+  </p>
+  <p>
+    On Linux, please also make sure to install <i>libtool</i> in order to be able to use plugins.
+  </p>
       </div>
       <div class="grid_3">
   <p>&nbsp;</p>
