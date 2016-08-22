@@ -61,21 +61,21 @@
     <tbody>
       <tr class="odd">
         <td>Action Plugin</td>
+        <td><a href="download/release250/linux/dlvhex-plugins/dlvhexplugin-action.tar.gz">Download</a></td>
         <td></td>
         <td></td>
-        <td></td>
-        <td>Action Plugin, see the <a href="actionplugin.html">nexted action-plugin documentation.</td>
+        <td>Action Plugin, see the <a href="actionplugin.html">action-plugin documentation.</td>
       </tr>
       <tr>
         <td>Action Addons</td>
+        <td><a href="download/release250/linux/dlvhex-plugins/dlvhexplugin-action-addons.tar.gz">Download</a></td>
         <td></td>
         <td></td>
-        <td></td>
-        <td>Action Addons, see the <a href="actionplugin.html">nexted action-plugin documentation.</td>
+        <td>Action Addons, see the <a href="actionplugin.html">action-plugin documentation.</td>
       </tr>
       <tr class="odd">
         <td>MCSIE Plugin</td>
-        <td></td>
+        <td><a href="download/release250/linux/dlvhex-plugins/dlvhexplugin-mcsie.tar.gz">Download</a></td>
         <td></td>
         <td></td>
         <td>MCS-IE Plugin, see the <a href="/research/systems/mcsie/">MCS-IE homepage</a>.</td>
@@ -85,7 +85,7 @@
         <td><a href="download/release250/linux/dlvhex-plugins/dlvhexplugin-nestedhex.tar.gz">Download</a></td>
         <td></td>
         <td></td>
-        <td>Nested HEX Plugin, see the <a href="nextedhexplugin.html">nexted hex-plugin documentation</a></td>
+        <td>Nested HEX Plugin, see the <a href="nextedhexplugin.html">nested hex-plugin documentation</a></td>
       </tr>
       <tr class="odd">
         <td>String Plugin</td>
