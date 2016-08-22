@@ -1,5 +1,7 @@
 	<h2>Download Source</h2>
 
+	If you are interested in the dlvhex sourcecode, you may choose between the latest (stable) release version and the (most recent but possibly unstable) development version.
+
 	<h3>Latest release version</h3>
 
 	<p>
@@ -171,7 +173,7 @@ git clone --recursive git@github.com:hexhex/core.git</pre>
 	   <a href="https://github.com/hexhex/">hexhex</a> organization.
 	</p>
 
-  <h4>IMPORTANT!</h4>
+  <p><font color="red">Important:</font></p>
 
   <p>
     Whenever you use a git version of dlvhex,
