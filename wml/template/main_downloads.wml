@@ -129,7 +129,7 @@
 	  UNIX-based operating systems like Linux and Mac OS X and Microsoft Windows.
 	</p>
 
-
+<!--
 	<h3>dlvhex for Debian/Ubuntu</h3>
 	     
 	<p> We provide pre-compiled packages of dlvhex 1.X at <a
@@ -139,6 +139,7 @@
 	<p><font color="red"><b>Note:</b> These packages are outdated!</font>
 	There are currently no pre-compiled packages of dlvhex 2.X available.
 	Please build it from source.</p>
+-->
 	
 	<h3>Development Version</h3><a name="devel"></a>
 
