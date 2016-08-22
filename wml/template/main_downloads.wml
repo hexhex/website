@@ -74,23 +74,23 @@
 	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-aggregateplugin/2.0.0/dlvhex-aggregateplugin-2.0.0.tar.gz/download">Download</a></td>
 	      <td>Simple plugin with aggregate functions.</td>
 	    </tr>
-	    <tr class="odd">
+	    <tr class="even">
 	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-mcsieplugin/">MCSIE-Plugin Sourcecode</a></td>
               <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-mcsieplugin/2.0.0/dlvhex-mcsieplugin-2.0.0.tar.gz/download">Download</a></td>
 	      <td>MCS-IE Plugin, see the <a href="/research/systems/mcsie/">MCS-IE homepage</a>.</td>
 	    </tr>
-	    <tr>
+	    <tr class="odd">
 	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/">Script Plugin Sourcecode</a></td>
 	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/2.0.0/dlvhex-scriptplugin-2.0.0.tar.gz/download">Download</a></td> 	
 	      <td>Simple plugin that can execute scripts and does some I/O.</td>
 	    </tr>
-	    <tr class="odd">
+	    <tr class="even">
 	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-stringplugin/">String Plugin Sourcecode</a></td> 	
 	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-stringplugin/2.0.0/dlvhex-stringplugin-2.0.0.tar.gz/download">Download</a></td> 	
 	      <td>Operates on strings, see the <a
 	  href="stringplugin.html">string-plugin documentation</a></td>
 	    </tr>	
-	    <tr>
+	    <tr class="odd">
 	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-wordnetplugin/">Wordnet Plugin Sourcecode</a></td> 	
 	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-wordnetplugin/2.0.0/dlvhex-wordnetplugin-2.0.0.tar.gz/download">Download</a></td> 	
 	      <td>Interface to the <a href="http://wordnet.princeton.edu/">Wordnet library</a>.</td>
