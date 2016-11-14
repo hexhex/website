@@ -1,8 +1,7 @@
-	<h2>Download Source</h2>
+	<h2>Download Source (including Version 1.X)</h2>
 
-	<p>If you are interested in the dlvhex sourcecode, you may choose between the latest (stable) release version and the (most recent but possibly unstable) development version.</p>
-
-	<p>Note that this page is only about dlvhex 2.X because dlvhex 1.X is no longer supported and should not be used anymore. However, if you depend on 1.X (e.g. because a plugin is not available for 2.X), you may visit the <a href="downloads1x.html">old download page</a> (distribution as sourcecode only).</p>
+	<p><font color="red"><b>Note:</b> This download page is no longer updated and kept only for users who depend on dlvhex version 1.X.</font>
+	The <a href="downloads.html">new source downlaod page</a> includes only dlvhex 2.X.</p>
 
 	<h3>Latest Release Version</h3>
 
@@ -17,39 +16,17 @@
     and in detail in the <tt>ChangeLog</tt> files.
   </p>
 
-<!--
 	<p class="info">
 	  The current release dlvhex 2.X (2016-04-12) is 2.5.0:
 	  <a href="{#PATH_TO_ROOT#}download/release250/dlvhex2-2.5.0.tar.gz">source tarball</a>
    (binary of this release is called <code>dlvhex2</code>).
   </p>
--->
 
-<!--
 	<p>
 	  The deprecated release of dlvhex 1.X (2012-10-19) is 1.7.4:
 	  <a href="http://sourceforge.net/projects/dlvhex/files/dlvhex/1.7.4/dlvhex-1.7.4.tar.gz/download">source tarball</a>
    (binary of this release is called <code>dlvhex</code>).
 	</p>
--->
-
-	<table>
-	  <thead>
-	    <tr>
-	      <th>dlvhex core</th>
-	      <th>All platforms</th>
-	      <th>Description</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr class="odd">
-	      <td>dlvhex core Sourcecode 2.5.0</td>
-	      <td><a href="{#PATH_TO_ROOT#}download/release250/dlvhex2-2.5.0.tar.gz">Download</a></td>
-	      <td>The core system (required for all plugins below).</td>
-	    </tr>
-	  </tbody>
-	</table>
-
 	<p>
 	  The release versions of some core plugins are listed below.
 	</p>
@@ -64,41 +41,58 @@
 	  <thead>
 	    <tr>
 	      <th>Plugin</th>
-	      <th>All platforms</th>
+	      <th>dlvhex 1.X</th>
+	      <th>dlvhex 2.X</th>
 	      <th>Description</th>
 	    </tr>
 	  </thead>
 	  <tbody>
 	    <tr class="odd">
-	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-aggregateplugin/">Aggregate Plugin Sourcecode</a></td>
-	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-aggregateplugin/2.0.0/dlvhex-aggregateplugin-2.0.0.tar.gz/download">Download</a></td>
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-aggregateplugin/">Aggregate Plugin</a></td>
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-aggregateplugin/1.7.1/dlvhex-aggregateplugin-1.7.1.tar.gz/download">1.7.1</a></td>
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-aggregateplugin/2.0.0/dlvhex-aggregateplugin-2.0.0.tar.gz/download">2.0.0</a></td>
 	      <td>Simple plugin with aggregate functions.</td>
 	    </tr>
-	    <tr class="even">
-	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-mcsieplugin/">MCSIE-Plugin Sourcecode</a></td>
-              <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-mcsieplugin/2.0.0/dlvhex-mcsieplugin-2.0.0.tar.gz/download">Download</a></td>
-	      <td>MCS-IE Plugin, see the <a href="/research/systems/mcsie/">MCS-IE homepage</a>.</td>
+	    <tr>
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-dlplugin/">DL-Plugin</a></td>
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-dlplugin/1.7.1/dlvhex-dlplugin-1.7.1.tar.gz/download">1.7.1</a></td>
+	      <td>-</td>
+	      <td>Description Logic Plugin, see the <a href="dlplugin.html">DL-Plugin documentation</a>.</td>
 	    </tr>
 	    <tr class="odd">
-	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/">Script Plugin Sourcecode</a></td>
-	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/2.0.0/dlvhex-scriptplugin-2.0.0.tar.gz/download">Download</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-mcsieplugin/">MCSIE-Plugin</a></td>
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-mcsieplugin/1.7.1/dlvhex-mcsieplugin-1.7.1.tar.gz/download">1.7.1</a></td>
+              <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-mcsieplugin/2.0.0/dlvhex-mcsieplugin-2.0.0.tar.gz/download">2.0.0</a></td>
+	      <td>MCS-IE Plugin, see the <a href="/research/systems/mcsie/">MCS-IE homepage</a>.</td>
+	    </tr>
+	    <tr>
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/">Script Plugin</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/1.7.1/dlvhex-scriptplugin-1.7.1.tar.gz/download">1.7.1</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-scriptplugin/2.0.0/dlvhex-scriptplugin-2.0.0.tar.gz/download">2.0.0</a></td> 	
 	      <td>Simple plugin that can execute scripts and does some I/O.</td>
 	    </tr>
-	    <tr class="even">
-	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-stringplugin/">String Plugin Sourcecode</a></td> 	
-	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-stringplugin/2.0.0/dlvhex-stringplugin-2.0.0.tar.gz/download">Download</a></td> 	
+	    <tr class="odd">
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-stringplugin/">String Plugin</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-stringplugin/1.7.0/dlvhex-stringplugin-1.7.0.tar.gz/download">1.7.0</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-stringplugin/2.0.0/dlvhex-stringplugin-2.0.0.tar.gz/download">2.0.0</a></td> 	
 	      <td>Operates on strings, see the <a
 	  href="stringplugin.html">string-plugin documentation</a></td>
 	    </tr>	
-	    <tr class="odd">
-	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-wordnetplugin/">Wordnet Plugin Sourcecode</a></td> 	
-	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-wordnetplugin/2.0.0/dlvhex-wordnetplugin-2.0.0.tar.gz/download">Download</a></td> 	
+	    <tr>
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-wordnetplugin/">Wordnet Plugin</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-wordnetplugin/1.7.0/dlvhex-wordnetplugin-1.7.0.tar.gz/download">1.7.0</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-wordnetplugin/2.0.0/dlvhex-wordnetplugin-2.0.0.tar.gz/download">2.0.0</a></td> 	
 	      <td>Interface to the <a href="http://wordnet.princeton.edu/">Wordnet library</a>.</td>
+	    </tr>
+	    <tr>
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-xpathplugin/">XPath Plugin</a></td> 	
+	      <td><a href="http://sourceforge.net/projects/dlvhex/files/dlvhex-xpathplugin/0.2.0/dlvhex-xpathplugin-0.2.0.tar.gz/download">1.7.0</a></td> 	
+	      <td>-</td>
+	      <td>Realizes XPath queries for XML documents.</td>
 	    </tr>
 	  </tbody>
 	</table>
 
-<!--
 	<p>
 	  The release versions of the semweb plugins can be found below.
 	</p>
@@ -132,7 +126,6 @@
 	  Other plugins are currently under development and will be
 	  released ASAP.
 	</p>
--->
 	
 	<p>
 	  dlvhex works under
