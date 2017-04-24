@@ -1,5 +1,14 @@
 <h2>Literature</h2>
 
+<p class="bib"><a name="r2017-ijcai"></a>
+Christoph Redl.<br/>
+<b>Conflict-driven ASP Solving with External Sources and Program Splits</b>.<br/>
+Proceedings of the Twenty-Sixth International Joint Conference on Artificial Intelligence (IJCAI 2017), August 19-25, 2017, Melbourne, Australia. To appear.<br/>
+<!--[&nbsp;<a href="http://www.kr.tuwien.ac.at/staff/redl/pub-redl/pub-redl/pub-redl-2017_bib.html#r2017-ijcai">bib</a>&nbsp;| 
+<a href="http://www.kr.tuwien.ac.at/staff/redl/publications/r2017-ijcai-poster.pdf">poster</a>&nbsp;| 
+<a href="http://www.kr.tuwien.ac.at/staff/redl/publications/r2017-ijcai.pdf">paper</a>&nbsp;]-->
+</p>
+
 <p class="bib"><a name="r2017b-lpnmr"></a>
 Christoph Redl.<br/>
 <b>Explaining Inconsistency in Answer Set Programs and Extensions</b>.<br/>
