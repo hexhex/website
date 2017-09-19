@@ -3,10 +3,25 @@
 <p class="bib"><a name="r2017-ijcai"></a>
 Christoph Redl.<br/>
 <b>Conflict-driven ASP Solving with External Sources and Program Splits</b>.<br/>
-Proceedings of the Twenty-Sixth International Joint Conference on Artificial Intelligence (IJCAI 2017), August 19-25, 2017, Melbourne, Australia. To appear.<br/>
-<!--[&nbsp;<a href="http://www.kr.tuwien.ac.at/staff/redl/pub-redl/pub-redl/pub-redl-2017_bib.html#r2017-ijcai">bib</a>&nbsp;| 
+Proceedings of the Twenty-Sixth International Joint Conference on Artificial Intelligence (IJCAI 2017), August 19-25, 2017, Melbourne, Australia.<br/>
+[&nbsp;<a href="http://www.kr.tuwien.ac.at/staff/redl/pub-redl/pub-redl-2017_bib.html#r2017-ijcai">bib</a>&nbsp;| 
 <a href="http://www.kr.tuwien.ac.at/staff/redl/publications/r2017-ijcai-poster.pdf">poster</a>&nbsp;| 
-<a href="http://www.kr.tuwien.ac.at/staff/redl/publications/r2017-ijcai.pdf">paper</a>&nbsp;]-->
+<a href="http://www.kr.tuwien.ac.at/staff/redl/publications/r2017-ijcai.pdf">paper</a>&nbsp;]
+</p>
+
+<p class="bib"><a name="ekw-ijcai"></a>
+Thomas Eiter, Tobias Kaminski, and Antonius Weinzierl.<br/>
+<b>Lazy-Grounding for Answer Set Programs with External Source Access</b>.<br/>
+Proceedings of the Twenty-Sixth International Joint Conference on Artificial Intelligence (IJCAI 2017), August 19-25, 2017, Melbourne, Australia.<br/>
+</p>
+
+<p class="bib"><a name="r2017-ijcai"></a>
+Christoph Redl.<br/>
+<b>Conflict-driven ASP Solving with External Sources and Program Splits</b>.<br/>
+Proceedings of the Twenty-Sixth International Joint Conference on Artificial Intelligence (IJCAI 2017), August 19-25, 2017, Melbourne, Australia. To appear.<br/>
+[&nbsp;<a href="http://www.kr.tuwien.ac.at/staff/redl/pub-redl/pub-redl/pub-redl-2017_bib.html#r2017-ijcai">bib</a>&nbsp;| 
+<a href="http://www.kr.tuwien.ac.at/staff/redl/publications/r2017-ijcai-poster.pdf">poster</a>&nbsp;| 
+<a href="http://www.kr.tuwien.ac.at/staff/redl/publications/r2017-ijcai.pdf">paper</a>&nbsp;]
 </p>
 
 <p class="bib"><a name="ekrsw2017-rw"></a>
@@ -16,6 +31,12 @@ Reasoning Web. Semantic Interoperability on the Web - 13th International Summer 
 -[&nbsp;<a href="../pub-redl/pub-redl-2017_bib.html#ekrsw2017-rw">bib</a>&nbsp;| 
 <a href="http://www.kr.tuwien.ac.at/staff/redl/publications/ekrsw2017-rw-slides.pdf">slides</a>&nbsp;| 
 <a href="http://www.kr.tuwien.ac.at/staff/redl/publications/ekrsw2017-rw.pdf">paper</a>&nbsp;]
+</p>
+
+<p class="bib"><a name="w-lpnmr"></a>
+Antonius Weinzierl.<br/>
+<b>Blending Lazy-Grounding and CDNL Search for Answer-Set Solving</b>.<br/>
+Proceedings of the Fourteenth International Conference on Logic Programming and Nonmonotonic Reasoning (LPNMR 2017), July 3-6, 2017, Helsinki, Finland.<br/>
 </p>
 
 <p class="bib"><a name="r2017b-lpnmr"></a>
